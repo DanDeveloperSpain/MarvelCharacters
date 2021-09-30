@@ -15,7 +15,7 @@ final class HomeViewModel {
     
     let characterService : CharacterServiceProtocol
     
-    private(set) var charactersData : Characters! {
+    private(set) var charactersData : Characters? {
             didSet {
                 self.bindCharactersViewModelToController()
             }
