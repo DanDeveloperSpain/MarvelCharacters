@@ -27,7 +27,14 @@ final class HomeViewModel {
         }
     }
     
+    private(set) var errorMessaje : String? {
+        didSet {
+            self.binderrorMessajeViewModelToController()
+        }
+    }
+    
     var bindCharactersViewModelToController : (() -> ()) = {}
+    var binderrorMessajeViewModelToController : (() -> ()) = {}
     
     //------------------------------------------------
     // MARK: - Init
@@ -43,15 +50,15 @@ final class HomeViewModel {
     //------------------------------------------------
     
     func getCharacters(){
-        characterService.requestGetCharacter(url: "/v1/public/characters", limit: limit, offset: offset, withSuccess: { (result) in
+        characterService.requestGetCharacter(limit: limit, offset: offset, withSuccess: { (result) in
             self.responseCharactersData = result
             self.characters += result.all
             
             if (self.responseCharactersData?.count ?? 0) == (self.responseCharactersData?.limit ?? 0) {
                 self.loadMore = true
             }
-        }, withFailure: { (error, _) in
-            print(error)
+        }, withFailure: { (error) in
+            self.errorMessaje = error
         })
     }
     

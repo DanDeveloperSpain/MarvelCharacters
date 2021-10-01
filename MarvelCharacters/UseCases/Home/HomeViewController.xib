@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,6 +13,7 @@
             <connections>
                 <outlet property="activityIndicator" destination="wqQ-zY-0I1" id="5bh-gJ-to0"/>
                 <outlet property="charactersCollectionView" destination="d7S-ny-Cbr" id="WaV-Ew-yAV"/>
+                <outlet property="tryAgainButton" destination="5tx-N1-7hy" id="ZtU-Uy-fIG"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -34,11 +36,21 @@
                     <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
                     <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </activityIndicatorView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5tx-N1-7hy">
+                    <rect key="frame" x="164.5" y="490.5" width="85" height="31"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Try Again"/>
+                    <connections>
+                        <action selector="tryAgainButtonPressed:" destination="-1" eventType="touchUpInside" id="Fot-AP-jel"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="5tx-N1-7hy" firstAttribute="top" secondItem="wqQ-zY-0I1" secondAttribute="bottom" constant="24" id="Aad-hI-Kcm"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="d7S-ny-Cbr" secondAttribute="trailing" id="KH5-6e-N2G"/>
+                <constraint firstItem="5tx-N1-7hy" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="L4U-V6-Hrp"/>
                 <constraint firstItem="wqQ-zY-0I1" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Uiw-fJ-K7g"/>
                 <constraint firstItem="d7S-ny-Cbr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="e1I-kF-jtl"/>
                 <constraint firstItem="d7S-ny-Cbr" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="nAN-No-YVu"/>

@@ -15,14 +15,15 @@ final class HomeViewController: UIViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var charactersCollectionView: UICollectionView!
+    @IBOutlet weak var tryAgainButton: UIButton!
     
     //------------------------------------------------
     // MARK: - Variables and constants
     //------------------------------------------------
 
     let characterService = CharacterService()
-
     private(set) var homeViewModel: HomeViewModel?
+    let util = Util()
  
     //------------------------------------------------
     // MARK: - LifeCycle
@@ -33,14 +34,31 @@ final class HomeViewController: UIViewController {
         
         configureCollectionView()
         
-        self.activityIndicator.startAnimating()
+         tryAgainButton.isHidden = true
+         activityIndicator.color = .PRINCIPAL_COLOR
+         activityIndicator.startAnimating()
         
         homeViewModel = HomeViewModel(characterService: characterService)
         
         homeViewModel?.bindCharactersViewModelToController = {
+            self.charactersCollectionView.isHidden = false
+            self.tryAgainButton.isHidden = true
             self.updateDataSource()
         }
+         
+        homeViewModel?.binderrorMessajeViewModelToController = {
+            self.showError()
+        }
 
+    }
+    
+    //------------------------------------------------
+    // MARK: - Button actions
+    //------------------------------------------------
+
+    @IBAction func tryAgainButtonPressed(_ sender: UIButton) {
+        activityIndicator.startAnimating()
+        homeViewModel?.getCharacters()
     }
 
     //------------------------------------------------
@@ -67,6 +85,13 @@ final class HomeViewController: UIViewController {
         flowLayout.minimumLineSpacing = spacing
         flowLayout.sectionInset = UIEdgeInsets(top: 0, left: spacing, bottom: 0, right: spacing)
         self.charactersCollectionView.collectionViewLayout = flowLayout
+    }
+    
+    private func showError(){
+        activityIndicator.stopAnimating()
+        charactersCollectionView.isHidden = true
+        tryAgainButton.isHidden = false
+        util.showSimpleAlertAccept(viewController: self, alertTitle: NSLocalizedString(self.homeViewModel?.errorMessaje ?? "", comment: ""), alertMessage: "")
     }
  
  }
