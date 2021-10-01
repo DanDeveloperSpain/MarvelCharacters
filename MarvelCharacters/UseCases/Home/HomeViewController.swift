@@ -32,11 +32,10 @@ final class HomeViewController: UIViewController {
      override func viewDidLoad() {
          super.viewDidLoad()
         
+        configureView()
         configureCollectionView()
         
-         tryAgainButton.isHidden = true
-         activityIndicator.color = .PRINCIPAL_COLOR
-         activityIndicator.startAnimating()
+        activityIndicator.startAnimating()
         
         homeViewModel = HomeViewModel(characterService: characterService)
         
@@ -64,6 +63,10 @@ final class HomeViewController: UIViewController {
     //------------------------------------------------
     // MARK: - Private methods
     //------------------------------------------------
+    private func configureView(){
+        tryAgainButton.isHidden = true
+        activityIndicator.color = .PRINCIPAL_COLOR
+    }
     
     private func updateDataSource(){
         self.activityIndicator.stopAnimating()
@@ -128,5 +131,15 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             homeViewModel?.paginate()
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let characterSelected = homeViewModel?.characters[indexPath.row] {
+            let characterDetailViewModel = CharacterDetailViewModel(character: characterSelected, characterService: characterService)
+            let characterDetailVC = CharacterDetailViewController()
+            characterDetailVC.characterDetailViewModel = characterDetailViewModel
+            self.present(characterDetailVC, animated: true, completion: nil)
+        }
+     }
+
     
 }

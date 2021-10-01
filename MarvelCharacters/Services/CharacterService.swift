@@ -14,7 +14,7 @@ import os.log
 enum CharacterServiceEndpoint {
     
     case characters
-    case comics(String)
+    case comics(Int)
     
     func getURL() -> String {
         switch self {
@@ -34,6 +34,8 @@ enum CharacterServiceEndpoint {
 protocol CharacterServiceProtocol {
     
     func requestGetCharacter(limit: Int, offset: Int, withSuccess: @escaping (ResponseCharactersData) -> Void, withFailure:@escaping (_ error: String) -> Void)
+    
+    func requestGetComicsByCharacter(characterId: Int, limit: Int, offset: Int, withSuccess: @escaping (ResponseComicsData) -> Void, withFailure:@escaping (_ error: String) -> Void)
     
 }
 
@@ -81,6 +83,38 @@ class CharacterService : CharacterServiceProtocol {
             }
         }
         
+    }
+    
+    func requestGetComicsByCharacter(characterId: Int, limit: Int, offset: Int, withSuccess: @escaping (ResponseComicsData) -> Void, withFailure:@escaping (_ error: String) -> Void) {
+        
+        var parameters = marvelApiService.getParameters()
+        
+        parameters["limit"] = limit as Any
+        parameters["offset"] = offset as Any
+        
+        let url = marvelApiService.BASE_URL + CharacterServiceEndpoint.comics(characterId).getURL()
+        
+        marvelApiService.AFManager.request(url, method: .get, parameters: parameters, encoding: marvelApiService.URLEncoding, headers: marvelApiService.headers).validate().responseDecodable(of: ResponseComics.self) { response in
+            
+            switch response.result {
+                
+            case let .success(responseCharacters):
+                
+                withSuccess(responseCharacters.data)
+                
+            case .failure:
+                
+                os_log("statusCode = %@", log: self.marvelApiService.log, "\(String(describing: response.response?.statusCode))")
+                os_log("errorDescription = %@", log: self.marvelApiService.log, "\(String(describing: response.error!.errorDescription))")
+                
+                if let statusCode = response.response?.statusCode {
+                    
+                    let error = self.exceptionHandler.getErrorDescriptionToUser(response.error!.errorDescription ?? "", statusCode)
+                    
+                    withFailure(error)
+                }
+            }
+        }
     }
     
 }

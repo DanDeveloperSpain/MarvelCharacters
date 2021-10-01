@@ -27,7 +27,6 @@ struct Character: Decodable {
     let name: String
     let description: String
     let thumbnail: Thumbnail
-    let comics: Comics
     let series: Series
 }
 
@@ -41,14 +40,8 @@ struct Thumbnail: Decodable {
 
 }
 
-struct Comics: Decodable {
-    let available: Int
-    let collectionURI: String
-    let items: [Comic]
-}
-
-struct Comic: Decodable {
-    let resourceURI, name: String
+struct DateMarvel: Decodable {
+    let type, date : String
 }
 
 struct Series: Decodable {
