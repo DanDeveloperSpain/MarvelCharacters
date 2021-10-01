@@ -20,11 +20,11 @@ class ComicSerieCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func fill(comic: Comic){
-        let urlImge = comic.thumbnail.path + "." + comic.thumbnail.typeExtension
+    func fill(title: String, year: String, thumbnail: Thumbnail?) {
+        let urlImge = "\(thumbnail?.path ?? "").\(thumbnail?.typeExtension ?? "")"
         thumbnailImageView.kf.setImage(with: URL(string: urlImge), placeholder: UIImage(named: "marverComics"))
-        titleLabel.text = comic.title
-        yearLabel.text = comic.year
+        titleLabel.text = title
+        yearLabel.text = year
     }
 
 }

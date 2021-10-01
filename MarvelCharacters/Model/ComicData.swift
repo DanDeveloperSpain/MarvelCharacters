@@ -8,13 +8,13 @@
 import Foundation
 
 struct ResponseComics: Decodable {
-    var code: Int
+    var code: Int?
     var data: ResponseComicsData
 }
 
 struct ResponseComicsData: Decodable {
-    let offset, limit, total, count: Int
-    let all: [Comic]
+    let offset, limit, total, count: Int?
+    let all: [Comic]?
 
     enum CodingKeys: String, CodingKey {
         case offset, limit, total, count
@@ -23,14 +23,14 @@ struct ResponseComicsData: Decodable {
 }
 
 struct Comic: Decodable {
-    let id: Int
-    let title: String
-    let thumbnail: Thumbnail
-    let dates : [DateMarvel]
+    let id: Int?
+    let title: String?
+    let thumbnail: Thumbnail?
+    let dates : [DateMarvel]?
     
     var year : String? {
-        if let onsaleDate = dates.filter({$0.type == "onsaleDate"}).first {
-            return Util().stringDateToShortDate(dateString: onsaleDate.date)
+        if let onsaleDate = dates?.filter({$0.type == "onsaleDate"}).first {
+            return Util().stringDateToShortDate(dateString: onsaleDate.date ?? "")
         } else {
             return ""
         }

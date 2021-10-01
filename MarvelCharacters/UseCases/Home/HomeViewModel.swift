@@ -17,24 +17,23 @@ final class HomeViewModel {
     
     let limit = 20
     var offset = 0
-    private var loadMore = false
+    var loadMore = false
     private(set) var characters : [Character] = []
-
     
     private(set) var responseCharactersData : ResponseCharactersData? {
         didSet {
-            self.bindCharactersViewModelToController()
+            self.bindingCharacter()
         }
     }
     
     private(set) var errorMessaje : String? {
         didSet {
-            self.binderrorMessajeViewModelToController()
+            self.bindingError()
         }
     }
     
-    var bindCharactersViewModelToController : (() -> ()) = {}
-    var binderrorMessajeViewModelToController : (() -> ()) = {}
+    var bindingCharacter : (() -> ()) = {}
+    var bindingError : (() -> ()) = {}
     
     //------------------------------------------------
     // MARK: - Init
@@ -49,10 +48,10 @@ final class HomeViewModel {
     // MARK: - Backend
     //------------------------------------------------
     
-    func getCharacters(){
+    func getCharacters() {
         characterService.requestGetCharacter(limit: limit, offset: offset, withSuccess: { (result) in
             self.responseCharactersData = result
-            self.characters += result.all
+            self.characters += result.all ?? []
             
             if (self.responseCharactersData?.count ?? 0) == (self.responseCharactersData?.limit ?? 0) {
                 self.loadMore = true
@@ -63,10 +62,8 @@ final class HomeViewModel {
     }
     
     func paginate() {
-        if loadMore {
-            offset += limit
-            getCharacters()
-        }
+        offset += limit
+        getCharacters()
     }
     
 }

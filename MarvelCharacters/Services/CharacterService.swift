@@ -15,6 +15,7 @@ enum CharacterServiceEndpoint {
     
     case characters
     case comics(Int)
+    case series(Int)
     
     func getURL() -> String {
         switch self {
@@ -22,6 +23,8 @@ enum CharacterServiceEndpoint {
             return "/v1/public/characters"
         case .comics(let characterId):
             return "/v1/public/characters/\(characterId)/comics"
+        case .series(let characterId):
+            return "/v1/public/characters/\(characterId)/series"
         }
     }
     
@@ -36,6 +39,8 @@ protocol CharacterServiceProtocol {
     func requestGetCharacter(limit: Int, offset: Int, withSuccess: @escaping (ResponseCharactersData) -> Void, withFailure:@escaping (_ error: String) -> Void)
     
     func requestGetComicsByCharacter(characterId: Int, limit: Int, offset: Int, withSuccess: @escaping (ResponseComicsData) -> Void, withFailure:@escaping (_ error: String) -> Void)
+    
+    func requestGetSeriesByCharacter(characterId: Int, limit: Int, offset: Int, withSuccess: @escaping (ResponseSeriesData) -> Void, withFailure:@escaping (_ error: String) -> Void)
     
 }
 
@@ -59,9 +64,6 @@ class CharacterService : CharacterServiceProtocol {
         
         marvelApiService.AFManager.request(url, method: .get, parameters: parameters, encoding: marvelApiService.URLEncoding, headers: marvelApiService.headers).validate().responseDecodable(of: ResponseCharacters.self) { response in
             
-            os_log("url = %@", log: self.marvelApiService.log, "\(String(describing: response.response?.url))")
-            os_log("response = %@", log: self.marvelApiService.log, "\(String(describing: response.response?.statusCode))")
-            
             switch response.result {
                 
             case let .success(responseCharacters):
@@ -70,16 +72,7 @@ class CharacterService : CharacterServiceProtocol {
                 
             case .failure:
                 
-                os_log("statusCode = %@", log: self.marvelApiService.log, "\(String(describing: response.response?.statusCode))")
-                os_log("errorDescription = %@", log: self.marvelApiService.log, "\(String(describing: response.error!.errorDescription))")
-
-                if let statusCode = response.response?.statusCode {
-                    
-                    let error = self.exceptionHandler.getErrorDescriptionToUser(response.error!.errorDescription ?? "", statusCode)
-                    
-                    withFailure(error)
-
-                }
+                withFailure(self.failureResponse(statusCode:  response.response?.statusCode ?? 0, errorDescription: "\(String(describing: response.error!.errorDescription))"))
             }
         }
         
@@ -104,17 +97,41 @@ class CharacterService : CharacterServiceProtocol {
                 
             case .failure:
                 
-                os_log("statusCode = %@", log: self.marvelApiService.log, "\(String(describing: response.response?.statusCode))")
-                os_log("errorDescription = %@", log: self.marvelApiService.log, "\(String(describing: response.error!.errorDescription))")
-                
-                if let statusCode = response.response?.statusCode {
-                    
-                    let error = self.exceptionHandler.getErrorDescriptionToUser(response.error!.errorDescription ?? "", statusCode)
-                    
-                    withFailure(error)
-                }
+                withFailure(self.failureResponse(statusCode:  response.response?.statusCode ?? 0, errorDescription: "\(String(describing: response.error!.errorDescription))"))
             }
         }
+    }
+
+    func requestGetSeriesByCharacter(characterId: Int, limit: Int, offset: Int, withSuccess: @escaping (ResponseSeriesData) -> Void, withFailure:@escaping (_ error: String) -> Void) {
+        
+        var parameters = marvelApiService.getParameters()
+        
+        parameters["limit"] = limit as Any
+        parameters["offset"] = offset as Any
+        
+        let url = marvelApiService.BASE_URL + CharacterServiceEndpoint.series(characterId).getURL()
+        
+        marvelApiService.AFManager.request(url, method: .get, parameters: parameters, encoding: marvelApiService.URLEncoding, headers: marvelApiService.headers).validate().responseDecodable(of: ResponseSeries.self) { response in
+            
+            switch response.result {
+                
+            case let .success(responseSeries):
+                
+                withSuccess(responseSeries.data)
+                
+            case .failure:
+                
+                withFailure(self.failureResponse(statusCode:  response.response?.statusCode ?? 0, errorDescription: "\(String(describing: response.error!.errorDescription))"))
+            }
+        }
+    }
+    
+    private func failureResponse(statusCode: Int, errorDescription: String) -> String{
+        os_log("statusCode = %@", log: self.marvelApiService.log, "\(String(describing: statusCode))")
+        os_log("errorDescription = %@", log: self.marvelApiService.log, "\(String(describing: errorDescription))")
+        
+        return self.exceptionHandler.getErrorDescriptionToUser(errorDescription, statusCode)
+        
     }
     
 }

@@ -8,13 +8,13 @@
 import Foundation
 
 struct ResponseCharacters: Decodable {
-    var code: Int
+    var code: Int?
     var data: ResponseCharactersData
 }
 
 struct ResponseCharactersData: Decodable {
-    let offset, limit, total, count: Int
-    let all: [Character]
+    let offset, limit, total, count: Int?
+    let all: [Character]?
   
     enum CodingKeys: String, CodingKey {
         case offset, limit, total, count
@@ -23,15 +23,14 @@ struct ResponseCharactersData: Decodable {
 }
 
 struct Character: Decodable {
-    let id: Int
-    let name: String
-    let description: String
-    let thumbnail: Thumbnail
-    let series: Series
+    let id: Int?
+    let name: String?
+    let description: String?
+    let thumbnail: Thumbnail?
 }
 
 struct Thumbnail: Decodable {
-    let path, typeExtension: String
+    let path, typeExtension: String?
     
     enum CodingKeys: String, CodingKey {
         case path
@@ -41,15 +40,5 @@ struct Thumbnail: Decodable {
 }
 
 struct DateMarvel: Decodable {
-    let type, date : String
-}
-
-struct Series: Decodable {
-    let available: Int
-    let collectionURI: String
-    let items: [Serie]
-}
-
-struct Serie: Decodable {
-    let resourceURI, name: String
+    let type, date : String?
 }

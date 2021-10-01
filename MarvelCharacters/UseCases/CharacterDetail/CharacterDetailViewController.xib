@@ -11,11 +11,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CharacterDetailViewController" customModule="MarvelCharacters" customModuleProvider="target">
             <connections>
-                <outlet property="activityIndicator" destination="Y0C-WV-87J" id="RFp-Hn-Aag"/>
                 <outlet property="characterDescriptionLabel" destination="fiV-hZ-3ed" id="pSQ-mf-Mv7"/>
                 <outlet property="characterImageView" destination="8V8-0Z-gJZ" id="xUr-mq-EN9"/>
                 <outlet property="characterNameLabel" destination="IfL-Dh-Dwf" id="xAD-lq-wAa"/>
+                <outlet property="comicActivityIndicator" destination="Y0C-WV-87J" id="rTj-Ir-7tI"/>
                 <outlet property="comicsSeriesCollectionView" destination="c8Y-L0-dpC" id="YVa-YF-AfU"/>
+                <outlet property="serieActivityIndicator" destination="8jK-G1-619" id="yg2-sE-eD6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -54,26 +55,30 @@
                     </collectionViewFlowLayout>
                 </collectionView>
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Y0C-WV-87J">
-                    <rect key="frame" x="188.5" y="574" width="37" height="37"/>
-                    <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <rect key="frame" x="188.5" y="418" width="37" height="37"/>
+                </activityIndicatorView>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="8jK-G1-619">
+                    <rect key="frame" x="188.5" y="655" width="37" height="37"/>
                 </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="Y0C-WV-87J" firstAttribute="centerY" secondItem="c8Y-L0-dpC" secondAttribute="centerY" id="1vn-ch-Qgb"/>
                 <constraint firstItem="fiV-hZ-3ed" firstAttribute="top" secondItem="IfL-Dh-Dwf" secondAttribute="bottom" constant="20" id="2Ye-eT-5Il"/>
                 <constraint firstItem="8V8-0Z-gJZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3Z0-zs-9le"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="c8Y-L0-dpC" secondAttribute="bottom" id="6XA-cI-tmf"/>
                 <constraint firstItem="IfL-Dh-Dwf" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="92O-Dr-eW7"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="IfL-Dh-Dwf" secondAttribute="trailing" constant="20" id="IFk-Ir-cWn"/>
                 <constraint firstItem="c8Y-L0-dpC" firstAttribute="top" secondItem="fiV-hZ-3ed" secondAttribute="bottom" constant="20" id="M9J-Le-FuA"/>
+                <constraint firstItem="8jK-G1-619" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="SVV-zb-rqa"/>
                 <constraint firstItem="8V8-0Z-gJZ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="25" id="Srr-hu-Tvt"/>
                 <constraint firstItem="Y0C-WV-87J" firstAttribute="centerX" secondItem="c8Y-L0-dpC" secondAttribute="centerX" id="SvV-ni-fL1"/>
                 <constraint firstItem="c8Y-L0-dpC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Vrj-Rd-dlp"/>
                 <constraint firstItem="fiV-hZ-3ed" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="bH4-Qf-sX1"/>
+                <constraint firstItem="Y0C-WV-87J" firstAttribute="top" secondItem="fiV-hZ-3ed" secondAttribute="bottom" constant="115" id="faL-vP-dLZ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="c8Y-L0-dpC" secondAttribute="trailing" id="fbt-26-6YC"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fiV-hZ-3ed" secondAttribute="trailing" constant="20" id="gmt-TA-b7B"/>
+                <constraint firstItem="8jK-G1-619" firstAttribute="top" secondItem="Y0C-WV-87J" secondAttribute="bottom" constant="200" id="hnj-mb-S4H"/>
                 <constraint firstItem="IfL-Dh-Dwf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="i4A-hj-AUU"/>
                 <constraint firstItem="IfL-Dh-Dwf" firstAttribute="top" secondItem="8V8-0Z-gJZ" secondAttribute="bottom" constant="25" id="loJ-cj-fFc"/>
             </constraints>
