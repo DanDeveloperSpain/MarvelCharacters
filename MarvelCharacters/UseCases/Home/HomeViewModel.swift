@@ -53,9 +53,8 @@ final class HomeViewModel {
             self.responseCharactersData = result
             self.characters += result.all ?? []
             
-            if (self.responseCharactersData?.count ?? 0) == (self.responseCharactersData?.limit ?? 0) {
-                self.loadMore = true
-            }
+            self.loadMore = self.characterService.isMoreDataToLoad(offset: self.responseCharactersData?.offset ?? 0, total: self.responseCharactersData?.total ?? 0, limit: self.limit)
+            
         }, withFailure: { (error) in
             self.errorMessaje = error
         })

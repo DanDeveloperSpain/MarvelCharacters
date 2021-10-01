@@ -42,6 +42,8 @@ protocol CharacterServiceProtocol {
     
     func requestGetSeriesByCharacter(characterId: Int, limit: Int, offset: Int, withSuccess: @escaping (ResponseSeriesData) -> Void, withFailure:@escaping (_ error: String) -> Void)
     
+    func isMoreDataToLoad(offset: Int, total: Int, limit: Int) -> Bool
+    
 }
 
 //------------------------------------------------
@@ -123,6 +125,18 @@ class CharacterService : CharacterServiceProtocol {
                 
                 withFailure(self.failureResponse(statusCode:  response.response?.statusCode ?? 0, errorDescription: "\(String(describing: response.error!.errorDescription))"))
             }
+        }
+    }
+    
+    //------------------------------------------------
+    // MARK: - Helpers
+    //------------------------------------------------
+    
+    func isMoreDataToLoad(offset: Int, total: Int, limit: Int) -> Bool {
+        if offset == 0 {
+            return limit <= total ? true : false
+        } else {
+            return offset <= total ? true : false
         }
     }
     

@@ -67,9 +67,7 @@ final class CharacterDetailViewModel {
             self.comics += result.all ?? []
             self.responseComicsData = result
 
-            if (self.responseComicsData?.count ?? 0) == (self.responseComicsData?.limit ?? 0) {
-                self.loadMoreComic = true
-            }
+            self.loadMoreComic = self.characterService.isMoreDataToLoad(offset: self.responseComicsData?.offset ?? 0, total: self.responseComicsData?.total ?? 0, limit: self.limitComic)
             
         }, withFailure: { (error) in
             self.errorMessaje = error
@@ -87,9 +85,7 @@ final class CharacterDetailViewModel {
             self.series += result.all
             self.responseSeriesData = result
 
-            if (self.responseSeriesData?.count ?? 0) == (self.responseSeriesData?.limit ?? 0) {
-                self.loadMoreSerie = true
-            }
+            self.loadMoreSerie = self.characterService.isMoreDataToLoad(offset: self.responseSeriesData?.offset ?? 0, total: self.responseSeriesData?.total ?? 0, limit: self.limitSerie)
             
         }, withFailure: { (error) in
             self.errorMessaje = error
