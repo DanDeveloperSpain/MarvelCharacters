@@ -9,10 +9,10 @@ import Foundation
 
 struct ResponseCharacters: Decodable {
     var code: Int
-    var data: Characters
+    var data: ResponseCharactersData
 }
 
-struct Characters: Decodable {
+struct ResponseCharactersData: Decodable {
     let offset, limit, total, count: Int
     let all: [Character]
   
@@ -32,7 +32,13 @@ struct Character: Decodable {
 }
 
 struct Thumbnail: Decodable {
-    let path: String
+    let path, typeExtension: String
+    
+    enum CodingKeys: String, CodingKey {
+        case path
+        case typeExtension = "extension"
+    }
+
 }
 
 struct Comics: Decodable {

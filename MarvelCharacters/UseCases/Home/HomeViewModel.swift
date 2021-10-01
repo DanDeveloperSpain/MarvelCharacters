@@ -15,11 +15,17 @@ final class HomeViewModel {
     
     let characterService : CharacterServiceProtocol
     
-    private(set) var charactersData : Characters? {
-            didSet {
-                self.bindCharactersViewModelToController()
-            }
+    let limit = 20
+    var offset = 0
+    private var loadMore = false
+    private(set) var characters : [Character] = []
+
+    
+    private(set) var responseCharactersData : ResponseCharactersData? {
+        didSet {
+            self.bindCharactersViewModelToController()
         }
+    }
     
     var bindCharactersViewModelToController : (() -> ()) = {}
     
@@ -37,12 +43,23 @@ final class HomeViewModel {
     //------------------------------------------------
     
     func getCharacters(){
-        characterService.requestGetCharacter(url: "/v1/public/characters", limit: 20, offset: 0, withSuccess: { (result) in
-            print(result)
-            self.charactersData = result
+        characterService.requestGetCharacter(url: "/v1/public/characters", limit: limit, offset: offset, withSuccess: { (result) in
+            self.responseCharactersData = result
+            self.characters += result.all
+            
+            if (self.responseCharactersData?.count ?? 0) == (self.responseCharactersData?.limit ?? 0) {
+                self.loadMore = true
+            }
         }, withFailure: { (error, _) in
             print(error)
         })
+    }
+    
+    func paginate() {
+        if loadMore {
+            offset += limit
+            getCharacters()
+        }
     }
     
 }

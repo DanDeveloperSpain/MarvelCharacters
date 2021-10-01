@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CharacterCell: UICollectionViewCell {
 
@@ -16,7 +17,13 @@ class CharacterCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        characterImageView.layer.cornerRadius = 40
     }
-
+    
+    func fill(character: Character){
+        let urlImge = character.thumbnail.path + "." + character.thumbnail.typeExtension
+        characterImageView.kf.setImage(with: URL(string: urlImge), placeholder: UIImage(named: "marverComics"))
+        characterNameLabel.text = character.name
+    }
 
 }

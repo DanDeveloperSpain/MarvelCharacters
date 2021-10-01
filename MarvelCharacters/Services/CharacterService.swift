@@ -14,7 +14,7 @@ import os.log
 
 protocol CharacterServiceProtocol {
     
-    func requestGetCharacter(url: String, limit: Int, offset: Int, withSuccess: @escaping (Characters) -> Void, withFailure:@escaping (_ error: String, _ errorCode: Int) -> Void)
+    func requestGetCharacter(url: String, limit: Int, offset: Int, withSuccess: @escaping (ResponseCharactersData) -> Void, withFailure:@escaping (_ error: String, _ errorCode: Int) -> Void)
     
 }
 
@@ -26,8 +26,8 @@ class CharacterService : CharacterServiceProtocol {
     
     let marvelApiService = MarvelApiService.sharedInstance
     
-    func requestGetCharacter(url: String, limit: Int, offset: Int, withSuccess: @escaping (Characters) -> Void, withFailure:@escaping (_ error: String, _ errorCode: Int) -> Void) {
-  
+    func requestGetCharacter(url: String, limit: Int, offset: Int, withSuccess: @escaping (ResponseCharactersData) -> Void, withFailure:@escaping (_ error: String, _ errorCode: Int) -> Void) {
+
         var parameters = marvelApiService.getParameters()
         
         parameters["limit"] = limit as Any
