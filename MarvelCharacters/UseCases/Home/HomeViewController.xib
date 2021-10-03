@@ -22,9 +22,12 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="marvelBackground" translatesAutoresizingMaskIntoConstraints="NO" id="44M-AM-kaJ">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                </imageView>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="d7S-ny-Cbr">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="IdO-Cv-9Ag">
                         <size key="itemSize" width="128" height="128"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -48,19 +51,24 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="44M-AM-kaJ" secondAttribute="bottom" id="1Q2-dX-QaK"/>
+                <constraint firstAttribute="bottom" secondItem="d7S-ny-Cbr" secondAttribute="bottom" id="8vI-Wx-eoL"/>
                 <constraint firstItem="5tx-N1-7hy" firstAttribute="top" secondItem="wqQ-zY-0I1" secondAttribute="bottom" constant="24" id="Aad-hI-Kcm"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="44M-AM-kaJ" secondAttribute="trailing" id="IVP-5w-gxH"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="d7S-ny-Cbr" secondAttribute="trailing" id="KH5-6e-N2G"/>
                 <constraint firstItem="5tx-N1-7hy" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="L4U-V6-Hrp"/>
+                <constraint firstItem="44M-AM-kaJ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="TbG-3K-mNA"/>
                 <constraint firstItem="wqQ-zY-0I1" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Uiw-fJ-K7g"/>
+                <constraint firstItem="44M-AM-kaJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="UsC-Mt-wpp"/>
                 <constraint firstItem="d7S-ny-Cbr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="e1I-kF-jtl"/>
                 <constraint firstItem="d7S-ny-Cbr" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="xE8-27-XMz"/>
                 <constraint firstItem="wqQ-zY-0I1" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="xjF-hq-GLs"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="d7S-ny-Cbr" secondAttribute="bottom" id="zLx-63-pbS"/>
             </constraints>
             <point key="canvasLocation" x="118.84057971014494" y="116.51785714285714"/>
         </view>
     </objects>
     <resources>
+        <image name="marvelBackground" width="900" height="1600"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
