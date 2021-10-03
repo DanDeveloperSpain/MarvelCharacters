@@ -39,5 +39,4 @@ class CharacterServiceUnitTest: XCTestCase {
         XCTAssertEqual(loadMore, false)
     }
 
-
 }

@@ -7,7 +7,12 @@
 
 import UIKit
 
-final class HomeViewController: UIViewController {
+protocol HomeViewControllerProtocol: BaseControllerViewModelProtocol {
+    func loadCharacters() -> Void
+    func loadError() -> Void
+}
+
+final class HomeViewController: BaseViewController {
     
     //------------------------------------------------
     // MARK: - Outlets
@@ -21,7 +26,9 @@ final class HomeViewController: UIViewController {
     // MARK: - Variables and constants
     //------------------------------------------------
     
-    var homeViewModel: HomeViewModel?
+    private var viewModel: HomeViewModel? {
+        return self._viewModel as? HomeViewModel
+    }
  
     //------------------------------------------------
     // MARK: - LifeCycle
@@ -29,21 +36,17 @@ final class HomeViewController: UIViewController {
 
      override func viewDidLoad() {
          super.viewDidLoad()
-        
-         configureView()
-         configureCollectionView()
-        
-         activityIndicator.startAnimating()
-        
-         homeViewModel?.bindingCharacter = {
-             self.tryAgainButton.isHidden = true
-             self.updateDataSource()
-         }
-         
-         homeViewModel?.bindingError = {
-            self.showError()
-        }
-
+    }
+    
+    //------------------------------------------------
+    // MARK: - Setup view
+    //------------------------------------------------
+    override internal func setup() {
+        configureView()
+        configureCollectionView()
+       
+        activityIndicator.startAnimating()
+       
     }
     
     //------------------------------------------------
@@ -52,7 +55,7 @@ final class HomeViewController: UIViewController {
 
     @IBAction func tryAgainButtonPressed(_ sender: UIButton) {
         activityIndicator.startAnimating()
-        homeViewModel?.getCharacters()
+        viewModel?.getCharacters()
     }
 
     //------------------------------------------------
@@ -89,7 +92,7 @@ final class HomeViewController: UIViewController {
     private func showError() {
         activityIndicator.stopAnimating()
         tryAgainButton.isHidden = false
-        homeViewModel?.showSimpleAlert()
+        viewModel?.showSimpleAlert(alertTitle: viewModel?.errorMessaje ?? "", alertMessage: "")
     }
  
  }
@@ -101,7 +104,7 @@ final class HomeViewController: UIViewController {
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.homeViewModel?.characters.count ?? 0
+        return self.viewModel?.characters.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -109,7 +112,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         if let characterCell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterCell.kCellId, for: indexPath) as? CharacterCell {
             
-            if let character = self.homeViewModel?.characters[indexPath.row] {
+            if let character = self.viewModel?.characters[indexPath.row] {
                 characterCell.fill(character: character)
                 cell = characterCell
             }
@@ -121,16 +124,32 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         // Pagination
-        if indexPath.row == (homeViewModel?.charactersDataResponse?.offset ?? 0) + (homeViewModel?.charactersDataResponse?.count ?? 0) - 1 && (homeViewModel?.loadMore ?? true) {
+        if indexPath.row == (viewModel?.charactersDataResponse?.offset ?? 0) + (viewModel?.charactersDataResponse?.count ?? 0) - 1 && (viewModel?.loadMore ?? true) {
             self.activityIndicator.startAnimating()
-            homeViewModel?.paginate()
+            viewModel?.paginate()
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let characterSelected = homeViewModel?.characters[indexPath.row] {
-            self.homeViewModel?.showCharacterDetail(character: characterSelected)
+        if let characterSelected = viewModel?.characters[indexPath.row] {
+            self.viewModel?.showCharacterDetail(character: characterSelected)
         }
      }
     
+}
+
+// MARK: - HomeViewControllerProtocol
+extension HomeViewController: HomeViewControllerProtocol {
+    
+    func didLoadView() {
+    }
+    
+    func loadCharacters() {
+        self.tryAgainButton.isHidden = true
+        self.updateDataSource()
+    }
+    
+    func loadError() {
+        self.showError()
+    }
 }

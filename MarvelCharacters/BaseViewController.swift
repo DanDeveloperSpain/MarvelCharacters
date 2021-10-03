@@ -9,6 +9,39 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
+    // MARK: - Variables
+    
+    var _viewModel: BaseViewModel?
+    
+    // MARK: - Init
+    
+    init(nibName: String? = nil, bundle: Bundle? = nil, viewModel: BaseViewModel) {
+        super.init(nibName: nibName, bundle: bundle)
+        self._viewModel = viewModel
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Life Cycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Initialization
+        setup()
+        _viewModel?.loadView()
+    }
+    
+    // MARK: - Public methods to implement
+    
+    func setup() {
+        preconditionFailure("Implement it in ViewController")
+    }
+    
+    // MARK: - Setup NavigationBar
+    
     func setupNavigationBar(title: String?) {
         self.title = title
         self.customizeLeftNavBarButton()

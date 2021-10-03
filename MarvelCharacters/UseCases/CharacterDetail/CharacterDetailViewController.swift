@@ -7,6 +7,12 @@
 
 import UIKit
 
+protocol CharacterDetailViewControllerProtocol: BaseControllerViewModelProtocol {
+    func loadComics() -> Void
+    func loadSeries() -> Void
+    func loadError() -> Void
+}
+
 class CharacterDetailViewController: BaseViewController {
     
     //------------------------------------------------
@@ -23,32 +29,26 @@ class CharacterDetailViewController: BaseViewController {
     // MARK: - Variables and constants
     //------------------------------------------------
     
-    var characterDetailViewModel: CharacterDetailViewModel?
+    private var viewModel: CharacterDetailViewModel? {
+        return self._viewModel as? CharacterDetailViewModel
+    }
 
     //------------------------------------------------
     // MARK: - LifeCycle
     //------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    }
+    
+    //------------------------------------------------
+    // MARK: - Setup view
+    //------------------------------------------------
+    override internal func setup() {
         configureView()
         configureCollectionView()
         
         comicActivityIndicator.startAnimating()
         serieActivityIndicator.startAnimating()
-        
-        characterDetailViewModel?.bindingComic = {
-            self.updateDataSourceComic()
-        }
-        
-        characterDetailViewModel?.bindingSerie = {
-            self.updateDataSourceSerie()
-        }
-        
-        characterDetailViewModel?.bindingError = {
-            self.showError()
-        }
-        
     }
     
     override func backButtonPressed() {
@@ -60,14 +60,14 @@ class CharacterDetailViewController: BaseViewController {
     //------------------------------------------------
     
     private func configureView() {
-        self.setupNavigationBar(title: characterDetailViewModel?.character?.name)
+        self.setupNavigationBar(title: viewModel?.character?.name)
         comicActivityIndicator.color = .PRINCIPAL_COLOR
         serieActivityIndicator.color = .PRINCIPAL_COLOR
         
-        characterDescriptionLabel.text = characterDetailViewModel?.character?.description
+        characterDescriptionLabel.text = viewModel?.character?.description
             
         characterImageView.layer.cornerRadius = 75
-        let urlImge = "\(characterDetailViewModel?.character?.thumbnail?.path ?? "").\(characterDetailViewModel?.character?.thumbnail?.typeExtension ?? "")"
+        let urlImge = "\(viewModel?.character?.thumbnail?.path ?? "").\(viewModel?.character?.thumbnail?.typeExtension ?? "")"
         characterImageView.kf.setImage(with: URL(string: urlImge), placeholder: UIImage(named: "marverComics"))
     }
     
@@ -84,7 +84,7 @@ class CharacterDetailViewController: BaseViewController {
     private func showError() {
         comicActivityIndicator.stopAnimating()
         serieActivityIndicator.stopAnimating()
-        characterDetailViewModel?.showSimpleAlert()
+        viewModel?.showSimpleAlert(alertTitle: viewModel?.errorMessaje ?? "", alertMessage: "")
     }
     
     private func configureCollectionView() {
@@ -137,9 +137,9 @@ extension CharacterDetailViewController: UICollectionViewDelegate, UICollectionV
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return self.characterDetailViewModel?.comics.count ?? 0
+            return self.viewModel?.comics.count ?? 0
         case 1:
-            return self.characterDetailViewModel?.series.count ?? 0
+            return self.viewModel?.series.count ?? 0
         default:
             return 0
         }
@@ -152,7 +152,7 @@ extension CharacterDetailViewController: UICollectionViewDelegate, UICollectionV
         case 0:
             if let comicSerieCell = collectionView.dequeueReusableCell(withReuseIdentifier: ComicSerieCell.kCellId, for: indexPath) as? ComicSerieCell {
                 
-                if let comic = self.characterDetailViewModel?.comics[indexPath.row] {
+                if let comic = self.viewModel?.comics[indexPath.row] {
                     comicSerieCell.fill(title: comic.title ?? "", year: comic.year ?? "", thumbnail: comic.thumbnail)
                     cell = comicSerieCell
                 }
@@ -161,7 +161,7 @@ extension CharacterDetailViewController: UICollectionViewDelegate, UICollectionV
         case 1:
             if let comicSerieCell = collectionView.dequeueReusableCell(withReuseIdentifier: ComicSerieCell.kCellId, for: indexPath) as? ComicSerieCell {
                 
-                if let serie = self.characterDetailViewModel?.series[indexPath.row] {
+                if let serie = self.viewModel?.series[indexPath.row] {
                     comicSerieCell.fill(title: serie.title ?? "", year: serie.startYear.map(String.init) ?? "", thumbnail: serie.thumbnail)
                     cell = comicSerieCell
                 }
@@ -180,15 +180,15 @@ extension CharacterDetailViewController: UICollectionViewDelegate, UICollectionV
         switch indexPath.section {
         case 0:
             // Comic Pagination
-            if indexPath.row == (characterDetailViewModel?.comicsDataResponse?.offset ?? 0) + (characterDetailViewModel?.comicsDataResponse?.count ?? 0) - 1 && (characterDetailViewModel?.loadMoreComic ?? true) {
+            if indexPath.row == (viewModel?.comicsDataResponse?.offset ?? 0) + (viewModel?.comicsDataResponse?.count ?? 0) - 1 && (viewModel?.loadMoreComic ?? true) {
                 self.comicActivityIndicator.startAnimating()
-                characterDetailViewModel?.paginateComic()
+                viewModel?.paginateComic()
             }
         case 1:
             // Serie Pagination
-            if indexPath.row == (characterDetailViewModel?.seriesDataResponse?.offset ?? 0) + (characterDetailViewModel?.seriesDataResponse?.count ?? 0) - 1  && (characterDetailViewModel?.loadMoreSerie ?? true) {
+            if indexPath.row == (viewModel?.seriesDataResponse?.offset ?? 0) + (viewModel?.seriesDataResponse?.count ?? 0) - 1  && (viewModel?.loadMoreSerie ?? true) {
                 self.serieActivityIndicator.startAnimating()
-                characterDetailViewModel?.paginateSerie()
+                viewModel?.paginateSerie()
             }
         default:
             break
@@ -206,4 +206,23 @@ extension CharacterDetailViewController: UICollectionViewDelegate, UICollectionV
         return headerView
     }
     
+}
+
+// MARK: - CharacterDetailViewController
+extension CharacterDetailViewController: CharacterDetailViewControllerProtocol {
+    
+    func didLoadView() {
+    }
+    
+    func loadComics() {
+        self.updateDataSourceComic()
+    }
+    
+    func loadSeries() {
+        self.updateDataSourceSerie()
+    }
+    
+    func loadError() {
+        self.showError()
+    }
 }

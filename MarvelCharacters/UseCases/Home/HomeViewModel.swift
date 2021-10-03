@@ -7,14 +7,21 @@
 
 import Foundation
 
-final class HomeViewModel {
+final class HomeViewModel: BaseViewModel {
     
     //------------------------------------------------
     // MARK: - Variables and constants
     //------------------------------------------------
     
+    private weak var view: HomeViewControllerProtocol? {
+        return self.baseView as? HomeViewControllerProtocol
+    }
+    
+    private var router: HomeRouter? {
+        return self._router as? HomeRouter
+    }
+    
     let characterService : CharacterServiceProtocol
-    let router : HomeRouter
     
     let limit = 20
     var offset = 0
@@ -23,39 +30,37 @@ final class HomeViewModel {
     
     private(set) var charactersDataResponse : ResponseCharactersData? {
         didSet {
-            self.bindingCharacter()
+            self.view?.loadCharacters()
         }
     }
     
     private(set) var errorMessaje : String? {
         didSet {
-            self.bindingError()
+            self.view?.loadError()
         }
     }
-    
-    var bindingCharacter : (() -> ()) = {}
-    var bindingError : (() -> ()) = {}
     
     //------------------------------------------------
     // MARK: - Init
     //------------------------------------------------
     
-    init(router: HomeRouter, characterService: CharacterServiceProtocol) {
+    init(router: BaseRouter, characterService: CharacterServiceProtocol) {
         self.characterService = characterService
-        self.router = router
-        getCharacters()
+        super.init(router: router)
     }
     
     // ------------------------------------------------
     // MARK: - ViewModel
     // ------------------------------------------------
+    
+    override func loadView() {
+        
+        getCharacters()
+        
+    }
 
     func showCharacterDetail(character: Character) {
-        router.showCharacterDetail(character: character, characterService: self.characterService)
-    }
-    
-    func showSimpleAlert() {
-        router.showSimpleAlertAccept(alertTitle: NSLocalizedString(errorMessaje ?? "", comment: ""), alertMessage: "")
+        router?.showCharacterDetail(character: character, characterService: self.characterService)
     }
     
     //------------------------------------------------

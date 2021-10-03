@@ -15,8 +15,9 @@ final class HomeRouter: BaseRouter {
         
         let router = HomeRouter()
         let viewModel = HomeViewModel(router: router, characterService: characterService)
-        let viewController = HomeViewController()
-        viewController.homeViewModel = viewModel
+        let viewController = HomeViewController(viewModel: viewModel)
+        
+        viewModel.setView(viewController)
         
         router.viewController = viewController
         

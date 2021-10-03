@@ -7,14 +7,21 @@
 
 import Foundation
 
-final class CharacterDetailViewModel {
+final class CharacterDetailViewModel: BaseViewModel {
     
     //------------------------------------------------
     // MARK: - Variables and constants
     //------------------------------------------------
     
+    private weak var view: CharacterDetailViewControllerProtocol? {
+        return self.baseView as? CharacterDetailViewControllerProtocol
+    }
+    
+    private var router: CharacterDetailRouter? {
+        return self._router as? CharacterDetailRouter
+    }
+    
     let characterService : CharacterServiceProtocol
-    let router : CharacterDetailRouter
     
     let limitComic = 20
     let limitSerie = 20
@@ -29,40 +36,38 @@ final class CharacterDetailViewModel {
     
     private(set) var comicsDataResponse : ResponseComicsData? {
         didSet {
-            self.bindingComic()
+            self.view?.loadComics()
         }
     }
     
     private(set) var seriesDataResponse : ResponseSeriesData? {
         didSet {
-            self.bindingSerie()
+            self.view?.loadSeries()
         }
     }
     
     private(set) var errorMessaje : String? {
         didSet {
-            self.bindingError()
+            self.view?.loadError()
         }
     }
-    
-    var bindingComic : (() -> ()) = {}
-    var bindingSerie : (() -> ()) = {}
-    var bindingError : (() -> ()) = {}
     
     //------------------------------------------------
     // MARK: - Init
     //------------------------------------------------
     
-    init(router: CharacterDetailRouter, character: Character, characterService: CharacterServiceProtocol) {
-        self.router = router
+    init(router: BaseRouter, character: Character, characterService: CharacterServiceProtocol) {
         self.character = character
         self.characterService = characterService
-        getComics()
-        getSeries()
+        super.init(router: router)
     }
     
-    func showSimpleAlert() {
-        router.showSimpleAlertAccept(alertTitle: NSLocalizedString(errorMessaje ?? "", comment: ""), alertMessage: "")
+    // ------------------------------------------------
+    // MARK: - ViewModel
+    // ------------------------------------------------
+    override func loadView() {
+        getComics()
+        getSeries()
     }
 
     //------------------------------------------------

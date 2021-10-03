@@ -13,11 +13,12 @@ final class CharacterDetailRouter: BaseRouter {
         
         let router = CharacterDetailRouter()
         let viewModel = CharacterDetailViewModel(router: router, character: character, characterService: characterService)
-        let viewController = CharacterDetailViewController()
-        viewController.characterDetailViewModel = viewModel
+        let viewController = CharacterDetailViewController(viewModel: viewModel)
         
+        viewModel.setView(viewController)
+
         router.viewController = viewController
-        
+
         return viewController
     }
     

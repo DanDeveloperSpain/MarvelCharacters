@@ -16,12 +16,11 @@ class HomeViewModelUnitTest: XCTestCase {
     override func setUp() {
         let router = HomeRouter()
         homeViewModel = HomeViewModel(router: router, characterService: characterDummyService)
-        
+        homeViewModel?.getCharacters()
     }
 
     func testGetCharactersHomeViewModel() throws {
         XCTAssertEqual(homeViewModel?.characters.count, 1)
     }
-
 
 }
