@@ -14,23 +14,26 @@ final class CharacterDetailViewModel {
     //------------------------------------------------
     
     let characterService : CharacterServiceProtocol
+    let router : CharacterDetailRouter
+    
     let limitComic = 20
     let limitSerie = 20
     var offsetComic = 0
     var offsetSerie = 0
     var loadMoreComic = false
     var loadMoreSerie = false
+    
     private(set) var character : Character?
     private(set) var comics : [Comic] = []
     private(set) var series : [Serie] = []
     
-    private(set) var responseComicsData : ResponseComicsData? {
+    private(set) var comicsDataResponse : ResponseComicsData? {
         didSet {
             self.bindingComic()
         }
     }
     
-    private(set) var responseSeriesData : ResponseSeriesData? {
+    private(set) var seriesDataResponse : ResponseSeriesData? {
         didSet {
             self.bindingSerie()
         }
@@ -50,11 +53,16 @@ final class CharacterDetailViewModel {
     // MARK: - Init
     //------------------------------------------------
     
-    init(character: Character, characterService: CharacterServiceProtocol) {
+    init(router: CharacterDetailRouter, character: Character, characterService: CharacterServiceProtocol) {
+        self.router = router
         self.character = character
         self.characterService = characterService
         getComics()
         getSeries()
+    }
+    
+    func showSimpleAlert() {
+        router.showSimpleAlertAccept(alertTitle: NSLocalizedString(errorMessaje ?? "", comment: ""), alertMessage: "")
     }
 
     //------------------------------------------------
@@ -65,9 +73,9 @@ final class CharacterDetailViewModel {
         characterService.requestGetComicsByCharacter(characterId: character?.id ?? 0,limit: limitComic, offset: offsetComic, withSuccess: { (result) in
             
             self.comics += result.all ?? []
-            self.responseComicsData = result
+            self.comicsDataResponse = result
 
-            self.loadMoreComic = self.characterService.isMoreDataToLoad(offset: self.responseComicsData?.offset ?? 0, total: self.responseComicsData?.total ?? 0, limit: self.limitComic)
+            self.loadMoreComic = self.characterService.isMoreDataToLoad(offset: self.comicsDataResponse?.offset ?? 0, total: self.comicsDataResponse?.total ?? 0, limit: self.limitComic)
             
         }, withFailure: { (error) in
             self.errorMessaje = error
@@ -83,9 +91,9 @@ final class CharacterDetailViewModel {
     func getSeries() {
         characterService.requestGetSeriesByCharacter(characterId: character?.id ?? 0,limit: limitSerie, offset: offsetSerie, withSuccess: { (result) in
             self.series += result.all
-            self.responseSeriesData = result
+            self.seriesDataResponse = result
 
-            self.loadMoreSerie = self.characterService.isMoreDataToLoad(offset: self.responseSeriesData?.offset ?? 0, total: self.responseSeriesData?.total ?? 0, limit: self.limitSerie)
+            self.loadMoreSerie = self.characterService.isMoreDataToLoad(offset: self.seriesDataResponse?.offset ?? 0, total: self.seriesDataResponse?.total ?? 0, limit: self.limitSerie)
             
         }, withFailure: { (error) in
             self.errorMessaje = error

@@ -30,7 +30,21 @@ struct Comic: Decodable {
     
     var year : String? {
         if let onsaleDate = dates?.filter({$0.type == "onsaleDate"}).first {
-            return Util().stringDateToShortDate(dateString: onsaleDate.date ?? "")
+            return stringDateToShortDate(dateString: onsaleDate.date ?? "")
+        } else {
+            return ""
+        }
+    }
+    
+    private func stringDateToShortDate(dateString: String) -> String {
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateStyle = .medium
+        
+        if let date = dateFormatterGet.date(from: dateString) {
+            return dateFormatterPrint.string(from: date)
         } else {
             return ""
         }

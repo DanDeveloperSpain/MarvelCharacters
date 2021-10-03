@@ -14,7 +14,6 @@ class CharacterDetailViewController: UIViewController {
     //------------------------------------------------
     
     @IBOutlet weak var characterImageView: UIImageView!
-    @IBOutlet weak var characterNameLabel: UILabel!
     @IBOutlet weak var characterDescriptionLabel: UILabel!
     @IBOutlet weak var comicsSeriesCollectionView: UICollectionView!
     @IBOutlet weak var comicActivityIndicator: UIActivityIndicatorView!
@@ -24,9 +23,7 @@ class CharacterDetailViewController: UIViewController {
     // MARK: - Variables and constants
     //------------------------------------------------
     
-    let characterService = CharacterService()
     var characterDetailViewModel: CharacterDetailViewModel?
-    let util = Util()
 
     //------------------------------------------------
     // MARK: - LifeCycle
@@ -41,12 +38,10 @@ class CharacterDetailViewController: UIViewController {
         serieActivityIndicator.startAnimating()
         
         characterDetailViewModel?.bindingComic = {
-            self.comicActivityIndicator.startAnimating()
             self.updateDataSourceComic()
         }
         
         characterDetailViewModel?.bindingSerie = {
-            self.serieActivityIndicator.startAnimating()
             self.updateDataSourceSerie()
         }
         
@@ -61,15 +56,15 @@ class CharacterDetailViewController: UIViewController {
     //------------------------------------------------
     
     private func configureView() {
+        self.title = characterDetailViewModel?.character?.name
         comicActivityIndicator.color = .PRINCIPAL_COLOR
         serieActivityIndicator.color = .PRINCIPAL_COLOR
         
-        characterNameLabel.text = characterDetailViewModel?.character?.name
         characterDescriptionLabel.text = characterDetailViewModel?.character?.description
             
         characterImageView.layer.cornerRadius = 75
         let urlImge = "\(characterDetailViewModel?.character?.thumbnail?.path ?? "").\(characterDetailViewModel?.character?.thumbnail?.typeExtension ?? "")"
-        characterImageView.kf.setImage(with: URL(string: urlImge), placeholder: UIImage(named: "logo-thumbnail"))
+        characterImageView.kf.setImage(with: URL(string: urlImge), placeholder: UIImage(named: "marverComics"))
     }
     
     private func updateDataSourceComic() {
@@ -85,7 +80,7 @@ class CharacterDetailViewController: UIViewController {
     private func showError() {
         comicActivityIndicator.stopAnimating()
         serieActivityIndicator.stopAnimating()
-        util.showSimpleAlertAccept(viewController: self, alertTitle: NSLocalizedString(self.characterDetailViewModel?.errorMessaje ?? "", comment: ""), alertMessage: "")
+        characterDetailViewModel?.showSimpleAlert()
     }
     
     private func configureCollectionView() {
@@ -181,13 +176,13 @@ extension CharacterDetailViewController: UICollectionViewDelegate, UICollectionV
         switch indexPath.section {
         case 0:
             // Comic Pagination
-            if indexPath.row == (characterDetailViewModel?.responseComicsData?.offset ?? 0) + (characterDetailViewModel?.responseComicsData?.count ?? 0) - 1 && (characterDetailViewModel?.loadMoreComic ?? true) {
+            if indexPath.row == (characterDetailViewModel?.comicsDataResponse?.offset ?? 0) + (characterDetailViewModel?.comicsDataResponse?.count ?? 0) - 1 && (characterDetailViewModel?.loadMoreComic ?? true) {
                 self.comicActivityIndicator.startAnimating()
                 characterDetailViewModel?.paginateComic()
             }
         case 1:
             // Serie Pagination
-            if indexPath.row == (characterDetailViewModel?.responseSeriesData?.offset ?? 0) + (characterDetailViewModel?.responseSeriesData?.count ?? 0) - 1  && (characterDetailViewModel?.loadMoreSerie ?? true) {
+            if indexPath.row == (characterDetailViewModel?.seriesDataResponse?.offset ?? 0) + (characterDetailViewModel?.seriesDataResponse?.count ?? 0) - 1  && (characterDetailViewModel?.loadMoreSerie ?? true) {
                 self.serieActivityIndicator.startAnimating()
                 characterDetailViewModel?.paginateSerie()
             }

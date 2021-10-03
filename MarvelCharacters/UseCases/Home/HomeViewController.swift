@@ -13,7 +13,6 @@ final class HomeViewController: UIViewController {
     // MARK: - Outlets
     //------------------------------------------------
     
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var charactersCollectionView: UICollectionView!
     @IBOutlet weak var tryAgainButton: UIButton!
@@ -21,10 +20,8 @@ final class HomeViewController: UIViewController {
     //------------------------------------------------
     // MARK: - Variables and constants
     //------------------------------------------------
-
-    let characterService = CharacterService()
-    private(set) var homeViewModel: HomeViewModel?
-    let util = Util()
+    
+    var homeViewModel: HomeViewModel?
  
     //------------------------------------------------
     // MARK: - LifeCycle
@@ -33,18 +30,15 @@ final class HomeViewController: UIViewController {
      override func viewDidLoad() {
          super.viewDidLoad()
         
-        configureView()
-        configureCollectionView()
+         configureView()
+         configureCollectionView()
         
-        activityIndicator.startAnimating()
+         activityIndicator.startAnimating()
         
-        homeViewModel = HomeViewModel(characterService: characterService)
-        
-        homeViewModel?.bindingCharacter = {
-            self.charactersCollectionView.isHidden = false
-            self.tryAgainButton.isHidden = true
-            self.updateDataSource()
-        }
+         homeViewModel?.bindingCharacter = {
+             self.tryAgainButton.isHidden = true
+             self.updateDataSource()
+         }
          
          homeViewModel?.bindingError = {
             self.showError()
@@ -65,7 +59,7 @@ final class HomeViewController: UIViewController {
     // MARK: - Private methods
     //------------------------------------------------
     private func configureView() {
-        titleLabel.text = NSLocalizedString("Marvel characters", comment: "")
+        self.title = NSLocalizedString("Marvel characters", comment: "")
         tryAgainButton.isHidden = true
         activityIndicator.color = .PRINCIPAL_COLOR
     }
@@ -94,9 +88,8 @@ final class HomeViewController: UIViewController {
     
     private func showError() {
         activityIndicator.stopAnimating()
-        charactersCollectionView.isHidden = true
         tryAgainButton.isHidden = false
-        util.showSimpleAlertAccept(viewController: self, alertTitle: NSLocalizedString(self.homeViewModel?.errorMessaje ?? "", comment: ""), alertMessage: "")
+        homeViewModel?.showSimpleAlert()
     }
  
  }
@@ -128,7 +121,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         // Pagination
-        if indexPath.row == (homeViewModel?.responseCharactersData?.offset ?? 0) + (homeViewModel?.responseCharactersData?.count ?? 0) - 1 && (homeViewModel?.loadMore ?? true) {
+        if indexPath.row == (homeViewModel?.charactersDataResponse?.offset ?? 0) + (homeViewModel?.charactersDataResponse?.count ?? 0) - 1 && (homeViewModel?.loadMore ?? true) {
             self.activityIndicator.startAnimating()
             homeViewModel?.paginate()
         }
@@ -136,12 +129,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let characterSelected = homeViewModel?.characters[indexPath.row] {
-            let characterDetailViewModel = CharacterDetailViewModel(character: characterSelected, characterService: characterService)
-            let characterDetailVC = CharacterDetailViewController()
-            characterDetailVC.characterDetailViewModel = characterDetailViewModel
-            self.present(characterDetailVC, animated: true, completion: nil)
+            self.homeViewModel?.showCharacterDetail(character: characterSelected)
         }
      }
-
     
 }

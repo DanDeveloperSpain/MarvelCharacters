@@ -14,8 +14,8 @@ class HomeViewModelUnitTest: XCTestCase {
     let characterDummyService = CharacterDummyService()
     
     override func setUp() {
-        
-        homeViewModel = HomeViewModel(characterService: characterDummyService)
+        let router = HomeRouter()
+        homeViewModel = HomeViewModel(router: router, characterService: characterDummyService)
         
     }
 

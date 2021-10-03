@@ -14,13 +14,14 @@ final class HomeViewModel {
     //------------------------------------------------
     
     let characterService : CharacterServiceProtocol
+    let router : HomeRouter
     
     let limit = 20
     var offset = 0
     var loadMore = false
     private(set) var characters : [Character] = []
     
-    private(set) var responseCharactersData : ResponseCharactersData? {
+    private(set) var charactersDataResponse : ResponseCharactersData? {
         didSet {
             self.bindingCharacter()
         }
@@ -39,9 +40,22 @@ final class HomeViewModel {
     // MARK: - Init
     //------------------------------------------------
     
-    init(characterService: CharacterServiceProtocol) {
+    init(router: HomeRouter, characterService: CharacterServiceProtocol) {
         self.characterService = characterService
+        self.router = router
         getCharacters()
+    }
+    
+    // ------------------------------------------------
+    // MARK: - ViewModel
+    // ------------------------------------------------
+
+    func showCharacterDetail(character: Character) {
+        router.showCharacterDetail(character: character, characterService: self.characterService)
+    }
+    
+    func showSimpleAlert() {
+        router.showSimpleAlertAccept(alertTitle: NSLocalizedString(errorMessaje ?? "", comment: ""), alertMessage: "")
     }
     
     //------------------------------------------------
@@ -50,10 +64,10 @@ final class HomeViewModel {
     
     func getCharacters() {
         characterService.requestGetCharacter(limit: limit, offset: offset, withSuccess: { (result) in
-            self.responseCharactersData = result
+            self.charactersDataResponse = result
             self.characters += result.all ?? []
             
-            self.loadMore = self.characterService.isMoreDataToLoad(offset: self.responseCharactersData?.offset ?? 0, total: self.responseCharactersData?.total ?? 0, limit: self.limit)
+            self.loadMore = self.characterService.isMoreDataToLoad(offset: self.charactersDataResponse?.offset ?? 0, total: self.charactersDataResponse?.total ?? 0, limit: self.limit)
             
         }, withFailure: { (error) in
             self.errorMessaje = error
