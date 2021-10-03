@@ -62,18 +62,31 @@ class CharacterDummyService : CharacterServiceProtocol {
               }
             }
         """
-        let resultResponse = try! JSONDecoder().decode(ResponseCharacters.self, from: Data(result.utf8))
-        withSuccess(resultResponse.data)
+        do {
+            let resultResponse = try JSONDecoder().decode(ResponseCharacters.self, from: Data(result.utf8))
+            withSuccess(resultResponse.data)
+        } catch {
+            withFailure(error.localizedDescription)
+        }
+        
     }
     
     func requestGetComicsByCharacter(characterId: Int, limit: Int, offset: Int, withSuccess: @escaping (ResponseComicsData) -> Void, withFailure: @escaping (String) -> Void) {
-        let resultResponse = try! JSONDecoder().decode(ResponseComicsData.self, from: Data())
-        withSuccess(resultResponse)
+        do {
+            let resultResponse = try JSONDecoder().decode(ResponseComicsData.self, from: Data())
+            withSuccess(resultResponse)
+        } catch {
+            withFailure(error.localizedDescription)
+        }
     }
     
     func requestGetSeriesByCharacter(characterId: Int, limit: Int, offset: Int, withSuccess: @escaping (ResponseSeriesData) -> Void, withFailure: @escaping (String) -> Void) {
-        let resultResponse = try! JSONDecoder().decode(ResponseSeriesData.self, from: Data())
-        withSuccess(resultResponse)
+        do {
+            let resultResponse = try JSONDecoder().decode(ResponseSeriesData.self, from: Data())
+            withSuccess(resultResponse)
+        } catch {
+            withFailure(error.localizedDescription)
+        }
     }
     
     func isMoreDataToLoad(offset: Int, total: Int, limit: Int) -> Bool {

@@ -74,7 +74,7 @@ class CharacterService : CharacterServiceProtocol {
                 
             case .failure:
                 
-                withFailure(self.failureResponse(statusCode:  response.response?.statusCode ?? 0, errorDescription: "\(String(describing: response.error!.errorDescription))"))
+                withFailure(self.failureResponse(statusCode:  response.response?.statusCode ?? 0, errorDescription: "\(String(describing: response.error?.errorDescription))"))
             }
         }
         
@@ -99,7 +99,7 @@ class CharacterService : CharacterServiceProtocol {
                 
             case .failure:
                 
-                withFailure(self.failureResponse(statusCode:  response.response?.statusCode ?? 0, errorDescription: "\(String(describing: response.error!.errorDescription))"))
+                withFailure(self.failureResponse(statusCode:  response.response?.statusCode ?? 0, errorDescription: "\(String(describing: response.error?.errorDescription))"))
             }
         }
     }
@@ -123,7 +123,7 @@ class CharacterService : CharacterServiceProtocol {
                 
             case .failure:
                 
-                withFailure(self.failureResponse(statusCode:  response.response?.statusCode ?? 0, errorDescription: "\(String(describing: response.error!.errorDescription))"))
+                withFailure(self.failureResponse(statusCode:  response.response?.statusCode ?? 0, errorDescription: "\(String(describing: response.error?.errorDescription))"))
             }
         }
     }

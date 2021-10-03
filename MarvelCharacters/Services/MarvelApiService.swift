@@ -43,7 +43,7 @@ final class MarvelApiService {
       }
     }
     
-    let log = OSLog(subsystem: Bundle.main.bundleIdentifier!, category: "network")
+    let log = OSLog(subsystem: Bundle.main.bundleIdentifier ?? "", category: "network")
     
     //------------------------------------------------
     // MARK: - Init
@@ -66,7 +66,7 @@ final class MarvelApiService {
     //------------------------------------------------
     
     private func md5Hash(_ source: String) -> String {
-        return Insecure.MD5.hash(data: source.data(using: .utf8)!).map { String(format: "%02hhx", $0) }.joined()
+        return Insecure.MD5.hash(data: source.data(using: .utf8) ?? Data()).map { String(format: "%02hhx", $0) }.joined()
     }
     
     //------------------------------------------------

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CharacterDetailViewController: UIViewController {
+class CharacterDetailViewController: BaseViewController {
     
     //------------------------------------------------
     // MARK: - Outlets
@@ -50,13 +50,17 @@ class CharacterDetailViewController: UIViewController {
         }
         
     }
+    
+    override func backButtonPressed() {
+        print("______ TEST 2")
+    }
 
     //------------------------------------------------
     // MARK: - Private methods
     //------------------------------------------------
     
     private func configureView() {
-        self.title = characterDetailViewModel?.character?.name
+        self.setupNavigationBar(title: characterDetailViewModel?.character?.name)
         comicActivityIndicator.color = .PRINCIPAL_COLOR
         serieActivityIndicator.color = .PRINCIPAL_COLOR
         
