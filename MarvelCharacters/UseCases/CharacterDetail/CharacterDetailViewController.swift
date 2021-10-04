@@ -61,10 +61,10 @@ class CharacterDetailViewController: BaseViewController {
     
     private func configureView() {
         self.setupNavigationBar(title: viewModel?.character?.name)
-        comicActivityIndicator.color = .PRINCIPAL_COLOR
-        serieActivityIndicator.color = .PRINCIPAL_COLOR
+        comicActivityIndicator.color = .secondaryColor
+        serieActivityIndicator.color = .secondaryColor
         
-        characterDescriptionLabel.text = viewModel?.character?.description
+        characterDescriptionLabel.configure(with: viewModel?.character?.description, font: .boldSmall, color: .whiteColor)
             
         characterImageView.layer.cornerRadius = 75
         let urlImge = "\(viewModel?.character?.thumbnail?.path ?? "").\(viewModel?.character?.thumbnail?.typeExtension ?? "")"
@@ -202,7 +202,8 @@ extension CharacterDetailViewController: UICollectionViewDelegate, UICollectionV
             return HeaderSupplementaryView()
         }
 
-        headerView.headerTitleLabel.text = indexPath.section == 0 ? NSLocalizedString("Comics", comment: "") : NSLocalizedString("Series", comment: "")
+        indexPath.section == 0 ? headerView.headerTitleLabel.configure(with: NSLocalizedString("Comics", comment: ""), font: .semiboldLarge, color: .whiteColor) : headerView.headerTitleLabel.configure(with: NSLocalizedString("Series", comment: ""), font: .semiboldLarge, color: .whiteColor)
+        
         return headerView
     }
     

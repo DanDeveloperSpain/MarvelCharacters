@@ -29,7 +29,7 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.bold), NSAttributedString.Key.foregroundColor: UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.font: MarvelCharacterFontStyle.fontsWithSize.boldLarge.get() ?? UIFont.systemFont(ofSize: 18.0, weight: .bold), NSAttributedString.Key.foregroundColor: UIColor.whiteColor]
         
         // Initialization
         setup()
@@ -52,7 +52,7 @@ class BaseViewController: UIViewController {
     private func customizeLeftNavBarButton () {
         let myBackButton = UIButton(type: UIButton.ButtonType.custom)
         myBackButton.addTarget(self, action: #selector(self.pop(_:)), for: UIControl.Event.touchUpInside)
-        myBackButton.setImage(UIImage(named: "backButtonBlack"), for: .normal)
+        myBackButton.setImage(UIImage(named: "backButton")?.withTintColor(.white), for: .normal)
         myBackButton.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
         myBackButton.imageEdgeInsets = UIEdgeInsets(top: 5, left: -15, bottom: 5, right: 5)
         let myCustomBackButtonItem:UIBarButtonItem = UIBarButtonItem(customView: myBackButton)

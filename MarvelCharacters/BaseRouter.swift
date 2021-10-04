@@ -24,7 +24,7 @@ class BaseRouter {
     func showSimpleAlertAccept(alertTitle: String, alertMessage: String) {
         let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("Accept", comment: ""), style: UIAlertAction.Style.cancel, handler: nil))
-        alert.view.tintColor = .PRINCIPAL_COLOR
+        alert.view.tintColor = .principalColor
         viewController?.present(alert, animated: true, completion: nil)
     }
     

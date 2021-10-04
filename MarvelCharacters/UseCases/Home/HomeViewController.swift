@@ -64,13 +64,13 @@ final class HomeViewController: BaseViewController {
     private func configureView() {
         self.title = NSLocalizedString("Marvel characters", comment: "")
         tryAgainButton.isHidden = true
-        activityIndicator.color = .PRINCIPAL_COLOR
+        tryAgainButton.setTitleColor(.whiteColor, for: .normal)
+        activityIndicator.color = .secondaryColor
     }
     
     private func updateDataSource() {
         self.activityIndicator.stopAnimating()
         charactersCollectionView.reloadData()
-        
     }
     
     private func configureCollectionView() {
