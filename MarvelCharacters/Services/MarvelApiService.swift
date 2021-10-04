@@ -22,27 +22,6 @@ final class MarvelApiService {
     let URLEncoding : URLEncoding
     var headers : HTTPHeaders
     
-    //In a real project not set the url to fire, I would create a different Scheme (Develop, PreProd, PROD, ...), I would specify the different urls in the BuildSeting and get it automatically according to the compilation.
-    let BASE_URL = "https://gateway.marvel.com:443" // Bundle.main.infoDictionary!["ServerURL"] as! String
-    
-    private var privateKey: String {
-      get {
-        guard let value = ProcessInfo.processInfo.environment["PRIVATE_KEY"] else {
-          fatalError("Couldn't find key 'PRIVATE_KEY' in 'Marvel-Info.plist'.")
-        }
-        return value
-      }
-    }
-    
-    private var publicKey: String {
-      get {
-        guard let value = ProcessInfo.processInfo.environment["PUBLIC_KEY"] else {
-          fatalError("Couldn't find key 'PUBLIC_KEY' in 'Marvel-Info.plist'.")
-        }
-        return value
-      }
-    }
-    
     let log = OSLog(subsystem: Bundle.main.bundleIdentifier ?? "", category: "network")
     
     //------------------------------------------------
@@ -74,19 +53,16 @@ final class MarvelApiService {
     //------------------------------------------------
     
     func getParameters() -> [String: Any] {
-        
         let currentTimeStamp = Int(Date().timeIntervalSince1970)
 
-        let has = md5Hash("\(currentTimeStamp)" + privateKey + publicKey)
+        let has = md5Hash("\(currentTimeStamp)" + Constants.ApiKeys.privateKey + Constants.ApiKeys.publicKey)
         
         let parameters: [String: Any] = [
-            "apikey" : publicKey,
+            "apikey" : Constants.ApiKeys.publicKey,
             "ts" : currentTimeStamp as Any,
             "hash" :  has as Any
         ]
-        
         return parameters
-        
     }
     
 }

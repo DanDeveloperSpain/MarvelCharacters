@@ -20,11 +20,11 @@ enum CharacterServiceEndpoint {
     func getURL() -> String {
         switch self {
         case .characters:
-            return "/v1/public/characters"
+            return Constants.Paths.character
         case .comics(let characterId):
-            return "/v1/public/characters/\(characterId)/comics"
+            return Constants.Paths.comics(characterId: characterId)
         case .series(let characterId):
-            return "/v1/public/characters/\(characterId)/series"
+            return Constants.Paths.series(characterId: characterId)
         }
     }
     
@@ -62,7 +62,7 @@ class CharacterService : CharacterServiceProtocol {
         parameters["limit"] = limit as Any
         parameters["offset"] = offset as Any
         
-        let url = marvelApiService.BASE_URL + CharacterServiceEndpoint.characters.getURL()
+        let url = Constants.Paths.baseUrl + CharacterServiceEndpoint.characters.getURL()
         
         marvelApiService.AFManager.request(url, method: .get, parameters: parameters, encoding: marvelApiService.URLEncoding, headers: marvelApiService.headers).validate().responseDecodable(of: ResponseCharacters.self) { response in
             
@@ -87,7 +87,7 @@ class CharacterService : CharacterServiceProtocol {
         parameters["limit"] = limit as Any
         parameters["offset"] = offset as Any
         
-        let url = marvelApiService.BASE_URL + CharacterServiceEndpoint.comics(characterId).getURL()
+        let url = Constants.Paths.baseUrl + CharacterServiceEndpoint.comics(characterId).getURL()
         
         marvelApiService.AFManager.request(url, method: .get, parameters: parameters, encoding: marvelApiService.URLEncoding, headers: marvelApiService.headers).validate().responseDecodable(of: ResponseComics.self) { response in
             
@@ -111,7 +111,7 @@ class CharacterService : CharacterServiceProtocol {
         parameters["limit"] = limit as Any
         parameters["offset"] = offset as Any
         
-        let url = marvelApiService.BASE_URL + CharacterServiceEndpoint.series(characterId).getURL()
+        let url = Constants.Paths.baseUrl + CharacterServiceEndpoint.series(characterId).getURL()
         
         marvelApiService.AFManager.request(url, method: .get, parameters: parameters, encoding: marvelApiService.URLEncoding, headers: marvelApiService.headers).validate().responseDecodable(of: ResponseSeries.self) { response in
             

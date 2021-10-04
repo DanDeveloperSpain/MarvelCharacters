@@ -21,6 +21,10 @@ final class HomeViewModel: BaseViewModel {
         return self._router as? HomeRouter
     }
     
+    var title: String {
+        return NSLocalizedString("Marvel characters", comment: "")
+    }
+    
     let characterService : CharacterServiceProtocol
     
     let limit = 20
@@ -34,7 +38,7 @@ final class HomeViewModel: BaseViewModel {
         }
     }
     
-    private(set) var errorMessaje : String? {
+    private(set) var errorMessaje : (String, String)? {
         didSet {
             self.view?.loadError()
         }
@@ -54,13 +58,24 @@ final class HomeViewModel: BaseViewModel {
     // ------------------------------------------------
     
     override func loadView() {
-        
-        getCharacters()
-        
+        checkApiKeys()
     }
 
     func showCharacterDetail(character: Character) {
         router?.showCharacterDetail(character: character, characterService: self.characterService)
+    }
+    
+    func numLastCharacterToShow() -> Int {
+        return (charactersDataResponse?.offset ?? 0) + (charactersDataResponse?.count ?? 0) - 1
+    }
+    
+    func checkApiKeys() {
+        if Constants.ApiKeys.publicKey.isEmpty || Constants.ApiKeys.privateKey.isEmpty {
+            self.errorMessaje = ("There isn`t ApiKey data", "Please enter your public and private key in Schemes -> Edit Scheme -> Environment Variables")
+            //self.errorMessaje.append("Please enter public and private key")
+        } else {
+            getCharacters()
+        }
     }
     
     //------------------------------------------------
@@ -75,7 +90,7 @@ final class HomeViewModel: BaseViewModel {
             self.loadMore = self.characterService.isMoreDataToLoad(offset: self.charactersDataResponse?.offset ?? 0, total: self.charactersDataResponse?.total ?? 0, limit: self.limit)
             
         }, withFailure: { (error) in
-            self.errorMessaje = error
+            self.errorMessaje = (error, "")
         })
     }
     

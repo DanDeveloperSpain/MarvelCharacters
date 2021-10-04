@@ -41,6 +41,7 @@
 		65F2ACAC2709FF5100D299D4 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F2ACAB2709FF5100D299D4 /* BaseViewController.swift */; };
 		65F2ACAE270A274000D299D4 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F2ACAD270A274000D299D4 /* BaseViewModel.swift */; };
 		65F2ACB5270B3CD300D299D4 /* MarvelCharacterFontLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F2ACB4270B3CD300D299D4 /* MarvelCharacterFontLabel.swift */; };
+		65F2ACB9270BA7F300D299D4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F2ACB8270BA7F300D299D4 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		65F2ACAB2709FF5100D299D4 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		65F2ACAD270A274000D299D4 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		65F2ACB4270B3CD300D299D4 /* MarvelCharacterFontLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelCharacterFontLabel.swift; sourceTree = "<group>"; };
+		65F2ACB8270BA7F300D299D4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +199,7 @@
 				65D70A2D270607EC00936F9C /* UseCases */,
 				65D70A3D270608DE00936F9C /* Services */,
 				65516C702707AB6400F6D3D4 /* Styles */,
+				65F2ACB7270BA7C200D299D4 /* Constants */,
 				6556BE502707D5A400B72CD6 /* Resources */,
 				65F2ACAB2709FF5100D299D4 /* BaseViewController.swift */,
 				65F2ACAD270A274000D299D4 /* BaseViewModel.swift */,
@@ -264,6 +267,14 @@
 				65D70A522706213700936F9C /* CharacterCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		65F2ACB7270BA7C200D299D4 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				65F2ACB8270BA7F300D299D4 /* Constants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -384,6 +395,7 @@
 				65516C762707AF8700F6D3D4 /* ComicData.swift in Sources */,
 				65D70A39270608AA00936F9C /* CharacterData.swift in Sources */,
 				65F2ACAC2709FF5100D299D4 /* BaseViewController.swift in Sources */,
+				65F2ACB9270BA7F300D299D4 /* Constants.swift in Sources */,
 				65D70A542706213700936F9C /* CharacterCell.swift in Sources */,
 				65516C812707B4F200F6D3D4 /* ComicSerieCell.swift in Sources */,
 				65F2ACA627087F1F00D299D4 /* HomeRouter.swift in Sources */,

@@ -55,14 +55,14 @@ final class HomeViewController: BaseViewController {
 
     @IBAction func tryAgainButtonPressed(_ sender: UIButton) {
         activityIndicator.startAnimating()
-        viewModel?.getCharacters()
+        viewModel?.checkApiKeys()
     }
 
     //------------------------------------------------
     // MARK: - Private methods
     //------------------------------------------------
     private func configureView() {
-        self.title = NSLocalizedString("Marvel characters", comment: "")
+        self.title = viewModel?.title
         tryAgainButton.isHidden = true
         tryAgainButton.setTitleColor(.whiteColor, for: .normal)
         activityIndicator.color = .secondaryColor
@@ -92,7 +92,7 @@ final class HomeViewController: BaseViewController {
     private func showError() {
         activityIndicator.stopAnimating()
         tryAgainButton.isHidden = false
-        viewModel?.showSimpleAlert(alertTitle: viewModel?.errorMessaje ?? "", alertMessage: "")
+        viewModel?.showSimpleAlert(alertTitle: viewModel?.errorMessaje?.0 ?? "", alertMessage: viewModel?.errorMessaje?.1 ?? "")
     }
  
  }
@@ -116,7 +116,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 characterCell.fill(character: character)
                 cell = characterCell
             }
-            
         }
         
         return cell
@@ -124,7 +123,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         // Pagination
-        if indexPath.row == (viewModel?.charactersDataResponse?.offset ?? 0) + (viewModel?.charactersDataResponse?.count ?? 0) - 1 && (viewModel?.loadMore ?? true) {
+        if indexPath.row == viewModel?.numLastCharacterToShow() && viewModel?.loadMore ?? false {
             self.activityIndicator.startAnimating()
             viewModel?.paginate()
         }

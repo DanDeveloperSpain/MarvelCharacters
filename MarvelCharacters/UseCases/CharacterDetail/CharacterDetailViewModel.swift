@@ -22,6 +22,10 @@ final class CharacterDetailViewModel: BaseViewModel {
         return self._router as? CharacterDetailRouter
     }
     
+    var title: String {
+        return character?.name ?? ""
+    }
+    
     let characterService : CharacterServiceProtocol
     
     let limitComic = 20
@@ -69,6 +73,14 @@ final class CharacterDetailViewModel: BaseViewModel {
     override func loadView() {
         getComics()
         getSeries()
+    }
+    
+    func numLastComicToShow() -> Int {
+        return (comicsDataResponse?.offset ?? 0) + (comicsDataResponse?.count ?? 0) - 1
+    }
+    
+    func numLastSerieToShow() -> Int {
+        return (seriesDataResponse?.offset ?? 0) + (seriesDataResponse?.count ?? 0) - 1
     }
 
     //------------------------------------------------

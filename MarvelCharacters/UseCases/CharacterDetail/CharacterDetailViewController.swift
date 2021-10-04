@@ -60,7 +60,7 @@ class CharacterDetailViewController: BaseViewController {
     //------------------------------------------------
     
     private func configureView() {
-        self.setupNavigationBar(title: viewModel?.character?.name)
+        self.setupNavigationBar(title: viewModel?.title)
         comicActivityIndicator.color = .secondaryColor
         serieActivityIndicator.color = .secondaryColor
         
@@ -180,13 +180,13 @@ extension CharacterDetailViewController: UICollectionViewDelegate, UICollectionV
         switch indexPath.section {
         case 0:
             // Comic Pagination
-            if indexPath.row == (viewModel?.comicsDataResponse?.offset ?? 0) + (viewModel?.comicsDataResponse?.count ?? 0) - 1 && (viewModel?.loadMoreComic ?? true) {
+            if indexPath.row == viewModel?.numLastComicToShow() && (viewModel?.loadMoreComic ?? false) {
                 self.comicActivityIndicator.startAnimating()
                 viewModel?.paginateComic()
             }
         case 1:
             // Serie Pagination
-            if indexPath.row == (viewModel?.seriesDataResponse?.offset ?? 0) + (viewModel?.seriesDataResponse?.count ?? 0) - 1  && (viewModel?.loadMoreSerie ?? true) {
+            if indexPath.row == viewModel?.numLastSerieToShow()  && (viewModel?.loadMoreSerie ?? false) {
                 self.serieActivityIndicator.startAnimating()
                 viewModel?.paginateSerie()
             }
