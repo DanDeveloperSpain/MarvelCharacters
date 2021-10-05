@@ -44,6 +44,8 @@ protocol CharacterServiceProtocol {
     
     func isMoreDataToLoad(offset: Int, total: Int, limit: Int) -> Bool
     
+    func numLastItemToShow(offset: Int, all: Int) -> Int
+    
 }
 
 //------------------------------------------------
@@ -138,6 +140,10 @@ class CharacterService : CharacterServiceProtocol {
         } else {
             return offset <= total ? true : false
         }
+    }
+    
+    func numLastItemToShow(offset: Int, all: Int) -> Int {
+        return offset + all - 1
     }
     
     private func failureResponse(statusCode: Int, errorDescription: String) -> String{

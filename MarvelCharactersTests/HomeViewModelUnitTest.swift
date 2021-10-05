@@ -19,8 +19,12 @@ class HomeViewModelUnitTest: XCTestCase {
         homeViewModel?.getCharacters()
     }
 
-    func testGetCharactersHomeViewModel() throws {
-        XCTAssertEqual(homeViewModel?.characters.count, 1)
+    func testGetCharactersHomeViewModel() {
+        XCTAssertEqual(homeViewModel?.characters.count, 2)
     }
 
+    func testNumLastCharacterToShow() {
+        let areThereApiKeys = Constants.ApiKeys.publicKey.isEmpty || Constants.ApiKeys.privateKey.isEmpty ? false : true
+        XCTAssertEqual(homeViewModel?.checkApiKeys(), areThereApiKeys)
+    }
 }

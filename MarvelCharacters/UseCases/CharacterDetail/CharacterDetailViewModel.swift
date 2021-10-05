@@ -39,6 +39,14 @@ final class CharacterDetailViewModel: BaseViewModel {
     private(set) var comics : [Comic] = []
     private(set) var series : [Serie] = []
     
+    var numLastComicToShow : Int {
+        return characterService.numLastItemToShow(offset: comicsDataResponse?.offset ?? 0, all: comicsDataResponse?.all?.count ?? 0)
+    }
+    
+    var numLastSerieToShow : Int {
+        return characterService.numLastItemToShow(offset: seriesDataResponse?.offset ?? 0, all: seriesDataResponse?.all?.count ?? 0)
+    }
+    
     private(set) var comicsDataResponse : ResponseComicsData? {
         didSet {
             self.view?.loadComics()
@@ -74,14 +82,6 @@ final class CharacterDetailViewModel: BaseViewModel {
         getComics()
         getSeries()
     }
-    
-    func numLastComicToShow() -> Int {
-        return (comicsDataResponse?.offset ?? 0) + (comicsDataResponse?.count ?? 0) - 1
-    }
-    
-    func numLastSerieToShow() -> Int {
-        return (seriesDataResponse?.offset ?? 0) + (seriesDataResponse?.count ?? 0) - 1
-    }
 
     //------------------------------------------------
     // MARK: - Backend
@@ -108,7 +108,7 @@ final class CharacterDetailViewModel: BaseViewModel {
     
     func getSeries() {
         characterService.requestGetSeriesByCharacter(characterId: character?.id ?? 0,limit: limitSerie, offset: offsetSerie, withSuccess: { (result) in
-            self.series += result.all
+            self.series += result.all ?? []
             self.seriesDataResponse = result
 
             self.loadMoreSerie = self.characterService.isMoreDataToLoad(offset: self.seriesDataResponse?.offset ?? 0, total: self.seriesDataResponse?.total ?? 0, limit: self.limitSerie)

@@ -14,7 +14,7 @@ struct ResponseSeries: Decodable {
 
 struct ResponseSeriesData: Decodable {
     let offset, limit, total, count: Int?
-    let all: [Serie]
+    let all: [Serie]?
 
     enum CodingKeys: String, CodingKey {
         case offset, limit, total, count

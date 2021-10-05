@@ -198,12 +198,10 @@
 				65D70A2F2706081300936F9C /* Model */,
 				65D70A2D270607EC00936F9C /* UseCases */,
 				65D70A3D270608DE00936F9C /* Services */,
+				65F2ACBC270C4F7200D299D4 /* BaseStruct */,
 				65516C702707AB6400F6D3D4 /* Styles */,
 				65F2ACB7270BA7C200D299D4 /* Constants */,
 				6556BE502707D5A400B72CD6 /* Resources */,
-				65F2ACAB2709FF5100D299D4 /* BaseViewController.swift */,
-				65F2ACAD270A274000D299D4 /* BaseViewModel.swift */,
-				65F2ACA72709DC8E00D299D4 /* BaseRouter.swift */,
 			);
 			path = MarvelCharacters;
 			sourceTree = "<group>";
@@ -275,6 +273,16 @@
 				65F2ACB8270BA7F300D299D4 /* Constants.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		65F2ACBC270C4F7200D299D4 /* BaseStruct */ = {
+			isa = PBXGroup;
+			children = (
+				65F2ACAB2709FF5100D299D4 /* BaseViewController.swift */,
+				65F2ACAD270A274000D299D4 /* BaseViewModel.swift */,
+				65F2ACA72709DC8E00D299D4 /* BaseRouter.swift */,
+			);
+			path = BaseStruct;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

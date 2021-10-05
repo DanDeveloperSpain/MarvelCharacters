@@ -55,7 +55,7 @@ final class HomeViewController: BaseViewController {
 
     @IBAction func tryAgainButtonPressed(_ sender: UIButton) {
         activityIndicator.startAnimating()
-        viewModel?.checkApiKeys()
+        viewModel?.loadView()
     }
 
     //------------------------------------------------
@@ -123,7 +123,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         // Pagination
-        if indexPath.row == viewModel?.numLastCharacterToShow() && viewModel?.loadMore ?? false {
+        if indexPath.row == viewModel?.numLastCharacterToShow && viewModel?.loadMore ?? false {
             self.activityIndicator.startAnimating()
             viewModel?.paginate()
         }

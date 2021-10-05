@@ -32,6 +32,10 @@ final class HomeViewModel: BaseViewModel {
     var loadMore = false
     private(set) var characters : [Character] = []
     
+    var numLastCharacterToShow: Int {
+        return characterService.numLastItemToShow(offset: charactersDataResponse?.offset ?? 0, all: charactersDataResponse?.all?.count ?? 0)
+    }
+    
     private(set) var charactersDataResponse : ResponseCharactersData? {
         didSet {
             self.view?.loadCharacters()
@@ -58,24 +62,19 @@ final class HomeViewModel: BaseViewModel {
     // ------------------------------------------------
     
     override func loadView() {
-        checkApiKeys()
+        checkApiKeys() ? getCharacters() : setErrorApiKey()
     }
 
     func showCharacterDetail(character: Character) {
         router?.showCharacterDetail(character: character, characterService: self.characterService)
     }
     
-    func numLastCharacterToShow() -> Int {
-        return (charactersDataResponse?.offset ?? 0) + (charactersDataResponse?.count ?? 0) - 1
+    func checkApiKeys() -> Bool {
+        Constants.ApiKeys.publicKey.isEmpty || Constants.ApiKeys.privateKey.isEmpty ? false : true
     }
     
-    func checkApiKeys() {
-        if Constants.ApiKeys.publicKey.isEmpty || Constants.ApiKeys.privateKey.isEmpty {
-            self.errorMessaje = ("There isn`t ApiKey data", "Please enter your public and private key in Schemes -> Edit Scheme -> Environment Variables")
-            //self.errorMessaje.append("Please enter public and private key")
-        } else {
-            getCharacters()
-        }
+    private func setErrorApiKey() {
+        self.errorMessaje = ("There isn`t ApiKey data", "Please enter your public and private key in Schemes -> Edit Scheme -> Environment Variables")
     }
     
     //------------------------------------------------
@@ -100,4 +99,3 @@ final class HomeViewModel: BaseViewModel {
     }
     
 }
-

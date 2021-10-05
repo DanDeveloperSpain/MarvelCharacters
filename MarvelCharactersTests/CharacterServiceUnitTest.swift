@@ -30,13 +30,18 @@ class CharacterServiceUnitTest: XCTestCase {
     }
 
     func testRequestCharactersSucces() throws {
-        XCTAssertEqual(characters.count, 1)
+        XCTAssertEqual(characters.count, 2)
         XCTAssertEqual(errorMessajeCharacter, nil)
     }
     
     func testIsMoreDataToLoad(){
         let loadMore = characterService.isMoreDataToLoad(offset: responseCharactersData?.offset ?? 0, total: responseCharactersData?.total ?? 0, limit: limit )
         XCTAssertEqual(loadMore, false)
+    }
+    
+    func testNumLastItemToShow() {
+        let numLastItem = characterService.numLastItemToShow(offset: responseCharactersData?.offset ?? 0, all: responseCharactersData?.all?.count ?? 0)
+        XCTAssertEqual(numLastItem, 1)
     }
 
 }

@@ -180,13 +180,13 @@ extension CharacterDetailViewController: UICollectionViewDelegate, UICollectionV
         switch indexPath.section {
         case 0:
             // Comic Pagination
-            if indexPath.row == viewModel?.numLastComicToShow() && (viewModel?.loadMoreComic ?? false) {
+            if indexPath.row == viewModel?.numLastComicToShow && (viewModel?.loadMoreComic ?? false) {
                 self.comicActivityIndicator.startAnimating()
                 viewModel?.paginateComic()
             }
         case 1:
             // Serie Pagination
-            if indexPath.row == viewModel?.numLastSerieToShow()  && (viewModel?.loadMoreSerie ?? false) {
+            if indexPath.row == viewModel?.numLastSerieToShow  && (viewModel?.loadMoreSerie ?? false) {
                 self.serieActivityIndicator.startAnimating()
                 viewModel?.paginateSerie()
             }
