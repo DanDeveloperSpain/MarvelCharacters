@@ -28,7 +28,7 @@ final class HomeRouter: BaseRouter {
     
     /// Display a character's detail screen.
     /// - Parameters:
-    ///   - character: Character to show.
+    ///   - character: character to show.
     ///   - characterService: Api call service.
     func showCharacterDetail(character: Character, characterService: CharacterServiceProtocol) {
         let characterDetailVC = CharacterDetailRouter.get(character: character, characterService: characterService)

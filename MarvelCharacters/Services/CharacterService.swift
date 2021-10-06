@@ -59,6 +59,12 @@ class CharacterService : CharacterServiceProtocol {
     let marvelApiService = MarvelApiService.sharedInstance
     let exceptionHandler = ExceptionHandlerHelper()
     
+    /// Request characters data to Api.
+    /// - Parameters:
+    ///   - limit: limit of the results.
+    ///   - offset: exclude results.
+    ///   - withSuccess: result of data back
+    ///   - withFailure: error of request
     func requestGetCharacter(limit: Int, offset: Int, withSuccess: @escaping (ResponseCharactersData) -> Void, withFailure:@escaping (_ error: String) -> Void) {
 
         var parameters = marvelApiService.getParameters()
@@ -136,6 +142,12 @@ class CharacterService : CharacterServiceProtocol {
     // MARK: - Helpers
     //------------------------------------------------
     
+    /// Check if there is more data to request the Api.
+    /// - Parameters:
+    ///   - offset: exclude results.
+    ///   - total: total results.
+    ///   - limit: limit of the results.
+    /// - Returns: True if there is more data to request.
     func isMoreDataToLoad(offset: Int, total: Int, limit: Int) -> Bool {
         if offset == 0 {
             return limit <= total ? true : false
@@ -144,10 +156,20 @@ class CharacterService : CharacterServiceProtocol {
         }
     }
     
+    /// Helper to know the last item shown and to know if it is the last one to make the next request.
+    /// - Parameters:
+    ///   - offset: exclude results.
+    ///   - all: number of current results getted.
+    /// - Returns: Number of the current item shown.
     func numLastItemToShow(offset: Int, all: Int) -> Int {
         return offset + all - 1
     }
     
+    /// Helper to show he error states returned by the Api by console. It also calls the error handler to get the error to show to user.
+    /// - Parameters:
+    ///   - statusCode: error code.
+    ///   - errorDescription: error description.
+    /// - Returns: Error to show to user
     private func failureResponse(statusCode: Int, errorDescription: String) -> String{
         os_log("statusCode = %@", log: self.marvelApiService.log, "\(String(describing: statusCode))")
         os_log("errorDescription = %@", log: self.marvelApiService.log, "\(String(describing: errorDescription))")

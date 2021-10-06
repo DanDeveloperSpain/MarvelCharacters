@@ -34,7 +34,7 @@ final class MarvelApiService {
     static let sharedInstance = MarvelApiService()
     
     /// Function to has a String in md5.
-    /// - Parameter source: In this case a string format for: ts, privateKey and publicKey.
+    /// - Parameter source: in this case a string format for: ts, privateKey and publicKey.
     /// - Returns: Hashed String.
     private func md5Hash(_ source: String) -> String {
         return Insecure.MD5.hash(data: source.data(using: .utf8) ?? Data()).map { String(format: "%02hhx", $0) }.joined()

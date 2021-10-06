@@ -11,8 +11,8 @@ final class CharacterDetailRouter: BaseRouter {
     
     /// Get the character detail screen.
     /// - Parameters:
-    ///   - character: Character to show.
-    ///   - characterService: Api call service.
+    ///   - character: character to show.
+    ///   - characterService: api call service.
     /// - Returns: The CharacterDetailViewController with all structure properly linked (ViewController, ViewModel and Router).
     static func get(character: Character, characterService: CharacterServiceProtocol) -> CharacterDetailViewController {
         

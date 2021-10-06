@@ -13,6 +13,9 @@ class BaseRouter {
     
     weak var viewController : UIViewController!
     
+    
+    /// Navigate to the next ViewController.
+    /// - Parameter vc: next viewController to show.
     func navigate(toViewController vc: UIViewController) {
         if let nc = viewController?.navigationController {
             nc.show(vc, sender: nil)
@@ -28,6 +31,7 @@ class BaseRouter {
         viewController?.present(alert, animated: true, completion: nil)
     }
     
+    /// Close the current ViewController and return to the previous one.
     func pop() {
         if let nc = viewController?.navigationController {
             nc.popViewController(animated: true)

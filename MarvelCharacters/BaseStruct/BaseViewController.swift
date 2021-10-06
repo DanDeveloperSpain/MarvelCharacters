@@ -9,11 +9,7 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
-    // MARK: - Variables
-    
     var _viewModel: BaseViewModel?
-    
-    // MARK: - Init
     
     init(nibName: String? = nil, bundle: Bundle? = nil, viewModel: BaseViewModel) {
         super.init(nibName: nibName, bundle: bundle)
@@ -23,8 +19,6 @@ class BaseViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,14 +30,12 @@ class BaseViewController: UIViewController {
         _viewModel?.loadView()
     }
     
-    // MARK: - Public methods to implement
-    
+    /// Public methods to implement
     func setup() {
         preconditionFailure("Implement it in ViewController")
     }
     
-    // MARK: - Setup NavigationBar
-    
+    /// Setup NavigationBar
     func setupNavigationBar(title: String?) {
         self.title = title
         self.customizeLeftNavBarButton()
@@ -59,24 +51,22 @@ class BaseViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = myCustomBackButtonItem
     }
     
-    // MARK: - Button actions
-    
     @objc private func pop(_ sender: AnyObject) {
 
         self.backButtonPressed()
         
         if self.navigationController?.popViewController(animated: true) != nil {
-            // Se ha cerrado correctamente
+            /// Has been closed successfully
         } else {
             if(self.navigationController?.parent == nil) {
-                // HACK: Nos aseguramos que siempre se puede cerrar
+                /// We make sure that it can always be closed
                 self.dismiss(animated: false, completion: nil)
             }
         }
     }
     
+    /// Actions before closing (overwritten in controller)
     @objc func backButtonPressed() {
-        // Acciones antes de cerrar (sobreescrita en el controlador)
     }
     
 }

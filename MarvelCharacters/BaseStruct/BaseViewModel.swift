@@ -7,25 +7,26 @@
 
 import Foundation
 
+
+/// Protocol to implement by ViewControllers
 protocol BaseControllerViewModelProtocol: AnyObject {
 
     func didLoadView()
-    
 }
 
+/// Protocol to implement by ViewModels
 protocol BaseViewModelProtocol {
     
-    // Load data
     func loadView()
 }
 
+
+/// Base for the ViewModels with the basic structure.
 class BaseViewModel: BaseViewModelProtocol {
     
-    // MARK: - Variables
     weak var baseView: BaseControllerViewModelProtocol?
     var _router: BaseRouter?
     
-    // MARK: - Init
     init(router: BaseRouter) {
         self._router = router
     }
@@ -34,7 +35,7 @@ class BaseViewModel: BaseViewModelProtocol {
         self.baseView = view
     }
     
-    // MARK: - Life Cycle
+    /// Life Cycle
     func loadView() {
         self.baseView?.didLoadView()
     }

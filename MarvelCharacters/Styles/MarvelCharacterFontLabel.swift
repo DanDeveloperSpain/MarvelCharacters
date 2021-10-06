@@ -9,6 +9,11 @@ import UIKit
 
 public extension UILabel {
     
+    /// Set a label and add the style to it.
+    /// - Parameters:
+    ///   - text: text to show
+    ///   - font: type font (font and size)
+    ///   - color: color of the text
     func configure(with text: String? = nil, font: MarvelCharacterFontStyle.fontsWithSize, color: UIColor = UIColor.blackColor) {
         self.text = text ?? ""
         self.font = font.get()

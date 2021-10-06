@@ -82,8 +82,8 @@ final class CharacterDetailViewModel: BaseViewModel {
     
     /// Create a new CharacterDetailViewModel
     /// - Parameters:
-    ///   - router: CharacterDetailRouter
-    ///   - character: Character to show
+    ///   - router: characterDetailRouter
+    ///   - character: character to show
     ///   - characterService: Api call service.
     init(router: BaseRouter, character: Character, characterService: CharacterServiceProtocol) {
         self.character = character

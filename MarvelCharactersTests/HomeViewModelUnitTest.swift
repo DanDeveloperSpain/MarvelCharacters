@@ -23,8 +23,11 @@ class HomeViewModelUnitTest: XCTestCase {
         XCTAssertEqual(homeViewModel?.characters.count, 2)
     }
 
-    func testNumLastCharacterToShow() {
-        let areThereApiKeys = Constants.ApiKeys.publicKey.isEmpty || Constants.ApiKeys.privateKey.isEmpty ? false : true
-        XCTAssertEqual(homeViewModel?.checkApiKeys(), areThereApiKeys)
+    func testApiKey() {
+        if Constants.ApiKeys.publicKey == "" || Constants.ApiKeys.privateKey == "" {
+            XCTAssertEqual(homeViewModel?.checkApiKeys(), false)
+        } else {
+            XCTAssertEqual(homeViewModel?.checkApiKeys(), true)
+        }
     }
 }
