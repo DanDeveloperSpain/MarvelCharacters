@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Functions to implement by view.
 protocol CharacterDetailViewControllerProtocol: BaseControllerViewModelProtocol {
     func loadComics() -> Void
     func loadSeries() -> Void
@@ -29,6 +30,7 @@ class CharacterDetailViewController: BaseViewController {
     // MARK: - Variables and constants
     //------------------------------------------------
     
+    /// Set the model of the view.
     private var viewModel: CharacterDetailViewModel? {
         return self._viewModel as? CharacterDetailViewModel
     }
@@ -40,9 +42,7 @@ class CharacterDetailViewController: BaseViewController {
         super.viewDidLoad()
     }
     
-    //------------------------------------------------
-    // MARK: - Setup view
-    //------------------------------------------------
+    /// Setup the view.
     override internal func setup() {
         configureView()
         configureCollectionView()
@@ -51,8 +51,10 @@ class CharacterDetailViewController: BaseViewController {
         serieActivityIndicator.startAnimating()
     }
     
+    /// Actions to take when the back button is pressed and the screen is going to be deleted.
+    ///
+    /// In this case we do not need to take any action.
     override func backButtonPressed() {
-        print("______ TEST 2")
     }
 
     //------------------------------------------------
@@ -87,6 +89,7 @@ class CharacterDetailViewController: BaseViewController {
         viewModel?.showSimpleAlert(alertTitle: viewModel?.errorMessaje ?? "", alertMessage: "")
     }
     
+    /// Setup the collectionView for comics ands series flow layout.
     private func configureCollectionView() {
         self.comicsSeriesCollectionView.register(UINib(nibName: ComicSerieCell.kCellId, bundle: Bundle(for: ComicSerieCell.self)), forCellWithReuseIdentifier: ComicSerieCell.kCellId)
         self.comicsSeriesCollectionView.register(UINib(nibName: HeaderSupplementaryView.kCellId, bundle: Bundle(for: HeaderSupplementaryView.self)), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderSupplementaryView.kCellId)
@@ -156,7 +159,6 @@ extension CharacterDetailViewController: UICollectionViewDelegate, UICollectionV
                     comicSerieCell.fill(title: comic.title ?? "", year: comic.year ?? "", thumbnail: comic.thumbnail)
                     cell = comicSerieCell
                 }
-                
             }
         case 1:
             if let comicSerieCell = collectionView.dequeueReusableCell(withReuseIdentifier: ComicSerieCell.kCellId, for: indexPath) as? ComicSerieCell {
@@ -165,27 +167,23 @@ extension CharacterDetailViewController: UICollectionViewDelegate, UICollectionV
                     comicSerieCell.fill(title: serie.title ?? "", year: serie.startYear.map(String.init) ?? "", thumbnail: serie.thumbnail)
                     cell = comicSerieCell
                 }
-                
             }
-            
         default:
             break
         }
-        
         return cell
-
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
-            // Comic Pagination
+            /// Comic Pagination
             if indexPath.row == viewModel?.numLastComicToShow && (viewModel?.loadMoreComic ?? false) {
                 self.comicActivityIndicator.startAnimating()
                 viewModel?.paginateComic()
             }
         case 1:
-            // Serie Pagination
+            /// Serie Pagination
             if indexPath.row == viewModel?.numLastSerieToShow  && (viewModel?.loadMoreSerie ?? false) {
                 self.serieActivityIndicator.startAnimating()
                 viewModel?.paginateSerie()
@@ -209,16 +207,24 @@ extension CharacterDetailViewController: UICollectionViewDelegate, UICollectionV
     
 }
 
+//--------------------------------------------------------------
 // MARK: - CharacterDetailViewController
+//--------------------------------------------------------------
+
 extension CharacterDetailViewController: CharacterDetailViewControllerProtocol {
     
+    /// General notification when the view should be load.
+    ///
+    /// in this case we do not use it, we use loadComics and loadSeries since they are the only element in the whole view is the list of characters.
     func didLoadView() {
     }
     
+    /// Notifies that the comisDataSource has changed and the view needs to be updated.
     func loadComics() {
         self.updateDataSourceComic()
     }
     
+    /// Notifies that the seriesDataSource has changed and the view needs to be updated.
     func loadSeries() {
         self.updateDataSourceSerie()
     }

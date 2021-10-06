@@ -13,10 +13,12 @@ final class HomeViewModel: BaseViewModel {
     // MARK: - Variables and constants
     //------------------------------------------------
     
+    /// Set the view of the model.
     private weak var view: HomeViewControllerProtocol? {
         return self.baseView as? HomeViewControllerProtocol
     }
     
+    /// Set the router of the model.
     private var router: HomeRouter? {
         return self._router as? HomeRouter
     }
@@ -30,18 +32,23 @@ final class HomeViewModel: BaseViewModel {
     let limit = 20
     var offset = 0
     var loadMore = false
+    
+    /// Character datasource.
     private(set) var characters : [Character] = []
     
+    /// Indicate the last character that will be shown in the list, to know when to make the next request to obtain more characters.
     var numLastCharacterToShow: Int {
         return characterService.numLastItemToShow(offset: charactersDataResponse?.offset ?? 0, all: charactersDataResponse?.all?.count ?? 0)
     }
     
+    /// Character binding to notify the view.
     private(set) var charactersDataResponse : ResponseCharactersData? {
         didSet {
             self.view?.loadCharacters()
         }
     }
     
+    /// Error binding to report to view.
     private(set) var errorMessaje : (String, String)? {
         didSet {
             self.view?.loadError()
@@ -49,18 +56,19 @@ final class HomeViewModel: BaseViewModel {
     }
     
     //------------------------------------------------
-    // MARK: - Init
+    // MARK: - ViewModel
     //------------------------------------------------
     
+    /// Create a new HomeviewModel.
+    /// - Parameters:
+    ///   - router: HomeRouter
+    ///   - characterService: Api call service.
     init(router: BaseRouter, characterService: CharacterServiceProtocol) {
         self.characterService = characterService
         super.init(router: router)
     }
     
-    // ------------------------------------------------
-    // MARK: - ViewModel
-    // ------------------------------------------------
-    
+    /// First call of viewmodel lifecycle.
     override func loadView() {
         checkApiKeys() ? getCharacters() : setErrorApiKey()
     }
@@ -69,9 +77,14 @@ final class HomeViewModel: BaseViewModel {
         router?.showCharacterDetail(character: character, characterService: self.characterService)
     }
     
+    /// Check if Api Keys are added
     func checkApiKeys() -> Bool {
         Constants.ApiKeys.publicKey.isEmpty || Constants.ApiKeys.privateKey.isEmpty ? false : true
     }
+    
+    //------------------------------------------------
+    // MARK: - Private methods
+    //------------------------------------------------
     
     private func setErrorApiKey() {
         self.errorMessaje = ("There isn`t ApiKey data", "Please enter your public and private key in Schemes -> Edit Scheme -> Environment Variables")
@@ -81,6 +94,7 @@ final class HomeViewModel: BaseViewModel {
     // MARK: - Backend
     //------------------------------------------------
     
+    /// Request data to CharacterService (API).
     func getCharacters() {
         characterService.requestGetCharacter(limit: limit, offset: offset, withSuccess: { (result) in
             self.charactersDataResponse = result
@@ -93,6 +107,7 @@ final class HomeViewModel: BaseViewModel {
         })
     }
     
+    /// Next request if there are more characters, when we reach the end of the list.
     func paginate() {
         offset += limit
         getCharacters()

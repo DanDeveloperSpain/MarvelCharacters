@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Functions to implement by view.
 protocol HomeViewControllerProtocol: BaseControllerViewModelProtocol {
     func loadCharacters() -> Void
     func loadError() -> Void
@@ -26,6 +27,7 @@ final class HomeViewController: BaseViewController {
     // MARK: - Variables and constants
     //------------------------------------------------
     
+    /// Set the model of the view.
     private var viewModel: HomeViewModel? {
         return self._viewModel as? HomeViewModel
     }
@@ -38,15 +40,12 @@ final class HomeViewController: BaseViewController {
          super.viewDidLoad()
     }
     
-    //------------------------------------------------
-    // MARK: - Setup view
-    //------------------------------------------------
+    /// Setup the view.
     override internal func setup() {
         configureView()
         configureCollectionView()
        
         activityIndicator.startAnimating()
-       
     }
     
     //------------------------------------------------
@@ -73,6 +72,7 @@ final class HomeViewController: BaseViewController {
         charactersCollectionView.reloadData()
     }
     
+    /// Setup the charecterCollectionView flow layout.
     private func configureCollectionView() {
         self.charactersCollectionView.register(UINib(nibName: CharacterCell.kCellId, bundle: Bundle(for: CharacterCell.self)), forCellWithReuseIdentifier: CharacterCell.kCellId)
         
@@ -122,7 +122,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        // Pagination
+        /// Pagination
         if indexPath.row == viewModel?.numLastCharacterToShow && viewModel?.loadMore ?? false {
             self.activityIndicator.startAnimating()
             viewModel?.paginate()
@@ -137,12 +137,18 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
 }
 
+//--------------------------------------------------------------
 // MARK: - HomeViewControllerProtocol
+//--------------------------------------------------------------
 extension HomeViewController: HomeViewControllerProtocol {
     
+    /// General notification when the view should be load.
+    ///
+    /// In this case we do not use it, we use loadCharacters since it is the only element in the whole view is the list of characters.
     func didLoadView() {
     }
     
+    /// Notifies that the characterDataSource has changed and the view needs to be updated.
     func loadCharacters() {
         self.tryAgainButton.isHidden = true
         self.updateDataSource()

@@ -17,6 +17,8 @@ enum CharacterServiceEndpoint {
     case comics(Int)
     case series(Int)
     
+    /// Manage the URLs of the endpoint to attack.
+    /// - Returns: String with the specific URL of the API endpoint
     func getURL() -> String {
         switch self {
         case .characters:

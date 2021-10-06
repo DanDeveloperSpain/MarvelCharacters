@@ -10,13 +10,8 @@ import Alamofire
 import os.log
 import CryptoKit
 
-
-//Singleton
+/// Singleton.
 final class MarvelApiService {
-    
-    //------------------------------------------------
-    // MARK: - Variables and constants
-    //------------------------------------------------
     
     var AFManager : Session
     let URLEncoding : URLEncoding
@@ -24,10 +19,7 @@ final class MarvelApiService {
     
     let log = OSLog(subsystem: Bundle.main.bundleIdentifier ?? "", category: "network")
     
-    //------------------------------------------------
-    // MARK: - Init
-    //------------------------------------------------
-    
+    /// Initialize the singleton with the headers and Alamofire session to make API requests.
     private init() {
         headers =  ["Accept": "*/*"]
         URLEncoding = Alamofire.URLEncoding(destination: .queryString)
@@ -38,20 +30,18 @@ final class MarvelApiService {
         AFManager = Session(configuration: configuration)
     }
     
+    /// Shared instance to access the singleton.
     static let sharedInstance = MarvelApiService()
     
-    //------------------------------------------------
-    // MARK: - Private methods
-    //------------------------------------------------
-    
+    /// Function to has a String in md5.
+    /// - Parameter source: In this case a string format for: ts, privateKey and publicKey.
+    /// - Returns: Hashed String.
     private func md5Hash(_ source: String) -> String {
         return Insecure.MD5.hash(data: source.data(using: .utf8) ?? Data()).map { String(format: "%02hhx", $0) }.joined()
     }
     
-    //------------------------------------------------
-    // MARK: - Helpers
-    //------------------------------------------------
-    
+    /// Helper to build the base parameters for the Api.
+    /// - Returns: Array with apikey, ts and hash.
     func getParameters() -> [String: Any] {
         let currentTimeStamp = Int(Date().timeIntervalSince1970)
 
