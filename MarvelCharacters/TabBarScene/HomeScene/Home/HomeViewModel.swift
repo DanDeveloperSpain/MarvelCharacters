@@ -5,23 +5,41 @@
 //  Created by Daniel Pérez Parreño on 30/9/21.
 //
 
-import Foundation
+import UIKit
+
+// ---------------------------------
+// MARK: - Coordinator Delegates
+// ---------------------------------
+
+protocol HomeViewModelCoordinatorDelegate: AnyObject { // ---> HomeCoordinator
+    func goToCharacterDetail(character: Character)
+}
+
+// ---------------------------------
+// MARK: - View Delegates
+// ---------------------------------
+
+protocol HomeViewModelViewDelegate: BaseControllerViewModelProtocol { // ---> HomeViewController
+    func showError() -> Void
+    func loadCharacters() -> Void
+}
 
 final class HomeViewModel: BaseViewModel {
     
-    //------------------------------------------------
-    // MARK: - Variables and constants
-    //------------------------------------------------
-    
+    // ---------------------------------
+    // MARK: - Delegates
+    // ---------------------------------
+
+    private weak var coordinatorDelegate: HomeViewModelCoordinatorDelegate?
+
     /// Set the view of the model.
-    private weak var view: HomeViewControllerProtocol? {
-        return self.baseView as? HomeViewControllerProtocol
+    private weak var viewDelegate: HomeViewModelViewDelegate? {
+        return self.baseView as? HomeViewModelViewDelegate
     }
     
-    /// Set the router of the model.
-    private var router: HomeRouter? {
-        return self._router as? HomeRouter
-    }
+    // ---------------------------------
+    // MARK: - Properties
+    // ---------------------------------
     
     var title: String {
         return NSLocalizedString("Marvel characters", comment: "")
@@ -44,14 +62,14 @@ final class HomeViewModel: BaseViewModel {
     /// Character binding to notify the view.
     private(set) var charactersDataResponse : ResponseCharactersData? {
         didSet {
-            self.view?.loadCharacters()
+            self.viewDelegate?.loadCharacters()
         }
     }
     
     /// Error binding to report to view.
     private(set) var errorMessaje : (String, String)? {
         didSet {
-            self.view?.loadError()
+            self.viewDelegate?.showError()
         }
     }
     
@@ -61,20 +79,24 @@ final class HomeViewModel: BaseViewModel {
     
     /// Create a new HomeviewModel.
     /// - Parameters:
-    ///   - router: HomeRouter
+    ///   - coordinatorDelegate: The coordinator delegate
     ///   - characterService: Api call service.
-    init(router: BaseRouter, characterService: CharacterServiceProtocol) {
+    init(coordinatorDelegate: HomeViewModelCoordinatorDelegate, characterService: CharacterServiceProtocol) {
+        self.coordinatorDelegate = coordinatorDelegate
         self.characterService = characterService
-        super.init(router: router)
     }
     
     /// First call of viewmodel lifecycle.
-    override func loadView() {
+    override func start() {
         checkApiKeys() ? getCharacters() : setErrorApiKey()
+        print("___ start HomeViewModel")
     }
 
+    // ---------------------------------
+    // MARK: - Events
+    // ---------------------------------
     func showCharacterDetail(character: Character) {
-        router?.showCharacterDetail(character: character, characterService: self.characterService)
+        coordinatorDelegate?.goToCharacterDetail(character: character)
     }
     
     /// Check if Api Keys are added

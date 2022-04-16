@@ -7,12 +7,6 @@
 
 import UIKit
 
-/// Functions to implement by view.
-protocol HomeViewControllerProtocol: BaseControllerViewModelProtocol {
-    func loadCharacters() -> Void
-    func loadError() -> Void
-}
-
 final class HomeViewController: BaseViewController {
     
     //------------------------------------------------
@@ -24,24 +18,40 @@ final class HomeViewController: BaseViewController {
     @IBOutlet weak var tryAgainButton: UIButton!
     
     //------------------------------------------------
-    // MARK: - Variables and constants
+    // MARK: - Properties
     //------------------------------------------------
     
     /// Set the model of the view.
     private var viewModel: HomeViewModel? {
-        return self._viewModel as? HomeViewModel
+        return self.baseViewModel as? HomeViewModel
     }
  
     //------------------------------------------------
-    // MARK: - LifeCycle
+    // MARK: - Life Cycle
     //------------------------------------------------
+    
+    /// IMPORTANT: setup will always run first
+    /// viewDidLoad
+    /// viewWillAppear
+    /// viewDidAppear
+    /// viewDidDisappear
+
+    deinit {
+        print("HomeViewController deinit")
+    }
 
      override func viewDidLoad() {
          super.viewDidLoad()
+         print("___ viewDidLoad")
     }
-    
+
+    // ---------------------------------
+    // MARK: - Setup View
+    // ---------------------------------
+
     /// Setup the view.
     override internal func setup() {
+        viewModel?.setView(self)
         configureView()
         configureCollectionView()
        
@@ -49,17 +59,18 @@ final class HomeViewController: BaseViewController {
     }
     
     //------------------------------------------------
-    // MARK: - Button actions
+    // MARK: - Buton Action's
     //------------------------------------------------
 
     @IBAction func tryAgainButtonPressed(_ sender: UIButton) {
         activityIndicator.startAnimating()
-        viewModel?.loadView()
+        viewModel?.start()
     }
 
     //------------------------------------------------
     // MARK: - Private methods
     //------------------------------------------------
+    
     private func configureView() {
         self.title = viewModel?.title
         tryAgainButton.isHidden = true
@@ -87,12 +98,6 @@ final class HomeViewController: BaseViewController {
         flowLayout.minimumLineSpacing = spacing
         flowLayout.sectionInset = UIEdgeInsets(top: 20, left: spacing, bottom: 0, right: spacing)
         self.charactersCollectionView.collectionViewLayout = flowLayout
-    }
-    
-    private func showError() {
-        activityIndicator.stopAnimating()
-        tryAgainButton.isHidden = false
-        viewModel?.showSimpleAlert(alertTitle: viewModel?.errorMessaje?.0 ?? "", alertMessage: viewModel?.errorMessaje?.1 ?? "")
     }
  
  }
@@ -138,23 +143,25 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 }
 
 //--------------------------------------------------------------
-// MARK: - HomeViewControllerProtocol
+// MARK: - HomeViewModelViewDelegate
 //--------------------------------------------------------------
-extension HomeViewController: HomeViewControllerProtocol {
+extension HomeViewController: HomeViewModelViewDelegate {
+    func showError() {
+        activityIndicator.stopAnimating()
+        tryAgainButton.isHidden = false
+        self.showSimpleAlertAccept(alertTitle: viewModel?.errorMessaje?.0 ?? "", alertMessage: viewModel?.errorMessaje?.1 ?? "")
+    }
     
     /// General notification when the view should be load.
     ///
     /// In this case we do not use it, we use loadCharacters since it is the only element in the whole view is the list of characters.
-    func didLoadView() {
+    func updateScreen() {
+        print("updateScreen Home!!!")
     }
     
     /// Notifies that the characterDataSource has changed and the view needs to be updated.
     func loadCharacters() {
         self.tryAgainButton.isHidden = true
         self.updateDataSource()
-    }
-    
-    func loadError() {
-        self.showError()
     }
 }

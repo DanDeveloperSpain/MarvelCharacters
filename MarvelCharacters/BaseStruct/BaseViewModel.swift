@@ -9,39 +9,46 @@ import Foundation
 
 
 /// Protocol to implement by ViewControllers
-protocol BaseControllerViewModelProtocol: AnyObject {
-
-    func didLoadView()
-}
-
-/// Protocol to implement by ViewModels
 protocol BaseViewModelProtocol {
-    
-    func loadView()
+    func start()
 }
 
 
 /// Base for the ViewModels with the basic structure.
 class BaseViewModel: BaseViewModelProtocol {
     
+    // ---------------------------------
+    // MARK: - Variables
+    // ---------------------------------
+
     weak var baseView: BaseControllerViewModelProtocol?
-    var _router: BaseRouter?
-    
-    init(router: BaseRouter) {
-        self._router = router
+
+    // ---------------------------------
+    // MARK: - Init
+    // ---------------------------------
+
+    init() {
     }
-    
+
     func setView(_ view: BaseControllerViewModelProtocol) {
         self.baseView = view
     }
-    
-    /// Life Cycle
-    func loadView() {
-        self.baseView?.didLoadView()
-    }
-    
-    func showSimpleAlert(alertTitle: String, alertMessage: String) {
-        self._router?.showSimpleAlertAccept(alertTitle: alertTitle, alertMessage: alertMessage)
+
+    // ---------------------------------
+    // MARK: - Life Cycle
+    // ---------------------------------
+
+    func start() {
+        self.baseView?.updateScreen()
     }
     
 }
+
+// ---------------------------------
+// MARK: - BaseControllerViewModelProtocol
+// ---------------------------------
+
+protocol BaseControllerViewModelProtocol: AnyObject {
+    func updateScreen()
+}
+

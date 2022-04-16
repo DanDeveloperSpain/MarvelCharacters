@@ -20,6 +20,13 @@ class CharacterCell: UICollectionViewCell {
         characterImageView.layer.cornerRadius = 40
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        characterImageView.kf.cancelDownloadTask()
+        characterImageView.image = nil
+    }
+    
     func fill(character: Character) {
         let urlImge = "\(character.thumbnail?.path ?? "").\(character.thumbnail?.typeExtension ?? "")"
         characterImageView.kf.setImage(with: URL(string: urlImge), placeholder: UIImage(named: "marverComics"))

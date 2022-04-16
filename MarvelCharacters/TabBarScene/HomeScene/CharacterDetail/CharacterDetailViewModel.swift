@@ -5,24 +5,41 @@
 //  Created by Daniel Pérez Parreño on 1/10/21.
 //
 
-import Foundation
 import UIKit
+
+// ---------------------------------
+// MARK: - Coordinator Delegates
+// ---------------------------------
+
+protocol CharacterDetailViewModelCoordinatorDelegate: AnyObject {
+
+}
+
+// ---------------------------------
+// MARK: - View Delegates
+// ---------------------------------
+protocol CharacterDetailViewModelViewDelegate: BaseControllerViewModelProtocol {
+    func showError() -> Void
+    func loadComics() -> Void
+    func loadSeries() -> Void
+}
 
 final class CharacterDetailViewModel: BaseViewModel {
     
-    //------------------------------------------------
-    // MARK: - Variables and constants
-    //------------------------------------------------
+    // ---------------------------------
+    // MARK: - Delegates
+    // ---------------------------------
+
+    private weak var coordinatorDelegate: CharacterDetailViewModelCoordinatorDelegate?
     
     /// Set the view of the model.
-    private weak var view: CharacterDetailViewControllerProtocol? {
-        return self.baseView as? CharacterDetailViewControllerProtocol
+    private weak var viewDelegate: CharacterDetailViewModelViewDelegate? {
+        return self.baseView as? CharacterDetailViewModelViewDelegate
     }
     
-    /// Set the router of the model.
-    private var router: CharacterDetailRouter? {
-        return self._router as? CharacterDetailRouter
-    }
+    // ---------------------------------
+    // MARK: - Properties
+    // ---------------------------------
     
     var title: String {
         return character?.name ?? ""
@@ -59,20 +76,20 @@ final class CharacterDetailViewModel: BaseViewModel {
     /// Comic binding to notify the view.
     private(set) var comicsDataResponse : ResponseComicsData? {
         didSet {
-            self.view?.loadComics()
+            self.viewDelegate?.loadComics()
         }
     }
     
     /// Serie binding to notify the view.
     private(set) var seriesDataResponse : ResponseSeriesData? {
         didSet {
-            self.view?.loadSeries()
+            self.viewDelegate?.loadSeries()
         }
     }
     
     private(set) var errorMessaje : String? {
         didSet {
-            self.view?.loadError()
+            self.viewDelegate?.showError()
         }
     }
     
@@ -82,19 +99,24 @@ final class CharacterDetailViewModel: BaseViewModel {
     
     /// Create a new CharacterDetailViewModel
     /// - Parameters:
-    ///   - router: characterDetailRouter
-    ///   - character: character to show
+    ///   - coordinatorDelegate: The coordinator delegate
+    ///   - character: Character to show
     ///   - characterService: Api call service.
-    init(router: BaseRouter, character: Character, characterService: CharacterServiceProtocol) {
+    init(coordinatorDelegate: CharacterDetailViewModelCoordinatorDelegate, character: Character, characterService: CharacterServiceProtocol) {
+        self.coordinatorDelegate = coordinatorDelegate
         self.character = character
         self.characterService = characterService
-        super.init(router: router)
+    }
+    
+    deinit {
+        print("CharacterDetailViewModel deinit")
     }
     
     /// First call of viewmodel lifecycle.
-    override func loadView() {
+    override func start() {
         getComics()
         getSeries()
+        print("___ start CharacterDetailViewModel")
     }
 
     //------------------------------------------------

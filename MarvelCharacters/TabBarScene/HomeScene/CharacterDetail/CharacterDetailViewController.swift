@@ -7,14 +7,7 @@
 
 import UIKit
 
-/// Functions to implement by view.
-protocol CharacterDetailViewControllerProtocol: BaseControllerViewModelProtocol {
-    func loadComics() -> Void
-    func loadSeries() -> Void
-    func loadError() -> Void
-}
-
-class CharacterDetailViewController: BaseViewController {
+final class CharacterDetailViewController: BaseViewController {
     
     //------------------------------------------------
     // MARK: - Outlets
@@ -31,24 +24,37 @@ class CharacterDetailViewController: BaseViewController {
     //------------------------------------------------
     
     /// Set the model of the view.
-    private var viewModel: CharacterDetailViewModel? {
-        return self._viewModel as? CharacterDetailViewModel
+    internal var viewModel: CharacterDetailViewModel? {
+        return self.baseViewModel as? CharacterDetailViewModel
     }
 
     //------------------------------------------------
     // MARK: - LifeCycle
     //------------------------------------------------
+    
+    /// IMPORTANT: setup will always run first
+    /// viewDidLoad
+    /// viewWillAppear
+    /// viewDidAppear
+    /// viewDidDisappear
+
+    deinit {
+        print("CharacterDetailViewController deinit")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     /// Setup the view.
     override internal func setup() {
+        viewModel?.setView(self)
         configureView()
         configureCollectionView()
         
         comicActivityIndicator.startAnimating()
         serieActivityIndicator.startAnimating()
+        print("___ setup CharacterDetailViewController")
     }
     
     /// Actions to take when the back button is pressed and the screen is going to be deleted.
@@ -83,12 +89,6 @@ class CharacterDetailViewController: BaseViewController {
         comicsSeriesCollectionView.reloadData()
     }
     
-    private func showError() {
-        comicActivityIndicator.stopAnimating()
-        serieActivityIndicator.stopAnimating()
-        viewModel?.showSimpleAlert(alertTitle: viewModel?.errorMessaje ?? "", alertMessage: "")
-    }
-    
     /// Setup the collectionView for comics ands series flow layout.
     private func configureCollectionView() {
         self.comicsSeriesCollectionView.register(UINib(nibName: ComicSerieCell.kCellId, bundle: Bundle(for: ComicSerieCell.self)), forCellWithReuseIdentifier: ComicSerieCell.kCellId)
@@ -114,7 +114,7 @@ class CharacterDetailViewController: BaseViewController {
             section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: inset, bottom: 0, trailing: inset)
             
             // Supplementary Item
-            let headerItemSize = NSCollectionLayoutSize(widthDimension: .absolute(self.comicsSeriesCollectionView.frame.width), heightDimension: .estimated(40))
+            let headerItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(40))
             let headerItem = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerItemSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
             section.boundarySupplementaryItems = [headerItem]
             section.orthogonalScrollingBehavior = .continuous
@@ -208,15 +208,16 @@ extension CharacterDetailViewController: UICollectionViewDelegate, UICollectionV
 }
 
 //--------------------------------------------------------------
-// MARK: - CharacterDetailViewController
+// MARK: - CharacterDetailViewModelViewDelegate
 //--------------------------------------------------------------
 
-extension CharacterDetailViewController: CharacterDetailViewControllerProtocol {
+extension CharacterDetailViewController: CharacterDetailViewModelViewDelegate {
     
     /// General notification when the view should be load.
     ///
     /// in this case we do not use it, we use loadComics and loadSeries since they are the only element in the whole view is the list of characters.
-    func didLoadView() {
+    func updateScreen() {
+        print("updateScreen CharacterDetail!!!")
     }
     
     /// Notifies that the comisDataSource has changed and the view needs to be updated.
@@ -229,7 +230,9 @@ extension CharacterDetailViewController: CharacterDetailViewControllerProtocol {
         self.updateDataSourceSerie()
     }
     
-    func loadError() {
-        self.showError()
+    func showError() {
+        comicActivityIndicator.stopAnimating()
+        serieActivityIndicator.stopAnimating()
+        self.showSimpleAlertAccept(alertTitle: viewModel?.errorMessaje ?? "", alertMessage: "")
     }
 }

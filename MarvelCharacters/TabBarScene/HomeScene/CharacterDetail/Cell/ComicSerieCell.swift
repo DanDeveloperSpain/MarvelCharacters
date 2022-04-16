@@ -20,6 +20,13 @@ class ComicSerieCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        thumbnailImageView.kf.cancelDownloadTask()
+        thumbnailImageView.image = nil
+    }
+    
     func fill(title: String, year: String, thumbnail: Thumbnail?) {
         let urlImge = "\(thumbnail?.path ?? "").\(thumbnail?.typeExtension ?? "")"
         thumbnailImageView.kf.setImage(with: URL(string: urlImge), placeholder: UIImage(named: "marverComics"))
