@@ -86,6 +86,10 @@ final class HomeViewModel: BaseViewModel {
         self.characterService = characterService
     }
     
+    deinit {
+        print("HomeViewModel deinit")
+    }
+    
     /// First call of viewmodel lifecycle.
     override func start() {
         checkApiKeys() ? getCharacters() : setErrorApiKey()

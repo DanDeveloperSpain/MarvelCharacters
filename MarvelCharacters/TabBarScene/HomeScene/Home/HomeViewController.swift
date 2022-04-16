@@ -42,7 +42,7 @@ final class HomeViewController: BaseViewController {
 
      override func viewDidLoad() {
          super.viewDidLoad()
-         print("___ viewDidLoad")
+         print("___ viewDidLoad HomeViewModel")
     }
 
     // ---------------------------------
@@ -56,6 +56,7 @@ final class HomeViewController: BaseViewController {
         configureCollectionView()
        
         activityIndicator.startAnimating()
+        print("___ start HomeViewController")
     }
     
     //------------------------------------------------

@@ -47,7 +47,10 @@ final class UserViewController: BaseViewController {
     // ---------------------------------
     // MARK: - Buton Action's
     // ---------------------------------
-
+    @IBAction func showLogoutButtonPressed(_ sender: UIButton) {
+        viewModel?.didSelectCloseSesion()
+    }
+    
     // ---------------------------------
     // MARK: - Private methods
     // ---------------------------------
