@@ -92,7 +92,9 @@ final class HomeViewModel: BaseViewModel {
     
     /// First call of viewmodel lifecycle.
     override func start() {
-        checkApiKeys() ? getCharacters() : setErrorApiKey()
+        Task {
+            checkApiKeys() ? try await getCharacters() : setErrorApiKey()
+        }
         print("___ start HomeViewModel")
     }
 
@@ -121,22 +123,26 @@ final class HomeViewModel: BaseViewModel {
     //------------------------------------------------
     
     /// Request data to CharacterService (API).
-    func getCharacters() {
-        characterService.requestGetCharacter(limit: limit, offset: offset, withSuccess: { (result) in
-            self.charactersDataResponse = result
-            self.characters += result.all ?? []
+    func getCharacters() async throws {
+        do {
+            let ressultCharacters = try await characterService.requestGetCharacter(limit: limit, offset: offset)
+            self.charactersDataResponse = ressultCharacters
+            self.characters += ressultCharacters.all ?? []
             
             self.loadMore = self.characterService.isMoreDataToLoad(offset: self.charactersDataResponse?.offset ?? 0, total: self.charactersDataResponse?.total ?? 0, limit: self.limit)
             
-        }, withFailure: { (error) in
-            self.errorMessaje = (error, "")
-        })
+        } catch let error {
+            let errorToShow = self.characterService.getErrorDescriptionToUser(statusCode: error.asAFError?.responseCode ?? 0)
+            self.errorMessaje = (errorToShow, "")
+        }
     }
     
     /// Next request if there are more characters, when we reach the end of the list.
     func paginate() {
         offset += limit
-        getCharacters()
+        Task {
+            try await getCharacters()
+        }
     }
     
 }

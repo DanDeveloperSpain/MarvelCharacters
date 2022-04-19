@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 final class ExceptionHandlerHelper {
     
@@ -13,15 +14,15 @@ final class ExceptionHandlerHelper {
     ///
     /// For this test we simply send a generic message.
     /// - Parameters:
-    ///   - errorDescription: error description
     ///   - statusCode: error code
     /// - Returns: Error to show to user
-    func getErrorDescriptionToUser(_ errorDescription: String, _ statusCode: Int) -> String {
+    func manageError(_ statusCode: Int) -> String {
         
-        /// Example
-        if statusCode == 401 {
-            /// unautorized() -> log out and redirect to login
+        switch statusCode {
+        case 404:
+            return "An error occurred while accessing the data, try again later"
+        default:
+            return "An error occurred, try again later"
         }
-        return "An error occurred, try again later"
     }
 }

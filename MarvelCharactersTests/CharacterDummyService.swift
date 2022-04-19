@@ -9,8 +9,10 @@ import Foundation
 @testable import MarvelCharacters
 
 class CharacterDummyService : CharacterServiceProtocol {
-    
-    func requestGetCharacter(limit: Int, offset: Int, withSuccess: @escaping (ResponseCharactersData) -> Void, withFailure: @escaping (String) -> Void) {
+
+    let exceptionHandler = ExceptionHandlerHelper()
+
+    func requestGetCharacter(limit: Int, offset: Int) async throws -> ResponseCharactersData {
         let result = """
             {
               "code": 200,
@@ -103,30 +105,37 @@ class CharacterDummyService : CharacterServiceProtocol {
               }
             }
         """
-        do {
-            let resultResponse = try JSONDecoder().decode(ResponseCharacters.self, from: Data(result.utf8))
-            withSuccess(resultResponse.data)
-        } catch {
-            withFailure(error.localizedDescription)
+        return try await withCheckedThrowingContinuation { continuation in
+            do {
+                let resultResponse = try JSONDecoder().decode(ResponseCharacters.self, from: Data(result.utf8))
+                continuation.resume(returning: resultResponse.data)
+            } catch {
+                continuation.resume(throwing: error)
+            }
+        }
+    }
+    
+    func requestGetComicsByCharacter(characterId: Int, limit: Int, offset: Int) async throws -> ResponseComicsData {
+        return try await withCheckedThrowingContinuation { continuation in
+            do {
+                let resultResponse = try JSONDecoder().decode(ResponseComicsData.self, from: Data())
+                continuation.resume(returning: resultResponse)
+            } catch let error {
+                continuation.resume(throwing: error)
+            }
         }
         
     }
     
-    func requestGetComicsByCharacter(characterId: Int, limit: Int, offset: Int, withSuccess: @escaping (ResponseComicsData) -> Void, withFailure: @escaping (String) -> Void) {
-        do {
-            let resultResponse = try JSONDecoder().decode(ResponseComicsData.self, from: Data())
-            withSuccess(resultResponse)
-        } catch {
-            withFailure(error.localizedDescription)
-        }
-    }
-    
-    func requestGetSeriesByCharacter(characterId: Int, limit: Int, offset: Int, withSuccess: @escaping (ResponseSeriesData) -> Void, withFailure: @escaping (String) -> Void) {
-        do {
-            let resultResponse = try JSONDecoder().decode(ResponseSeriesData.self, from: Data())
-            withSuccess(resultResponse)
-        } catch {
-            withFailure(error.localizedDescription)
+    func requestGetSeriesByCharacter(characterId: Int, limit: Int, offset: Int) async throws -> ResponseSeriesData {
+        return try await withCheckedThrowingContinuation { continuation in
+            do {
+                let resultResponse = try JSONDecoder().decode(ResponseSeriesData.self, from: Data())
+                continuation.resume(returning: resultResponse)
+            } catch let error {
+                continuation.resume(throwing: error)
+            }
+        
         }
     }
     
@@ -136,6 +145,10 @@ class CharacterDummyService : CharacterServiceProtocol {
     
     func numLastItemToShow(offset: Int, all: Int) -> Int {
         return 0
+    }
+    
+    func getErrorDescriptionToUser(statusCode: Int) -> String {
+        return exceptionHandler.manageError(statusCode)
     }
 
 }

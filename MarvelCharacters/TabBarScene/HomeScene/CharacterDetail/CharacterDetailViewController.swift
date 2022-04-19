@@ -222,17 +222,23 @@ extension CharacterDetailViewController: CharacterDetailViewModelViewDelegate {
     
     /// Notifies that the comisDataSource has changed and the view needs to be updated.
     func loadComics() {
-        self.updateDataSourceComic()
+        DispatchQueue.main.async {
+            self.updateDataSourceComic()
+        }
     }
     
     /// Notifies that the seriesDataSource has changed and the view needs to be updated.
     func loadSeries() {
-        self.updateDataSourceSerie()
+        DispatchQueue.main.async {
+            self.updateDataSourceSerie()
+        }
     }
     
     func showError() {
-        comicActivityIndicator.stopAnimating()
-        serieActivityIndicator.stopAnimating()
-        self.showSimpleAlertAccept(alertTitle: viewModel?.errorMessaje ?? "", alertMessage: "")
+        DispatchQueue.main.async {
+            self.comicActivityIndicator.stopAnimating()
+            self.serieActivityIndicator.stopAnimating()
+            self.showSimpleAlertAccept(alertTitle: self.viewModel?.errorMessaje ?? "", alertMessage: "")
+        }
     }
 }

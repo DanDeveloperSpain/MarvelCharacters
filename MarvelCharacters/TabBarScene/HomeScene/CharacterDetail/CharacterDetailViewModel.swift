@@ -114,8 +114,10 @@ final class CharacterDetailViewModel: BaseViewModel {
     
     /// First call of viewmodel lifecycle.
     override func start() {
-        getComics()
-        getSeries()
+        Task {
+            try await getComics()
+            try await getSeries()
+        }
         print("___ start CharacterDetailViewModel")
     }
 
@@ -124,37 +126,40 @@ final class CharacterDetailViewModel: BaseViewModel {
     //------------------------------------------------
     
     /// Request comics data to CharacterService (API).
-    func getComics() {
-        characterService.requestGetComicsByCharacter(characterId: character?.id ?? 0,limit: limitComic, offset: offsetComic, withSuccess: { (result) in
+    func getComics() async throws {
+        do {
+            let resultComics = try await characterService.requestGetComicsByCharacter(characterId: character?.id ?? 0,limit: limitComic, offset: offsetComic)
+            self.comics += resultComics.all ?? []
+            self.comicsDataResponse = resultComics
             
-            self.comics += result.all ?? []
-            self.comicsDataResponse = result
-
             self.loadMoreComic = self.characterService.isMoreDataToLoad(offset: self.comicsDataResponse?.offset ?? 0, total: self.comicsDataResponse?.total ?? 0, limit: self.limitComic)
             
-        }, withFailure: { (error) in
-            self.errorMessaje = error
-        })
-        
+        } catch let error {
+            self.errorMessaje = self.characterService.getErrorDescriptionToUser(statusCode: error.asAFError?.responseCode ?? 0)
+            
+        }
     }
 
     /// Next request if there are more comic, when we reach the end of the list.
     func paginateComic() {
         offsetComic += limitComic
-        getComics()
+        Task {
+            try await getComics()
+        }
     }
     
     /// Request series data to CharacterService (API).
-    func getSeries() {
-        characterService.requestGetSeriesByCharacter(characterId: character?.id ?? 0,limit: limitSerie, offset: offsetSerie, withSuccess: { (result) in
-            self.series += result.all ?? []
-            self.seriesDataResponse = result
-
+    func getSeries() async throws {
+        do {
+            let resultSeries = try await characterService.requestGetSeriesByCharacter(characterId: character?.id ?? 0,limit: limitSerie, offset: offsetSerie)
+            self.series += resultSeries.all ?? []
+            self.seriesDataResponse = resultSeries
+            
             self.loadMoreSerie = self.characterService.isMoreDataToLoad(offset: self.seriesDataResponse?.offset ?? 0, total: self.seriesDataResponse?.total ?? 0, limit: self.limitSerie)
             
-        }, withFailure: { (error) in
-            self.errorMessaje = error
-        })
+        } catch let error {
+            self.errorMessaje = self.characterService.getErrorDescriptionToUser(statusCode: error.asAFError?.responseCode ?? 0)
+        }
         
     }
     
@@ -162,7 +167,9 @@ final class CharacterDetailViewModel: BaseViewModel {
     func paginateSerie() {
         if loadMoreSerie {
             offsetSerie += limitSerie
-            getSeries()
+            Task {
+                try await getSeries()
+            }
         }
     }
     

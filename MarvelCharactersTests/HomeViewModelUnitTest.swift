@@ -11,15 +11,25 @@ import XCTest
 class HomeViewModelUnitTest: XCTestCase {
 
     private(set) var homeViewModel: HomeViewModel?
-    let characterDummyService = CharacterDummyService()
     
     override func setUp() {
-        let router = HomeRouter()
-        homeViewModel = HomeViewModel(router: router, characterService: characterDummyService)
-        homeViewModel?.getCharacters()
+        let characterDummyService = CharacterDummyService()
+        let navigationController = UINavigationController()
+        let homeCoordinator = HomeCoordinator(navigationController)
+        
+        homeViewModel = HomeViewModel(coordinatorDelegate: homeCoordinator, characterService: characterDummyService)
+        
     }
 
     func testGetCharactersHomeViewModel() {
+        homeViewModel?.start()
+        
+        let expectation = XCTestExpectation(description: "test")
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 2.5)
+        
         XCTAssertEqual(homeViewModel?.characters.count, 2)
     }
 

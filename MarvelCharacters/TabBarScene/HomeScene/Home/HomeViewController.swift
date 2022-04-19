@@ -148,9 +148,11 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 //--------------------------------------------------------------
 extension HomeViewController: HomeViewModelViewDelegate {
     func showError() {
-        activityIndicator.stopAnimating()
-        tryAgainButton.isHidden = false
-        self.showSimpleAlertAccept(alertTitle: viewModel?.errorMessaje?.0 ?? "", alertMessage: viewModel?.errorMessaje?.1 ?? "")
+        DispatchQueue.main.async {
+            self.activityIndicator.stopAnimating()
+            self.tryAgainButton.isHidden = false
+            self.showSimpleAlertAccept(alertTitle: self.viewModel?.errorMessaje?.0 ?? "", alertMessage: self.viewModel?.errorMessaje?.1 ?? "")
+        }
     }
     
     /// General notification when the view should be load.
@@ -162,7 +164,9 @@ extension HomeViewController: HomeViewModelViewDelegate {
     
     /// Notifies that the characterDataSource has changed and the view needs to be updated.
     func loadCharacters() {
-        self.tryAgainButton.isHidden = true
-        self.updateDataSource()
+        DispatchQueue.main.async {
+            self.tryAgainButton.isHidden = true
+            self.updateDataSource()
+        }
     }
 }

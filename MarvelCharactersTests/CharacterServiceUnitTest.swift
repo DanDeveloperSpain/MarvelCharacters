@@ -18,15 +18,16 @@ class CharacterServiceUnitTest: XCTestCase {
     let limit : Int = 20
     var errorMessajeCharacter : String?
     
-    override func setUp() {
+    override func setUp() async throws {
         
-        characterDummyService.requestGetCharacter(limit: limit, offset: 0, withSuccess: { (result) in
-            self.responseCharactersData = result
-            self.characters += result.all ?? []
+        do {
+            let ressultCharacters = try await characterDummyService.requestGetCharacter(limit: limit, offset: 0)
+            self.responseCharactersData = ressultCharacters
+            self.characters += ressultCharacters.all ?? []
             
-        }, withFailure: { (error) in
-            self.errorMessajeCharacter = error
-        })
+        } catch let error {
+            self.errorMessajeCharacter = self.characterService.getErrorDescriptionToUser(statusCode: error.asAFError?.responseCode ?? 0)
+        }
     }
 
     func testRequestCharactersSucces() throws {
