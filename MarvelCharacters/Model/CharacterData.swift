@@ -42,3 +42,7 @@ struct Thumbnail: Decodable {
 struct DateMarvel: Decodable {
     let type, date : String?
 }
+
+enum MediaType {
+    case comic, serie
+}

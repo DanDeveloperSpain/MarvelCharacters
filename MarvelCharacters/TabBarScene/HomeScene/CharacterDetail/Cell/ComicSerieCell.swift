@@ -27,8 +27,7 @@ class ComicSerieCell: UICollectionViewCell {
         thumbnailImageView.image = nil
     }
     
-    func fill(title: String, year: String, thumbnail: Thumbnail?) {
-        let urlImge = "\(thumbnail?.path ?? "").\(thumbnail?.typeExtension ?? "")"
+    func fill(title: String, year: String, urlImge: String) {
         thumbnailImageView.kf.setImage(with: URL(string: urlImge), placeholder: UIImage(named: "marverComics"))
         titleLabel.configure(with: title, font: .boldSmall, color: .whiteColor)
         yearLabel.configure(with: year, font: .semiboldSmall, color: .principalColor)

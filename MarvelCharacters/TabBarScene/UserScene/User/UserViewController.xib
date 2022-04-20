@@ -19,9 +19,8 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="52g-h1-Ume">
-                    <rect key="frame" x="134" y="433" width="147" height="31"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="52g-h1-Ume">
+                    <rect key="frame" x="150.5" y="432.5" width="113" height="31"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" title="Close session"/>
                     <connections>
@@ -31,6 +30,10 @@
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="52g-h1-Ume" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="IMb-Zx-6Zj"/>
+                <constraint firstItem="52g-h1-Ume" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="uHs-3Z-jtV"/>
+            </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="143.97321428571428"/>
         </view>
     </objects>

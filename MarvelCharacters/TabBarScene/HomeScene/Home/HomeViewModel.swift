@@ -97,12 +97,29 @@ final class HomeViewModel: BaseViewModel {
         }
         print("___ start HomeViewModel")
     }
+    
+    // ---------------------------------
+    // MARK: - Public methods
+    // ---------------------------------
+    
+    func numberOfItemsInSection(section : Int) -> Int {
+        return characters.count
+    }
+    
+    func characterNameAtIndex(index: Int) -> String {
+        return characters[index].name ?? ""
+    }
+    
+    func characterUrlImgeAtIndex(index: Int) -> String {
+        return "\(characters[index].thumbnail?.path ?? "").\(characters[index].thumbnail?.typeExtension ?? "")"
+    }
 
     // ---------------------------------
     // MARK: - Events
     // ---------------------------------
-    func showCharacterDetail(character: Character) {
-        coordinatorDelegate?.goToCharacterDetail(character: character)
+    
+    func cellAtIndexTapped(index: Int) {
+        coordinatorDelegate?.goToCharacterDetail(character: characters[index])
     }
     
     /// Check if Api Keys are added

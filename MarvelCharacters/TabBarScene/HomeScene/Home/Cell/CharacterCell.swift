@@ -27,10 +27,9 @@ class CharacterCell: UICollectionViewCell {
         characterImageView.image = nil
     }
     
-    func fill(character: Character) {
-        let urlImge = "\(character.thumbnail?.path ?? "").\(character.thumbnail?.typeExtension ?? "")"
+    func fill(characterName: String, urlImge: String) {
         characterImageView.kf.setImage(with: URL(string: urlImge), placeholder: UIImage(named: "marverComics"))
-        characterNameLabel.configure(with: character.name, font: .boldSmall, color: .whiteColor)
+        characterNameLabel.configure(with: characterName, font: .boldSmall, color: .whiteColor)
     }
 
 }

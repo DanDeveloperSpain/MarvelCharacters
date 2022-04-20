@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 final class HomeViewController: BaseViewController {
     
@@ -110,7 +111,7 @@ final class HomeViewController: BaseViewController {
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.viewModel?.characters.count ?? 0
+        return self.viewModel?.numberOfItemsInSection(section: section) ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -118,10 +119,12 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         if let characterCell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterCell.kCellId, for: indexPath) as? CharacterCell {
             
-            if let character = self.viewModel?.characters[indexPath.row] {
-                characterCell.fill(character: character)
-                cell = characterCell
-            }
+            let urlImge = self.viewModel?.characterUrlImgeAtIndex(index: indexPath.row) ?? ""
+            let characterName = self.viewModel?.characterNameAtIndex(index: indexPath.row) ?? ""
+            
+            characterCell.fill(characterName: characterName, urlImge: urlImge)
+            
+            cell = characterCell
         }
         
         return cell
@@ -136,9 +139,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let characterSelected = viewModel?.characters[indexPath.row] {
-            self.viewModel?.showCharacterDetail(character: characterSelected)
-        }
+        self.viewModel?.cellAtIndexTapped(index: indexPath.row)
      }
     
 }

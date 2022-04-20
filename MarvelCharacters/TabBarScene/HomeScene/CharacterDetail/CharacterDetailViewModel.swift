@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 // ---------------------------------
 // MARK: - Coordinator Delegates
@@ -62,6 +63,7 @@ final class CharacterDetailViewModel: BaseViewModel {
     /// Series datasource.
     private(set) var series : [Serie] = []
     
+    private let numberOfSections = 2
     
     /// Indicate the last comic that will be shown in the list, to know when to make the next request to obtain more characters.
     var numLastComicToShow : Int {
@@ -120,6 +122,54 @@ final class CharacterDetailViewModel: BaseViewModel {
         }
         print("___ start CharacterDetailViewModel")
     }
+    
+    // ---------------------------------
+    // MARK: - Public methods
+    // ---------------------------------
+    
+    func numberOfSectionsInCollectionView() -> Int {
+          return numberOfSections
+        }
+    
+    func numberOfItemsInSection(section : Int) -> Int {
+        switch section {
+        case 0:
+            return comics.count
+        case 1:
+            return series.count
+        default:
+            return 0
+        }
+    }
+    
+    func titleAtIndex(index: Int, type: MediaType) -> String {
+        return type == .comic ? comics[index].title ?? "" : series[index].title ?? ""
+    }
+    
+    func yearAtIndex(index: Int, type: MediaType) -> String {
+        return type == .comic ? comics[index].year ?? "" : series[index].startYear.map(String.init) ?? ""
+    }
+    
+    func urlImgeAtIndex(index: Int, type: MediaType) -> String {
+        return type == .comic ? "\(comics[index].thumbnail?.path ?? "").\(comics[index].thumbnail?.typeExtension ?? "")" : "\(series[index].thumbnail?.path ?? "").\(series[index].thumbnail?.typeExtension ?? "")"
+    }
+    
+    /// Next request if there are more comic or serie, when we reach the end of the list.
+    func paginate(mediaType: MediaType) {
+        
+        switch mediaType {
+        case .comic:
+            offsetComic += limitComic
+            Task {
+                try await getComics()
+            }
+        case .serie:
+            offsetSerie += limitSerie
+            Task {
+                try await getSeries()
+            }
+        }
+    }
 
     //------------------------------------------------
     // MARK: - Backend
@@ -139,14 +189,6 @@ final class CharacterDetailViewModel: BaseViewModel {
             
         }
     }
-
-    /// Next request if there are more comic, when we reach the end of the list.
-    func paginateComic() {
-        offsetComic += limitComic
-        Task {
-            try await getComics()
-        }
-    }
     
     /// Request series data to CharacterService (API).
     func getSeries() async throws {
@@ -161,16 +203,6 @@ final class CharacterDetailViewModel: BaseViewModel {
             self.errorMessaje = self.characterService.getErrorDescriptionToUser(statusCode: error.asAFError?.responseCode ?? 0)
         }
         
-    }
-    
-    /// Next request if there are more serie, when we reach the end of the list.
-    func paginateSerie() {
-        if loadMoreSerie {
-            offsetSerie += limitSerie
-            Task {
-                try await getSeries()
-            }
-        }
     }
     
 }

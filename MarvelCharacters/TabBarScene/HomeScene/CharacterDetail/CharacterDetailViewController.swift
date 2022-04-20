@@ -20,7 +20,7 @@ final class CharacterDetailViewController: BaseViewController {
     @IBOutlet weak var serieActivityIndicator: UIActivityIndicatorView!
     
     //------------------------------------------------
-    // MARK: - Variables and constants
+    // MARK: - Properties
     //------------------------------------------------
     
     /// Set the model of the view.
@@ -98,23 +98,27 @@ final class CharacterDetailViewController: BaseViewController {
         self.comicsSeriesCollectionView.delegate = self
         
         let compositionalLayout = UICollectionViewCompositionalLayout(sectionProvider: { (sectionIndex, environment) -> NSCollectionLayoutSection? in
+            let widthCell: CGFloat = 150.0
+            let heightCell: CGFloat = 230.0
+            let heightHeaderCell: CGFloat = 40.0
             let inset: CGFloat = 14.0
             
+            /// layout for Item and Group
+            let layoutSize = NSCollectionLayoutSize(widthDimension: .absolute(widthCell), heightDimension: .absolute(heightCell))
+            
             // Item
-            let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(150), heightDimension: .absolute(150 + 80))
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            let item = NSCollectionLayoutItem(layoutSize: layoutSize)
             item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: inset, bottom: inset, trailing: 0)
             
             // Group
-            let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(150), heightDimension: .absolute(150 + 80))
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: layoutSize, subitems: [item])
             
             // Section
             let section = NSCollectionLayoutSection(group: group)
             section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: inset, bottom: 0, trailing: inset)
             
             // Supplementary Item
-            let headerItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(40))
+            let headerItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(heightHeaderCell))
             let headerItem = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerItemSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
             section.boundarySupplementaryItems = [headerItem]
             section.orthogonalScrollingBehavior = .continuous
@@ -134,43 +138,29 @@ final class CharacterDetailViewController: BaseViewController {
 extension CharacterDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return viewModel?.numberOfSectionsInCollectionView() ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return self.viewModel?.comics.count ?? 0
-        case 1:
-            return self.viewModel?.series.count ?? 0
-        default:
-            return 0
-        }
+        return viewModel?.numberOfItemsInSection(section: section) ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cell = UICollectionViewCell()
         
-        switch indexPath.section {
-        case 0:
-            if let comicSerieCell = collectionView.dequeueReusableCell(withReuseIdentifier: ComicSerieCell.kCellId, for: indexPath) as? ComicSerieCell {
-                
-                if let comic = self.viewModel?.comics[indexPath.row] {
-                    comicSerieCell.fill(title: comic.title ?? "", year: comic.year ?? "", thumbnail: comic.thumbnail)
-                    cell = comicSerieCell
-                }
-            }
-        case 1:
-            if let comicSerieCell = collectionView.dequeueReusableCell(withReuseIdentifier: ComicSerieCell.kCellId, for: indexPath) as? ComicSerieCell {
-                
-                if let serie = self.viewModel?.series[indexPath.row] {
-                    comicSerieCell.fill(title: serie.title ?? "", year: serie.startYear.map(String.init) ?? "", thumbnail: serie.thumbnail)
-                    cell = comicSerieCell
-                }
-            }
-        default:
-            break
+        let mediaType: MediaType = indexPath.section == 0 ? .comic : .serie
+        
+        if let comicSerieCell = collectionView.dequeueReusableCell(withReuseIdentifier: ComicSerieCell.kCellId, for: indexPath) as? ComicSerieCell {
+            
+            let urlImge = self.viewModel?.urlImgeAtIndex(index: indexPath.row, type: mediaType) ?? ""
+            let comicTitle = self.viewModel?.titleAtIndex(index: indexPath.row, type: mediaType) ?? ""
+            let comicYear = self.viewModel?.yearAtIndex(index: indexPath.row, type: mediaType) ?? ""
+            
+            comicSerieCell.fill(title: comicTitle, year: comicYear, urlImge: urlImge)
+            
+            cell = comicSerieCell
         }
+        
         return cell
     }
     
@@ -180,13 +170,13 @@ extension CharacterDetailViewController: UICollectionViewDelegate, UICollectionV
             /// Comic Pagination
             if indexPath.row == viewModel?.numLastComicToShow && (viewModel?.loadMoreComic ?? false) {
                 self.comicActivityIndicator.startAnimating()
-                viewModel?.paginateComic()
+                viewModel?.paginate(mediaType: .comic)
             }
         case 1:
             /// Serie Pagination
             if indexPath.row == viewModel?.numLastSerieToShow  && (viewModel?.loadMoreSerie ?? false) {
                 self.serieActivityIndicator.startAnimating()
-                viewModel?.paginateSerie()
+                viewModel?.paginate(mediaType: .serie)
             }
         default:
             break
