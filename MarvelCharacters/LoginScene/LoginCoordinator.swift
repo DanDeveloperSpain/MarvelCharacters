@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Swinject
 
 protocol LoginCoordinatorProtocol: Coordinator {
     func showLoginViewController()
@@ -43,8 +44,7 @@ class LoginCoordinator: LoginCoordinatorProtocol {
     }
 
     func showLoginViewController() {
-        let LoginViewModel = LoginViewModel(coordinatorDelegate: self)
-        let loginVC = LoginViewController(viewModel: LoginViewModel)
+        let loginVC = Container.sharedLoginContainer.resolve(LoginViewController.self, argument: self) ?? LoginViewController(viewModel: LoginViewModel(coordinatorDelegate: self))
         navigationController.pushViewController(loginVC, animated: true)
     }
 }

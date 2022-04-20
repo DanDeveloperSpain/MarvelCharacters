@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Swinject
 
 // ---------------------------------
 // MARK: HomeCoordinatorProtocol
@@ -34,8 +35,6 @@ class HomeCoordinator: HomeCoordinatorProtocol {
     var type: CoordinatorType { .tab }
 
     weak var parentCoordinator: TabCoordinator?
-
-    let characterService = CharacterService()
     
     // ---------------------------------
     // MARK: - Coordinator
@@ -54,8 +53,7 @@ class HomeCoordinator: HomeCoordinatorProtocol {
     }
 
     func showHomeViewController() {
-        let homeViewModel = HomeViewModel(coordinatorDelegate: self, characterService: characterService)
-        let homeVC = HomeViewController(viewModel: homeViewModel)
+        let homeVC = Container.sharedHomeContainer.resolve(HomeViewController.self, argument: self) ?? HomeViewController(viewModel: HomeViewModel(coordinatorDelegate: self, characterService: CharacterService()))
         navigationController.pushViewController(homeVC, animated: true)
     }
     
@@ -68,8 +66,7 @@ class HomeCoordinator: HomeCoordinatorProtocol {
 extension HomeCoordinator {
     
     func openCharacterDetail(character: Character){
-        let characterDetailViewModel = CharacterDetailViewModel(coordinatorDelegate: self, character: character, characterService: characterService)
-        let characterDetailVC = CharacterDetailViewController(viewModel: characterDetailViewModel)
+        let characterDetailVC = Container.sharedHomeContainer.resolve(CharacterDetailViewController.self, arguments: character, self) ?? CharacterDetailViewController(viewModel: CharacterDetailViewModel(coordinatorDelegate: self, character: character, characterService: CharacterService()))
         navigationController.pushViewController(characterDetailVC, animated: true)
     }
 }

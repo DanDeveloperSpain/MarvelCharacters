@@ -8,6 +8,7 @@
 import Foundation
 
 import UIKit
+import Swinject
 
 // ---------------------------------
 // MARK: UserCoordinatorProtocol
@@ -50,8 +51,7 @@ class UserCoordinator: UserCoordinatorProtocol {
     }
 
     func showUserViewController() {
-        let userViewModel = UserViewModel(coordinatorDelegate: self)
-        let userVC = UserViewController(viewModel: userViewModel)
+        let userVC = Container.sharedUserContainer.resolve(UserViewController.self, argument: self) ?? UserViewController(viewModel: UserViewModel(coordinatorDelegate: self))
         navigationController.pushViewController(userVC, animated: true)
     }
 

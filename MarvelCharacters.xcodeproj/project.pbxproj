@@ -51,6 +51,10 @@
 		7E44E7CA2807278200545E7E /* UserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E44E7C82807278200545E7E /* UserViewController.xib */; };
 		7E44E7CC280727F300545E7E /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E44E7CB280727F300545E7E /* UserViewModel.swift */; };
 		7E44E7CE28072B3B00545E7E /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E44E7CD28072B3B00545E7E /* HomeCoordinator.swift */; };
+		7E539CC328105D55006FC1D3 /* DIHomeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E539CC228105D55006FC1D3 /* DIHomeContainer.swift */; };
+		7E539CC5281073EC006FC1D3 /* DIUserContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E539CC4281073EC006FC1D3 /* DIUserContainer.swift */; };
+		7E539CC728107429006FC1D3 /* DILoginContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E539CC628107429006FC1D3 /* DILoginContainer.swift */; };
+		7E539CCA281077CA006FC1D3 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 7E539CC9281077CA006FC1D3 /* Swinject */; };
 		7E709A26281002FB00763DC2 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E709A25281002FB00763DC2 /* LoginViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -111,6 +115,9 @@
 		7E44E7C82807278200545E7E /* UserViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserViewController.xib; sourceTree = "<group>"; };
 		7E44E7CB280727F300545E7E /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		7E44E7CD28072B3B00545E7E /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		7E539CC228105D55006FC1D3 /* DIHomeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIHomeContainer.swift; sourceTree = "<group>"; };
+		7E539CC4281073EC006FC1D3 /* DIUserContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIUserContainer.swift; sourceTree = "<group>"; };
+		7E539CC628107429006FC1D3 /* DILoginContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DILoginContainer.swift; sourceTree = "<group>"; };
 		7E709A25281002FB00763DC2 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,6 +128,7 @@
 			files = (
 				65D70A6127063C0400936F9C /* Kingfisher in Frameworks */,
 				65D70A4D270610C600936F9C /* Alamofire in Frameworks */,
+				7E539CCA281077CA006FC1D3 /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,6 +228,7 @@
 				65D70A2F2706081300936F9C /* Model */,
 				65D70A3D270608DE00936F9C /* Services */,
 				65F2ACBC270C4F7200D299D4 /* BaseStruct */,
+				7E539CC128105D2A006FC1D3 /* DI */,
 				65516C702707AB6400F6D3D4 /* Styles */,
 				65F2ACB7270BA7C200D299D4 /* Constants */,
 				6556BE502707D5A400B72CD6 /* Resources */,
@@ -363,6 +372,16 @@
 			path = User;
 			sourceTree = "<group>";
 		};
+		7E539CC128105D2A006FC1D3 /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				7E539CC228105D55006FC1D3 /* DIHomeContainer.swift */,
+				7E539CC4281073EC006FC1D3 /* DIUserContainer.swift */,
+				7E539CC628107429006FC1D3 /* DILoginContainer.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -382,6 +401,7 @@
 			packageProductDependencies = (
 				65D70A4C270610C600936F9C /* Alamofire */,
 				65D70A6027063C0400936F9C /* Kingfisher */,
+				7E539CC9281077CA006FC1D3 /* Swinject */,
 			);
 			productName = MarvelCharacters;
 			productReference = 65804D3B2704C35E001C42B3 /* MarvelCharacters.app */;
@@ -435,6 +455,7 @@
 			packageReferences = (
 				65D70A4B270610C600936F9C /* XCRemoteSwiftPackageReference "Alamofire" */,
 				65D70A5F27063C0300936F9C /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				7E539CC8281077CA006FC1D3 /* XCRemoteSwiftPackageReference "Swinject" */,
 			);
 			productRefGroup = 65804D3C2704C35E001C42B3 /* Products */;
 			projectDirPath = "";
@@ -497,6 +518,7 @@
 				65516C882707C82900F6D3D4 /* HeaderSupplementaryView.swift in Sources */,
 				65516C7A2707B18900F6D3D4 /* CharacterDetailViewController.swift in Sources */,
 				7E709A26281002FB00763DC2 /* LoginViewModel.swift in Sources */,
+				7E539CC728107429006FC1D3 /* DILoginContainer.swift in Sources */,
 				7E44E7CC280727F300545E7E /* UserViewModel.swift in Sources */,
 				65804D7C2704CB76001C42B3 /* HomeViewController.swift in Sources */,
 				7E44E7C52807274500545E7E /* UserCoordinator.swift in Sources */,
@@ -505,6 +527,8 @@
 				65D70A472706094D00936F9C /* MarvelApiService.swift in Sources */,
 				65F2ACAE270A274000D299D4 /* BaseViewModel.swift in Sources */,
 				65516C722707AB8500F6D3D4 /* MarvelCharacterColor.swift in Sources */,
+				7E539CC5281073EC006FC1D3 /* DIUserContainer.swift in Sources */,
+				7E539CC328105D55006FC1D3 /* DIHomeContainer.swift in Sources */,
 				7E44E7B02807192700545E7E /* Coordinator.swift in Sources */,
 				7E44E7C0280725BB00545E7E /* TabBarViewSettings.swift in Sources */,
 				65D70A312706085400936F9C /* HomeViewModel.swift in Sources */,
@@ -790,6 +814,14 @@
 				version = 6.3.0;
 			};
 		};
+		7E539CC8281077CA006FC1D3 /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject.git";
+			requirement = {
+				kind = exactVersion;
+				version = 2.8.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -802,6 +834,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 65D70A5F27063C0300936F9C /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		7E539CC9281077CA006FC1D3 /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7E539CC8281077CA006FC1D3 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
