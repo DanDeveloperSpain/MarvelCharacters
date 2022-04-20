@@ -7,32 +7,63 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
-
-    var didSendEventClosure: ((LoginViewController.Event) -> Void)?
-
-    override func viewDidLoad() {
-        view.backgroundColor = .white
+class LoginViewController: BaseViewController {
+    
+    //------------------------------------------------
+    // MARK: - Properties
+    //------------------------------------------------
+    
+    /// Set the model of the view.
+    private var viewModel: LoginViewModel? {
+        return self.baseViewModel as? LoginViewModel
     }
+    
+    //------------------------------------------------
+    // MARK: - Life Cycle
+    //------------------------------------------------
+    
+    /// IMPORTANT: setup will always run first
+    /// viewDidLoad
+    /// viewWillAppear
+    /// viewDidAppear
+    /// viewDidDisappear
 
     deinit {
         print("LoginViewController deinit")
     }
 
-    @IBAction func loginButtonPressed(_ sender: UIButton) {
-        didSendEventClosure?(.login)
-        
+     override func viewDidLoad() {
+         super.viewDidLoad()
+         view.backgroundColor = .white
+         print("___ viewDidLoad LoginViewModel")
     }
 
-    @IBAction func createAccountButtonPressed(_ sender: UIButton) {
-        didSendEventClosure?(.createAccount)
+    // ---------------------------------
+    // MARK: - Setup View
+    // ---------------------------------
+
+    /// Setup the view.
+    override internal func setup() {
+        viewModel?.setView(self)
+        print("___ start LoginViewController")
+    }
+    
+    //------------------------------------------------
+    // MARK: - Buton Action's
+    //------------------------------------------------
+
+    @IBAction func loginButtonPressed(_ sender: UIButton) {
+        viewModel?.showApp()
+        
     }
 
 }
 
-extension LoginViewController {
-    enum Event {
-        case login, createAccount
+//--------------------------------------------------------------
+// MARK: - HomeViewModelViewDelegate
+//--------------------------------------------------------------
+extension LoginViewController: LoginViewModelViewDelegate {
+    func updateScreen() {
+        print("updateScreen")
     }
-
 }

@@ -44,8 +44,6 @@
 		7E44E7B328071B1A00545E7E /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E44E7B228071B1A00545E7E /* LoginCoordinator.swift */; };
 		7E44E7B728071B8B00545E7E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E44E7B528071B8B00545E7E /* LoginViewController.swift */; };
 		7E44E7B828071B8B00545E7E /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E44E7B628071B8B00545E7E /* LoginViewController.xib */; };
-		7E44E7BC2807210F00545E7E /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E44E7BA2807210F00545E7E /* CreateAccountViewController.swift */; };
-		7E44E7BD2807210F00545E7E /* CreateAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E44E7BB2807210F00545E7E /* CreateAccountViewController.xib */; };
 		7E44E7C0280725BB00545E7E /* TabBarViewSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E44E7BF280725BB00545E7E /* TabBarViewSettings.swift */; };
 		7E44E7C22807260700545E7E /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E44E7C12807260700545E7E /* TabCoordinator.swift */; };
 		7E44E7C52807274500545E7E /* UserCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E44E7C42807274500545E7E /* UserCoordinator.swift */; };
@@ -53,6 +51,7 @@
 		7E44E7CA2807278200545E7E /* UserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E44E7C82807278200545E7E /* UserViewController.xib */; };
 		7E44E7CC280727F300545E7E /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E44E7CB280727F300545E7E /* UserViewModel.swift */; };
 		7E44E7CE28072B3B00545E7E /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E44E7CD28072B3B00545E7E /* HomeCoordinator.swift */; };
+		7E709A26281002FB00763DC2 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E709A25281002FB00763DC2 /* LoginViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,8 +104,6 @@
 		7E44E7B228071B1A00545E7E /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		7E44E7B528071B8B00545E7E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7E44E7B628071B8B00545E7E /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
-		7E44E7BA2807210F00545E7E /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
-		7E44E7BB2807210F00545E7E /* CreateAccountViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateAccountViewController.xib; sourceTree = "<group>"; };
 		7E44E7BF280725BB00545E7E /* TabBarViewSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewSettings.swift; sourceTree = "<group>"; };
 		7E44E7C12807260700545E7E /* TabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
 		7E44E7C42807274500545E7E /* UserCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCoordinator.swift; sourceTree = "<group>"; };
@@ -114,6 +111,7 @@
 		7E44E7C82807278200545E7E /* UserViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserViewController.xib; sourceTree = "<group>"; };
 		7E44E7CB280727F300545E7E /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		7E44E7CD28072B3B00545E7E /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		7E709A25281002FB00763DC2 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -321,7 +319,6 @@
 			children = (
 				7E44E7B228071B1A00545E7E /* LoginCoordinator.swift */,
 				7E44E7B428071B5E00545E7E /* Login */,
-				7E44E7B9280720F400545E7E /* CreateAccount */,
 			);
 			path = LoginScene;
 			sourceTree = "<group>";
@@ -331,17 +328,9 @@
 			children = (
 				7E44E7B628071B8B00545E7E /* LoginViewController.xib */,
 				7E44E7B528071B8B00545E7E /* LoginViewController.swift */,
+				7E709A25281002FB00763DC2 /* LoginViewModel.swift */,
 			);
 			path = Login;
-			sourceTree = "<group>";
-		};
-		7E44E7B9280720F400545E7E /* CreateAccount */ = {
-			isa = PBXGroup;
-			children = (
-				7E44E7BB2807210F00545E7E /* CreateAccountViewController.xib */,
-				7E44E7BA2807210F00545E7E /* CreateAccountViewController.swift */,
-			);
-			path = CreateAccount;
 			sourceTree = "<group>";
 		};
 		7E44E7BE2807257F00545E7E /* TabBarScene */ = {
@@ -471,7 +460,6 @@
 				65516C7B2707B18900F6D3D4 /* CharacterDetailViewController.xib in Resources */,
 				65516C892707C82900F6D3D4 /* HeaderSupplementaryView.xib in Resources */,
 				65D70A552706213700936F9C /* CharacterCell.xib in Resources */,
-				7E44E7BD2807210F00545E7E /* CreateAccountViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,7 +477,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E44E7BC2807210F00545E7E /* CreateAccountViewController.swift in Sources */,
 				7E44E7B728071B8B00545E7E /* LoginViewController.swift in Sources */,
 				65804D3F2704C35E001C42B3 /* AppDelegate.swift in Sources */,
 				7E44E7CE28072B3B00545E7E /* HomeCoordinator.swift in Sources */,
@@ -509,6 +496,7 @@
 				65516C6F2707AAB500F6D3D4 /* ExceptionHandler.swift in Sources */,
 				65516C882707C82900F6D3D4 /* HeaderSupplementaryView.swift in Sources */,
 				65516C7A2707B18900F6D3D4 /* CharacterDetailViewController.swift in Sources */,
+				7E709A26281002FB00763DC2 /* LoginViewModel.swift in Sources */,
 				7E44E7CC280727F300545E7E /* UserViewModel.swift in Sources */,
 				65804D7C2704CB76001C42B3 /* HomeViewController.swift in Sources */,
 				7E44E7C52807274500545E7E /* UserCoordinator.swift in Sources */,

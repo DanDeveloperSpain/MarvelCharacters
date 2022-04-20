@@ -12,6 +12,11 @@ protocol LoginCoordinatorProtocol: Coordinator {
 }
 
 class LoginCoordinator: LoginCoordinatorProtocol {
+    
+    // ---------------------------------
+    // MARK: - Properties
+    // ---------------------------------
+    
     weak var finishDelegate: CoordinatorFinishDelegate? /// Last coordinator, no need to implement
 
     var navigationController: UINavigationController
@@ -19,6 +24,10 @@ class LoginCoordinator: LoginCoordinatorProtocol {
     var childCoordinators: [Coordinator] = [] /// Last coordinator, no need to implement
 
     var type: CoordinatorType { .login }
+    
+    // ---------------------------------
+    // MARK: - Coordinator
+    // ---------------------------------
 
     required init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -34,37 +43,19 @@ class LoginCoordinator: LoginCoordinatorProtocol {
     }
 
     func showLoginViewController() {
-        let loginVC: LoginViewController = .init()
-        loginVC.didSendEventClosure = { [weak self] event in
-            switch event {
-            case .login:
-                self?.finish()
-            case .createAccount:
-                self?.goToCreateAccount()
-            }
-        }
-
+        let LoginViewModel = LoginViewModel(coordinatorDelegate: self)
+        let loginVC = LoginViewController(viewModel: LoginViewModel)
         navigationController.pushViewController(loginVC, animated: true)
     }
 }
 
-extension LoginCoordinator {
-    
+// ---------------------------------
+// MARK: - ViewModel Callback's
+// ---------------------------------
 
-    func goToCreateAccount() {
-        let createAccountVC = CreateAccountViewController()
-        createAccountVC.didSendEventClosure = { event in
-            switch event {
-            case .closeButton:
-                createAccountVC.dismiss(animated: true)
-            }
-
-        }
-
-        /// Modal
-        createAccountVC.modalPresentationStyle = .overCurrentContext
-        createAccountVC.modalTransitionStyle = .crossDissolve
-        self.navigationController.present(createAccountVC, animated: true, completion: nil)
+extension LoginCoordinator: LoginViewModelCoordinatorDelegate {
+    func goToApp() {
+        self.finish()
     }
-
+    
 }
