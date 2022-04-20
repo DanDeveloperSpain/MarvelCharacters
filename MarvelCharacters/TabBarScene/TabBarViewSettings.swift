@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum TabBarPage {
     case home
@@ -40,9 +41,13 @@ enum TabBarPage {
         }
     }
 
-    // Add tab icon value
-
-    // Add tab icon selected / deselected color
-
-    // etc
+    func pageImage() -> UIImage {
+        switch self {
+        case .home:
+            return UIImage(systemName: "house.fill") ?? UIImage()
+        case .user:
+            return UIImage(systemName: "person.fill") ?? UIImage()
+        }
+        
+    }
 }
