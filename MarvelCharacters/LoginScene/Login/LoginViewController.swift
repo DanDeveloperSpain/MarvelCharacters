@@ -10,6 +10,11 @@ import UIKit
 class LoginViewController: BaseViewController {
     
     //------------------------------------------------
+    // MARK: - Outlets
+    //------------------------------------------------
+    @IBOutlet weak var loginButton: UIButton!
+    
+    //------------------------------------------------
     // MARK: - Properties
     //------------------------------------------------
     
@@ -34,7 +39,6 @@ class LoginViewController: BaseViewController {
 
      override func viewDidLoad() {
          super.viewDidLoad()
-         view.backgroundColor = .white
          print("___ viewDidLoad LoginViewModel")
     }
 
@@ -46,6 +50,8 @@ class LoginViewController: BaseViewController {
     override internal func setup() {
         viewModel?.setView(self)
         print("___ start LoginViewController")
+        view.addGradient(colors: [.blueColor, .purpleColor])
+        loginButton.configure(text: NSLocalizedString("Login", comment: ""), font: .boldSmall)
     }
     
     //------------------------------------------------

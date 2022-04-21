@@ -55,6 +55,8 @@
 		7E539CC5281073EC006FC1D3 /* DIUserContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E539CC4281073EC006FC1D3 /* DIUserContainer.swift */; };
 		7E539CC728107429006FC1D3 /* DILoginContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E539CC628107429006FC1D3 /* DILoginContainer.swift */; };
 		7E539CCA281077CA006FC1D3 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 7E539CC9281077CA006FC1D3 /* Swinject */; };
+		7E539CCD28114F9A006FC1D3 /* MarvelCharacterGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E539CCC28114F9A006FC1D3 /* MarvelCharacterGradient.swift */; };
+		7E539CCF281153DF006FC1D3 /* MarvelCharacterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E539CCE281153DF006FC1D3 /* MarvelCharacterButton.swift */; };
 		7E709A26281002FB00763DC2 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E709A25281002FB00763DC2 /* LoginViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -118,6 +120,8 @@
 		7E539CC228105D55006FC1D3 /* DIHomeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIHomeContainer.swift; sourceTree = "<group>"; };
 		7E539CC4281073EC006FC1D3 /* DIUserContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIUserContainer.swift; sourceTree = "<group>"; };
 		7E539CC628107429006FC1D3 /* DILoginContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DILoginContainer.swift; sourceTree = "<group>"; };
+		7E539CCC28114F9A006FC1D3 /* MarvelCharacterGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelCharacterGradient.swift; sourceTree = "<group>"; };
+		7E539CCE281153DF006FC1D3 /* MarvelCharacterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelCharacterButton.swift; sourceTree = "<group>"; };
 		7E709A25281002FB00763DC2 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -155,6 +159,8 @@
 			children = (
 				65516C712707AB8500F6D3D4 /* MarvelCharacterColor.swift */,
 				65F2ACB4270B3CD300D299D4 /* MarvelCharacterFontLabel.swift */,
+				7E539CCC28114F9A006FC1D3 /* MarvelCharacterGradient.swift */,
+				7E539CCE281153DF006FC1D3 /* MarvelCharacterButton.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -521,8 +527,10 @@
 				7E539CC728107429006FC1D3 /* DILoginContainer.swift in Sources */,
 				7E44E7CC280727F300545E7E /* UserViewModel.swift in Sources */,
 				65804D7C2704CB76001C42B3 /* HomeViewController.swift in Sources */,
+				7E539CCD28114F9A006FC1D3 /* MarvelCharacterGradient.swift in Sources */,
 				7E44E7C52807274500545E7E /* UserCoordinator.swift in Sources */,
 				65F2ACB5270B3CD300D299D4 /* MarvelCharacterFontLabel.swift in Sources */,
+				7E539CCF281153DF006FC1D3 /* MarvelCharacterButton.swift in Sources */,
 				65516C842707BD0800F6D3D4 /* SerieData.swift in Sources */,
 				65D70A472706094D00936F9C /* MarvelApiService.swift in Sources */,
 				65F2ACAE270A274000D299D4 /* BaseViewModel.swift in Sources */,

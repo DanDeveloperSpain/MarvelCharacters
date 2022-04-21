@@ -12,7 +12,8 @@ final class UserViewController: BaseViewController {
     // ---------------------------------
     // MARK: - Outlets
     // ---------------------------------
-
+    @IBOutlet weak var closeSessionButton: UIButton!
+    
     // ---------------------------------
     // MARK: - Properties
     // ---------------------------------
@@ -42,6 +43,8 @@ final class UserViewController: BaseViewController {
     override internal func setup() {
         viewModel?.setView(self)
         print("___ setup UserViewController")
+        view.addGradient(colors: [.principalColor, .secondaryColor])
+        closeSessionButton.configure(text: NSLocalizedString("Close session", comment: ""), font: .boldSmall, width: 150)
     }
 
     // ---------------------------------
