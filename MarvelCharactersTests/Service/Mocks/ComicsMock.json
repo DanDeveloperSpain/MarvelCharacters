@@ -1,0 +1,132 @@
+{
+  "code": 200,
+  "status": "Ok",
+  "copyright": "© 2022 MARVEL",
+  "attributionText": "Data provided by Marvel. © 2022 MARVEL",
+  "attributionHTML": "<a href=\"http://marvel.com\">Data provided by Marvel. © 2022 MARVEL</a>",
+  "etag": "3ef68827900d5bfd2904ab4ba6db42a312cdb646",
+  "data": {
+    "offset": 0,
+    "limit": 20,
+    "total": 3,
+    "count": 3,
+    "results": [
+      {
+        "id": 22506,
+        "digitalId": 10949,
+        "title": "Avengers: The Initiative (2007) #19",
+        "issueNumber": 19,
+        "variantDescription": "",
+        "description": "Join 3-D MAN, CLOUD 9, KOMODO, HARDBALL, and heroes around America in the battle that will decide the fate of the planet and the future of the Initiative program. Will the Kill Krew Army win the day?",
+        "modified": "2015-10-27T16:38:23-0400",
+        "isbn": "",
+        "upc": "5960606084-01911",
+        "diamondCode": "SEP082362",
+        "ean": "",
+        "issn": "",
+        "format": "Comic",
+        "pageCount": 32,
+        "resourceURI": "http://gateway.marvel.com/v1/public/comics/22506",
+        "variants": [],
+        "collections": [],
+        "collectedIssues": [],
+        "dates": [
+          {
+            "type": "onsaleDate",
+            "date": "2008-12-17T00:00:00-0500"
+          },
+          {
+            "type": "focDate",
+            "date": "2008-11-27T00:00:00-0500"
+          },
+          {
+            "type": "unlimitedDate",
+            "date": "2010-02-23T00:00:00-0500"
+          },
+          {
+            "type": "digitalPurchaseDate",
+            "date": "2011-08-09T00:00:00-0400"
+          }
+        ],
+        "thumbnail": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/d/03/58dd080719806",
+          "extension": "jpg"
+        }
+      },
+      {
+        "id": 22299,
+        "digitalId": 10948,
+        "title": "Avengers: The Initiative (2007) #18",
+        "issueNumber": 18,
+        "variantDescription": "",
+        "description": "Now that the Kill Krew knows Skrullowjacket's master plan, can they stop the true mission of the Fifty State Initiative? Plus, Thor Girl vs. Ultra Girl! One is more than she appears to be and the other's a Skrull!",
+        "modified": "2014-08-05T14:09:33-0400",
+        "isbn": "",
+        "upc": "5960606084-01811",
+        "diamondCode": "AUG082377",
+        "ean": "",
+        "issn": "",
+        "format": "Comic",
+        "pageCount": 32,
+        "resourceURI": "http://gateway.marvel.com/v1/public/comics/22299",
+        "collections": [],
+        "collectedIssues": [],
+        "dates": [
+          {
+            "type": "onsaleDate",
+            "date": "2008-10-29T00:00:00-0400"
+          },
+          {
+            "type": "focDate",
+            "date": "2008-10-09T00:00:00-0400"
+          },
+          {
+            "type": "unlimitedDate",
+            "date": "2010-02-09T00:00:00-0500"
+          },
+          {
+            "type": "digitalPurchaseDate",
+            "date": "2011-08-09T00:00:00-0400"
+          }
+        ],
+        "thumbnail": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/20/58dd057d304d1",
+          "extension": "jpg"
+        }
+      },
+      {
+        "id": 22300,
+        "digitalId": 0,
+        "title": "Avengers: The Initiative (2007) #18 (ZOMBIE VARIANT)",
+        "issueNumber": 18,
+        "variantDescription": "ZOMBIE VARIANT",
+        "description": "",
+        "modified": "-0001-11-30T00:00:00-0500",
+        "isbn": "",
+        "upc": "5960606084-01821",
+        "diamondCode": "AUG082378",
+        "ean": "",
+        "issn": "",
+        "format": "Comic",
+        "pageCount": 32,
+        "resourceURI": "http://gateway.marvel.com/v1/public/comics/22300",
+        "collections": [],
+        "collectedIssues": [],
+        "dates": [
+          {
+            "type": "onsaleDate",
+            "date": "2008-10-29T00:00:00-0400"
+          },
+          {
+            "type": "focDate",
+            "date": "2008-10-09T00:00:00-0400"
+          }
+        ],
+        "thumbnail": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/1/10/4e94a23255996",
+          "extension": "jpg"
+        }
+      }
+    ]
+  }
+}

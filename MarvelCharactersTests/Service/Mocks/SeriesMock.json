@@ -1,0 +1,46 @@
+{
+  "code": 200,
+  "status": "Ok",
+  "copyright": "© 2022 MARVEL",
+  "attributionText": "Data provided by Marvel. © 2022 MARVEL",
+  "attributionHTML": "<a href=\"http://marvel.com\">Data provided by Marvel. © 2022 MARVEL</a>",
+  "etag": "98b630bd688c6834117f509fec7dcd8924949d9d",
+  "data": {
+    "offset": 0,
+    "limit": 20,
+    "total": 2,
+    "count": 2,
+    "results": [
+      {
+        "id": 1945,
+        "title": "Avengers: The Initiative (2007 - 2010)",
+        "description": null,
+        "resourceURI": "http://gateway.marvel.com/v1/public/series/1945",
+        "startYear": 2007,
+        "endYear": 2010,
+        "rating": "T",
+        "type": "",
+        "modified": "2013-03-20T17:51:27-0400",
+        "thumbnail": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/5/a0/514a2ed3302f5",
+          "extension": "jpg"
+        }
+      },
+      {
+        "id": 2005,
+        "title": "Deadpool (1997 - 2002)",
+        "description": "Wade Wilson: Heartless Merc With a Mouth or...hero? Laugh, cry and applaud at full volume for the mind-bending adventures of Deadpool, exploring the psyche and crazed adventures of Marvel's most unstable personality!",
+        "resourceURI": "http://gateway.marvel.com/v1/public/series/2005",
+        "startYear": 1997,
+        "endYear": 2002,
+        "rating": "",
+        "type": "",
+        "modified": "2017-05-30T17:08:43-0400",
+        "thumbnail": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/7/03/5130f646465e3",
+          "extension": "jpg"
+        }
+      }
+    ]
+  }
+}

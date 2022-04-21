@@ -17,8 +17,9 @@ extension Container {
         let homeCoordinator = HomeCoordinator(UINavigationController())
         let character = Character(id: 0, name: "", description: "", thumbnail: Thumbnail(path: "", typeExtension: ""))
         
+        /// CharacterService
         container.register(CharacterServiceProtocol.self) { _ in
-            CharacterService()
+            characterService
         }
         
         /// HomeViewModel

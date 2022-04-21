@@ -63,7 +63,7 @@ final class CharacterDetailViewModel: BaseViewModel {
     /// Series datasource.
     private(set) var series : [Serie] = []
     
-    private let numberOfSections = 2
+    let numberOfSections = 2
     
     /// Indicate the last comic that will be shown in the list, to know when to make the next request to obtain more characters.
     var numLastComicToShow : Int {

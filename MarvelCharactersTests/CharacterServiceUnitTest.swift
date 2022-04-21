@@ -44,5 +44,25 @@ class CharacterServiceUnitTest: XCTestCase {
         let numLastItem = characterService.numLastItemToShow(offset: responseCharactersData?.offset ?? 0, all: responseCharactersData?.all?.count ?? 0)
         XCTAssertEqual(numLastItem, 1)
     }
+    
+    func testRequestComic() async throws {
+        var comics : [Comic] = []
+        do {
+            let ressultComics = try await characterDummyService.requestGetComicsByCharacter(characterId: 0, limit: limit, offset: 0)
+            comics = ressultComics.all ?? []
+        } catch {}
+        
+        XCTAssertEqual(comics.count, 3)
+    }
+    
+    func testRequestSeries() async throws {
+        var series : [Serie] = []
+        do {
+            let ressultSeries = try await characterDummyService.requestGetSeriesByCharacter(characterId: 0, limit: limit, offset: 0)
+            series = ressultSeries.all ?? []
+        } catch {}
+        
+        XCTAssertEqual(series.count, 2)
+    }
 
 }
