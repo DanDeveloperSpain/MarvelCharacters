@@ -9,6 +9,12 @@ import UIKit
 
 public extension UIButton {
 
+    /// Configure styles buttons
+    /// - Parameters:
+    ///   - text: text of the button.
+    ///   - font: font to text.
+    ///   - width: width button constraint.
+    ///   - height: height button constraint.
     func configure(text: String, font: MarvelCharacterFontStyle.FontsWithSize = .boldMedium, width: CGFloat = 100, height: CGFloat = 40) {
 
         self.backgroundColor = .whiteColor

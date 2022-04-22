@@ -35,29 +35,26 @@ class TabCoordinator: NSObject, Coordinator {
         self.tabBarController = .init()
     }
 
+    /// Let's define which pages do we want to add into tab bar, Initialization of ViewControllers or these pages.
     func start() {
-        // Let's define which pages do we want to add into tab bar
         let pages: [TabBarPage] = [.user, .home]
             .sorted(by: { $0.pageOrderNumber() < $1.pageOrderNumber() })
 
-        // Initialization of ViewControllers or these pages
         let controllers: [UINavigationController] = pages.map({ getTabController($0) })
 
         prepareTabBarController(withTabControllers: controllers)
     }
 
-    deinit {
-        print("TabCoordinator deinit")
-    }
-
+    /// Set delegate for UITabBarController, assign page's controllers, let set index and add Styling.
+    /// - Parameter tabControllers: Controllers for asign to tabBarControllers.
     private func prepareTabBarController(withTabControllers tabControllers: [UIViewController]) {
-        // Set delegate for UITabBarController
+
         tabBarController.delegate = self
-        // Assign page's controllers
+
         tabBarController.setViewControllers(tabControllers, animated: true)
-        // Let set index
+
         tabBarController.selectedIndex = TabBarPage.home.pageOrderNumber()
-        // Styling
+
         tabBarController.tabBar.backgroundColor = .systemGray6
         tabBarController.tabBar.isTranslucent = false
 
@@ -65,6 +62,9 @@ class TabCoordinator: NSObject, Coordinator {
         navigationController.viewControllers = [tabBarController]
     }
 
+    /// Set the NavigationController for each tab.
+    /// - Parameter page: page for tab.
+    /// - Returns: NavigationController for tab.
     private func getTabController(_ page: TabBarPage) -> UINavigationController {
         let navController = UINavigationController()
         navController.setNavigationBarHidden(false, animated: false)
@@ -88,7 +88,9 @@ class TabCoordinator: NSObject, Coordinator {
         return navController
     }
 
-    func currentPage() -> TabBarPage? { TabBarPage.init(index: tabBarController.selectedIndex) }
+    func currentPage() -> TabBarPage? {
+        TabBarPage.init(index: tabBarController.selectedIndex)
+    }
 
     func selectPage(_ page: TabBarPage) {
         tabBarController.selectedIndex = page.pageOrderNumber()
@@ -96,7 +98,6 @@ class TabCoordinator: NSObject, Coordinator {
 
     func setSelectedIndex(_ index: Int) {
         guard let page = TabBarPage.init(index: index) else { return }
-
         tabBarController.selectedIndex = page.pageOrderNumber()
     }
 

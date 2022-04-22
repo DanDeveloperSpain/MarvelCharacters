@@ -27,20 +27,22 @@ class AppCoordinator: AppCoordinatorProtocol {
         navigationController.setNavigationBarHidden(false, animated: true)
     }
 
+    /// Start Principal App Flow
     func start() {
         showLoginFlow()
     }
 
+    /// Implement Login Flow
     func showLoginFlow() {
-        // Implement Login FLow
+
         let loginCoordinator = LoginCoordinator.init(navigationController)
         loginCoordinator.finishDelegate = self
         loginCoordinator.start()
         childCoordinators.append(loginCoordinator)
     }
 
+    /// Implement Main (Tab bar) Flow
     func showMainFlow() {
-        // Implement Main (Tab bar) FLow
         let tabCoordinator = TabCoordinator.init(navigationController)
         tabCoordinator.finishDelegate = self
         tabCoordinator.start()
@@ -49,9 +51,10 @@ class AppCoordinator: AppCoordinatorProtocol {
 }
 
 extension AppCoordinator: CoordinatorFinishDelegate {
-    func coordinatorDidFinish(childCoordinator: Coordinator) {
-        print("AppCoordinator finish ", childCoordinator.type)
 
+    /// Logic when a Coordinator ends
+    /// - Parameter childCoordinator: Coordinator who ends
+    func coordinatorDidFinish(childCoordinator: Coordinator) {
         childCoordinators = childCoordinators.filter({ $0.type != childCoordinator.type })
         navigationController.viewControllers.removeAll()
 

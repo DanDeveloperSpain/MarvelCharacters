@@ -79,15 +79,11 @@ final class HomeViewModel: BaseViewModel {
 
     /// Create a new HomeviewModel.
     /// - Parameters:
-    ///   - coordinatorDelegate: The coordinator delegate
+    ///   - coordinatorDelegate: The coordinator delegate.
     ///   - characterService: Api call service.
     init(coordinatorDelegate: HomeViewModelCoordinatorDelegate, characterService: CharacterServiceProtocol) {
         self.coordinatorDelegate = coordinatorDelegate
         self.characterService = characterService
-    }
-
-    deinit {
-        print("HomeViewModel deinit")
     }
 
     /// First call of viewmodel lifecycle.
@@ -95,7 +91,6 @@ final class HomeViewModel: BaseViewModel {
         Task {
             checkApiKeys() ? try await getCharacters() : setErrorApiKey()
         }
-        print("___ start HomeViewModel")
     }
 
     // ---------------------------------

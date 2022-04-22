@@ -48,10 +48,6 @@ class HomeCoordinator: HomeCoordinatorProtocol {
         showHomeViewController()
     }
 
-    deinit {
-        print("HomeCoordinator deinit")
-    }
-
     func showHomeViewController() {
         let homeVC = Container.sharedHomeContainer.resolve(HomeViewController.self, argument: self) ?? HomeViewController(viewModel: HomeViewModel(coordinatorDelegate: self, characterService: CharacterService()))
         navigationController.pushViewController(homeVC, animated: true)

@@ -99,19 +99,15 @@ final class CharacterDetailViewModel: BaseViewModel {
     // MARK: - ViewModel
     // ------------------------------------------------
 
-    /// Create a new CharacterDetailViewModel
+    /// Create a new CharacterDetailViewModel.
     /// - Parameters:
-    ///   - coordinatorDelegate: The coordinator delegate
-    ///   - character: Character to show
+    ///   - coordinatorDelegate: The coordinator delegate.
+    ///   - character: Character to show.
     ///   - characterService: Api call service.
     init(coordinatorDelegate: CharacterDetailViewModelCoordinatorDelegate, character: Character, characterService: CharacterServiceProtocol) {
         self.coordinatorDelegate = coordinatorDelegate
         self.character = character
         self.characterService = characterService
-    }
-
-    deinit {
-        print("CharacterDetailViewModel deinit")
     }
 
     /// First call of viewmodel lifecycle.
@@ -120,7 +116,6 @@ final class CharacterDetailViewModel: BaseViewModel {
             try await getComics()
             try await getSeries()
         }
-        print("___ start CharacterDetailViewModel")
     }
 
     // ---------------------------------

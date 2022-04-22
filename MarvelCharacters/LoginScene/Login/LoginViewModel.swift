@@ -20,7 +20,7 @@ protocol LoginViewModelCoordinatorDelegate: AnyObject {
 // ---------------------------------
 
 protocol LoginViewModelViewDelegate: BaseControllerViewModelProtocol {
-
+    // update specific item on screen
 }
 
 final class LoginViewModel: BaseViewModel {
@@ -47,13 +47,8 @@ final class LoginViewModel: BaseViewModel {
         self.coordinatorDelegate = coordinatorDelegate
     }
 
-    deinit {
-        print("LoginViewModel deinit")
-    }
-
     /// First call of viewmodel lifecycle.
     override func start() {
-        print("___ start LoginViewModel")
     }
 
     // ---------------------------------

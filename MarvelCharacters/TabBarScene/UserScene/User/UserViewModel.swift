@@ -36,10 +36,6 @@ final class UserViewModel: BaseViewModel {
     }
 
     // ---------------------------------
-    // MARK: - Properties
-    // ---------------------------------
-
-    // ---------------------------------
     // MARK: - Init
     // ---------------------------------
 
@@ -47,16 +43,11 @@ final class UserViewModel: BaseViewModel {
         self.coordinatorDelegate = coordinatorDelegate
     }
 
-    deinit {
-        print("UserViewModel deinit")
-    }
-
     // ---------------------------------
     // MARK: - Life Cycle
     // ---------------------------------
 
     override func start() {
-        print("___ start UserViewModel")
         getDataUser()
     }
 
@@ -75,9 +66,5 @@ final class UserViewModel: BaseViewModel {
     func didSelectCloseSesion() {
         coordinatorDelegate?.goToLogin()
     }
-
-    // ---------------------------------
-    // MARK: - Private methods
-    // ---------------------------------
 
 }

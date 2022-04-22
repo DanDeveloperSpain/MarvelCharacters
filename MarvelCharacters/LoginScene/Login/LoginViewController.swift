@@ -12,6 +12,7 @@ class LoginViewController: BaseViewController {
     // ------------------------------------------------
     // MARK: - Outlets
     // ------------------------------------------------
+
     @IBOutlet weak var loginButton: UIButton!
 
     // ------------------------------------------------
@@ -23,25 +24,6 @@ class LoginViewController: BaseViewController {
         return self.baseViewModel as? LoginViewModel
     }
 
-    // ------------------------------------------------
-    // MARK: - Life Cycle
-    // ------------------------------------------------
-
-    /// IMPORTANT: setup will always run first
-    /// viewDidLoad
-    /// viewWillAppear
-    /// viewDidAppear
-    /// viewDidDisappear
-
-    deinit {
-        print("LoginViewController deinit")
-    }
-
-     override func viewDidLoad() {
-         super.viewDidLoad()
-         print("___ viewDidLoad LoginViewModel")
-    }
-
     // ---------------------------------
     // MARK: - Setup View
     // ---------------------------------
@@ -49,7 +31,6 @@ class LoginViewController: BaseViewController {
     /// Setup the view.
     override internal func setup() {
         viewModel?.setView(self)
-        print("___ start LoginViewController")
         view.addGradient(colors: [.blueColor, .purpleColor])
         loginButton.configure(text: NSLocalizedString("Login", comment: ""), font: .boldSmall)
     }
@@ -60,7 +41,6 @@ class LoginViewController: BaseViewController {
 
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         viewModel?.showApp()
-
     }
 
 }
@@ -69,7 +49,8 @@ class LoginViewController: BaseViewController {
 // MARK: - HomeViewModelViewDelegate
 // --------------------------------------------------------------
 extension LoginViewController: LoginViewModelViewDelegate {
+
+    /// General notification when the view should be update.
     func updateScreen() {
-        print("updateScreen")
     }
 }

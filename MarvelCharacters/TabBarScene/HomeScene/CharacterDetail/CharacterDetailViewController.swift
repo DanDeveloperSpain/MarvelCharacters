@@ -28,23 +28,9 @@ final class CharacterDetailViewController: BaseViewController {
         return self.baseViewModel as? CharacterDetailViewModel
     }
 
-    // ------------------------------------------------
-    // MARK: - LifeCycle
-    // ------------------------------------------------
-
-    /// IMPORTANT: setup will always run first
-    /// viewDidLoad
-    /// viewWillAppear
-    /// viewDidAppear
-    /// viewDidDisappear
-
-    deinit {
-        print("CharacterDetailViewController deinit")
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+    // ---------------------------------
+    // MARK: - Setup View
+    // ---------------------------------
 
     /// Setup the view.
     override internal func setup() {
@@ -54,7 +40,6 @@ final class CharacterDetailViewController: BaseViewController {
 
         comicActivityIndicator.startAnimating()
         serieActivityIndicator.startAnimating()
-        print("___ setup CharacterDetailViewController")
     }
 
     /// Actions to take when the back button is pressed and the screen is going to be deleted.
@@ -203,11 +188,10 @@ extension CharacterDetailViewController: UICollectionViewDelegate, UICollectionV
 
 extension CharacterDetailViewController: CharacterDetailViewModelViewDelegate {
 
-    /// General notification when the view should be load.
+    /// General notification when the view should be update.
     ///
     /// in this case we do not use it, we use loadComics and loadSeries since they are the only element in the whole view is the list of characters.
     func updateScreen() {
-        print("updateScreen CharacterDetail!!!")
     }
 
     /// Notifies that the comisDataSource has changed and the view needs to be updated.

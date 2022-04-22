@@ -65,12 +65,9 @@ class CharacterService: CharacterServiceProtocol {
     /// - Parameters:
     ///   - limit: limit of the results.
     ///   - offset: exclude results.
-    ///   - withSuccess: result of data back
-    ///   - withFailure: error of request
+    /// - Returns: Characters or error
     func requestGetCharacter(limit: Int, offset: Int) async throws -> ResponseCharactersData {
-
         var parameters = marvelApiService.getParameters()
-
         parameters["limit"] = limit as Any
         parameters["offset"] = offset as Any
 
@@ -95,10 +92,14 @@ class CharacterService: CharacterServiceProtocol {
 
     }
 
+    /// Request comics by character data to Api.
+    /// - Parameters:
+    ///   - characterId: Id of the character to search for their comics.
+    ///   - limit: limit of the results.
+    ///   - offset: exclude results.
+    /// - Returns: Comics of the character or error
     func requestGetComicsByCharacter(characterId: Int, limit: Int, offset: Int) async throws -> ResponseComicsData {
-
         var parameters = marvelApiService.getParameters()
-
         parameters["limit"] = limit as Any
         parameters["offset"] = offset as Any
 
@@ -114,7 +115,6 @@ class CharacterService: CharacterServiceProtocol {
                     continuation.resume(returning: responseComics.data)
 
                 case .failure(let error):
-
                     self.failureResponseLog(statusCode:  response.response?.statusCode ?? 0, errorDescription: "\(String(describing: response.error?.errorDescription))")
                     continuation.resume(throwing: error)
                 }
@@ -124,10 +124,14 @@ class CharacterService: CharacterServiceProtocol {
 
     }
 
+    /// Request series by character data to Api.
+    /// - Parameters:
+    ///   - characterId: Id of the character to search for their series.
+    ///   - limit: limit of the results.
+    ///   - offset: exclude results
+    /// - Returns: Series of the character or error
     func requestGetSeriesByCharacter(characterId: Int, limit: Int, offset: Int) async throws -> ResponseSeriesData {
-
         var parameters = marvelApiService.getParameters()
-
         parameters["limit"] = limit as Any
         parameters["offset"] = offset as Any
 
@@ -179,6 +183,9 @@ class CharacterService: CharacterServiceProtocol {
         return offset + all - 1
     }
 
+    /// Manage error to show at user.
+    /// - Parameter statusCode: error found
+    /// - Returns: message to show user
     func getErrorDescriptionToUser(statusCode: Int) -> String {
         return exceptionHandler.manageError(statusCode)
     }
@@ -191,7 +198,6 @@ class CharacterService: CharacterServiceProtocol {
     private func failureResponseLog(statusCode: Int, errorDescription: String) {
         os_log("statusCode = %@", log: self.marvelApiService.log, "\(String(describing: statusCode))")
         os_log("errorDescription = %@", log: self.marvelApiService.log, "\(String(describing: errorDescription))")
-
     }
 
 }

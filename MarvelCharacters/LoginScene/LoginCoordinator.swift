@@ -39,10 +39,6 @@ class LoginCoordinator: LoginCoordinatorProtocol {
         showLoginViewController()
     }
 
-    deinit {
-        print("LoginCoordinator deinit")
-    }
-
     func showLoginViewController() {
         let loginVC = Container.sharedLoginContainer.resolve(LoginViewController.self, argument: self) ?? LoginViewController(viewModel: LoginViewModel(coordinatorDelegate: self))
         navigationController.pushViewController(loginVC, animated: true)

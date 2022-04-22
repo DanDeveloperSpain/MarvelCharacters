@@ -17,10 +17,6 @@ protocol BaseViewControllerProtocol {
 
 class BaseViewController: UIViewController, BaseViewControllerProtocol {
 
-    // ---------------------------------
-    // MARK: - Variables
-    // ---------------------------------
-
     var baseViewModel: BaseViewModel?
 
     // ---------------------------------
@@ -55,14 +51,10 @@ class BaseViewController: UIViewController, BaseViewControllerProtocol {
         preconditionFailure("Implement it in ViewController")
     }
 
-    func showSimpleAlertAccept(alertTitle: String, alertMessage: String) {
-        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Accept", comment: ""), style: UIAlertAction.Style.cancel, handler: nil))
-        alert.view.tintColor = .principalColor
-        self.present(alert, animated: true, completion: nil)
-    }
+    // ---------------------------------
+    // MARK: - Setup NavigationBar
+    // ---------------------------------
 
-    /// Setup NavigationBar
     func setupNavigationBar(title: String?) {
         self.title = title
         self.customizeLeftNavBarButton()
@@ -94,6 +86,17 @@ class BaseViewController: UIViewController, BaseViewControllerProtocol {
 
     /// Actions before closing (overwritten in controller)
     @objc func backButtonPressed() {
+    }
+
+    // ---------------------------------
+    // MARK: - Public methods
+    // ---------------------------------
+
+    func showSimpleAlertAccept(alertTitle: String, alertMessage: String) {
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Accept", comment: ""), style: UIAlertAction.Style.cancel, handler: nil))
+        alert.view.tintColor = .principalColor
+        self.present(alert, animated: true, completion: nil)
     }
 
 }

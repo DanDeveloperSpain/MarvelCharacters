@@ -15,10 +15,6 @@ protocol BaseViewModelProtocol {
 /// Base for the ViewModels with the basic structure.
 class BaseViewModel: BaseViewModelProtocol {
 
-    // ---------------------------------
-    // MARK: - Variables
-    // ---------------------------------
-
     weak var baseView: BaseControllerViewModelProtocol?
 
     // ---------------------------------

@@ -46,10 +46,6 @@ class UserCoordinator: UserCoordinatorProtocol {
         showUserViewController()
     }
 
-    deinit {
-        print("UserCoordinator deinit")
-    }
-
     func showUserViewController() {
         let userVC = Container.sharedUserContainer.resolve(UserViewController.self, argument: self) ?? UserViewController(viewModel: UserViewModel(coordinatorDelegate: self))
         navigationController.pushViewController(userVC, animated: true)

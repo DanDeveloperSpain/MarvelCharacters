@@ -27,25 +27,6 @@ final class HomeViewController: BaseViewController {
         return self.baseViewModel as? HomeViewModel
     }
 
-    // ------------------------------------------------
-    // MARK: - Life Cycle
-    // ------------------------------------------------
-
-    /// IMPORTANT: setup will always run first
-    /// viewDidLoad
-    /// viewWillAppear
-    /// viewDidAppear
-    /// viewDidDisappear
-
-    deinit {
-        print("HomeViewController deinit")
-    }
-
-     override func viewDidLoad() {
-         super.viewDidLoad()
-         print("___ viewDidLoad HomeViewModel")
-    }
-
     // ---------------------------------
     // MARK: - Setup View
     // ---------------------------------
@@ -57,7 +38,6 @@ final class HomeViewController: BaseViewController {
         configureCollectionView()
 
         activityIndicator.startAnimating()
-        print("___ start HomeViewController")
     }
 
     // ------------------------------------------------
@@ -156,11 +136,10 @@ extension HomeViewController: HomeViewModelViewDelegate {
         }
     }
 
-    /// General notification when the view should be load.
+    /// General notification when the view should be update.
     ///
     /// In this case we do not use it, we use loadCharacters since it is the only element in the whole view is the list of characters.
     func updateScreen() {
-        print("updateScreen Home!!!")
     }
 
     /// Notifies that the characterDataSource has changed and the view needs to be updated.
