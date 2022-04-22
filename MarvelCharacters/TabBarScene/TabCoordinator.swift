@@ -108,4 +108,3 @@ extension TabCoordinator: UITabBarControllerDelegate {
         // Some implementation
     }
 }
-

@@ -20,47 +20,47 @@ protocol LoginViewModelCoordinatorDelegate: AnyObject {
 // ---------------------------------
 
 protocol LoginViewModelViewDelegate: BaseControllerViewModelProtocol {
-    
+
 }
 
 final class LoginViewModel: BaseViewModel {
-    
+
     // ---------------------------------
     // MARK: - Delegates
     // ---------------------------------
 
     private weak var coordinatorDelegate: LoginViewModelCoordinatorDelegate?
-    
+
     /// Set the view of the model.
     private weak var viewDelegate: LoginViewModelViewDelegate? {
         return self.baseView as? LoginViewModelViewDelegate
     }
-    
-    //------------------------------------------------
+
+    // ------------------------------------------------
     // MARK: - ViewModel
-    //------------------------------------------------
-    
+    // ------------------------------------------------
+
     /// Create a new LoginViewModel.
     /// - Parameters:
     ///   - coordinatorDelegate: The coordinator delegate
     init(coordinatorDelegate: LoginViewModelCoordinatorDelegate) {
         self.coordinatorDelegate = coordinatorDelegate
     }
-    
+
     deinit {
         print("LoginViewModel deinit")
     }
-    
+
     /// First call of viewmodel lifecycle.
     override func start() {
         print("___ start LoginViewModel")
     }
-    
+
     // ---------------------------------
     // MARK: - Events
     // ---------------------------------
     func showApp() {
         self.coordinatorDelegate?.goToApp()
     }
-    
+
 }

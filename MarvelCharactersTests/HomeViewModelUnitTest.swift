@@ -11,41 +11,41 @@ import XCTest
 class HomeViewModelUnitTest: XCTestCase {
 
     private(set) var homeViewModel: HomeViewModel?
-    
+
     override func setUp() {
         let characterDummyService = CharacterDummyService()
         let navigationController = UINavigationController()
         let homeCoordinator = HomeCoordinator(navigationController)
-        
+
         homeViewModel = HomeViewModel(coordinatorDelegate: homeCoordinator, characterService: characterDummyService)
-        
+
         homeViewModel?.start()
-        
+
         let expectation = XCTestExpectation(description: "test")
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 2.5)
-        
+
     }
 
     func testGetCharactersHomeViewModel() {
         let numCharacters = homeViewModel?.characters.count
         XCTAssertEqual(numCharacters, 2)
     }
-    
+
     func testNumberOfItemsInSection() {
         let numCharacters = homeViewModel?.characters.count
         let numberOfItemsInSection = homeViewModel?.numberOfItemsInSection(section: 0)
         XCTAssertEqual(numberOfItemsInSection, numCharacters)
     }
-    
-    func testCharacterNameAtIndex(){
+
+    func testCharacterNameAtIndex() {
         let characterNameAtIndex = homeViewModel?.characterNameAtIndex(index: 0)
         XCTAssertEqual(characterNameAtIndex, "3-D Man")
     }
-    
-    func testCharacterUrlImgeAtIndex(){
+
+    func testCharacterUrlImgeAtIndex() {
         let characterUrlImgeAtIndex = homeViewModel?.characterUrlImgeAtIndex(index: 0)
         XCTAssertEqual(characterUrlImgeAtIndex, "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg")
     }

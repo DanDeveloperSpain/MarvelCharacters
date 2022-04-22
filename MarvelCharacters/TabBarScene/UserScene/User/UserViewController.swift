@@ -13,7 +13,7 @@ final class UserViewController: BaseViewController {
     // MARK: - Outlets
     // ---------------------------------
     @IBOutlet weak var closeSessionButton: UIButton!
-    
+
     // ---------------------------------
     // MARK: - Properties
     // ---------------------------------
@@ -53,7 +53,7 @@ final class UserViewController: BaseViewController {
     @IBAction func showLogoutButtonPressed(_ sender: UIButton) {
         viewModel?.didSelectCloseSesion()
     }
-    
+
     // ---------------------------------
     // MARK: - Private methods
     // ---------------------------------

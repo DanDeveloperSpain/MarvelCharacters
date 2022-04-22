@@ -8,13 +8,13 @@
 import UIKit
 
 public extension UILabel {
-    
+
     /// Set a label and add the style to it.
     /// - Parameters:
     ///   - text: text to show
     ///   - font: type font (font and size)
     ///   - color: color of the text
-    func configure(with text: String? = nil, font: MarvelCharacterFontStyle.fontsWithSize, color: UIColor = UIColor.blackColor) {
+    func configure(with text: String? = nil, font: MarvelCharacterFontStyle.FontsWithSize, color: UIColor = UIColor.blackColor) {
         self.text = text ?? ""
         self.font = font.get()
         self.textColor = color
@@ -22,15 +22,15 @@ public extension UILabel {
 }
 
 public final class MarvelCharacterFontStyle {
-    
-    public enum fontsWithSize {
+
+    public enum FontsWithSize {
         case boldSmall
         case boldMedium
         case boldLarge
         case semiboldSmall
         case semiboldMedium
         case semiboldLarge
-        
+
         public func get() -> UIFont? {
             switch self {
             case .boldSmall:
@@ -48,6 +48,5 @@ public final class MarvelCharacterFontStyle {
             }
         }
     }
-    
-}
 
+}

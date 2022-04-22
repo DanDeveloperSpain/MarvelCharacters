@@ -21,7 +21,7 @@ protocol HomeCoordinatorProtocol: Coordinator {
 // ---------------------------------
 
 class HomeCoordinator: HomeCoordinatorProtocol {
-    
+
     // ---------------------------------
     // MARK: - Properties
     // ---------------------------------
@@ -35,7 +35,7 @@ class HomeCoordinator: HomeCoordinatorProtocol {
     var type: CoordinatorType { .tab }
 
     weak var parentCoordinator: TabCoordinator?
-    
+
     // ---------------------------------
     // MARK: - Coordinator
     // ---------------------------------
@@ -56,7 +56,7 @@ class HomeCoordinator: HomeCoordinatorProtocol {
         let homeVC = Container.sharedHomeContainer.resolve(HomeViewController.self, argument: self) ?? HomeViewController(viewModel: HomeViewModel(coordinatorDelegate: self, characterService: CharacterService()))
         navigationController.pushViewController(homeVC, animated: true)
     }
-    
+
 }
 
 // ---------------------------------
@@ -64,8 +64,8 @@ class HomeCoordinator: HomeCoordinatorProtocol {
 // ---------------------------------
 
 extension HomeCoordinator {
-    
-    func openCharacterDetail(character: Character){
+
+    func openCharacterDetail(character: Character) {
         let characterDetailVC = Container.sharedHomeContainer.resolve(CharacterDetailViewController.self, arguments: character, self) ?? CharacterDetailViewController(viewModel: CharacterDetailViewModel(coordinatorDelegate: self, character: character, characterService: CharacterService()))
         navigationController.pushViewController(characterDetailVC, animated: true)
     }
@@ -76,13 +76,12 @@ extension HomeCoordinator {
 // ---------------------------------
 
 extension HomeCoordinator: HomeViewModelCoordinatorDelegate {
-    
+
     func goToCharacterDetail(character: Character) {
         openCharacterDetail(character: character)
     }
 }
 
 extension HomeCoordinator: CharacterDetailViewModelCoordinatorDelegate {
-    
-    
+
 }

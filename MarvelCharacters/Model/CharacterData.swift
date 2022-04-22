@@ -15,7 +15,7 @@ struct ResponseCharacters: Decodable {
 struct ResponseCharactersData: Decodable {
     let offset, limit, total, count: Int?
     let all: [Character]?
-  
+
     enum CodingKeys: String, CodingKey {
         case offset, limit, total, count
         case all = "results"
@@ -31,7 +31,7 @@ struct Character: Decodable {
 
 struct Thumbnail: Decodable {
     let path, typeExtension: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case path
         case typeExtension = "extension"
@@ -40,7 +40,7 @@ struct Thumbnail: Decodable {
 }
 
 struct DateMarvel: Decodable {
-    let type, date : String?
+    let type, date: String?
 }
 
 enum MediaType {

@@ -12,7 +12,7 @@ public struct Constants {
         static let privateKey = ProcessInfo.processInfo.environment["PRIVATE_KEY"] ?? ""
         static let publicKey =  ProcessInfo.processInfo.environment["PUBLIC_KEY"] ?? ""
     }
-    
+
     struct Paths {
         static let baseUrl = "https://gateway.marvel.com"
         static let character = "/v1/public/characters"

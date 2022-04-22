@@ -13,11 +13,11 @@ protocol LoginCoordinatorProtocol: Coordinator {
 }
 
 class LoginCoordinator: LoginCoordinatorProtocol {
-    
+
     // ---------------------------------
     // MARK: - Properties
     // ---------------------------------
-    
+
     weak var finishDelegate: CoordinatorFinishDelegate? /// Last coordinator, no need to implement
 
     var navigationController: UINavigationController
@@ -25,7 +25,7 @@ class LoginCoordinator: LoginCoordinatorProtocol {
     var childCoordinators: [Coordinator] = [] /// Last coordinator, no need to implement
 
     var type: CoordinatorType { .login }
-    
+
     // ---------------------------------
     // MARK: - Coordinator
     // ---------------------------------
@@ -57,5 +57,5 @@ extension LoginCoordinator: LoginViewModelCoordinatorDelegate {
     func goToApp() {
         self.finish()
     }
-    
+
 }

@@ -9,7 +9,7 @@ import XCTest
 @testable import MarvelCharacters
 
 class AppCoordinatorTest: XCTestCase {
-    
+
     var appCoordinator: AppCoordinator?
 
     override func setUp() {

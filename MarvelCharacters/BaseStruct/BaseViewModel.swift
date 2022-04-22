@@ -7,16 +7,14 @@
 
 import Foundation
 
-
 /// Protocol to implement by ViewControllers
 protocol BaseViewModelProtocol {
     func start()
 }
 
-
 /// Base for the ViewModels with the basic structure.
 class BaseViewModel: BaseViewModelProtocol {
-    
+
     // ---------------------------------
     // MARK: - Variables
     // ---------------------------------
@@ -41,7 +39,7 @@ class BaseViewModel: BaseViewModelProtocol {
     func start() {
         self.baseView?.updateScreen()
     }
-    
+
 }
 
 // ---------------------------------
@@ -51,4 +49,3 @@ class BaseViewModel: BaseViewModelProtocol {
 protocol BaseControllerViewModelProtocol: AnyObject {
     func updateScreen()
 }
-
