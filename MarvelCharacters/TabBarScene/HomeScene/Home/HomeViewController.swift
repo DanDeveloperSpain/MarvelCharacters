@@ -76,7 +76,7 @@ final class HomeViewController: BaseViewController {
     private func configureView() {
         self.title = viewModel?.title
         tryAgainButton.isHidden = true
-        tryAgainButton.setTitleColor(.whiteColor, for: .normal)
+        tryAgainButton.configure(text: NSLocalizedString("Try Again", comment: ""), font: .boldSmall)
         activityIndicator.color = .secondaryColor
     }
     
