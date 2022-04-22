@@ -6,26 +6,34 @@ This project shows the list of all Marvel characters and their appearances in co
 
 - Xcode 13
 - Swift 5.5
-- MVVM
 - Swift Package Manager
 
 ## Libreries with SPM 🛠️
 I have managed the external libraries with SPM, much cleaner and faster than with CocoaPods.
 - Alamofire 5.4.4
+  - for API requests.
 - Kingfisher 6.3.0
+  - to download and manage images.
+- Swinject 2.8.1
+  - to create containers and handle dependency injection.
 
-## Design pattern ⌨
+## Architecture and Design Pattern 🏗
 
-The design pattern used is MVVM with dependency injection.
+The architecture used is MVVM with Coordinator design pattern.
+
+Also dependency injection is used organized in containers with Swinject library.
 
 
 ## Interface 📱
 
 The user interface is very simple since I decided to spend more time in the code and structure.
 
-I have implemented CompositionalLayout introduced in iOS13.
+I have simulated a login in the application to create a real flow, but the Login and User screens only implement the login and logout functions.
+
+I have implemented Async/Await functions introduced in Swift 5.5.
 
 There are NSLocalizedString functions but I have not translated the app as it is a demo.
+
 
 - - - -
 
