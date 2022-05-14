@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import DanDesignSystem
 
 class LoginViewController: BaseViewController {
 
@@ -31,7 +32,7 @@ class LoginViewController: BaseViewController {
     /// Setup the view.
     override internal func setup() {
         viewModel?.setView(self)
-        view.addGradient(colors: [.blueColor, .purpleColor])
+        view.addGradient(colors: [.dsBluePure, .dsPurplePure])
         loginButton.configure(text: NSLocalizedString("Login", comment: ""), font: .boldSmall)
     }
 

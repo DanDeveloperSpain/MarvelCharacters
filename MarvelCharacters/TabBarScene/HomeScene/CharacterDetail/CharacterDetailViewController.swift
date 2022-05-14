@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import DanDesignSystem
 
 final class CharacterDetailViewController: BaseViewController {
 
@@ -53,11 +54,11 @@ final class CharacterDetailViewController: BaseViewController {
     // ------------------------------------------------
 
     private func configureView() {
-        self.setupNavigationBar(title: viewModel?.title)
-        comicActivityIndicator.color = .secondaryColor
-        serieActivityIndicator.color = .secondaryColor
+        setupNavigationBar(title: viewModel?.title, color: .dsWhite, configureBackButton: true)
+        comicActivityIndicator.color = .dsSecondaryPure
+        serieActivityIndicator.color = .dsSecondaryPure
 
-        characterDescriptionLabel.configure(with: viewModel?.character?.description, font: .boldSmall, color: .whiteColor)
+        characterDescriptionLabel.dsConfigure(with: viewModel?.character?.description, font: .boldSmall, color: .dsWhite)
 
         characterImageView.layer.cornerRadius = 75
         let urlImge = "\(viewModel?.character?.thumbnail?.path ?? "").\(viewModel?.character?.thumbnail?.typeExtension ?? "")"
@@ -84,7 +85,7 @@ final class CharacterDetailViewController: BaseViewController {
 
         let compositionalLayout = UICollectionViewCompositionalLayout(sectionProvider: { (_, _) -> NSCollectionLayoutSection? in
             let widthCell: CGFloat = 150.0
-            let heightCell: CGFloat = 230.0
+            let heightCell: CGFloat = 240.0
             let heightHeaderCell: CGFloat = 40.0
             let inset: CGFloat = 14.0
 
@@ -175,7 +176,7 @@ extension CharacterDetailViewController: UICollectionViewDelegate, UICollectionV
             return HeaderSupplementaryView()
         }
 
-        indexPath.section == 0 ? headerView.headerTitleLabel.configure(with: NSLocalizedString("Comics", comment: ""), font: .semiboldLarge, color: .whiteColor) : headerView.headerTitleLabel.configure(with: NSLocalizedString("Series", comment: ""), font: .semiboldLarge, color: .whiteColor)
+        indexPath.section == 0 ? headerView.headerTitleLabel.dsConfigure(with: NSLocalizedString("Comics", comment: ""), font: .boldLarge, color: .dsWhite) : headerView.headerTitleLabel.dsConfigure(with: NSLocalizedString("Series", comment: ""), font: .boldLarge, color: .dsWhite)
 
         return headerView
     }

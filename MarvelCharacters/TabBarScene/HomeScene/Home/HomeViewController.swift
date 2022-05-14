@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import DanDesignSystem
 
 final class HomeViewController: BaseViewController {
 
@@ -54,10 +55,10 @@ final class HomeViewController: BaseViewController {
     // ------------------------------------------------
 
     private func configureView() {
-        self.title = viewModel?.title
+        setupNavigationBar(title: viewModel?.title, color: .dsWhite)
         tryAgainButton.isHidden = true
         tryAgainButton.configure(text: NSLocalizedString("Try Again", comment: ""), font: .boldSmall)
-        activityIndicator.color = .secondaryColor
+        activityIndicator.color = .dsSecondaryPure
     }
 
     private func updateDataSource() {

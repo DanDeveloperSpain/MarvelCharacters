@@ -11,6 +11,7 @@ import UIKit
 enum TabBarPage {
     case home
     case user
+    case dsDemo
 
     init?(index: Int) {
         switch index {
@@ -18,6 +19,8 @@ enum TabBarPage {
             self = .home
         case 1:
             self = .user
+        case 2:
+            self = .dsDemo
         default:
             return nil
         }
@@ -29,6 +32,8 @@ enum TabBarPage {
             return "Home"
         case .user:
             return "User"
+        case .dsDemo:
+            return "DSDemo"
         }
     }
 
@@ -38,6 +43,8 @@ enum TabBarPage {
             return 0
         case .user:
             return 1
+        case .dsDemo:
+            return 2
         }
     }
 
@@ -47,6 +54,8 @@ enum TabBarPage {
             return UIImage(systemName: "house.fill") ?? UIImage()
         case .user:
             return UIImage(systemName: "person.fill") ?? UIImage()
+        case .dsDemo:
+            return UIImage(systemName: "gearshape.fill") ?? UIImage()
         }
 
     }

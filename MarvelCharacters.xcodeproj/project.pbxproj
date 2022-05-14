@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		65516C6F2707AAB500F6D3D4 /* ExceptionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65516C6E2707AAB500F6D3D4 /* ExceptionHandler.swift */; };
-		65516C722707AB8500F6D3D4 /* MarvelCharacterColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65516C712707AB8500F6D3D4 /* MarvelCharacterColor.swift */; };
 		65516C762707AF8700F6D3D4 /* ComicData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65516C752707AF8700F6D3D4 /* ComicData.swift */; };
 		65516C7A2707B18900F6D3D4 /* CharacterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65516C782707B18900F6D3D4 /* CharacterDetailViewController.swift */; };
 		65516C7B2707B18900F6D3D4 /* CharacterDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65516C792707B18900F6D3D4 /* CharacterDetailViewController.xib */; };
@@ -37,7 +36,6 @@
 		65D70A6127063C0400936F9C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 65D70A6027063C0400936F9C /* Kingfisher */; };
 		65F2ACAC2709FF5100D299D4 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F2ACAB2709FF5100D299D4 /* BaseViewController.swift */; };
 		65F2ACAE270A274000D299D4 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F2ACAD270A274000D299D4 /* BaseViewModel.swift */; };
-		65F2ACB5270B3CD300D299D4 /* MarvelCharacterFontLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F2ACB4270B3CD300D299D4 /* MarvelCharacterFontLabel.swift */; };
 		65F2ACB9270BA7F300D299D4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F2ACB8270BA7F300D299D4 /* Constants.swift */; };
 		7E44E7AC2807186E00545E7E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E44E7AB2807186E00545E7E /* AppCoordinator.swift */; };
 		7E44E7B02807192700545E7E /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E44E7AF2807192700545E7E /* Coordinator.swift */; };
@@ -63,6 +61,16 @@
 		7E539CD92811AA1E006FC1D3 /* CharacterDetailViewModelUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E539CD82811AA1E006FC1D3 /* CharacterDetailViewModelUnitTest.swift */; };
 		7E539CDB2811B0C4006FC1D3 /* AppCoordinatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E539CDA2811B0C4006FC1D3 /* AppCoordinatorTest.swift */; };
 		7E709A26281002FB00763DC2 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E709A25281002FB00763DC2 /* LoginViewModel.swift */; };
+		7EA05AE5282EFA80003E04B7 /* DesignSystemDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA05AE3282EFA80003E04B7 /* DesignSystemDemoViewController.swift */; };
+		7EA05AE6282EFA80003E04B7 /* DesignSystemDemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA05AE4282EFA80003E04B7 /* DesignSystemDemoViewController.xib */; };
+		7EA05AE8282EFAEF003E04B7 /* DesignSystemDemoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA05AE7282EFAEF003E04B7 /* DesignSystemDemoViewModel.swift */; };
+		7EA05AEA282EFDD0003E04B7 /* DesignSystemDemoContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA05AE9282EFDD0003E04B7 /* DesignSystemDemoContainer.swift */; };
+		7EA05AF4282F0EE3003E04B7 /* DanDesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = 7EA05AF3282F0EE3003E04B7 /* DanDesignSystem */; };
+		7EA05AF8282F0F5C003E04B7 /* TypographyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA05AF6282F0F5C003E04B7 /* TypographyViewController.swift */; };
+		7EA05AF9282F0F5C003E04B7 /* TypographyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA05AF7282F0F5C003E04B7 /* TypographyViewController.xib */; };
+		7EA05AFD282F117F003E04B7 /* ColorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA05AFB282F117F003E04B7 /* ColorsViewController.swift */; };
+		7EA05AFE282F117F003E04B7 /* ColorsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA05AFC282F117F003E04B7 /* ColorsViewController.xib */; };
+		7EB3B633282EF88D00D69218 /* DSDemoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB3B632282EF88D00D69218 /* DSDemoCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,7 +85,6 @@
 
 /* Begin PBXFileReference section */
 		65516C6E2707AAB500F6D3D4 /* ExceptionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExceptionHandler.swift; sourceTree = "<group>"; };
-		65516C712707AB8500F6D3D4 /* MarvelCharacterColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelCharacterColor.swift; sourceTree = "<group>"; };
 		65516C752707AF8700F6D3D4 /* ComicData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicData.swift; sourceTree = "<group>"; };
 		65516C782707B18900F6D3D4 /* CharacterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewController.swift; sourceTree = "<group>"; };
 		65516C792707B18900F6D3D4 /* CharacterDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterDetailViewController.xib; sourceTree = "<group>"; };
@@ -108,7 +115,6 @@
 		65D70A532706213700936F9C /* CharacterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterCell.xib; sourceTree = "<group>"; };
 		65F2ACAB2709FF5100D299D4 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		65F2ACAD270A274000D299D4 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
-		65F2ACB4270B3CD300D299D4 /* MarvelCharacterFontLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelCharacterFontLabel.swift; sourceTree = "<group>"; };
 		65F2ACB8270BA7F300D299D4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7E44E7AB2807186E00545E7E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		7E44E7AF2807192700545E7E /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -133,6 +139,15 @@
 		7E539CD82811AA1E006FC1D3 /* CharacterDetailViewModelUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewModelUnitTest.swift; sourceTree = "<group>"; };
 		7E539CDA2811B0C4006FC1D3 /* AppCoordinatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorTest.swift; sourceTree = "<group>"; };
 		7E709A25281002FB00763DC2 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		7EA05AE3282EFA80003E04B7 /* DesignSystemDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemDemoViewController.swift; sourceTree = "<group>"; };
+		7EA05AE4282EFA80003E04B7 /* DesignSystemDemoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DesignSystemDemoViewController.xib; sourceTree = "<group>"; };
+		7EA05AE7282EFAEF003E04B7 /* DesignSystemDemoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemDemoViewModel.swift; sourceTree = "<group>"; };
+		7EA05AE9282EFDD0003E04B7 /* DesignSystemDemoContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemDemoContainer.swift; sourceTree = "<group>"; };
+		7EA05AF6282F0F5C003E04B7 /* TypographyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypographyViewController.swift; sourceTree = "<group>"; };
+		7EA05AF7282F0F5C003E04B7 /* TypographyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TypographyViewController.xib; sourceTree = "<group>"; };
+		7EA05AFB282F117F003E04B7 /* ColorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsViewController.swift; sourceTree = "<group>"; };
+		7EA05AFC282F117F003E04B7 /* ColorsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorsViewController.xib; sourceTree = "<group>"; };
+		7EB3B632282EF88D00D69218 /* DSDemoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSDemoCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65D70A6127063C0400936F9C /* Kingfisher in Frameworks */,
+				7EA05AF4282F0EE3003E04B7 /* DanDesignSystem in Frameworks */,
 				65D70A4D270610C600936F9C /* Alamofire in Frameworks */,
 				7E539CCA281077CA006FC1D3 /* Swinject in Frameworks */,
 			);
@@ -167,8 +183,6 @@
 		65516C702707AB6400F6D3D4 /* Styles */ = {
 			isa = PBXGroup;
 			children = (
-				65516C712707AB8500F6D3D4 /* MarvelCharacterColor.swift */,
-				65F2ACB4270B3CD300D299D4 /* MarvelCharacterFontLabel.swift */,
 				7E539CCC28114F9A006FC1D3 /* MarvelCharacterGradient.swift */,
 				7E539CCE281153DF006FC1D3 /* MarvelCharacterButton.swift */,
 			);
@@ -367,6 +381,7 @@
 				7E44E7C12807260700545E7E /* TabCoordinator.swift */,
 				65D70A2D270607EC00936F9C /* HomeScene */,
 				7E44E7C32807271600545E7E /* UserScene */,
+				7EB3B631282EE47300D69218 /* DesignSystemDemoScene */,
 			);
 			path = TabBarScene;
 			sourceTree = "<group>";
@@ -396,6 +411,7 @@
 				7E539CC228105D55006FC1D3 /* DIHomeContainer.swift */,
 				7E539CC4281073EC006FC1D3 /* DIUserContainer.swift */,
 				7E539CC628107429006FC1D3 /* DILoginContainer.swift */,
+				7EA05AE9282EFDD0003E04B7 /* DesignSystemDemoContainer.swift */,
 			);
 			path = DI;
 			sourceTree = "<group>";
@@ -419,6 +435,45 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
+		7EA05AE2282EFA4C003E04B7 /* DesignSystemDemo */ = {
+			isa = PBXGroup;
+			children = (
+				7EA05AE4282EFA80003E04B7 /* DesignSystemDemoViewController.xib */,
+				7EA05AE3282EFA80003E04B7 /* DesignSystemDemoViewController.swift */,
+				7EA05AE7282EFAEF003E04B7 /* DesignSystemDemoViewModel.swift */,
+				7EA05AF5282F0F46003E04B7 /* Typography */,
+				7EA05AFA282F114D003E04B7 /* Colors */,
+			);
+			path = DesignSystemDemo;
+			sourceTree = "<group>";
+		};
+		7EA05AF5282F0F46003E04B7 /* Typography */ = {
+			isa = PBXGroup;
+			children = (
+				7EA05AF7282F0F5C003E04B7 /* TypographyViewController.xib */,
+				7EA05AF6282F0F5C003E04B7 /* TypographyViewController.swift */,
+			);
+			path = Typography;
+			sourceTree = "<group>";
+		};
+		7EA05AFA282F114D003E04B7 /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				7EA05AFC282F117F003E04B7 /* ColorsViewController.xib */,
+				7EA05AFB282F117F003E04B7 /* ColorsViewController.swift */,
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
+		7EB3B631282EE47300D69218 /* DesignSystemDemoScene */ = {
+			isa = PBXGroup;
+			children = (
+				7EB3B632282EF88D00D69218 /* DSDemoCoordinator.swift */,
+				7EA05AE2282EFA4C003E04B7 /* DesignSystemDemo */,
+			);
+			path = DesignSystemDemoScene;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -440,6 +495,7 @@
 				65D70A4C270610C600936F9C /* Alamofire */,
 				65D70A6027063C0400936F9C /* Kingfisher */,
 				7E539CC9281077CA006FC1D3 /* Swinject */,
+				7EA05AF3282F0EE3003E04B7 /* DanDesignSystem */,
 			);
 			productName = MarvelCharacters;
 			productReference = 65804D3B2704C35E001C42B3 /* MarvelCharacters.app */;
@@ -494,6 +550,7 @@
 				65D70A4B270610C600936F9C /* XCRemoteSwiftPackageReference "Alamofire" */,
 				65D70A5F27063C0300936F9C /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				7E539CC8281077CA006FC1D3 /* XCRemoteSwiftPackageReference "Swinject" */,
+				7EA05AF2282F0EE3003E04B7 /* XCRemoteSwiftPackageReference "DanDesignSystem" */,
 			);
 			productRefGroup = 65804D3C2704C35E001C42B3 /* Products */;
 			projectDirPath = "";
@@ -510,7 +567,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EA05AE6282EFA80003E04B7 /* DesignSystemDemoViewController.xib in Resources */,
 				7E44E7B828071B8B00545E7E /* LoginViewController.xib in Resources */,
+				7EA05AF9282F0F5C003E04B7 /* TypographyViewController.xib in Resources */,
 				7E44E7CA2807278200545E7E /* UserViewController.xib in Resources */,
 				65516C822707B4F200F6D3D4 /* ComicSerieCell.xib in Resources */,
 				65804D4B2704C360001C42B3 /* LaunchScreen.storyboard in Resources */,
@@ -518,6 +577,7 @@
 				65804D7D2704CB76001C42B3 /* HomeViewController.xib in Resources */,
 				65516C7B2707B18900F6D3D4 /* CharacterDetailViewController.xib in Resources */,
 				65516C892707C82900F6D3D4 /* HeaderSupplementaryView.xib in Resources */,
+				7EA05AFE282F117F003E04B7 /* ColorsViewController.xib in Resources */,
 				65D70A552706213700936F9C /* CharacterCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -561,6 +621,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E44E7B728071B8B00545E7E /* LoginViewController.swift in Sources */,
+				7EA05AF8282F0F5C003E04B7 /* TypographyViewController.swift in Sources */,
 				65804D3F2704C35E001C42B3 /* AppDelegate.swift in Sources */,
 				7E44E7CE28072B3B00545E7E /* HomeCoordinator.swift in Sources */,
 				65804D412704C35E001C42B3 /* SceneDelegate.swift in Sources */,
@@ -584,17 +645,20 @@
 				7E44E7CC280727F300545E7E /* UserViewModel.swift in Sources */,
 				65804D7C2704CB76001C42B3 /* HomeViewController.swift in Sources */,
 				7E539CCD28114F9A006FC1D3 /* MarvelCharacterGradient.swift in Sources */,
+				7EB3B633282EF88D00D69218 /* DSDemoCoordinator.swift in Sources */,
 				7E44E7C52807274500545E7E /* UserCoordinator.swift in Sources */,
-				65F2ACB5270B3CD300D299D4 /* MarvelCharacterFontLabel.swift in Sources */,
+				7EA05AE5282EFA80003E04B7 /* DesignSystemDemoViewController.swift in Sources */,
+				7EA05AFD282F117F003E04B7 /* ColorsViewController.swift in Sources */,
 				7E539CCF281153DF006FC1D3 /* MarvelCharacterButton.swift in Sources */,
 				65516C842707BD0800F6D3D4 /* SerieData.swift in Sources */,
 				65D70A472706094D00936F9C /* MarvelApiService.swift in Sources */,
 				65F2ACAE270A274000D299D4 /* BaseViewModel.swift in Sources */,
-				65516C722707AB8500F6D3D4 /* MarvelCharacterColor.swift in Sources */,
+				7EA05AEA282EFDD0003E04B7 /* DesignSystemDemoContainer.swift in Sources */,
 				7E539CC5281073EC006FC1D3 /* DIUserContainer.swift in Sources */,
 				7E539CC328105D55006FC1D3 /* DIHomeContainer.swift in Sources */,
 				7E44E7B02807192700545E7E /* Coordinator.swift in Sources */,
 				7E44E7C0280725BB00545E7E /* TabBarViewSettings.swift in Sources */,
+				7EA05AE8282EFAEF003E04B7 /* DesignSystemDemoViewModel.swift in Sources */,
 				65D70A312706085400936F9C /* HomeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -888,6 +952,14 @@
 				version = 2.8.1;
 			};
 		};
+		7EA05AF2282F0EE3003E04B7 /* XCRemoteSwiftPackageReference "DanDesignSystem" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/DanDeveloperSpain/DanDesignSystem";
+			requirement = {
+				kind = exactVersion;
+				version = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -905,6 +977,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7E539CC8281077CA006FC1D3 /* XCRemoteSwiftPackageReference "Swinject" */;
 			productName = Swinject;
+		};
+		7EA05AF3282F0EE3003E04B7 /* DanDesignSystem */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7EA05AF2282F0EE3003E04B7 /* XCRemoteSwiftPackageReference "DanDesignSystem" */;
+			productName = DanDesignSystem;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

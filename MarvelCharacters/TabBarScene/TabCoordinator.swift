@@ -37,7 +37,7 @@ class TabCoordinator: NSObject, Coordinator {
 
     /// Let's define which pages do we want to add into tab bar, Initialization of ViewControllers or these pages.
     func start() {
-        let pages: [TabBarPage] = [.user, .home]
+        let pages: [TabBarPage] = [.user, .home, .dsDemo]
             .sorted(by: { $0.pageOrderNumber() < $1.pageOrderNumber() })
 
         let controllers: [UINavigationController] = pages.map({ getTabController($0) })
@@ -83,6 +83,12 @@ class TabCoordinator: NSObject, Coordinator {
             userCoordiantor.start()
             userCoordiantor.parentCoordinator = self
             childCoordinators.append(userCoordiantor)
+
+        case .dsDemo:
+            let designSystemDemoCoordiantor = DSDemoCoordinator(navController)
+            designSystemDemoCoordiantor.start()
+            designSystemDemoCoordiantor.parentCoordinator = self
+            childCoordinators.append(designSystemDemoCoordiantor)
         }
 
         return navController

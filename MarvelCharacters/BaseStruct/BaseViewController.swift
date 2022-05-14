@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import DanDesignSystem
 
 protocol BaseViewControllerProtocol {
 
@@ -39,8 +40,6 @@ class BaseViewController: UIViewController, BaseViewControllerProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.font: MarvelCharacterFontStyle.FontsWithSize.boldLarge.get() ?? UIFont.systemFont(ofSize: 18.0, weight: .bold), NSAttributedString.Key.foregroundColor: UIColor.whiteColor]
-
         // Initialization
         setup()
         baseViewModel?.start()
@@ -55,15 +54,22 @@ class BaseViewController: UIViewController, BaseViewControllerProtocol {
     // MARK: - Setup NavigationBar
     // ---------------------------------
 
-    func setupNavigationBar(title: String?) {
+    func setupNavigationBar(title: String?, color: UIColor, configureBackButton: Bool = false) {
         self.title = title
-        self.customizeLeftNavBarButton()
+        self.customizeNavBar(color: color)
+        if configureBackButton {
+            self.customizeLeftNavBarButton()
+        }
+    }
+
+    private func customizeNavBar(color: UIColor) {
+        navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.font: Typography.FontsWithSize.boldLarge.get() ?? UIFont.systemFont(ofSize: 18.0, weight: .bold), NSAttributedString.Key.foregroundColor: color]
     }
 
     private func customizeLeftNavBarButton () {
         let myBackButton = UIButton(type: UIButton.ButtonType.custom)
         myBackButton.addTarget(self, action: #selector(self.pop(_:)), for: UIControl.Event.touchUpInside)
-        myBackButton.setImage(UIImage(named: "backButton")?.withTintColor(.whiteColor), for: .normal)
+        myBackButton.setImage(UIImage(named: "backButton")?.withTintColor(.dsWhite), for: .normal)
         myBackButton.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
         myBackButton.imageEdgeInsets = UIEdgeInsets(top: 5, left: -15, bottom: 5, right: 5)
         let myCustomBackButtonItem: UIBarButtonItem = UIBarButtonItem(customView: myBackButton)
@@ -95,7 +101,7 @@ class BaseViewController: UIViewController, BaseViewControllerProtocol {
     func showSimpleAlertAccept(alertTitle: String, alertMessage: String) {
         let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("Accept", comment: ""), style: UIAlertAction.Style.cancel, handler: nil))
-        alert.view.tintColor = .principalColor
+        alert.view.tintColor = .dsPrimaryPure
         self.present(alert, animated: true, completion: nil)
     }
 

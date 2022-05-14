@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import DanDesignSystem
 
 public extension UIView {
 
@@ -14,7 +15,7 @@ public extension UIView {
     ///   - colors: array of colors to gradient.
     ///   - startPoint: gradient start place on screen.
     ///   - endPoint: gradient end place on screen
-    func addGradient(colors: [UIColor] = [.blueColor, .whiteColor], startPoint: CGPoint = CGPoint(x: 0.0, y: 1.0), endPoint: CGPoint = CGPoint(x: 1.0, y: 1.0)) {
+    func addGradient(colors: [UIColor] = [.dsBluePure, .dsWhite], startPoint: CGPoint = CGPoint(x: 0.0, y: 1.0), endPoint: CGPoint = CGPoint(x: 1.0, y: 1.0)) {
 
         let gradient = CAGradientLayer()
 
