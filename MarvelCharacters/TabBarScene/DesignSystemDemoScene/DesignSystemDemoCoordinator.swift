@@ -56,12 +56,20 @@ class DesignSystemDemoCoordinator: DesignSystemDemoCoordinatorProtocol {
 // ---------------------------------
 
 extension DesignSystemDemoCoordinator {
+    func openTypographyScreen() {
+        navigationController.pushViewController(TypographyViewController(), animated: true)
+    }
+
     func openColorsScreen() {
         navigationController.pushViewController(ColorsViewController(), animated: true)
     }
 
-    func openTypographyScreen() {
-        navigationController.pushViewController(TypographyViewController(), animated: true)
+    func openBordersScreen() {
+        navigationController.pushViewController(BordersViewController(), animated: true)
+    }
+
+    func openShadowsScreen() {
+        navigationController.pushViewController(ShadowsViewController(), animated: true)
     }
 }
 
@@ -76,6 +84,14 @@ extension DesignSystemDemoCoordinator: DesignSystemDemoViewModelCoordinatorDeleg
 
     func goToColors() {
         openColorsScreen()
+    }
+
+    func goToBoders() {
+        openBordersScreen()
+    }
+
+    func goToShadows() {
+        openShadowsScreen()
     }
 
 }

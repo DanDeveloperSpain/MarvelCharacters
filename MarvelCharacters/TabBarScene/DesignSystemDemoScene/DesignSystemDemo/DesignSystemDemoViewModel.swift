@@ -12,8 +12,10 @@ import Foundation
 // ---------------------------------
 
 protocol DesignSystemDemoViewModelCoordinatorDelegate: AnyObject { // ---> DesignSystemDemoCoordinator
-    func  goToTypography()
-    func  goToColors()
+    func goToTypography()
+    func goToColors()
+    func goToBoders()
+    func goToShadows()
 }
 
 // ---------------------------------
@@ -69,6 +71,14 @@ final class DesignSystemDemoViewModel: BaseViewModel {
 
     func didSelectColors() {
         coordinatorDelegate?.goToColors()
+    }
+
+    func didSelectBoders() {
+        coordinatorDelegate?.goToBoders()
+    }
+
+    func didSelectShadows() {
+        coordinatorDelegate?.goToShadows()
     }
 
 }

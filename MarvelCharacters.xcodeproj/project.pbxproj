@@ -70,7 +70,15 @@
 		7EA05AF9282F0F5C003E04B7 /* TypographyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA05AF7282F0F5C003E04B7 /* TypographyViewController.xib */; };
 		7EA05AFD282F117F003E04B7 /* ColorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA05AFB282F117F003E04B7 /* ColorsViewController.swift */; };
 		7EA05AFE282F117F003E04B7 /* ColorsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA05AFC282F117F003E04B7 /* ColorsViewController.xib */; };
+		7EA05B07282FC41F003E04B7 /* BordersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA05B05282FC41F003E04B7 /* BordersViewController.swift */; };
+		7EA05B08282FC41F003E04B7 /* BordersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA05B06282FC41F003E04B7 /* BordersViewController.xib */; };
+		7EA05B0B282FC48B003E04B7 /* ShadowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA05B09282FC48B003E04B7 /* ShadowsViewController.swift */; };
+		7EA05B0C282FC48B003E04B7 /* ShadowsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA05B0A282FC48B003E04B7 /* ShadowsViewController.xib */; };
 		7EB3B633282EF88D00D69218 /* DesignSystemDemoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB3B632282EF88D00D69218 /* DesignSystemDemoCoordinator.swift */; };
+		7EF819D9282FCE4E001315CF /* BorderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF819D7282FCE4E001315CF /* BorderCell.swift */; };
+		7EF819DA282FCE4E001315CF /* BorderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EF819D8282FCE4E001315CF /* BorderCell.xib */; };
+		7EF819DE282FD2A3001315CF /* ShadowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF819DC282FD2A3001315CF /* ShadowCell.swift */; };
+		7EF819DF282FD2A3001315CF /* ShadowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EF819DD282FD2A3001315CF /* ShadowCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,7 +155,15 @@
 		7EA05AF7282F0F5C003E04B7 /* TypographyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TypographyViewController.xib; sourceTree = "<group>"; };
 		7EA05AFB282F117F003E04B7 /* ColorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsViewController.swift; sourceTree = "<group>"; };
 		7EA05AFC282F117F003E04B7 /* ColorsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorsViewController.xib; sourceTree = "<group>"; };
+		7EA05B05282FC41F003E04B7 /* BordersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BordersViewController.swift; sourceTree = "<group>"; };
+		7EA05B06282FC41F003E04B7 /* BordersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BordersViewController.xib; sourceTree = "<group>"; };
+		7EA05B09282FC48B003E04B7 /* ShadowsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowsViewController.swift; sourceTree = "<group>"; };
+		7EA05B0A282FC48B003E04B7 /* ShadowsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShadowsViewController.xib; sourceTree = "<group>"; };
 		7EB3B632282EF88D00D69218 /* DesignSystemDemoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemDemoCoordinator.swift; sourceTree = "<group>"; };
+		7EF819D7282FCE4E001315CF /* BorderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderCell.swift; sourceTree = "<group>"; };
+		7EF819D8282FCE4E001315CF /* BorderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BorderCell.xib; sourceTree = "<group>"; };
+		7EF819DC282FD2A3001315CF /* ShadowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowCell.swift; sourceTree = "<group>"; };
+		7EF819DD282FD2A3001315CF /* ShadowCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShadowCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -441,8 +457,7 @@
 				7EA05AE4282EFA80003E04B7 /* DesignSystemDemoViewController.xib */,
 				7EA05AE3282EFA80003E04B7 /* DesignSystemDemoViewController.swift */,
 				7EA05AE7282EFAEF003E04B7 /* DesignSystemDemoViewModel.swift */,
-				7EA05AF5282F0F46003E04B7 /* Typography */,
-				7EA05AFA282F114D003E04B7 /* Colors */,
+				7EA05B04282FC174003E04B7 /* Foundations */,
 			);
 			path = DesignSystemDemo;
 			sourceTree = "<group>";
@@ -465,6 +480,37 @@
 			path = Colors;
 			sourceTree = "<group>";
 		};
+		7EA05B02282FC158003E04B7 /* Borders */ = {
+			isa = PBXGroup;
+			children = (
+				7EF819D6282FCE37001315CF /* Cell */,
+				7EA05B06282FC41F003E04B7 /* BordersViewController.xib */,
+				7EA05B05282FC41F003E04B7 /* BordersViewController.swift */,
+			);
+			path = Borders;
+			sourceTree = "<group>";
+		};
+		7EA05B03282FC168003E04B7 /* Shadows */ = {
+			isa = PBXGroup;
+			children = (
+				7EF819DB282FD28C001315CF /* Cell */,
+				7EA05B0A282FC48B003E04B7 /* ShadowsViewController.xib */,
+				7EA05B09282FC48B003E04B7 /* ShadowsViewController.swift */,
+			);
+			path = Shadows;
+			sourceTree = "<group>";
+		};
+		7EA05B04282FC174003E04B7 /* Foundations */ = {
+			isa = PBXGroup;
+			children = (
+				7EA05AF5282F0F46003E04B7 /* Typography */,
+				7EA05AFA282F114D003E04B7 /* Colors */,
+				7EA05B02282FC158003E04B7 /* Borders */,
+				7EA05B03282FC168003E04B7 /* Shadows */,
+			);
+			path = Foundations;
+			sourceTree = "<group>";
+		};
 		7EB3B631282EE47300D69218 /* DesignSystemDemoScene */ = {
 			isa = PBXGroup;
 			children = (
@@ -472,6 +518,24 @@
 				7EA05AE2282EFA4C003E04B7 /* DesignSystemDemo */,
 			);
 			path = DesignSystemDemoScene;
+			sourceTree = "<group>";
+		};
+		7EF819D6282FCE37001315CF /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				7EF819D8282FCE4E001315CF /* BorderCell.xib */,
+				7EF819D7282FCE4E001315CF /* BorderCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		7EF819DB282FD28C001315CF /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				7EF819DD282FD2A3001315CF /* ShadowCell.xib */,
+				7EF819DC282FD2A3001315CF /* ShadowCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -570,12 +634,16 @@
 				7EA05AE6282EFA80003E04B7 /* DesignSystemDemoViewController.xib in Resources */,
 				7E44E7B828071B8B00545E7E /* LoginViewController.xib in Resources */,
 				7EA05AF9282F0F5C003E04B7 /* TypographyViewController.xib in Resources */,
+				7EF819DA282FCE4E001315CF /* BorderCell.xib in Resources */,
 				7E44E7CA2807278200545E7E /* UserViewController.xib in Resources */,
+				7EF819DF282FD2A3001315CF /* ShadowCell.xib in Resources */,
 				65516C822707B4F200F6D3D4 /* ComicSerieCell.xib in Resources */,
 				65804D4B2704C360001C42B3 /* LaunchScreen.storyboard in Resources */,
 				65804D482704C360001C42B3 /* Assets.xcassets in Resources */,
+				7EA05B08282FC41F003E04B7 /* BordersViewController.xib in Resources */,
 				65804D7D2704CB76001C42B3 /* HomeViewController.xib in Resources */,
 				65516C7B2707B18900F6D3D4 /* CharacterDetailViewController.xib in Resources */,
+				7EA05B0C282FC48B003E04B7 /* ShadowsViewController.xib in Resources */,
 				65516C892707C82900F6D3D4 /* HeaderSupplementaryView.xib in Resources */,
 				7EA05AFE282F117F003E04B7 /* ColorsViewController.xib in Resources */,
 				65D70A552706213700936F9C /* CharacterCell.xib in Resources */,
@@ -622,16 +690,19 @@
 			files = (
 				7E44E7B728071B8B00545E7E /* LoginViewController.swift in Sources */,
 				7EA05AF8282F0F5C003E04B7 /* TypographyViewController.swift in Sources */,
+				7EA05B0B282FC48B003E04B7 /* ShadowsViewController.swift in Sources */,
 				65804D3F2704C35E001C42B3 /* AppDelegate.swift in Sources */,
 				7E44E7CE28072B3B00545E7E /* HomeCoordinator.swift in Sources */,
 				65804D412704C35E001C42B3 /* SceneDelegate.swift in Sources */,
 				65516C762707AF8700F6D3D4 /* ComicData.swift in Sources */,
+				7EA05B07282FC41F003E04B7 /* BordersViewController.swift in Sources */,
 				7E44E7B328071B1A00545E7E /* LoginCoordinator.swift in Sources */,
 				65D70A39270608AA00936F9C /* CharacterData.swift in Sources */,
 				65F2ACAC2709FF5100D299D4 /* BaseViewController.swift in Sources */,
 				65F2ACB9270BA7F300D299D4 /* Constants.swift in Sources */,
 				7E44E7C22807260700545E7E /* TabCoordinator.swift in Sources */,
 				65D70A542706213700936F9C /* CharacterCell.swift in Sources */,
+				7EF819D9282FCE4E001315CF /* BorderCell.swift in Sources */,
 				65516C812707B4F200F6D3D4 /* ComicSerieCell.swift in Sources */,
 				65D70A3F2706090700936F9C /* CharacterService.swift in Sources */,
 				65516C7D2707B21400F6D3D4 /* CharacterDetailViewModel.swift in Sources */,
@@ -642,6 +713,7 @@
 				65516C7A2707B18900F6D3D4 /* CharacterDetailViewController.swift in Sources */,
 				7E709A26281002FB00763DC2 /* LoginViewModel.swift in Sources */,
 				7E539CC728107429006FC1D3 /* DILoginContainer.swift in Sources */,
+				7EF819DE282FD2A3001315CF /* ShadowCell.swift in Sources */,
 				7E44E7CC280727F300545E7E /* UserViewModel.swift in Sources */,
 				65804D7C2704CB76001C42B3 /* HomeViewController.swift in Sources */,
 				7E539CCD28114F9A006FC1D3 /* MarvelCharacterGradient.swift in Sources */,
@@ -957,7 +1029,7 @@
 			repositoryURL = "https://github.com/DanDeveloperSpain/DanDesignSystem";
 			requirement = {
 				kind = exactVersion;
-				version = 1.0.0;
+				version = 1.1.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

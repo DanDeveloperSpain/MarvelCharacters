@@ -64,7 +64,7 @@ class TypographyViewController: UIViewController {
 }
 
 // ---------------------------------
-// MARK: - TypographyViewControllerViewDelegate
+// MARK: - UITableViewDataSource
 // ---------------------------------
 
 extension TypographyViewController: UITableViewDataSource {

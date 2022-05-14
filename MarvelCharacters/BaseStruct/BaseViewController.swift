@@ -55,7 +55,7 @@ class BaseViewController: UIViewController, BaseViewControllerProtocol {
     // ---------------------------------
 
     func setupNavigationBar(title: String?, color: UIColor, configureBackButton: Bool = false) {
-        self.title = title
+        navigationItem.title = title
         self.customizeNavBar(color: color)
         if configureBackButton {
             self.customizeLeftNavBarButton()

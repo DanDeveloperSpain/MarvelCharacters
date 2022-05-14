@@ -3,6 +3,7 @@ disabled_rules:
   - class_delegate_protocol
   - orphaned_doc_comment
   - large_tuple
+  - cyclomatic_complexity
 
 excluded:
   - Carthage

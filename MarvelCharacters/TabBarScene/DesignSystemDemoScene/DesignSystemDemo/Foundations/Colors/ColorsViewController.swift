@@ -9,6 +9,7 @@ import UIKit
 import DanDesignSystem
 
 class ColorsViewController: UIViewController {
+
     // ---------------------------------
     // MARK: - Outlets
     // ---------------------------------
@@ -29,15 +30,15 @@ class ColorsViewController: UIViewController {
                                                                 ("Others-Blue", [.dsBluePure, .dsBlueDark, .dsBlueLight]),
                                                                 ("Others-Purple", [.dsPurplePure, .dsPurpleDark, .dsPurpleLight])]
 
+    // ---------------------------------
+    // MARK: - Setup View
+    // ---------------------------------
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setup()
     }
-
-    // ---------------------------------
-    // MARK: - Setup View
-    // ---------------------------------
 
     private func setup() {
         title = "Colors"
@@ -51,7 +52,7 @@ class ColorsViewController: UIViewController {
 }
 
 // ---------------------------------
-// MARK: - ColorsViewControllerViewDelegate
+// MARK: - UITableViewDataSource
 // ---------------------------------
 
 extension ColorsViewController: UITableViewDataSource {

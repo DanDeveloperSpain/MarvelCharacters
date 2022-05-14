@@ -19,7 +19,7 @@ class DesignSystemDemoViewController: BaseViewController {
     // MARK: - Properties
     // ---------------------------------
 
-    private let data: [(section: String, values: [String])] = [("Foundations", ["Colors", "Typography", "Borders", "Shadows"]), ("Components", ["Buttons", "Cards", "Chips", "Banners", "Recommendations", "Radio Button", "Date Selector", "Dialog", "Checkbox"])]
+    private let data: [(section: String, values: [String])] = [("Foundations", ["Typography", "Colors", "Borders", "Shadows"]), ("Components", ["Buttons", "Cards", "Chips", "Banners", "Recommendations", "Radio Button", "Date Selector", "Dialog", "Checkbox"])]
 
     /// Set the model of the view.
     private var viewModel: DesignSystemDemoViewModel? {
@@ -32,7 +32,7 @@ class DesignSystemDemoViewController: BaseViewController {
 
     override internal func setup() {
         viewModel?.setView(self)
-        self.setupNavigationBar(title: viewModel?.title, color: .dsBlack)
+        setupNavigationBar(title: viewModel?.title, color: .dsBlack)
 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.tableFooterView = UIView()
@@ -86,11 +86,17 @@ extension DesignSystemDemoViewController: UITableViewDataSource, UITableViewDele
         case 0:
             switch indexPath.row {
             case 0:
-                // Colors
-                viewModel?.didSelectColors()
-            case 1:
-                // Typography
+                /// Typography
                 viewModel?.didSelectTypography()
+            case 1:
+                /// Colors
+                viewModel?.didSelectColors()
+            case 2:
+                /// Borders
+                viewModel?.didSelectBoders()
+            case 3:
+                /// Shadows
+                viewModel?.didSelectShadows()
             default:
                 break
             }
@@ -100,11 +106,9 @@ extension DesignSystemDemoViewController: UITableViewDataSource, UITableViewDele
             case 0:
                 // Buttons
                 print("Buttons")
-                // navigationController?.pushViewController(ButtonsViewController(), animated: true)
             case 1:
                 // Cards
                 print("Cards")
-                // navigationController?.pushViewController(CardsViewController(), animated: true)
             default:
                 break
             }
