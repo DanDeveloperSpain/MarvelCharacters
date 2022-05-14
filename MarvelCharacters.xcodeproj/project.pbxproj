@@ -70,7 +70,7 @@
 		7EA05AF9282F0F5C003E04B7 /* TypographyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA05AF7282F0F5C003E04B7 /* TypographyViewController.xib */; };
 		7EA05AFD282F117F003E04B7 /* ColorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA05AFB282F117F003E04B7 /* ColorsViewController.swift */; };
 		7EA05AFE282F117F003E04B7 /* ColorsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA05AFC282F117F003E04B7 /* ColorsViewController.xib */; };
-		7EB3B633282EF88D00D69218 /* DSDemoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB3B632282EF88D00D69218 /* DSDemoCoordinator.swift */; };
+		7EB3B633282EF88D00D69218 /* DesignSystemDemoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB3B632282EF88D00D69218 /* DesignSystemDemoCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,7 +147,7 @@
 		7EA05AF7282F0F5C003E04B7 /* TypographyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TypographyViewController.xib; sourceTree = "<group>"; };
 		7EA05AFB282F117F003E04B7 /* ColorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsViewController.swift; sourceTree = "<group>"; };
 		7EA05AFC282F117F003E04B7 /* ColorsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorsViewController.xib; sourceTree = "<group>"; };
-		7EB3B632282EF88D00D69218 /* DSDemoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSDemoCoordinator.swift; sourceTree = "<group>"; };
+		7EB3B632282EF88D00D69218 /* DesignSystemDemoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemDemoCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -468,7 +468,7 @@
 		7EB3B631282EE47300D69218 /* DesignSystemDemoScene */ = {
 			isa = PBXGroup;
 			children = (
-				7EB3B632282EF88D00D69218 /* DSDemoCoordinator.swift */,
+				7EB3B632282EF88D00D69218 /* DesignSystemDemoCoordinator.swift */,
 				7EA05AE2282EFA4C003E04B7 /* DesignSystemDemo */,
 			);
 			path = DesignSystemDemoScene;
@@ -645,7 +645,7 @@
 				7E44E7CC280727F300545E7E /* UserViewModel.swift in Sources */,
 				65804D7C2704CB76001C42B3 /* HomeViewController.swift in Sources */,
 				7E539CCD28114F9A006FC1D3 /* MarvelCharacterGradient.swift in Sources */,
-				7EB3B633282EF88D00D69218 /* DSDemoCoordinator.swift in Sources */,
+				7EB3B633282EF88D00D69218 /* DesignSystemDemoCoordinator.swift in Sources */,
 				7E44E7C52807274500545E7E /* UserCoordinator.swift in Sources */,
 				7EA05AE5282EFA80003E04B7 /* DesignSystemDemoViewController.swift in Sources */,
 				7EA05AFD282F117F003E04B7 /* ColorsViewController.swift in Sources */,

@@ -2,6 +2,7 @@ disabled_rules:
   - line_length
   - class_delegate_protocol
   - orphaned_doc_comment
+  - large_tuple
 
 excluded:
   - Carthage

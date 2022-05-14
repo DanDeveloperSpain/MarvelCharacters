@@ -57,15 +57,6 @@ final class DesignSystemDemoViewModel: BaseViewModel {
     // ---------------------------------
 
     override func start() {
-        getDataDesignSystemDemo()
-    }
-
-    // ---------------------------------
-    // MARK: - Network
-    // ---------------------------------
-
-    func getDataDesignSystemDemo() {
-        viewDelegate?.updateScreen()
     }
 
     // ---------------------------------

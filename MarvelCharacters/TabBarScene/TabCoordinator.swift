@@ -85,7 +85,7 @@ class TabCoordinator: NSObject, Coordinator {
             childCoordinators.append(userCoordiantor)
 
         case .dsDemo:
-            let designSystemDemoCoordiantor = DSDemoCoordinator(navController)
+            let designSystemDemoCoordiantor = DesignSystemDemoCoordinator(navController)
             designSystemDemoCoordiantor.start()
             designSystemDemoCoordiantor.parentCoordinator = self
             childCoordinators.append(designSystemDemoCoordiantor)

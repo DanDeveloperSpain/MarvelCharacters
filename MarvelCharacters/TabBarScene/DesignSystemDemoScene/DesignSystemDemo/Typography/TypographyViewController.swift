@@ -20,7 +20,27 @@ class TypographyViewController: UIViewController {
     // MARK: - Properties
     // ---------------------------------
 
-    private let data: [(section: String, fonts: [Typography.FontsWithSize], fontsNames: [String])] = [("Regular", [Typography.FontsWithSize.regularMini, Typography.FontsWithSize.regularSmall, Typography.FontsWithSize.regularMedium, Typography.FontsWithSize.regularLarge, Typography.FontsWithSize.regularExtraLarge, Typography.FontsWithSize.regularSuper], ["Regular Mini", "Regular Small", "Regular Medium", "Regular Large", "Regular Extra-Large", "Regular Super"]), ("Italic", [Typography.FontsWithSize.italicMini, Typography.FontsWithSize.italicSmall, Typography.FontsWithSize.italicMedium, Typography.FontsWithSize.italicLarge], ["Italic Mini", "Italic Small", "Italic Medium", "Italic Large"]), ("Bold", [Typography.FontsWithSize.boldMini, Typography.FontsWithSize.boldSmall, Typography.FontsWithSize.boldMedium, Typography.FontsWithSize.boldLarge], ["SemiBold Mini", "SemiBold Small", "SemiBold Medium", "SemiBold Large"])]
+    private let data: [(section: String, fonts: [Typography.FontsWithSize], fontsNames: [String])] = [
+        ("Regular",
+         [Typography.FontsWithSize.regularMini,
+          Typography.FontsWithSize.regularSmall,
+          Typography.FontsWithSize.regularMedium,
+          Typography.FontsWithSize.regularLarge,
+          Typography.FontsWithSize.regularExtraLarge,
+          Typography.FontsWithSize.regularSuper],
+         ["Regular Mini", "Regular Small", "Regular Medium", "Regular Large", "Regular Extra-Large", "Regular Super"]),
+        ("Italic",
+         [Typography.FontsWithSize.italicMini,
+          Typography.FontsWithSize.italicSmall,
+          Typography.FontsWithSize.italicMedium,
+          Typography.FontsWithSize.italicLarge],
+         ["Italic Mini", "Italic Small", "Italic Medium", "Italic Large"]),
+        ("Bold",
+         [Typography.FontsWithSize.boldMini,
+          Typography.FontsWithSize.boldSmall,
+          Typography.FontsWithSize.boldMedium,
+          Typography.FontsWithSize.boldLarge],
+         ["Bold Mini", "Bold Small", "Bold Medium", "Bold Large"])]
 
     // ---------------------------------
     // MARK: - Setup View
@@ -33,11 +53,8 @@ class TypographyViewController: UIViewController {
     }
 
     private func setup() {
-
-        // Title
         title = "Typography"
 
-        // Table
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.rowHeight = 80
         tableView.tableFooterView = UIView()

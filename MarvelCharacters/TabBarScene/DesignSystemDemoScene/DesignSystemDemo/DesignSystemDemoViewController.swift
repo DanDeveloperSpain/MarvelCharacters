@@ -40,14 +40,6 @@ class DesignSystemDemoViewController: BaseViewController {
         tableView.delegate = self
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setNeedsStatusBarAppearanceUpdate()
-    }
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        .lightContent
-    }
-
 }
 
 // ---------------------------------
@@ -81,7 +73,7 @@ extension DesignSystemDemoViewController: UITableViewDataSource, UITableViewDele
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = data[indexPath.section].values[indexPath.row]
+        cell.textLabel?.dsConfigure(with: data[indexPath.section].values[indexPath.row], font: .regularMedium, color: .dsGrayDark)
         cell.accessoryType = .disclosureIndicator
         cell.selectionStyle = .none
         return cell

@@ -14,13 +14,13 @@ extension Container {
         let container = Container()
 
         /// DesignSystemDemoViewModel
-        container.register(DesignSystemDemoViewModel.self) { (_, coordinator: DSDemoCoordinator) in
+        container.register(DesignSystemDemoViewModel.self) { (_, coordinator: DesignSystemDemoCoordinator) in
             return DesignSystemDemoViewModel(coordinatorDelegate: coordinator)
         }
 
         /// DesignSystemDemoViewController
-        container.register(DesignSystemDemoViewController.self) { (resolver, coordinator: DSDemoCoordinator) in
-            let userViewModel = resolver.resolve(DesignSystemDemoViewModel.self, argument: coordinator) ?? DesignSystemDemoViewModel(coordinatorDelegate: DSDemoCoordinator(UINavigationController()))
+        container.register(DesignSystemDemoViewController.self) { (resolver, coordinator: DesignSystemDemoCoordinator) in
+            let userViewModel = resolver.resolve(DesignSystemDemoViewModel.self, argument: coordinator) ?? DesignSystemDemoViewModel(coordinatorDelegate: DesignSystemDemoCoordinator(UINavigationController()))
             return DesignSystemDemoViewController(viewModel: userViewModel)
         }
 

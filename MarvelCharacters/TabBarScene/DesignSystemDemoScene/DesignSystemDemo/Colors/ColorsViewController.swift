@@ -40,11 +40,8 @@ class ColorsViewController: UIViewController {
     // ---------------------------------
 
     private func setup() {
-
-        // Title
         title = "Colors"
 
-        // Table
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.rowHeight = 80
         tableView.tableFooterView = UIView()
@@ -74,8 +71,7 @@ extension ColorsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let color = data[indexPath.section].colors[indexPath.row]
-        cell.textLabel?.text = color.hex
-        cell.textLabel?.textColor = color == .dsBlack ? .white : .black
+        cell.textLabel?.dsConfigure(with: color.hex, font: .regularMedium, color: color == .dsBlack ? .dsWhite : .dsBlack)
         cell.backgroundColor = color
         cell.selectionStyle = .none
         cell.separatorInset = .zero

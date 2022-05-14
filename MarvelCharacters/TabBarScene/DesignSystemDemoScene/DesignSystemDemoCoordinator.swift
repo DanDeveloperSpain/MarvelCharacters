@@ -9,14 +9,14 @@ import UIKit
 import Swinject
 
 // ---------------------------------
-// MARK: DSDemoCoordinatorProtocol
+// MARK: DesignSystemDemoCoordinatorProtocol
 // ---------------------------------
 
-protocol DSDemoCoordinatorProtocol: Coordinator {
-    func showDSDemoViewController()
+protocol DesignSystemDemoCoordinatorProtocol: Coordinator {
+    func showDesignSystemDemoViewController()
 }
 
-class DSDemoCoordinator: DSDemoCoordinatorProtocol {
+class DesignSystemDemoCoordinator: DesignSystemDemoCoordinatorProtocol {
 
     // ---------------------------------
     // MARK: - Properties
@@ -41,10 +41,10 @@ class DSDemoCoordinator: DSDemoCoordinatorProtocol {
     }
 
     func start() {
-        showDSDemoViewController()
+        showDesignSystemDemoViewController()
     }
 
-    func showDSDemoViewController() {
+    func showDesignSystemDemoViewController() {
         let DSDemoVC = Container.sharedDesignSystemDemoContainer.resolve(DesignSystemDemoViewController.self, argument: self) ?? DesignSystemDemoViewController(viewModel: DesignSystemDemoViewModel(coordinatorDelegate: self))
         navigationController.pushViewController(DSDemoVC, animated: true)
     }
@@ -55,7 +55,7 @@ class DSDemoCoordinator: DSDemoCoordinatorProtocol {
 // MARK: - Navigation
 // ---------------------------------
 
-extension DSDemoCoordinator {
+extension DesignSystemDemoCoordinator {
     func openColorsScreen() {
         navigationController.pushViewController(ColorsViewController(), animated: true)
     }
@@ -69,7 +69,7 @@ extension DSDemoCoordinator {
 // MARK: - ViewModel Callback's
 // ---------------------------------
 
-extension DSDemoCoordinator: DesignSystemDemoViewModelCoordinatorDelegate {
+extension DesignSystemDemoCoordinator: DesignSystemDemoViewModelCoordinatorDelegate {
     func goToTypography() {
         openTypographyScreen()
     }
