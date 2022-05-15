@@ -29,7 +29,7 @@ class ComicSerieCell: UICollectionViewCell {
     }
 
     func fill(title: String, year: String, urlImge: String) {
-        thumbnailImageView.kf.setImage(with: URL(string: urlImge), placeholder: UIImage(named: "marverComics"))
+        thumbnailImageView.kf.setImage(with: URL(string: urlImge), placeholder: DSImage(named: .marverComics))
         titleLabel.dsConfigure(with: title, font: .boldSmall, color: .dsWhite)
         yearLabel.dsConfigure(with: year, font: .boldMini, color: .dsPrimaryPure)
     }

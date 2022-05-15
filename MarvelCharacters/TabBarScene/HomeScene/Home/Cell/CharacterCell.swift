@@ -29,7 +29,7 @@ class CharacterCell: UICollectionViewCell {
     }
 
     func fill(characterName: String, urlImge: String) {
-        characterImageView.kf.setImage(with: URL(string: urlImge), placeholder: UIImage(named: "marverComics"))
+        characterImageView.kf.setImage(with: URL(string: urlImge), placeholder: DSImage(named: .marverComics))
         characterNameLabel.dsConfigure(with: characterName, font: .boldSmall, color: .dsWhite)
     }
 

@@ -69,7 +69,7 @@ extension ButtonsViewController: UITableViewDataSource {
 
         cell?.fill(buttonsStateName: buttonsState.name)
         cell?.textButton.dsConfigure(text: "Button", style: buttonsType, state: buttonsState)
-        cell?.iconButton.dsConfigure(image: UIImage(named: "access_icon_mail"), style: buttonsType, state: buttonsState, width: 40)
+        cell?.iconButton.dsConfigure(image: DSImage(named: .icon_mail), style: buttonsType, state: buttonsState, width: 40)
 
         cell?.selectionStyle = .none
 

@@ -111,10 +111,10 @@ extension DesignSystemDemoViewController: UITableViewDataSource, UITableViewDele
                 viewModel?.didSelectDialogs()
             case 2:
                 /// Radio Button
-                print("Radio Button")
+                viewModel?.didSelectRadioButton()
             case 3:
                 /// Checkbox
-                print("Checkbox")
+                viewModel?.didSelectCheckBox()
             default:
                 break
             }

@@ -21,6 +21,8 @@ protocol DesignSystemDemoViewModelCoordinatorDelegate: AnyObject { // ---> Desig
     /// Components
     func goToButtons()
     func goToDialogs()
+    func goToRadioButton()
+    func goToCheckBox()
 }
 
 // ---------------------------------
@@ -96,6 +98,14 @@ final class DesignSystemDemoViewModel: BaseViewModel {
 
     func didSelectDialogs() {
         coordinatorDelegate?.goToDialogs()
+    }
+
+    func didSelectRadioButton() {
+        coordinatorDelegate?.goToRadioButton()
+    }
+
+    func didSelectCheckBox() {
+        coordinatorDelegate?.goToCheckBox()
     }
 
 }

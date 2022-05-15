@@ -37,6 +37,10 @@
 		65F2ACAC2709FF5100D299D4 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F2ACAB2709FF5100D299D4 /* BaseViewController.swift */; };
 		65F2ACAE270A274000D299D4 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F2ACAD270A274000D299D4 /* BaseViewModel.swift */; };
 		65F2ACB9270BA7F300D299D4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F2ACB8270BA7F300D299D4 /* Constants.swift */; };
+		7E1C36982831A3270044A7FE /* RadioButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C36962831A3270044A7FE /* RadioButtonViewController.swift */; };
+		7E1C36992831A3270044A7FE /* RadioButtonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E1C36972831A3270044A7FE /* RadioButtonViewController.xib */; };
+		7E1C369C2831A42E0044A7FE /* CheckboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C369A2831A42D0044A7FE /* CheckboxViewController.swift */; };
+		7E1C369D2831A42E0044A7FE /* CheckboxViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E1C369B2831A42D0044A7FE /* CheckboxViewController.xib */; };
 		7E44E7AC2807186E00545E7E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E44E7AB2807186E00545E7E /* AppCoordinator.swift */; };
 		7E44E7B02807192700545E7E /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E44E7AF2807192700545E7E /* Coordinator.swift */; };
 		7E44E7B328071B1A00545E7E /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E44E7B228071B1A00545E7E /* LoginCoordinator.swift */; };
@@ -128,6 +132,10 @@
 		65F2ACAB2709FF5100D299D4 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		65F2ACAD270A274000D299D4 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		65F2ACB8270BA7F300D299D4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		7E1C36962831A3270044A7FE /* RadioButtonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonViewController.swift; sourceTree = "<group>"; };
+		7E1C36972831A3270044A7FE /* RadioButtonViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RadioButtonViewController.xib; sourceTree = "<group>"; };
+		7E1C369A2831A42D0044A7FE /* CheckboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxViewController.swift; sourceTree = "<group>"; };
+		7E1C369B2831A42D0044A7FE /* CheckboxViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheckboxViewController.xib; sourceTree = "<group>"; };
 		7E44E7AB2807186E00545E7E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		7E44E7AF2807192700545E7E /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		7E44E7B228071B1A00545E7E /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
@@ -360,6 +368,24 @@
 			path = BaseStruct;
 			sourceTree = "<group>";
 		};
+		7E1C36942831A2BF0044A7FE /* RadioButton */ = {
+			isa = PBXGroup;
+			children = (
+				7E1C36972831A3270044A7FE /* RadioButtonViewController.xib */,
+				7E1C36962831A3270044A7FE /* RadioButtonViewController.swift */,
+			);
+			path = RadioButton;
+			sourceTree = "<group>";
+		};
+		7E1C36952831A2D00044A7FE /* Checkbox */ = {
+			isa = PBXGroup;
+			children = (
+				7E1C369B2831A42D0044A7FE /* CheckboxViewController.xib */,
+				7E1C369A2831A42D0044A7FE /* CheckboxViewController.swift */,
+			);
+			path = Checkbox;
+			sourceTree = "<group>";
+		};
 		7E44E7AE2807190700545E7E /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
@@ -542,6 +568,8 @@
 			children = (
 				7EF819F1283105B9001315CF /* Buttons */,
 				7EF819E82830F84D001315CF /* Dialogs */,
+				7E1C36942831A2BF0044A7FE /* RadioButton */,
+				7E1C36952831A2D00044A7FE /* Checkbox */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -667,6 +695,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E1C369D2831A42E0044A7FE /* CheckboxViewController.xib in Resources */,
+				7E1C36992831A3270044A7FE /* RadioButtonViewController.xib in Resources */,
 				7EA05AE6282EFA80003E04B7 /* DesignSystemDemoViewController.xib in Resources */,
 				7E44E7B828071B8B00545E7E /* LoginViewController.xib in Resources */,
 				7EA05AF9282F0F5C003E04B7 /* TypographyViewController.xib in Resources */,
@@ -737,6 +767,7 @@
 				7EA05B07282FC41F003E04B7 /* BordersViewController.swift in Sources */,
 				7E44E7B328071B1A00545E7E /* LoginCoordinator.swift in Sources */,
 				65D70A39270608AA00936F9C /* CharacterData.swift in Sources */,
+				7E1C36982831A3270044A7FE /* RadioButtonViewController.swift in Sources */,
 				65F2ACAC2709FF5100D299D4 /* BaseViewController.swift in Sources */,
 				7EF819EF2830F97B001315CF /* DialogsViewController.swift in Sources */,
 				65F2ACB9270BA7F300D299D4 /* Constants.swift in Sources */,
@@ -750,6 +781,7 @@
 				7E44E7C92807278200545E7E /* UserViewController.swift in Sources */,
 				65516C6F2707AAB500F6D3D4 /* ExceptionHandler.swift in Sources */,
 				65516C882707C82900F6D3D4 /* HeaderSupplementaryView.swift in Sources */,
+				7E1C369C2831A42E0044A7FE /* CheckboxViewController.swift in Sources */,
 				65516C7A2707B18900F6D3D4 /* CharacterDetailViewController.swift in Sources */,
 				7E709A26281002FB00763DC2 /* LoginViewModel.swift in Sources */,
 				7EF819F828315029001315CF /* ButtonCell.swift in Sources */,
@@ -1069,7 +1101,7 @@
 			repositoryURL = "https://github.com/DanDeveloperSpain/DanDesignSystem";
 			requirement = {
 				kind = exactVersion;
-				version = 2.0.0;
+				version = 2.2.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

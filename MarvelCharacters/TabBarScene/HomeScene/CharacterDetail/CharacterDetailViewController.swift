@@ -62,7 +62,7 @@ final class CharacterDetailViewController: BaseViewController {
 
         characterImageView.layer.cornerRadius = 75
         let urlImge = "\(viewModel?.character?.thumbnail?.path ?? "").\(viewModel?.character?.thumbnail?.typeExtension ?? "")"
-        characterImageView.kf.setImage(with: URL(string: urlImge), placeholder: UIImage(named: "marverComics"))
+        characterImageView.kf.setImage(with: URL(string: urlImge), placeholder: DSImage(named: .marverComics))
     }
 
     private func updateDataSourceComic() {

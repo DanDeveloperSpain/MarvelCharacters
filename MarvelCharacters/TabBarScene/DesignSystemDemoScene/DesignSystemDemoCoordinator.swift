@@ -84,6 +84,14 @@ extension DesignSystemDemoCoordinator {
     func openDialogsScreen() {
         navigationController.pushViewController(DialogsViewController(), animated: true)
     }
+
+    func openRadioButtonScreen() {
+        navigationController.pushViewController(RadioButtonViewController(), animated: true)
+    }
+
+    func openCheckboxScreen() {
+        navigationController.pushViewController(CheckboxViewController(), animated: true)
+    }
 }
 
 // ---------------------------------
@@ -118,6 +126,14 @@ extension DesignSystemDemoCoordinator: DesignSystemDemoViewModelCoordinatorDeleg
 
     func goToDialogs() {
         openDialogsScreen()
+    }
+
+    func goToRadioButton() {
+        openRadioButtonScreen()
+    }
+
+    func goToCheckBox() {
+        openCheckboxScreen()
     }
 
 }

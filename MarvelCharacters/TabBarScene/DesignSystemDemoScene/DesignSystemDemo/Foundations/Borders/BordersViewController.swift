@@ -59,7 +59,7 @@ extension BordersViewController: UITableViewDataSource {
         let radius = dataRadius[indexPath.row]
         let border = dataBorder[indexPath.row]
 
-        cell?.fill(borderName: "Radius: " + radius.borderName + " - Border: " + border.borderName, borderRadiusPx: radius == .full ? "maximun radius" : "\(radius.rawValue)" + "px")
+        cell?.fill(borderName: "Radius: " + radius.radiusName + " - Border: " + border.borderName, borderRadiusPx: radius == .full ? "maximun radius" : "\(radius.rawValue)" + "px")
         cell?.borderView.boderRadius(radius: radius, border: border)
 
         return cell ?? UITableViewCell()
