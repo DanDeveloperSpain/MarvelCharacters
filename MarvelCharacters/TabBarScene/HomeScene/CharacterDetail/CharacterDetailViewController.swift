@@ -213,7 +213,26 @@ extension CharacterDetailViewController: CharacterDetailViewModelViewDelegate {
         DispatchQueue.main.async {
             self.comicActivityIndicator.stopAnimating()
             self.serieActivityIndicator.stopAnimating()
-            self.showSimpleAlertAccept(alertTitle: self.viewModel?.errorMessaje ?? "", alertMessage: "")
+
+            /// Modal message
+            let dialogModal = DialogViewController(image: DSImage(named: .icon_info) ?? UIImage(), title: self.viewModel?.errorMessaje ?? "", titlePrimaryButton: NSLocalizedString("Accept", comment: ""), hideCloseButton: false, delegate: self)
+            self.showDialogModal(dialogViewController: dialogModal)
         }
     }
+}
+
+// --------------------------------------------------------------
+// MARK: - DialogButtonViewDelegate
+// --------------------------------------------------------------
+extension CharacterDetailViewController: DialogViewControllerDelegate {
+
+    func tapPrincipalButton() {
+    }
+
+    func tapSecondaryButton() {
+    }
+
+    func tapCloseButton() {
+    }
+
 }

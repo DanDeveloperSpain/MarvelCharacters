@@ -39,6 +39,7 @@ class ShadowsViewController: UIViewController {
         tableView.register(UINib(nibName: ShadowCell.kCellId, bundle: nil), forCellReuseIdentifier: ShadowCell.kCellId)
         tableView.rowHeight = 200
         tableView.tableFooterView = UIView()
+        tableView.separatorStyle = .none
         tableView.dataSource = self
     }
 

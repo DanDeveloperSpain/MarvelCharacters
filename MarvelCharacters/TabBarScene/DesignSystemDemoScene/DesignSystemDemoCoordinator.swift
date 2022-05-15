@@ -56,6 +56,9 @@ class DesignSystemDemoCoordinator: DesignSystemDemoCoordinatorProtocol {
 // ---------------------------------
 
 extension DesignSystemDemoCoordinator {
+
+    // Foundations
+
     func openTypographyScreen() {
         navigationController.pushViewController(TypographyViewController(), animated: true)
     }
@@ -71,6 +74,16 @@ extension DesignSystemDemoCoordinator {
     func openShadowsScreen() {
         navigationController.pushViewController(ShadowsViewController(), animated: true)
     }
+
+    // Components
+
+    func openButtonsScreen() {
+        navigationController.pushViewController(ButtonsViewController(), animated: true)
+    }
+
+    func openDialogsScreen() {
+        navigationController.pushViewController(DialogsViewController(), animated: true)
+    }
 }
 
 // ---------------------------------
@@ -78,6 +91,9 @@ extension DesignSystemDemoCoordinator {
 // ---------------------------------
 
 extension DesignSystemDemoCoordinator: DesignSystemDemoViewModelCoordinatorDelegate {
+
+    // Foundations
+
     func goToTypography() {
         openTypographyScreen()
     }
@@ -92,6 +108,16 @@ extension DesignSystemDemoCoordinator: DesignSystemDemoViewModelCoordinatorDeleg
 
     func goToShadows() {
         openShadowsScreen()
+    }
+
+    // Components
+
+    func goToButtons() {
+        openButtonsScreen()
+    }
+
+    func goToDialogs() {
+        openDialogsScreen()
     }
 
 }

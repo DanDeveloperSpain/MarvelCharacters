@@ -98,11 +98,8 @@ class BaseViewController: UIViewController, BaseViewControllerProtocol {
     // MARK: - Public methods
     // ---------------------------------
 
-    func showSimpleAlertAccept(alertTitle: String, alertMessage: String) {
-        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Accept", comment: ""), style: UIAlertAction.Style.cancel, handler: nil))
-        alert.view.tintColor = .dsPrimaryPure
-        self.present(alert, animated: true, completion: nil)
+    func showDialogModal(dialogViewController: DialogViewController) {
+        self.present(dialogViewController, animated: true, completion: nil)
     }
 
 }

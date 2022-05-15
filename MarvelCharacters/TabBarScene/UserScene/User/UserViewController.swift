@@ -32,7 +32,7 @@ final class UserViewController: BaseViewController {
     override internal func setup() {
         viewModel?.setView(self)
         view.addGradient(colors: [.dsPrimaryPure, .dsSecondaryPure])
-        closeSessionButton.configure(text: NSLocalizedString("Close session", comment: ""), font: .boldSmall, width: 150)
+        closeSessionButton.dsConfigure(text: NSLocalizedString("Close session", comment: ""), style: .secondary, state: .enabled, width: 150)
     }
 
     // ---------------------------------

@@ -19,7 +19,7 @@ class DesignSystemDemoViewController: BaseViewController {
     // MARK: - Properties
     // ---------------------------------
 
-    private let data: [(section: String, values: [String])] = [("Foundations", ["Typography", "Colors", "Borders", "Shadows"]), ("Components", ["Buttons", "Cards", "Chips", "Banners", "Recommendations", "Radio Button", "Date Selector", "Dialog", "Checkbox"])]
+    private let data: [(section: String, values: [String])] = [("Foundations", ["Typography", "Colors", "Borders", "Shadows"]), ("Components", ["Buttons", "Dialog", "Radio Button", "Checkbox"])]
 
     /// Set the model of the view.
     private var viewModel: DesignSystemDemoViewModel? {
@@ -104,11 +104,17 @@ extension DesignSystemDemoViewController: UITableViewDataSource, UITableViewDele
         case 1:
             switch indexPath.row {
             case 0:
-                // Buttons
-                print("Buttons")
+                /// Buttons
+                viewModel?.didSelectButtons()
             case 1:
-                // Cards
-                print("Cards")
+                /// Dialogs
+                viewModel?.didSelectDialogs()
+            case 2:
+                /// Radio Button
+                print("Radio Button")
+            case 3:
+                /// Checkbox
+                print("Checkbox")
             default:
                 break
             }

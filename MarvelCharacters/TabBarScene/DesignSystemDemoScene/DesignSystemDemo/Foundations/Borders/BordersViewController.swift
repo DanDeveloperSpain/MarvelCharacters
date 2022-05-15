@@ -20,7 +20,8 @@ class BordersViewController: UIViewController {
     // MARK: - Properties
     // ---------------------------------
 
-    private let data: [Border] = [.small, .medium, .large, .full]
+    private let dataRadius: [Radius] = [.small, .medium, .large, .full]
+    private let dataBorder: [Border] = [.small, .medium, .small, .small]
 
     // ---------------------------------
     // MARK: - Setup View
@@ -38,6 +39,7 @@ class BordersViewController: UIViewController {
         tableView.register(UINib(nibName: BorderCell.kCellId, bundle: nil), forCellReuseIdentifier: BorderCell.kCellId)
         tableView.rowHeight = 200
         tableView.tableFooterView = UIView()
+        tableView.separatorStyle = .none
         tableView.dataSource = self
     }
 
@@ -49,15 +51,16 @@ class BordersViewController: UIViewController {
 extension BordersViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return dataRadius.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: BorderCell.kCellId, for: indexPath) as? BorderCell
-        let border = data[indexPath.row]
+        let radius = dataRadius[indexPath.row]
+        let border = dataBorder[indexPath.row]
 
-        cell?.fill(borderName: border.borderName, borderRadiusPx: border == .full ? "maximun radius" : "\(border.rawValue)" + "px")
-        cell?.borderView.boder(border: border)
+        cell?.fill(borderName: "Radius: " + radius.borderName + " - Border: " + border.borderName, borderRadiusPx: radius == .full ? "maximun radius" : "\(radius.rawValue)" + "px")
+        cell?.borderView.boderRadius(radius: radius, border: border)
 
         return cell ?? UITableViewCell()
     }

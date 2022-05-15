@@ -33,7 +33,7 @@ class LoginViewController: BaseViewController {
     override internal func setup() {
         viewModel?.setView(self)
         view.addGradient(colors: [.dsBluePure, .dsPurplePure])
-        loginButton.configure(text: NSLocalizedString("Login", comment: ""), font: .boldSmall)
+        loginButton.dsConfigure(text: NSLocalizedString("Login", comment: ""), style: .secondary, state: .enabled)
     }
 
     // ------------------------------------------------
