@@ -59,11 +59,23 @@ class RadioButtonViewController: UIViewController {
 
     }
 
-    private func disabledAllSelectedRadioButtonViewsForDemo(radioButtonViews: [RadioButtonView], selectedView: RadioButtonView) {
+    private func resetAllSelectedRadioButtonViewsForDemo(radioButtonViews: [RadioButtonView], selectedView: RadioButtonView) {
+
         radioButtonViews.forEach {(view) in
-            if view.state == .selected && view != selectedView {
-                view.configure(title: "Active")
-                view.active()
+            if selectedView != view {
+                switch view.id {
+                case 1:
+                    view.active()
+                    view.configure(title: "Active", subTitle: "Subtitle optional")
+                case 2:
+                    view.focus()
+                    view.configure(title: "Focus")
+                case 3:
+                    view.active()
+                    view.configure(title: "Active", subTitle: "Subtitle optional")
+                default:
+                    break
+                }
             }
         }
     }
@@ -77,7 +89,7 @@ extension RadioButtonViewController: RadioButtonViewDelegate {
 
     func radioButtonViewOnClick(view: RadioButtonView) {
         view.configure(title: "Selected")
-        disabledAllSelectedRadioButtonViewsForDemo(radioButtonViews: radioButtonViews, selectedView: view)
+        resetAllSelectedRadioButtonViewsForDemo(radioButtonViews: radioButtonViews, selectedView: view)
     }
 
 }

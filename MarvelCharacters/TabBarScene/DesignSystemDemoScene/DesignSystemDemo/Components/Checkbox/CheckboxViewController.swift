@@ -62,6 +62,22 @@ class CheckboxViewController: UIViewController {
 
     }
 
+    private func resetCheckboxDeselected(deselectedCheckboxView: CheckboxView) {
+        switch deselectedCheckboxView.id {
+        case 1:
+            deselectedCheckboxView.configure(title: "Active", subTitle: "Subtitle optional")
+        case 2:
+            deselectedCheckboxView.focus()
+            deselectedCheckboxView.configure(title: "Focus")
+        case 3:
+            deselectedCheckboxView.configure(title: "Active", subTitle: "Subtitle optional")
+        case 6:
+            deselectedCheckboxView.configure(title: "Interaction Link", subTitle: "Subtitle optional")
+        default:
+            break
+        }
+    }
+
 }
 
 // ---------------------------------
@@ -74,7 +90,7 @@ extension CheckboxViewController: CheckboxViewDelegate {
     }
 
     func checkboxViewDeselected(view: CheckboxView) {
-        view.configure(title: "Active")
+        resetCheckboxDeselected(deselectedCheckboxView: view)
     }
 
     func checkboxViewLinkPressed(view: CheckboxView) {

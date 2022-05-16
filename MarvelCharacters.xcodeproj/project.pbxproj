@@ -1101,7 +1101,7 @@
 			repositoryURL = "https://github.com/DanDeveloperSpain/DanDesignSystem";
 			requirement = {
 				kind = exactVersion;
-				version = 2.2.0;
+				version = 2.2.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

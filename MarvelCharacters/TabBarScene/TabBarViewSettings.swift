@@ -5,7 +5,6 @@
 //  Created by Daniel Pérez Parreño on 13/4/22.
 //
 
-import Foundation
 import UIKit
 
 enum TabBarPage {
