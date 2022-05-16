@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import DanDesignSystem
 
 class ComicSerieCell: UICollectionViewCell {
 
@@ -28,9 +29,9 @@ class ComicSerieCell: UICollectionViewCell {
     }
 
     func fill(title: String, year: String, urlImge: String) {
-        thumbnailImageView.kf.setImage(with: URL(string: urlImge), placeholder: UIImage(named: "marverComics"))
-        titleLabel.configure(with: title, font: .boldSmall, color: .whiteColor)
-        yearLabel.configure(with: year, font: .semiboldSmall, color: .principalColor)
+        thumbnailImageView.kf.setImage(with: URL(string: urlImge), placeholder: DSImage(named: .marverComics))
+        titleLabel.dsConfigure(with: title, font: .boldSmall, color: .dsWhite)
+        yearLabel.dsConfigure(with: year, font: .boldMini, color: .dsPrimaryPure)
     }
 
 }

@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import DanDesignSystem
 
 class CharacterCell: UICollectionViewCell {
 
@@ -28,8 +29,8 @@ class CharacterCell: UICollectionViewCell {
     }
 
     func fill(characterName: String, urlImge: String) {
-        characterImageView.kf.setImage(with: URL(string: urlImge), placeholder: UIImage(named: "marverComics"))
-        characterNameLabel.configure(with: characterName, font: .boldSmall, color: .whiteColor)
+        characterImageView.kf.setImage(with: URL(string: urlImge), placeholder: DSImage(named: .marverComics))
+        characterNameLabel.dsConfigure(with: characterName, font: .boldSmall, color: .dsWhite)
     }
 
 }

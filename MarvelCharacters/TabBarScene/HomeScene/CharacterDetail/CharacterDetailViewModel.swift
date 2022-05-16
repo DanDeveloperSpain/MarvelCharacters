@@ -5,8 +5,7 @@
 //  Created by Daniel Pérez Parreño on 1/10/21.
 //
 
-import UIKit
-import SwiftUI
+import Foundation
 
 // ---------------------------------
 // MARK: - Coordinator Delegates

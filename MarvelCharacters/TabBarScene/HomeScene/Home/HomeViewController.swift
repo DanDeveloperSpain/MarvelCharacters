@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import SwiftUI
+import DanDesignSystem
 
 final class HomeViewController: BaseViewController {
 
@@ -54,10 +54,10 @@ final class HomeViewController: BaseViewController {
     // ------------------------------------------------
 
     private func configureView() {
-        self.title = viewModel?.title
+        setupNavigationBar(title: viewModel?.title, color: .dsWhite)
         tryAgainButton.isHidden = true
-        tryAgainButton.configure(text: NSLocalizedString("Try Again", comment: ""), font: .boldSmall)
-        activityIndicator.color = .secondaryColor
+        tryAgainButton.dsConfigure(text: NSLocalizedString("Try Again", comment: ""), style: .secondary, state: .enabled)
+        activityIndicator.color = .dsSecondaryPure
     }
 
     private func updateDataSource() {
@@ -132,7 +132,10 @@ extension HomeViewController: HomeViewModelViewDelegate {
         DispatchQueue.main.async {
             self.activityIndicator.stopAnimating()
             self.tryAgainButton.isHidden = false
-            self.showSimpleAlertAccept(alertTitle: self.viewModel?.errorMessaje?.0 ?? "", alertMessage: self.viewModel?.errorMessaje?.1 ?? "")
+
+            /// Modal message
+            let dialogModal = DialogViewController(image: DSImage(named: .icon_info) ?? UIImage(), title: self.viewModel?.errorMessaje?.0 ?? "", subtitle: self.viewModel?.errorMessaje?.1 ?? "", titlePrimaryButton: NSLocalizedString("Accept", comment: ""), hideCloseButton: false, delegate: self)
+            self.showDialogModal(dialogViewController: dialogModal)
         }
     }
 
@@ -149,4 +152,20 @@ extension HomeViewController: HomeViewModelViewDelegate {
             self.updateDataSource()
         }
     }
+}
+
+// --------------------------------------------------------------
+// MARK: - DialogButtonViewDelegate
+// --------------------------------------------------------------
+extension HomeViewController: DialogViewControllerDelegate {
+
+    func tapPrincipalButton() {
+    }
+
+    func tapSecondaryButton() {
+    }
+
+    func tapCloseButton() {
+    }
+
 }

@@ -5,7 +5,7 @@
 //  Created by Daniel Pérez Parreño on 30/9/21.
 //
 
-import UIKit
+import Foundation
 
 // ---------------------------------
 // MARK: - Coordinator Delegates

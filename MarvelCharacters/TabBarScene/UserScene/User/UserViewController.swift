@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import DanDesignSystem
 
 final class UserViewController: BaseViewController {
 
@@ -30,8 +31,8 @@ final class UserViewController: BaseViewController {
 
     override internal func setup() {
         viewModel?.setView(self)
-        view.addGradient(colors: [.principalColor, .secondaryColor])
-        closeSessionButton.configure(text: NSLocalizedString("Close session", comment: ""), font: .boldSmall, width: 150)
+        view.addGradient(colors: [.dsPrimaryPure, .dsSecondaryPure])
+        closeSessionButton.dsConfigure(text: NSLocalizedString("Close session", comment: ""), style: .secondary, state: .enabled, width: 150)
     }
 
     // ---------------------------------

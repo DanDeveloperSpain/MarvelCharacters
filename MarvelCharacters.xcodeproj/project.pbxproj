@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		65516C6F2707AAB500F6D3D4 /* ExceptionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65516C6E2707AAB500F6D3D4 /* ExceptionHandler.swift */; };
-		65516C722707AB8500F6D3D4 /* MarvelCharacterColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65516C712707AB8500F6D3D4 /* MarvelCharacterColor.swift */; };
 		65516C762707AF8700F6D3D4 /* ComicData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65516C752707AF8700F6D3D4 /* ComicData.swift */; };
 		65516C7A2707B18900F6D3D4 /* CharacterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65516C782707B18900F6D3D4 /* CharacterDetailViewController.swift */; };
 		65516C7B2707B18900F6D3D4 /* CharacterDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65516C792707B18900F6D3D4 /* CharacterDetailViewController.xib */; };
@@ -37,8 +36,11 @@
 		65D70A6127063C0400936F9C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 65D70A6027063C0400936F9C /* Kingfisher */; };
 		65F2ACAC2709FF5100D299D4 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F2ACAB2709FF5100D299D4 /* BaseViewController.swift */; };
 		65F2ACAE270A274000D299D4 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F2ACAD270A274000D299D4 /* BaseViewModel.swift */; };
-		65F2ACB5270B3CD300D299D4 /* MarvelCharacterFontLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F2ACB4270B3CD300D299D4 /* MarvelCharacterFontLabel.swift */; };
 		65F2ACB9270BA7F300D299D4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F2ACB8270BA7F300D299D4 /* Constants.swift */; };
+		7E1C36982831A3270044A7FE /* RadioButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C36962831A3270044A7FE /* RadioButtonViewController.swift */; };
+		7E1C36992831A3270044A7FE /* RadioButtonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E1C36972831A3270044A7FE /* RadioButtonViewController.xib */; };
+		7E1C369C2831A42E0044A7FE /* CheckboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C369A2831A42D0044A7FE /* CheckboxViewController.swift */; };
+		7E1C369D2831A42E0044A7FE /* CheckboxViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E1C369B2831A42D0044A7FE /* CheckboxViewController.xib */; };
 		7E44E7AC2807186E00545E7E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E44E7AB2807186E00545E7E /* AppCoordinator.swift */; };
 		7E44E7B02807192700545E7E /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E44E7AF2807192700545E7E /* Coordinator.swift */; };
 		7E44E7B328071B1A00545E7E /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E44E7B228071B1A00545E7E /* LoginCoordinator.swift */; };
@@ -55,14 +57,36 @@
 		7E539CC5281073EC006FC1D3 /* DIUserContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E539CC4281073EC006FC1D3 /* DIUserContainer.swift */; };
 		7E539CC728107429006FC1D3 /* DILoginContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E539CC628107429006FC1D3 /* DILoginContainer.swift */; };
 		7E539CCA281077CA006FC1D3 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 7E539CC9281077CA006FC1D3 /* Swinject */; };
-		7E539CCD28114F9A006FC1D3 /* MarvelCharacterGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E539CCC28114F9A006FC1D3 /* MarvelCharacterGradient.swift */; };
-		7E539CCF281153DF006FC1D3 /* MarvelCharacterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E539CCE281153DF006FC1D3 /* MarvelCharacterButton.swift */; };
 		7E539CD128117615006FC1D3 /* CharactersMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E539CD028117615006FC1D3 /* CharactersMock.json */; };
 		7E539CD52811919F006FC1D3 /* ComicsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E539CD42811919F006FC1D3 /* ComicsMock.json */; };
 		7E539CD72811A958006FC1D3 /* SeriesMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E539CD62811A958006FC1D3 /* SeriesMock.json */; };
 		7E539CD92811AA1E006FC1D3 /* CharacterDetailViewModelUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E539CD82811AA1E006FC1D3 /* CharacterDetailViewModelUnitTest.swift */; };
 		7E539CDB2811B0C4006FC1D3 /* AppCoordinatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E539CDA2811B0C4006FC1D3 /* AppCoordinatorTest.swift */; };
 		7E709A26281002FB00763DC2 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E709A25281002FB00763DC2 /* LoginViewModel.swift */; };
+		7EA05AE5282EFA80003E04B7 /* DesignSystemDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA05AE3282EFA80003E04B7 /* DesignSystemDemoViewController.swift */; };
+		7EA05AE6282EFA80003E04B7 /* DesignSystemDemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA05AE4282EFA80003E04B7 /* DesignSystemDemoViewController.xib */; };
+		7EA05AE8282EFAEF003E04B7 /* DesignSystemDemoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA05AE7282EFAEF003E04B7 /* DesignSystemDemoViewModel.swift */; };
+		7EA05AEA282EFDD0003E04B7 /* DesignSystemDemoContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA05AE9282EFDD0003E04B7 /* DesignSystemDemoContainer.swift */; };
+		7EA05AF4282F0EE3003E04B7 /* DanDesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = 7EA05AF3282F0EE3003E04B7 /* DanDesignSystem */; };
+		7EA05AF8282F0F5C003E04B7 /* TypographyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA05AF6282F0F5C003E04B7 /* TypographyViewController.swift */; };
+		7EA05AF9282F0F5C003E04B7 /* TypographyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA05AF7282F0F5C003E04B7 /* TypographyViewController.xib */; };
+		7EA05AFD282F117F003E04B7 /* ColorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA05AFB282F117F003E04B7 /* ColorsViewController.swift */; };
+		7EA05AFE282F117F003E04B7 /* ColorsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA05AFC282F117F003E04B7 /* ColorsViewController.xib */; };
+		7EA05B07282FC41F003E04B7 /* BordersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA05B05282FC41F003E04B7 /* BordersViewController.swift */; };
+		7EA05B08282FC41F003E04B7 /* BordersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA05B06282FC41F003E04B7 /* BordersViewController.xib */; };
+		7EA05B0B282FC48B003E04B7 /* ShadowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA05B09282FC48B003E04B7 /* ShadowsViewController.swift */; };
+		7EA05B0C282FC48B003E04B7 /* ShadowsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA05B0A282FC48B003E04B7 /* ShadowsViewController.xib */; };
+		7EB3B633282EF88D00D69218 /* DesignSystemDemoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB3B632282EF88D00D69218 /* DesignSystemDemoCoordinator.swift */; };
+		7EF819D9282FCE4E001315CF /* BorderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF819D7282FCE4E001315CF /* BorderCell.swift */; };
+		7EF819DA282FCE4E001315CF /* BorderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EF819D8282FCE4E001315CF /* BorderCell.xib */; };
+		7EF819DE282FD2A3001315CF /* ShadowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF819DC282FD2A3001315CF /* ShadowCell.swift */; };
+		7EF819DF282FD2A3001315CF /* ShadowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EF819DD282FD2A3001315CF /* ShadowCell.xib */; };
+		7EF819EF2830F97B001315CF /* DialogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF819ED2830F97B001315CF /* DialogsViewController.swift */; };
+		7EF819F02830F97B001315CF /* DialogsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EF819EE2830F97B001315CF /* DialogsViewController.xib */; };
+		7EF819F4283105F2001315CF /* ButtonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF819F2283105F2001315CF /* ButtonsViewController.swift */; };
+		7EF819F5283105F2001315CF /* ButtonsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EF819F3283105F2001315CF /* ButtonsViewController.xib */; };
+		7EF819F828315029001315CF /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF819F628315029001315CF /* ButtonCell.swift */; };
+		7EF819F928315029001315CF /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EF819F728315029001315CF /* ButtonCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,7 +101,6 @@
 
 /* Begin PBXFileReference section */
 		65516C6E2707AAB500F6D3D4 /* ExceptionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExceptionHandler.swift; sourceTree = "<group>"; };
-		65516C712707AB8500F6D3D4 /* MarvelCharacterColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelCharacterColor.swift; sourceTree = "<group>"; };
 		65516C752707AF8700F6D3D4 /* ComicData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicData.swift; sourceTree = "<group>"; };
 		65516C782707B18900F6D3D4 /* CharacterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewController.swift; sourceTree = "<group>"; };
 		65516C792707B18900F6D3D4 /* CharacterDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterDetailViewController.xib; sourceTree = "<group>"; };
@@ -108,8 +131,11 @@
 		65D70A532706213700936F9C /* CharacterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterCell.xib; sourceTree = "<group>"; };
 		65F2ACAB2709FF5100D299D4 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		65F2ACAD270A274000D299D4 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
-		65F2ACB4270B3CD300D299D4 /* MarvelCharacterFontLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelCharacterFontLabel.swift; sourceTree = "<group>"; };
 		65F2ACB8270BA7F300D299D4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		7E1C36962831A3270044A7FE /* RadioButtonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonViewController.swift; sourceTree = "<group>"; };
+		7E1C36972831A3270044A7FE /* RadioButtonViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RadioButtonViewController.xib; sourceTree = "<group>"; };
+		7E1C369A2831A42D0044A7FE /* CheckboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxViewController.swift; sourceTree = "<group>"; };
+		7E1C369B2831A42D0044A7FE /* CheckboxViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheckboxViewController.xib; sourceTree = "<group>"; };
 		7E44E7AB2807186E00545E7E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		7E44E7AF2807192700545E7E /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		7E44E7B228071B1A00545E7E /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
@@ -125,14 +151,35 @@
 		7E539CC228105D55006FC1D3 /* DIHomeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIHomeContainer.swift; sourceTree = "<group>"; };
 		7E539CC4281073EC006FC1D3 /* DIUserContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIUserContainer.swift; sourceTree = "<group>"; };
 		7E539CC628107429006FC1D3 /* DILoginContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DILoginContainer.swift; sourceTree = "<group>"; };
-		7E539CCC28114F9A006FC1D3 /* MarvelCharacterGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelCharacterGradient.swift; sourceTree = "<group>"; };
-		7E539CCE281153DF006FC1D3 /* MarvelCharacterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelCharacterButton.swift; sourceTree = "<group>"; };
 		7E539CD028117615006FC1D3 /* CharactersMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CharactersMock.json; sourceTree = "<group>"; };
 		7E539CD42811919F006FC1D3 /* ComicsMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ComicsMock.json; sourceTree = "<group>"; };
 		7E539CD62811A958006FC1D3 /* SeriesMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SeriesMock.json; sourceTree = "<group>"; };
 		7E539CD82811AA1E006FC1D3 /* CharacterDetailViewModelUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewModelUnitTest.swift; sourceTree = "<group>"; };
 		7E539CDA2811B0C4006FC1D3 /* AppCoordinatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorTest.swift; sourceTree = "<group>"; };
 		7E709A25281002FB00763DC2 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		7EA05AE3282EFA80003E04B7 /* DesignSystemDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemDemoViewController.swift; sourceTree = "<group>"; };
+		7EA05AE4282EFA80003E04B7 /* DesignSystemDemoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DesignSystemDemoViewController.xib; sourceTree = "<group>"; };
+		7EA05AE7282EFAEF003E04B7 /* DesignSystemDemoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemDemoViewModel.swift; sourceTree = "<group>"; };
+		7EA05AE9282EFDD0003E04B7 /* DesignSystemDemoContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemDemoContainer.swift; sourceTree = "<group>"; };
+		7EA05AF6282F0F5C003E04B7 /* TypographyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypographyViewController.swift; sourceTree = "<group>"; };
+		7EA05AF7282F0F5C003E04B7 /* TypographyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TypographyViewController.xib; sourceTree = "<group>"; };
+		7EA05AFB282F117F003E04B7 /* ColorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsViewController.swift; sourceTree = "<group>"; };
+		7EA05AFC282F117F003E04B7 /* ColorsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorsViewController.xib; sourceTree = "<group>"; };
+		7EA05B05282FC41F003E04B7 /* BordersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BordersViewController.swift; sourceTree = "<group>"; };
+		7EA05B06282FC41F003E04B7 /* BordersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BordersViewController.xib; sourceTree = "<group>"; };
+		7EA05B09282FC48B003E04B7 /* ShadowsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowsViewController.swift; sourceTree = "<group>"; };
+		7EA05B0A282FC48B003E04B7 /* ShadowsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShadowsViewController.xib; sourceTree = "<group>"; };
+		7EB3B632282EF88D00D69218 /* DesignSystemDemoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemDemoCoordinator.swift; sourceTree = "<group>"; };
+		7EF819D7282FCE4E001315CF /* BorderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderCell.swift; sourceTree = "<group>"; };
+		7EF819D8282FCE4E001315CF /* BorderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BorderCell.xib; sourceTree = "<group>"; };
+		7EF819DC282FD2A3001315CF /* ShadowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowCell.swift; sourceTree = "<group>"; };
+		7EF819DD282FD2A3001315CF /* ShadowCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShadowCell.xib; sourceTree = "<group>"; };
+		7EF819ED2830F97B001315CF /* DialogsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogsViewController.swift; sourceTree = "<group>"; };
+		7EF819EE2830F97B001315CF /* DialogsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DialogsViewController.xib; sourceTree = "<group>"; };
+		7EF819F2283105F2001315CF /* ButtonsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsViewController.swift; sourceTree = "<group>"; };
+		7EF819F3283105F2001315CF /* ButtonsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonsViewController.xib; sourceTree = "<group>"; };
+		7EF819F628315029001315CF /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
+		7EF819F728315029001315CF /* ButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +188,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65D70A6127063C0400936F9C /* Kingfisher in Frameworks */,
+				7EA05AF4282F0EE3003E04B7 /* DanDesignSystem in Frameworks */,
 				65D70A4D270610C600936F9C /* Alamofire in Frameworks */,
 				7E539CCA281077CA006FC1D3 /* Swinject in Frameworks */,
 			);
@@ -162,17 +210,6 @@
 				65516C6E2707AAB500F6D3D4 /* ExceptionHandler.swift */,
 			);
 			path = Exceptions;
-			sourceTree = "<group>";
-		};
-		65516C702707AB6400F6D3D4 /* Styles */ = {
-			isa = PBXGroup;
-			children = (
-				65516C712707AB8500F6D3D4 /* MarvelCharacterColor.swift */,
-				65F2ACB4270B3CD300D299D4 /* MarvelCharacterFontLabel.swift */,
-				7E539CCC28114F9A006FC1D3 /* MarvelCharacterGradient.swift */,
-				7E539CCE281153DF006FC1D3 /* MarvelCharacterButton.swift */,
-			);
-			path = Styles;
 			sourceTree = "<group>";
 		};
 		65516C772707B14400F6D3D4 /* CharacterDetail */ = {
@@ -245,7 +282,6 @@
 				65D70A3D270608DE00936F9C /* Services */,
 				65F2ACBC270C4F7200D299D4 /* BaseStruct */,
 				7E539CC128105D2A006FC1D3 /* DI */,
-				65516C702707AB6400F6D3D4 /* Styles */,
 				65F2ACB7270BA7C200D299D4 /* Constants */,
 				6556BE502707D5A400B72CD6 /* Resources */,
 			);
@@ -332,6 +368,24 @@
 			path = BaseStruct;
 			sourceTree = "<group>";
 		};
+		7E1C36942831A2BF0044A7FE /* RadioButton */ = {
+			isa = PBXGroup;
+			children = (
+				7E1C36972831A3270044A7FE /* RadioButtonViewController.xib */,
+				7E1C36962831A3270044A7FE /* RadioButtonViewController.swift */,
+			);
+			path = RadioButton;
+			sourceTree = "<group>";
+		};
+		7E1C36952831A2D00044A7FE /* Checkbox */ = {
+			isa = PBXGroup;
+			children = (
+				7E1C369B2831A42D0044A7FE /* CheckboxViewController.xib */,
+				7E1C369A2831A42D0044A7FE /* CheckboxViewController.swift */,
+			);
+			path = Checkbox;
+			sourceTree = "<group>";
+		};
 		7E44E7AE2807190700545E7E /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
@@ -367,6 +421,7 @@
 				7E44E7C12807260700545E7E /* TabCoordinator.swift */,
 				65D70A2D270607EC00936F9C /* HomeScene */,
 				7E44E7C32807271600545E7E /* UserScene */,
+				7EB3B631282EE47300D69218 /* DesignSystemDemoScene */,
 			);
 			path = TabBarScene;
 			sourceTree = "<group>";
@@ -396,6 +451,7 @@
 				7E539CC228105D55006FC1D3 /* DIHomeContainer.swift */,
 				7E539CC4281073EC006FC1D3 /* DIUserContainer.swift */,
 				7E539CC628107429006FC1D3 /* DILoginContainer.swift */,
+				7EA05AE9282EFDD0003E04B7 /* DesignSystemDemoContainer.swift */,
 			);
 			path = DI;
 			sourceTree = "<group>";
@@ -419,6 +475,133 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
+		7EA05AE2282EFA4C003E04B7 /* DesignSystemDemo */ = {
+			isa = PBXGroup;
+			children = (
+				7EA05AE4282EFA80003E04B7 /* DesignSystemDemoViewController.xib */,
+				7EA05AE3282EFA80003E04B7 /* DesignSystemDemoViewController.swift */,
+				7EA05AE7282EFAEF003E04B7 /* DesignSystemDemoViewModel.swift */,
+				7EA05B04282FC174003E04B7 /* Foundations */,
+				7EF819E72830F826001315CF /* Components */,
+			);
+			path = DesignSystemDemo;
+			sourceTree = "<group>";
+		};
+		7EA05AF5282F0F46003E04B7 /* Typography */ = {
+			isa = PBXGroup;
+			children = (
+				7EA05AF7282F0F5C003E04B7 /* TypographyViewController.xib */,
+				7EA05AF6282F0F5C003E04B7 /* TypographyViewController.swift */,
+			);
+			path = Typography;
+			sourceTree = "<group>";
+		};
+		7EA05AFA282F114D003E04B7 /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				7EA05AFC282F117F003E04B7 /* ColorsViewController.xib */,
+				7EA05AFB282F117F003E04B7 /* ColorsViewController.swift */,
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
+		7EA05B02282FC158003E04B7 /* Borders */ = {
+			isa = PBXGroup;
+			children = (
+				7EF819D6282FCE37001315CF /* Cell */,
+				7EA05B06282FC41F003E04B7 /* BordersViewController.xib */,
+				7EA05B05282FC41F003E04B7 /* BordersViewController.swift */,
+			);
+			path = Borders;
+			sourceTree = "<group>";
+		};
+		7EA05B03282FC168003E04B7 /* Shadows */ = {
+			isa = PBXGroup;
+			children = (
+				7EF819DB282FD28C001315CF /* Cell */,
+				7EA05B0A282FC48B003E04B7 /* ShadowsViewController.xib */,
+				7EA05B09282FC48B003E04B7 /* ShadowsViewController.swift */,
+			);
+			path = Shadows;
+			sourceTree = "<group>";
+		};
+		7EA05B04282FC174003E04B7 /* Foundations */ = {
+			isa = PBXGroup;
+			children = (
+				7EA05AF5282F0F46003E04B7 /* Typography */,
+				7EA05AFA282F114D003E04B7 /* Colors */,
+				7EA05B02282FC158003E04B7 /* Borders */,
+				7EA05B03282FC168003E04B7 /* Shadows */,
+			);
+			path = Foundations;
+			sourceTree = "<group>";
+		};
+		7EB3B631282EE47300D69218 /* DesignSystemDemoScene */ = {
+			isa = PBXGroup;
+			children = (
+				7EB3B632282EF88D00D69218 /* DesignSystemDemoCoordinator.swift */,
+				7EA05AE2282EFA4C003E04B7 /* DesignSystemDemo */,
+			);
+			path = DesignSystemDemoScene;
+			sourceTree = "<group>";
+		};
+		7EF819D6282FCE37001315CF /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				7EF819D8282FCE4E001315CF /* BorderCell.xib */,
+				7EF819D7282FCE4E001315CF /* BorderCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		7EF819DB282FD28C001315CF /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				7EF819DD282FD2A3001315CF /* ShadowCell.xib */,
+				7EF819DC282FD2A3001315CF /* ShadowCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		7EF819E72830F826001315CF /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				7EF819F1283105B9001315CF /* Buttons */,
+				7EF819E82830F84D001315CF /* Dialogs */,
+				7E1C36942831A2BF0044A7FE /* RadioButton */,
+				7E1C36952831A2D00044A7FE /* Checkbox */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		7EF819E82830F84D001315CF /* Dialogs */ = {
+			isa = PBXGroup;
+			children = (
+				7EF819EE2830F97B001315CF /* DialogsViewController.xib */,
+				7EF819ED2830F97B001315CF /* DialogsViewController.swift */,
+			);
+			path = Dialogs;
+			sourceTree = "<group>";
+		};
+		7EF819F1283105B9001315CF /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				7EF819FA28315031001315CF /* Cell */,
+				7EF819F3283105F2001315CF /* ButtonsViewController.xib */,
+				7EF819F2283105F2001315CF /* ButtonsViewController.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		7EF819FA28315031001315CF /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				7EF819F728315029001315CF /* ButtonCell.xib */,
+				7EF819F628315029001315CF /* ButtonCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -440,6 +623,7 @@
 				65D70A4C270610C600936F9C /* Alamofire */,
 				65D70A6027063C0400936F9C /* Kingfisher */,
 				7E539CC9281077CA006FC1D3 /* Swinject */,
+				7EA05AF3282F0EE3003E04B7 /* DanDesignSystem */,
 			);
 			productName = MarvelCharacters;
 			productReference = 65804D3B2704C35E001C42B3 /* MarvelCharacters.app */;
@@ -494,6 +678,7 @@
 				65D70A4B270610C600936F9C /* XCRemoteSwiftPackageReference "Alamofire" */,
 				65D70A5F27063C0300936F9C /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				7E539CC8281077CA006FC1D3 /* XCRemoteSwiftPackageReference "Swinject" */,
+				7EA05AF2282F0EE3003E04B7 /* XCRemoteSwiftPackageReference "DanDesignSystem" */,
 			);
 			productRefGroup = 65804D3C2704C35E001C42B3 /* Products */;
 			projectDirPath = "";
@@ -510,14 +695,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E1C369D2831A42E0044A7FE /* CheckboxViewController.xib in Resources */,
+				7E1C36992831A3270044A7FE /* RadioButtonViewController.xib in Resources */,
+				7EA05AE6282EFA80003E04B7 /* DesignSystemDemoViewController.xib in Resources */,
 				7E44E7B828071B8B00545E7E /* LoginViewController.xib in Resources */,
+				7EA05AF9282F0F5C003E04B7 /* TypographyViewController.xib in Resources */,
+				7EF819DA282FCE4E001315CF /* BorderCell.xib in Resources */,
 				7E44E7CA2807278200545E7E /* UserViewController.xib in Resources */,
+				7EF819DF282FD2A3001315CF /* ShadowCell.xib in Resources */,
 				65516C822707B4F200F6D3D4 /* ComicSerieCell.xib in Resources */,
 				65804D4B2704C360001C42B3 /* LaunchScreen.storyboard in Resources */,
 				65804D482704C360001C42B3 /* Assets.xcassets in Resources */,
+				7EA05B08282FC41F003E04B7 /* BordersViewController.xib in Resources */,
+				7EF819F5283105F2001315CF /* ButtonsViewController.xib in Resources */,
 				65804D7D2704CB76001C42B3 /* HomeViewController.xib in Resources */,
+				7EF819F02830F97B001315CF /* DialogsViewController.xib in Resources */,
 				65516C7B2707B18900F6D3D4 /* CharacterDetailViewController.xib in Resources */,
+				7EA05B0C282FC48B003E04B7 /* ShadowsViewController.xib in Resources */,
 				65516C892707C82900F6D3D4 /* HeaderSupplementaryView.xib in Resources */,
+				7EA05AFE282F117F003E04B7 /* ColorsViewController.xib in Resources */,
+				7EF819F928315029001315CF /* ButtonCell.xib in Resources */,
 				65D70A552706213700936F9C /* CharacterCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -561,16 +758,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E44E7B728071B8B00545E7E /* LoginViewController.swift in Sources */,
+				7EA05AF8282F0F5C003E04B7 /* TypographyViewController.swift in Sources */,
+				7EA05B0B282FC48B003E04B7 /* ShadowsViewController.swift in Sources */,
 				65804D3F2704C35E001C42B3 /* AppDelegate.swift in Sources */,
 				7E44E7CE28072B3B00545E7E /* HomeCoordinator.swift in Sources */,
 				65804D412704C35E001C42B3 /* SceneDelegate.swift in Sources */,
 				65516C762707AF8700F6D3D4 /* ComicData.swift in Sources */,
+				7EA05B07282FC41F003E04B7 /* BordersViewController.swift in Sources */,
 				7E44E7B328071B1A00545E7E /* LoginCoordinator.swift in Sources */,
 				65D70A39270608AA00936F9C /* CharacterData.swift in Sources */,
+				7E1C36982831A3270044A7FE /* RadioButtonViewController.swift in Sources */,
 				65F2ACAC2709FF5100D299D4 /* BaseViewController.swift in Sources */,
+				7EF819EF2830F97B001315CF /* DialogsViewController.swift in Sources */,
 				65F2ACB9270BA7F300D299D4 /* Constants.swift in Sources */,
 				7E44E7C22807260700545E7E /* TabCoordinator.swift in Sources */,
 				65D70A542706213700936F9C /* CharacterCell.swift in Sources */,
+				7EF819D9282FCE4E001315CF /* BorderCell.swift in Sources */,
 				65516C812707B4F200F6D3D4 /* ComicSerieCell.swift in Sources */,
 				65D70A3F2706090700936F9C /* CharacterService.swift in Sources */,
 				65516C7D2707B21400F6D3D4 /* CharacterDetailViewModel.swift in Sources */,
@@ -578,23 +781,28 @@
 				7E44E7C92807278200545E7E /* UserViewController.swift in Sources */,
 				65516C6F2707AAB500F6D3D4 /* ExceptionHandler.swift in Sources */,
 				65516C882707C82900F6D3D4 /* HeaderSupplementaryView.swift in Sources */,
+				7E1C369C2831A42E0044A7FE /* CheckboxViewController.swift in Sources */,
 				65516C7A2707B18900F6D3D4 /* CharacterDetailViewController.swift in Sources */,
 				7E709A26281002FB00763DC2 /* LoginViewModel.swift in Sources */,
+				7EF819F828315029001315CF /* ButtonCell.swift in Sources */,
 				7E539CC728107429006FC1D3 /* DILoginContainer.swift in Sources */,
+				7EF819DE282FD2A3001315CF /* ShadowCell.swift in Sources */,
 				7E44E7CC280727F300545E7E /* UserViewModel.swift in Sources */,
 				65804D7C2704CB76001C42B3 /* HomeViewController.swift in Sources */,
-				7E539CCD28114F9A006FC1D3 /* MarvelCharacterGradient.swift in Sources */,
+				7EB3B633282EF88D00D69218 /* DesignSystemDemoCoordinator.swift in Sources */,
 				7E44E7C52807274500545E7E /* UserCoordinator.swift in Sources */,
-				65F2ACB5270B3CD300D299D4 /* MarvelCharacterFontLabel.swift in Sources */,
-				7E539CCF281153DF006FC1D3 /* MarvelCharacterButton.swift in Sources */,
+				7EA05AE5282EFA80003E04B7 /* DesignSystemDemoViewController.swift in Sources */,
+				7EA05AFD282F117F003E04B7 /* ColorsViewController.swift in Sources */,
+				7EF819F4283105F2001315CF /* ButtonsViewController.swift in Sources */,
 				65516C842707BD0800F6D3D4 /* SerieData.swift in Sources */,
 				65D70A472706094D00936F9C /* MarvelApiService.swift in Sources */,
 				65F2ACAE270A274000D299D4 /* BaseViewModel.swift in Sources */,
-				65516C722707AB8500F6D3D4 /* MarvelCharacterColor.swift in Sources */,
+				7EA05AEA282EFDD0003E04B7 /* DesignSystemDemoContainer.swift in Sources */,
 				7E539CC5281073EC006FC1D3 /* DIUserContainer.swift in Sources */,
 				7E539CC328105D55006FC1D3 /* DIHomeContainer.swift in Sources */,
 				7E44E7B02807192700545E7E /* Coordinator.swift in Sources */,
 				7E44E7C0280725BB00545E7E /* TabBarViewSettings.swift in Sources */,
+				7EA05AE8282EFAEF003E04B7 /* DesignSystemDemoViewModel.swift in Sources */,
 				65D70A312706085400936F9C /* HomeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -888,6 +1096,14 @@
 				version = 2.8.1;
 			};
 		};
+		7EA05AF2282F0EE3003E04B7 /* XCRemoteSwiftPackageReference "DanDesignSystem" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/DanDeveloperSpain/DanDesignSystem";
+			requirement = {
+				kind = exactVersion;
+				version = 2.2.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -905,6 +1121,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7E539CC8281077CA006FC1D3 /* XCRemoteSwiftPackageReference "Swinject" */;
 			productName = Swinject;
+		};
+		7EA05AF3282F0EE3003E04B7 /* DanDesignSystem */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7EA05AF2282F0EE3003E04B7 /* XCRemoteSwiftPackageReference "DanDesignSystem" */;
+			productName = DanDesignSystem;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
