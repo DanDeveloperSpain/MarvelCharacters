@@ -1,6 +1,6 @@
 # Marvel Characters
 
-This project shows the list of all Marvel characters and their appearances in comis and series.
+This project shows the list of all Marvel characters and their appearances in comics and series.
 
 ## Tools info ℹ️
 
@@ -23,12 +23,19 @@ The architecture used is MVVM with Coordinator design pattern.
 
 Also dependency injection is used organized in containers with Swinject library.
 
+## Design System 🗂
+
+I have added the implementation of an own design system (Dan Design System). 
+As the application is simple, I have created a tab to show a demo of this design system.
+
 
 ## Interface 📱
 
 The user interface is very simple since I decided to spend more time in the code and structure.
 
 I have simulated a login in the application to create a real flow, but the Login and User screens only implement the login and logout functions.
+
+## Others 💻
 
 I have implemented Async/Await functions introduced in Swift 5.5.
 
@@ -41,7 +48,7 @@ There are NSLocalizedString functions but I have not translated the app as it is
 
 The libraries in this project are imported with Swift Package Manager, so you don't need to install cocoapods, just build and run👨‍💻
 
-### APIKey 🔑
+## APIKey 🔑
 No api key should be stored in a repository, end less more at a public repository.
 
 Put your api keys in the environment variables created at Scheme arguments
