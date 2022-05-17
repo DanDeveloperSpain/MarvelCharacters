@@ -51,6 +51,9 @@ There are NSLocalizedString functions but I have not translated the app as it is
 The libraries in this project are imported with Swift Package Manager, so you don't need to install cocoapods, just build and run👨‍💻
 
 ## APIKey 🔑
+
+Get your API key here: https://developer.marvel.com/
+
 No api key should be stored in a repository, end less more at a public repository.
 
 Put your api keys in the environment variables created at Scheme arguments
