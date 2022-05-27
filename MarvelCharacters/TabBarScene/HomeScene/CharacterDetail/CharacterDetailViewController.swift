@@ -44,6 +44,10 @@ final class CharacterDetailViewController: BaseViewController {
         serieActivityIndicator.startAnimating()
     }
 
+    // ------------------------------------------------
+    // MARK: - Buton Action's
+    // ------------------------------------------------
+
     /// Actions to take when the back button is pressed and the screen is going to be deleted.
     ///
     /// In this case we do not need to take any action.
