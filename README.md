@@ -12,7 +12,7 @@ This project shows the list of all Marvel characters and their appearances in co
 I have managed the external libraries with SPM, much cleaner and faster than with CocoaPods.
 - Alamofire 5.4.4
   - for API requests.
-- Kingfisher 6.3.0
+- SDWebImage 5.12.5
   - to download and manage images.
 - Swinject 2.8.1
   - to create containers and handle dependency injection.
