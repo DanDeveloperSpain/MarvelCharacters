@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 import DanDesignSystem
 
 final class CharacterDetailViewController: BaseViewController {
@@ -62,7 +63,7 @@ final class CharacterDetailViewController: BaseViewController {
 
         characterImageView.layer.cornerRadius = 75
         let urlImge = "\(viewModel?.character?.thumbnail?.path ?? "").\(viewModel?.character?.thumbnail?.typeExtension ?? "")"
-        characterImageView.kf.setImage(with: URL(string: urlImge), placeholder: DSImage(named: .marverComics))
+        characterImageView.sd_setImage(with: URL(string: urlImge), placeholderImage: DSImage(named: .marverComics))
     }
 
     private func updateDataSourceComic() {

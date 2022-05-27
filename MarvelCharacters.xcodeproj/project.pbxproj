@@ -33,10 +33,10 @@
 		65D70A4D270610C600936F9C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 65D70A4C270610C600936F9C /* Alamofire */; };
 		65D70A542706213700936F9C /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D70A522706213700936F9C /* CharacterCell.swift */; };
 		65D70A552706213700936F9C /* CharacterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65D70A532706213700936F9C /* CharacterCell.xib */; };
-		65D70A6127063C0400936F9C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 65D70A6027063C0400936F9C /* Kingfisher */; };
 		65F2ACAC2709FF5100D299D4 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F2ACAB2709FF5100D299D4 /* BaseViewController.swift */; };
 		65F2ACAE270A274000D299D4 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F2ACAD270A274000D299D4 /* BaseViewModel.swift */; };
 		65F2ACB9270BA7F300D299D4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F2ACB8270BA7F300D299D4 /* Constants.swift */; };
+		73DBB5B92840B63C00E8D5D6 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 73DBB5B82840B63C00E8D5D6 /* SDWebImage */; };
 		7E1C36982831A3270044A7FE /* RadioButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C36962831A3270044A7FE /* RadioButtonViewController.swift */; };
 		7E1C36992831A3270044A7FE /* RadioButtonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E1C36972831A3270044A7FE /* RadioButtonViewController.xib */; };
 		7E1C369C2831A42E0044A7FE /* CheckboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C369A2831A42D0044A7FE /* CheckboxViewController.swift */; };
@@ -187,9 +187,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65D70A6127063C0400936F9C /* Kingfisher in Frameworks */,
 				7EA05AF4282F0EE3003E04B7 /* DanDesignSystem in Frameworks */,
 				65D70A4D270610C600936F9C /* Alamofire in Frameworks */,
+				73DBB5B92840B63C00E8D5D6 /* SDWebImage in Frameworks */,
 				7E539CCA281077CA006FC1D3 /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -621,9 +621,9 @@
 			name = MarvelCharacters;
 			packageProductDependencies = (
 				65D70A4C270610C600936F9C /* Alamofire */,
-				65D70A6027063C0400936F9C /* Kingfisher */,
 				7E539CC9281077CA006FC1D3 /* Swinject */,
 				7EA05AF3282F0EE3003E04B7 /* DanDesignSystem */,
+				73DBB5B82840B63C00E8D5D6 /* SDWebImage */,
 			);
 			productName = MarvelCharacters;
 			productReference = 65804D3B2704C35E001C42B3 /* MarvelCharacters.app */;
@@ -676,9 +676,9 @@
 			mainGroup = 65804D322704C35E001C42B3;
 			packageReferences = (
 				65D70A4B270610C600936F9C /* XCRemoteSwiftPackageReference "Alamofire" */,
-				65D70A5F27063C0300936F9C /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				7E539CC8281077CA006FC1D3 /* XCRemoteSwiftPackageReference "Swinject" */,
 				7EA05AF2282F0EE3003E04B7 /* XCRemoteSwiftPackageReference "DanDesignSystem" */,
+				73DBB5B72840B63C00E8D5D6 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = 65804D3C2704C35E001C42B3 /* Products */;
 			projectDirPath = "";
@@ -1080,12 +1080,12 @@
 				version = 5.4.4;
 			};
 		};
-		65D70A5F27063C0300936F9C /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		73DBB5B72840B63C00E8D5D6 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
 			requirement = {
 				kind = exactVersion;
-				version = 6.3.0;
+				version = 5.12.5;
 			};
 		};
 		7E539CC8281077CA006FC1D3 /* XCRemoteSwiftPackageReference "Swinject" */ = {
@@ -1112,10 +1112,10 @@
 			package = 65D70A4B270610C600936F9C /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
-		65D70A6027063C0400936F9C /* Kingfisher */ = {
+		73DBB5B82840B63C00E8D5D6 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 65D70A5F27063C0300936F9C /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
+			package = 73DBB5B72840B63C00E8D5D6 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
 		};
 		7E539CC9281077CA006FC1D3 /* Swinject */ = {
 			isa = XCSwiftPackageProductDependency;

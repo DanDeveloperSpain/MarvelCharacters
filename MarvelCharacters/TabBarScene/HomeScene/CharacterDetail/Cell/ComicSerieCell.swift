@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Kingfisher
+import SDWebImage
 import DanDesignSystem
 
 class ComicSerieCell: UICollectionViewCell {
@@ -24,12 +24,12 @@ class ComicSerieCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
 
-        thumbnailImageView.kf.cancelDownloadTask()
+        thumbnailImageView.sd_cancelCurrentImageLoad()
         thumbnailImageView.image = nil
     }
 
     func fill(title: String, year: String, urlImge: String) {
-        thumbnailImageView.kf.setImage(with: URL(string: urlImge), placeholder: DSImage(named: .marverComics))
+        thumbnailImageView.sd_setImage(with: URL(string: urlImge), placeholderImage: DSImage(named: .marverComics))
         titleLabel.dsConfigure(with: title, font: .boldSmall, color: .dsWhite)
         yearLabel.dsConfigure(with: year, font: .boldMini, color: .dsPrimaryPure)
     }
