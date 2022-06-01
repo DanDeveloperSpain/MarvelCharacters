@@ -47,7 +47,7 @@ class LoginViewController: BaseViewController {
 }
 
 // --------------------------------------------------------------
-// MARK: - HomeViewModelViewDelegate
+// MARK: - LoginViewModelViewDelegate
 // --------------------------------------------------------------
 extension LoginViewController: LoginViewModelViewDelegate {
 

@@ -13,7 +13,7 @@ import Swinject
 // ---------------------------------
 
 protocol HomeCoordinatorProtocol: Coordinator {
-    func showHomeViewController()
+    func showCharactersListViewController()
 }
 
 // ---------------------------------
@@ -45,11 +45,11 @@ class HomeCoordinator: HomeCoordinatorProtocol {
     }
 
     func start() {
-        showHomeViewController()
+        showCharactersListViewController()
     }
 
-    func showHomeViewController() {
-        let homeVC = Container.sharedHomeContainer.resolve(HomeViewController.self, argument: self) ?? HomeViewController(viewModel: HomeViewModel(coordinatorDelegate: self, characterService: CharacterService()))
+    func showCharactersListViewController() {
+        let homeVC = Container.sharedHomeContainer.resolve(CharactersListViewController.self, argument: self) ?? CharactersListViewController(viewModel: CharactersListViewModel(coordinatorDelegate: self, characterService: CharacterService()))
         navigationController.pushViewController(homeVC, animated: true)
     }
 
@@ -71,7 +71,7 @@ extension HomeCoordinator {
 // MARK: - ViewModel Callback's
 // ---------------------------------
 
-extension HomeCoordinator: HomeViewModelCoordinatorDelegate {
+extension HomeCoordinator: CharactersListViewModelCoordinatorDelegate {
 
     func goToCharacterDetail(character: Character) {
         openCharacterDetail(character: character)

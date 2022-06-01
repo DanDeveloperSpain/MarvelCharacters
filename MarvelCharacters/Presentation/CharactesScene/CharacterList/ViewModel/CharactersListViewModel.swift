@@ -1,5 +1,5 @@
 //
-//  HomeViewModel.swift
+//  CharactersListViewModel.swift
 //  MarvelCharacters
 //
 //  Created by Daniel Pérez Parreño on 30/9/21.
@@ -11,7 +11,7 @@ import Foundation
 // MARK: - Coordinator Delegates
 // ---------------------------------
 
-protocol HomeViewModelCoordinatorDelegate: AnyObject { // ---> HomeCoordinator
+protocol CharactersListViewModelCoordinatorDelegate: AnyObject { // ---> CharactersListCoordinator
     func goToCharacterDetail(character: Character)
 }
 
@@ -19,22 +19,22 @@ protocol HomeViewModelCoordinatorDelegate: AnyObject { // ---> HomeCoordinator
 // MARK: - View Delegates
 // ---------------------------------
 
-protocol HomeViewModelViewDelegate: BaseControllerViewModelProtocol { // ---> HomeViewController
+protocol CharactersListViewModelViewDelegate: BaseControllerViewModelProtocol { // ---> CharactersListViewController
     func showError()
     func loadCharacters()
 }
 
-final class HomeViewModel: BaseViewModel {
+final class CharactersListViewModel: BaseViewModel {
 
     // ---------------------------------
     // MARK: - Delegates
     // ---------------------------------
 
-    private weak var coordinatorDelegate: HomeViewModelCoordinatorDelegate?
+    private weak var coordinatorDelegate: CharactersListViewModelCoordinatorDelegate?
 
     /// Set the view of the model.
-    private weak var viewDelegate: HomeViewModelViewDelegate? {
-        return self.baseView as? HomeViewModelViewDelegate
+    private weak var viewDelegate: CharactersListViewModelViewDelegate? {
+        return self.baseView as? CharactersListViewModelViewDelegate
     }
 
     // ---------------------------------
@@ -77,11 +77,11 @@ final class HomeViewModel: BaseViewModel {
     // MARK: - ViewModel
     // ------------------------------------------------
 
-    /// Create a new HomeviewModel.
+    /// Create a new CharactersListviewModel.
     /// - Parameters:
     ///   - coordinatorDelegate: The coordinator delegate.
     ///   - characterService: Api call service.
-    init(coordinatorDelegate: HomeViewModelCoordinatorDelegate, characterService: CharacterServiceProtocol) {
+    init(coordinatorDelegate: CharactersListViewModelCoordinatorDelegate, characterService: CharacterServiceProtocol) {
         self.coordinatorDelegate = coordinatorDelegate
         self.characterService = characterService
     }

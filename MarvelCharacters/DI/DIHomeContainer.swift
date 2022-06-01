@@ -22,16 +22,16 @@ extension Container {
             characterService
         }
 
-        /// HomeViewModel
-        container.register(HomeViewModel.self) { (resolver, coordinator: HomeCoordinator) in
+        /// CharacterListViewModel
+        container.register(CharactersListViewModel.self) { (resolver, coordinator: HomeCoordinator) in
             let service = resolver.resolve(CharacterServiceProtocol.self) ?? characterService
-            return HomeViewModel(coordinatorDelegate: coordinator, characterService: service)
+            return CharactersListViewModel(coordinatorDelegate: coordinator, characterService: service)
         }
 
-        /// HomeViewController
-        container.register(HomeViewController.self) { (resolver, coordinator: HomeCoordinator) in
-            let homeviewModel = resolver.resolve(HomeViewModel.self, argument: coordinator) ?? HomeViewModel(coordinatorDelegate: homeCoordinator, characterService: characterService)
-            return HomeViewController(viewModel: homeviewModel)
+        /// CharacterListViewController
+        container.register(CharactersListViewController.self) { (resolver, coordinator: HomeCoordinator) in
+            let charactersListViewModel = resolver.resolve(CharactersListViewModel.self, argument: coordinator) ?? CharactersListViewModel(coordinatorDelegate: homeCoordinator, characterService: characterService)
+            return CharactersListViewController(viewModel: charactersListViewModel)
         }
 
         /// CharacterDetailViewModel

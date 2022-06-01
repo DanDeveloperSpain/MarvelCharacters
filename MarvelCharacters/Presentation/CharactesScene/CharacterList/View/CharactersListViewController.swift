@@ -1,5 +1,5 @@
 //
-//  HomeViewController.swift
+//  CharactersListViewController.swift
 //  MarvelCharacters
 //
 //  Created by Daniel Pérez Parreño on 29/9/21.
@@ -8,7 +8,7 @@
 import UIKit
 import DanDesignSystem
 
-final class HomeViewController: BaseViewController {
+final class CharactersListViewController: BaseViewController {
 
     // ------------------------------------------------
     // MARK: - Outlets
@@ -23,8 +23,8 @@ final class HomeViewController: BaseViewController {
     // ------------------------------------------------
 
     /// Set the model of the view.
-    private var viewModel: HomeViewModel? {
-        return self.baseViewModel as? HomeViewModel
+    private var viewModel: CharactersListViewModel? {
+        return self.baseViewModel as? CharactersListViewModel
     }
 
     // ---------------------------------
@@ -88,7 +88,7 @@ final class HomeViewController: BaseViewController {
 // MARK: - UICollectionViewDataSource, UICollectionViewDelegate
 // --------------------------------------------------------------
 
-extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension CharactersListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.viewModel?.numberOfItemsInSection(section: section) ?? 0
@@ -125,9 +125,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 }
 
 // --------------------------------------------------------------
-// MARK: - HomeViewModelViewDelegate
+// MARK: - CharactersListViewModelViewDelegate
 // --------------------------------------------------------------
-extension HomeViewController: HomeViewModelViewDelegate {
+extension CharactersListViewController: CharactersListViewModelViewDelegate {
     func showError() {
         DispatchQueue.main.async {
             self.activityIndicator.stopAnimating()
@@ -157,7 +157,7 @@ extension HomeViewController: HomeViewModelViewDelegate {
 // --------------------------------------------------------------
 // MARK: - DialogButtonViewDelegate
 // --------------------------------------------------------------
-extension HomeViewController: DialogViewControllerDelegate {
+extension CharactersListViewController: DialogViewControllerDelegate {
 
     func tapPrincipalButton() {
     }

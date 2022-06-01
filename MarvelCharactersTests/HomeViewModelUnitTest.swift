@@ -10,14 +10,14 @@ import XCTest
 
 class HomeViewModelUnitTest: XCTestCase {
 
-    private(set) var homeViewModel: HomeViewModel?
+    private(set) var homeViewModel: CharactersListViewModel?
 
     override func setUp() {
         let characterDummyService = CharacterDummyService()
         let navigationController = UINavigationController()
         let homeCoordinator = HomeCoordinator(navigationController)
 
-        homeViewModel = HomeViewModel(coordinatorDelegate: homeCoordinator, characterService: characterDummyService)
+        homeViewModel = CharactersListViewModel(coordinatorDelegate: homeCoordinator, characterService: characterDummyService)
 
         homeViewModel?.start()
 
