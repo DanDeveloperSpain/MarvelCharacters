@@ -310,7 +310,6 @@
 				7E14AE0128461F070089CAB5 /* Infraestructure */,
 				6556BE502707D5A400B72CD6 /* Resources */,
 				7E14AE0228461F460089CAB5 /* separator------ */,
-				7E44E7AE2807190700545E7E /* Coordinator */,
 				7E44E7B128071AD100545E7E /* LoginScene */,
 				7E44E7BE2807257F00545E7E /* TabBarScene */,
 				65D70A3D270608DE00936F9C /* Services */,
@@ -403,6 +402,7 @@
 		7E14ADFD28461E150089CAB5 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				7E44E7AE2807190700545E7E /* Coordinator */,
 				65804D3E2704C35E001C42B3 /* AppDelegate.swift */,
 				65804D402704C35E001C42B3 /* SceneDelegate.swift */,
 				7E14AE1B284661820089CAB5 /* AppConfiguration.swift */,
