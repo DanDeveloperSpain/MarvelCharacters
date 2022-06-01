@@ -43,6 +43,15 @@
 		7E14ADF8284614F30089CAB5 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 7E14ADF7284614F30089CAB5 /* RxRelay */; };
 		7E14ADFA284614F30089CAB5 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7E14ADF9284614F30089CAB5 /* RxSwift */; };
 		7E14ADFC284614F30089CAB5 /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = 7E14ADFB284614F30089CAB5 /* RxTest */; };
+		7E14AE0B284621980089CAB5 /* CharactersRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E14AE0A284621980089CAB5 /* CharactersRepositoryProtocol.swift */; };
+		7E14AE0F284622B10089CAB5 /* CharactersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E14AE0E284622B10089CAB5 /* CharactersRepository.swift */; };
+		7E14AE14284627B40089CAB5 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E14AE13284627B40089CAB5 /* NetworkService.swift */; };
+		7E14AE16284628990089CAB5 /* DataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E14AE15284628990089CAB5 /* DataRequest.swift */; };
+		7E14AE18284630E40089CAB5 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E14AE17284630E40089CAB5 /* ErrorResponse.swift */; };
+		7E14AE1A284656090089CAB5 /* CharactersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E14AE19284656090089CAB5 /* CharactersRequest.swift */; };
+		7E14AE1C284661820089CAB5 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E14AE1B284661820089CAB5 /* AppConfiguration.swift */; };
+		7E14AE1E28466DDA0089CAB5 /* NetworkErrorLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E14AE1D28466DDA0089CAB5 /* NetworkErrorLogger.swift */; };
+		7E14AE202846725B0089CAB5 /* FetchCharactersUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E14AE1F2846725B0089CAB5 /* FetchCharactersUseCase.swift */; };
 		7E1C36982831A3270044A7FE /* RadioButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C36962831A3270044A7FE /* RadioButtonViewController.swift */; };
 		7E1C36992831A3270044A7FE /* RadioButtonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E1C36972831A3270044A7FE /* RadioButtonViewController.xib */; };
 		7E1C369C2831A42E0044A7FE /* CheckboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C369A2831A42D0044A7FE /* CheckboxViewController.swift */; };
@@ -139,6 +148,15 @@
 		65F2ACAD270A274000D299D4 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		65F2ACB8270BA7F300D299D4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		73DBB5BB2840C80900E8D5D6 /* Encryption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encryption.swift; sourceTree = "<group>"; };
+		7E14AE0A284621980089CAB5 /* CharactersRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersRepositoryProtocol.swift; sourceTree = "<group>"; };
+		7E14AE0E284622B10089CAB5 /* CharactersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersRepository.swift; sourceTree = "<group>"; };
+		7E14AE13284627B40089CAB5 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		7E14AE15284628990089CAB5 /* DataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRequest.swift; sourceTree = "<group>"; };
+		7E14AE17284630E40089CAB5 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
+		7E14AE19284656090089CAB5 /* CharactersRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersRequest.swift; sourceTree = "<group>"; };
+		7E14AE1B284661820089CAB5 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		7E14AE1D28466DDA0089CAB5 /* NetworkErrorLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorLogger.swift; sourceTree = "<group>"; };
+		7E14AE1F2846725B0089CAB5 /* FetchCharactersUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCharactersUseCase.swift; sourceTree = "<group>"; };
 		7E1C36962831A3270044A7FE /* RadioButtonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonViewController.swift; sourceTree = "<group>"; };
 		7E1C36972831A3270044A7FE /* RadioButtonViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RadioButtonViewController.xib; sourceTree = "<group>"; };
 		7E1C369A2831A42D0044A7FE /* CheckboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxViewController.swift; sourceTree = "<group>"; };
@@ -258,6 +276,8 @@
 			isa = PBXGroup;
 			children = (
 				65804D472704C360001C42B3 /* Assets.xcassets */,
+				65804D4C2704C360001C42B3 /* Info.plist */,
+				65804D492704C360001C42B3 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -283,20 +303,21 @@
 		65804D3D2704C35E001C42B3 /* MarvelCharacters */ = {
 			isa = PBXGroup;
 			children = (
-				65804D3E2704C35E001C42B3 /* AppDelegate.swift */,
-				65804D402704C35E001C42B3 /* SceneDelegate.swift */,
-				65804D492704C360001C42B3 /* LaunchScreen.storyboard */,
-				65804D4C2704C360001C42B3 /* Info.plist */,
+				7E14ADFD28461E150089CAB5 /* Application */,
+				7E14ADFF28461EE30089CAB5 /* Presentation */,
+				7E14ADFE28461E230089CAB5 /* Domain */,
+				7E14AE0028461F020089CAB5 /* Data */,
+				7E14AE0128461F070089CAB5 /* Infraestructure */,
+				6556BE502707D5A400B72CD6 /* Resources */,
+				7E14AE0228461F460089CAB5 /* separator------ */,
 				7E44E7AE2807190700545E7E /* Coordinator */,
 				7E44E7B128071AD100545E7E /* LoginScene */,
 				7E44E7BE2807257F00545E7E /* TabBarScene */,
-				65D70A2F2706081300936F9C /* Model */,
 				65D70A3D270608DE00936F9C /* Services */,
 				65F2ACBC270C4F7200D299D4 /* BaseStruct */,
 				7E539CC128105D2A006FC1D3 /* DI */,
 				73DBB5BA2840C7DA00E8D5D6 /* Utils */,
 				65F2ACB7270BA7C200D299D4 /* Constants */,
-				6556BE502707D5A400B72CD6 /* Resources */,
 			);
 			path = MarvelCharacters;
 			sourceTree = "<group>";
@@ -333,16 +354,6 @@
 				65D70A302706085400936F9C /* HomeViewModel.swift */,
 			);
 			path = Home;
-			sourceTree = "<group>";
-		};
-		65D70A2F2706081300936F9C /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				65D70A38270608AA00936F9C /* CharacterData.swift */,
-				65516C752707AF8700F6D3D4 /* ComicData.swift */,
-				65516C832707BD0800F6D3D4 /* SerieData.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		65D70A3D270608DE00936F9C /* Services */ = {
@@ -387,6 +398,126 @@
 				73DBB5BB2840C80900E8D5D6 /* Encryption.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		7E14ADFD28461E150089CAB5 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				65804D3E2704C35E001C42B3 /* AppDelegate.swift */,
+				65804D402704C35E001C42B3 /* SceneDelegate.swift */,
+				7E14AE1B284661820089CAB5 /* AppConfiguration.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		7E14ADFE28461E230089CAB5 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				7E14AE0328461F8A0089CAB5 /* Entities */,
+				7E14AE0428461FB40089CAB5 /* UseCases */,
+				7E14AE0528461FC60089CAB5 /* Interfaces */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		7E14ADFF28461EE30089CAB5 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		7E14AE0028461F020089CAB5 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				7E14AE07284620420089CAB5 /* Repositories */,
+				7E14AE08284620520089CAB5 /* Network */,
+				7E14AE092846205C0089CAB5 /* PersistentStorages */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		7E14AE0128461F070089CAB5 /* Infraestructure */ = {
+			isa = PBXGroup;
+			children = (
+				7E14AE122846276F0089CAB5 /* Network */,
+			);
+			path = Infraestructure;
+			sourceTree = "<group>";
+		};
+		7E14AE0228461F460089CAB5 /* separator------ */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "separator------";
+			sourceTree = "<group>";
+		};
+		7E14AE0328461F8A0089CAB5 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				65D70A38270608AA00936F9C /* CharacterData.swift */,
+				65516C832707BD0800F6D3D4 /* SerieData.swift */,
+				65516C752707AF8700F6D3D4 /* ComicData.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		7E14AE0428461FB40089CAB5 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				7E14AE1F2846725B0089CAB5 /* FetchCharactersUseCase.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		7E14AE0528461FC60089CAB5 /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				7E14AE0628461FD20089CAB5 /* Repositories */,
+			);
+			path = Interfaces;
+			sourceTree = "<group>";
+		};
+		7E14AE0628461FD20089CAB5 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				7E14AE0A284621980089CAB5 /* CharactersRepositoryProtocol.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		7E14AE07284620420089CAB5 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				7E14AE0E284622B10089CAB5 /* CharactersRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		7E14AE08284620520089CAB5 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				7E14AE19284656090089CAB5 /* CharactersRequest.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		7E14AE092846205C0089CAB5 /* PersistentStorages */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PersistentStorages;
+			sourceTree = "<group>";
+		};
+		7E14AE122846276F0089CAB5 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				7E14AE13284627B40089CAB5 /* NetworkService.swift */,
+				7E14AE15284628990089CAB5 /* DataRequest.swift */,
+				7E14AE17284630E40089CAB5 /* ErrorResponse.swift */,
+				7E14AE1D28466DDA0089CAB5 /* NetworkErrorLogger.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		7E1C36942831A2BF0044A7FE /* RadioButton */ = {
@@ -792,33 +923,41 @@
 				65804D3F2704C35E001C42B3 /* AppDelegate.swift in Sources */,
 				7E44E7CE28072B3B00545E7E /* HomeCoordinator.swift in Sources */,
 				65804D412704C35E001C42B3 /* SceneDelegate.swift in Sources */,
+				7E14AE202846725B0089CAB5 /* FetchCharactersUseCase.swift in Sources */,
 				73DBB5BC2840C80900E8D5D6 /* Encryption.swift in Sources */,
 				65516C762707AF8700F6D3D4 /* ComicData.swift in Sources */,
 				7EA05B07282FC41F003E04B7 /* BordersViewController.swift in Sources */,
 				7E44E7B328071B1A00545E7E /* LoginCoordinator.swift in Sources */,
 				65D70A39270608AA00936F9C /* CharacterData.swift in Sources */,
+				7E14AE1A284656090089CAB5 /* CharactersRequest.swift in Sources */,
 				7E1C36982831A3270044A7FE /* RadioButtonViewController.swift in Sources */,
 				65F2ACAC2709FF5100D299D4 /* BaseViewController.swift in Sources */,
 				7EF819EF2830F97B001315CF /* DialogsViewController.swift in Sources */,
 				65F2ACB9270BA7F300D299D4 /* Constants.swift in Sources */,
+				7E14AE1C284661820089CAB5 /* AppConfiguration.swift in Sources */,
 				7E44E7C22807260700545E7E /* TabCoordinator.swift in Sources */,
 				65D70A542706213700936F9C /* CharacterCell.swift in Sources */,
 				7EF819D9282FCE4E001315CF /* BorderCell.swift in Sources */,
 				65516C812707B4F200F6D3D4 /* ComicSerieCell.swift in Sources */,
 				65D70A3F2706090700936F9C /* CharacterService.swift in Sources */,
+				7E14AE18284630E40089CAB5 /* ErrorResponse.swift in Sources */,
 				65516C7D2707B21400F6D3D4 /* CharacterDetailViewModel.swift in Sources */,
 				7E44E7AC2807186E00545E7E /* AppCoordinator.swift in Sources */,
+				7E14AE14284627B40089CAB5 /* NetworkService.swift in Sources */,
 				7E44E7C92807278200545E7E /* UserViewController.swift in Sources */,
 				65516C6F2707AAB500F6D3D4 /* ExceptionHandler.swift in Sources */,
 				65516C882707C82900F6D3D4 /* HeaderSupplementaryView.swift in Sources */,
 				7E1C369C2831A42E0044A7FE /* CheckboxViewController.swift in Sources */,
 				65516C7A2707B18900F6D3D4 /* CharacterDetailViewController.swift in Sources */,
+				7E14AE1E28466DDA0089CAB5 /* NetworkErrorLogger.swift in Sources */,
 				7E709A26281002FB00763DC2 /* LoginViewModel.swift in Sources */,
 				7EF819F828315029001315CF /* ButtonCell.swift in Sources */,
 				7E539CC728107429006FC1D3 /* DILoginContainer.swift in Sources */,
+				7E14AE16284628990089CAB5 /* DataRequest.swift in Sources */,
 				7EF819DE282FD2A3001315CF /* ShadowCell.swift in Sources */,
 				7E44E7CC280727F300545E7E /* UserViewModel.swift in Sources */,
 				65804D7C2704CB76001C42B3 /* HomeViewController.swift in Sources */,
+				7E14AE0F284622B10089CAB5 /* CharactersRepository.swift in Sources */,
 				7EB3B633282EF88D00D69218 /* DesignSystemDemoCoordinator.swift in Sources */,
 				7E44E7C52807274500545E7E /* UserCoordinator.swift in Sources */,
 				7EA05AE5282EFA80003E04B7 /* DesignSystemDemoViewController.swift in Sources */,
@@ -826,6 +965,7 @@
 				7EF819F4283105F2001315CF /* ButtonsViewController.swift in Sources */,
 				65516C842707BD0800F6D3D4 /* SerieData.swift in Sources */,
 				65D70A472706094D00936F9C /* MarvelApiService.swift in Sources */,
+				7E14AE0B284621980089CAB5 /* CharactersRepositoryProtocol.swift in Sources */,
 				65F2ACAE270A274000D299D4 /* BaseViewModel.swift in Sources */,
 				7EA05AEA282EFDD0003E04B7 /* DesignSystemDemoContainer.swift in Sources */,
 				7E539CC5281073EC006FC1D3 /* DIUserContainer.swift in Sources */,
@@ -990,11 +1130,12 @@
 		65804D662704C360001C42B3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				API_BASE_URL = "https://gateway.marvel.com";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NH2XD7RQWV;
-				INFOPLIST_FILE = MarvelCharacters/Info.plist;
+				INFOPLIST_FILE = MarvelCharacters/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1009,11 +1150,12 @@
 		65804D672704C360001C42B3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				API_BASE_URL = "https://gateway.marvel.com";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NH2XD7RQWV;
-				INFOPLIST_FILE = MarvelCharacters/Info.plist;
+				INFOPLIST_FILE = MarvelCharacters/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1032,7 +1174,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NH2XD7RQWV;
-				INFOPLIST_FILE = MarvelCharactersTests/Info.plist;
+				INFOPLIST_FILE = MarvelCharactersTests/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1054,7 +1196,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NH2XD7RQWV;
-				INFOPLIST_FILE = MarvelCharactersTests/Info.plist;
+				INFOPLIST_FILE = MarvelCharactersTests/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
