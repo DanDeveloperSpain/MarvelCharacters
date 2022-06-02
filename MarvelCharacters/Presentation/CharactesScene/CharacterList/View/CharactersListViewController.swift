@@ -102,7 +102,6 @@ final class CharactersListViewController: UIViewController { // BaseViewControll
     // ------------------------------------------------
 
     @IBAction func tryAgainButtonPressed(_ sender: UIButton) {
-        //activityIndicator.startAnimating()
         viewModel.fetchCharactersLaunchesList()
     }
 

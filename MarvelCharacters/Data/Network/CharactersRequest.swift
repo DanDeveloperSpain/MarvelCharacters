@@ -13,7 +13,7 @@ struct CharacterRequest: DataRequest {
 
     var url: String {
         let baseURL: String = AppConfiguration().apiBaseURL
-        let path: String = "/v1/publicc/characters"
+        let path: String = "/v1/public/characters"
         return baseURL + path
     }
 
