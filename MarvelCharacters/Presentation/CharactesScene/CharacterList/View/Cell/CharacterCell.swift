@@ -16,6 +16,18 @@ class CharacterCell: UICollectionViewCell {
 
     static let kCellId = "CharacterCell"
 
+    struct UIModel {
+        let characterName: String?
+        let characterImageURL: String?
+    }
+
+    var uiModel: UIModel? {
+        didSet {
+            characterNameLabel.dsConfigure(with: uiModel?.characterName, font: .boldSmall, color: .dsWhite)
+            characterImageView.sd_setImage(with: URL(string: uiModel?.characterImageURL ?? ""), placeholderImage: DSImage(named: .marverComics))
+        }
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         characterImageView.layer.cornerRadius = 40

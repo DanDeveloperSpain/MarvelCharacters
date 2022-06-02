@@ -49,8 +49,8 @@ class HomeCoordinator: HomeCoordinatorProtocol {
     }
 
     func showCharactersListViewController() {
-        let homeVC = Container.sharedHomeContainer.resolve(CharactersListViewController.self, argument: self) ?? CharactersListViewController(viewModel: CharactersListViewModel(coordinatorDelegate: self, characterService: CharacterService()))
-        navigationController.pushViewController(homeVC, animated: true)
+        let charactersListVC = Container.sharedHomeContainer.resolve(CharactersListViewController.self, argument: self) ?? CharactersListViewController()
+        navigationController.pushViewController(charactersListVC, animated: true)
     }
 
 }

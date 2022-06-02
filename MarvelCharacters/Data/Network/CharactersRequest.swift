@@ -13,7 +13,7 @@ struct CharacterRequest: DataRequest {
 
     var url: String {
         let baseURL: String = AppConfiguration().apiBaseURL
-        let path: String = "/v1/public/characters"
+        let path: String = "/v1/publicc/characters"
         return baseURL + path
     }
 
@@ -21,7 +21,6 @@ struct CharacterRequest: DataRequest {
         .get
     }
 
-    // PROBAR STRING ANY
     var queryItems: [String: String] {
         var parameters = getParameters()
         parameters["limit"] = String(limit ?? 0)

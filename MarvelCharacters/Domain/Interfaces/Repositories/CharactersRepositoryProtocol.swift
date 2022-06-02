@@ -10,6 +10,6 @@ import RxSwift
 
 protocol CharactersRepositoryProtocol: AnyObject {
 
-    func fecthCharcters(limit: Int, offset: Int) -> Observable<ResponseCharactersData>
+    func fetchCharcters(limit: Int, offset: Int) -> Observable<ResponseCharactersData>
 
 }

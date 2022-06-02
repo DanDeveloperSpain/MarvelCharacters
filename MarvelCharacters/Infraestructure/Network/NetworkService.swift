@@ -56,12 +56,19 @@ final class DefaultNetworkService: NetworkServiceProtocol {
 
             guard let response = response as? HTTPURLResponse, 200..<300 ~=  response.statusCode else {
                 self.logger.log(responseData: Data(), response: response)
-                return completion(.failure(NSError()))
+                if let statusCode = (response as? HTTPURLResponse)?.statusCode {
+                    let error = NSError(domain: ErrorResponse.invalidEndpoint.description, code: statusCode, userInfo: nil)
+                    return completion(.failure(error))
+                } else {
+                    let error = NSError(domain: ErrorResponse.apiError.description, code: 400, userInfo: nil)
+                    return completion(.failure(error))
+                }
             }
 
             guard let data = data else {
                 self.logger.log(responseData: data, response: response)
-                return completion(.failure(NSError()))
+                let error = NSError(domain: ErrorResponse.noData.rawValue, code: response.statusCode, userInfo: nil)
+                return completion(.failure(error))
             }
 
             do {

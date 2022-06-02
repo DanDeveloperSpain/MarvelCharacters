@@ -66,12 +66,12 @@ final class CharacterDetailViewModel: BaseViewModel {
 
     /// Indicate the last comic that will be shown in the list, to know when to make the next request to obtain more characters.
     var numLastComicToShow: Int {
-        return characterService.numLastItemToShow(offset: comicsDataResponse?.offset ?? 0, all: comicsDataResponse?.all?.count ?? 0)
+        return PaginationHelper.numLastItemToShow(offset: comicsDataResponse?.offset ?? 0, all: comicsDataResponse?.all?.count ?? 0)
     }
 
     /// Indicate the last serie that will be shown in the list, to know when to make the next request to obtain more characters.
     var numLastSerieToShow: Int {
-        return characterService.numLastItemToShow(offset: seriesDataResponse?.offset ?? 0, all: seriesDataResponse?.all?.count ?? 0)
+        return PaginationHelper.numLastItemToShow(offset: seriesDataResponse?.offset ?? 0, all: seriesDataResponse?.all?.count ?? 0)
     }
 
     /// Comic binding to notify the view.
@@ -176,7 +176,7 @@ final class CharacterDetailViewModel: BaseViewModel {
             self.comics += resultComics.all ?? []
             self.comicsDataResponse = resultComics
 
-            self.loadMoreComic = self.characterService.isMoreDataToLoad(offset: self.comicsDataResponse?.offset ?? 0, total: self.comicsDataResponse?.total ?? 0, limit: self.limitComic)
+            self.loadMoreComic = PaginationHelper.isMoreDataToLoad(offset: self.comicsDataResponse?.offset ?? 0, total: self.comicsDataResponse?.total ?? 0, limit: self.limitComic)
 
         } catch let error {
             self.errorMessaje = self.characterService.getErrorDescriptionToUser(statusCode: error.asAFError?.responseCode ?? 0)
@@ -191,7 +191,7 @@ final class CharacterDetailViewModel: BaseViewModel {
             self.series += resultSeries.all ?? []
             self.seriesDataResponse = resultSeries
 
-            self.loadMoreSerie = self.characterService.isMoreDataToLoad(offset: self.seriesDataResponse?.offset ?? 0, total: self.seriesDataResponse?.total ?? 0, limit: self.limitSerie)
+            self.loadMoreSerie = PaginationHelper.isMoreDataToLoad(offset: self.seriesDataResponse?.offset ?? 0, total: self.seriesDataResponse?.total ?? 0, limit: self.limitSerie)
 
         } catch let error {
             self.errorMessaje = self.characterService.getErrorDescriptionToUser(statusCode: error.asAFError?.responseCode ?? 0)

@@ -91,6 +91,7 @@
 		7EA05B08282FC41F003E04B7 /* BordersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA05B06282FC41F003E04B7 /* BordersViewController.xib */; };
 		7EA05B0B282FC48B003E04B7 /* ShadowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA05B09282FC48B003E04B7 /* ShadowsViewController.swift */; };
 		7EA05B0C282FC48B003E04B7 /* ShadowsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA05B0A282FC48B003E04B7 /* ShadowsViewController.xib */; };
+		7EA189FC284902A6007E16E0 /* PaginationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA189FB284902A6007E16E0 /* PaginationHelper.swift */; };
 		7EB3B633282EF88D00D69218 /* DesignSystemDemoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB3B632282EF88D00D69218 /* DesignSystemDemoCoordinator.swift */; };
 		7EF819D9282FCE4E001315CF /* BorderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF819D7282FCE4E001315CF /* BorderCell.swift */; };
 		7EF819DA282FCE4E001315CF /* BorderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EF819D8282FCE4E001315CF /* BorderCell.xib */; };
@@ -194,6 +195,7 @@
 		7EA05B06282FC41F003E04B7 /* BordersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BordersViewController.xib; sourceTree = "<group>"; };
 		7EA05B09282FC48B003E04B7 /* ShadowsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowsViewController.swift; sourceTree = "<group>"; };
 		7EA05B0A282FC48B003E04B7 /* ShadowsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShadowsViewController.xib; sourceTree = "<group>"; };
+		7EA189FB284902A6007E16E0 /* PaginationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationHelper.swift; sourceTree = "<group>"; };
 		7EB3B632282EF88D00D69218 /* DesignSystemDemoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemDemoCoordinator.swift; sourceTree = "<group>"; };
 		7EF819D7282FCE4E001315CF /* BorderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderCell.swift; sourceTree = "<group>"; };
 		7EF819D8282FCE4E001315CF /* BorderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BorderCell.xib; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				7E14ADFE28461E230089CAB5 /* Domain */,
 				7E14AE0028461F020089CAB5 /* Data */,
 				7E14AE0128461F070089CAB5 /* Infraestructure */,
+				7EA189FA284901DC007E16E0 /* Common */,
 				6556BE502707D5A400B72CD6 /* Resources */,
 				7E14AE0228461F460089CAB5 /* separator------ */,
 				7E44E7B128071AD100545E7E /* LoginScene */,
@@ -736,6 +739,14 @@
 			path = Foundations;
 			sourceTree = "<group>";
 		};
+		7EA189FA284901DC007E16E0 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				7EA189FB284902A6007E16E0 /* PaginationHelper.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		7EB3B631282EE47300D69218 /* DesignSystemDemoScene */ = {
 			isa = PBXGroup;
 			children = (
@@ -1018,6 +1029,7 @@
 				7EA05AEA282EFDD0003E04B7 /* DesignSystemDemoContainer.swift in Sources */,
 				7E539CC5281073EC006FC1D3 /* DIUserContainer.swift in Sources */,
 				7E539CC328105D55006FC1D3 /* DIHomeContainer.swift in Sources */,
+				7EA189FC284902A6007E16E0 /* PaginationHelper.swift in Sources */,
 				7E44E7B02807192700545E7E /* Coordinator.swift in Sources */,
 				7E44E7C0280725BB00545E7E /* TabBarViewSettings.swift in Sources */,
 				7EA05AE8282EFAEF003E04B7 /* DesignSystemDemoViewModel.swift in Sources */,

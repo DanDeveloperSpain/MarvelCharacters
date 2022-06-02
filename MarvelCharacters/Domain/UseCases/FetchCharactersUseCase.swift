@@ -23,7 +23,7 @@ final class FetchCharactersUseCase: FetchCharactersUseCaseProtocol {
 
     func execute(limit: Int, offset: Int) -> Observable<ResponseCharactersData> {
         return Observable.create { [weak self] observer in
-            self?.charactersRepository.fecthCharcters(limit: limit, offset: offset)
+            self?.charactersRepository.fetchCharcters(limit: limit, offset: offset)
                 .subscribe { event in
                     switch event {
                     case .next(let responseCharactersData):

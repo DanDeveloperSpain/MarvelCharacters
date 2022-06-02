@@ -21,7 +21,7 @@ final class CharactersRepository {
 
 extension CharactersRepository: CharactersRepositoryProtocol {
 
-    func fecthCharcters(limit: Int, offset: Int) -> Observable<ResponseCharactersData> {
+    func fetchCharcters(limit: Int, offset: Int) -> Observable<ResponseCharactersData> {
 
         // DataBase Cache
 
