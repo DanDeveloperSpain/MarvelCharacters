@@ -26,7 +26,7 @@ extension CharactersRepository: CharactersRepositoryProtocol {
         // DataBase Cache
 
         return Observable.create { observer in
-            self.fetchCharacterFromNetwork(limit: limit, offset: offset) { result in
+            self.fetchCharactersFromNetwork(limit: limit, offset: offset) { result in
                 switch result {
                 case .success(let responseCharactersData):
                     observer.onNext(responseCharactersData)
@@ -39,8 +39,8 @@ extension CharactersRepository: CharactersRepositoryProtocol {
         }
     }
 
-    private func fetchCharacterFromNetwork(limit: Int, offset: Int, complete completion: @escaping (Result<ResponseCharactersData, Error>) -> Void) {
-        netWorkService.request(CharacterRequest(limit: limit, offset: offset)) { result in
+    private func fetchCharactersFromNetwork(limit: Int, offset: Int, complete completion: @escaping (Result<ResponseCharactersData, Error>) -> Void) {
+        netWorkService.request(CharactersRequest(limit: limit, offset: offset)) { result in
             switch result {
             case .success(let characters):
                 completion(.success(characters.data))

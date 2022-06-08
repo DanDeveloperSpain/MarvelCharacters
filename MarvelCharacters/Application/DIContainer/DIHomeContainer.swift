@@ -58,29 +58,6 @@ extension Container {
             return charactersListViewController
         }
 
-        // ------------------------------ //
-        // ------------------------------ //
-        // ------------------------------ //
-
-        let characterService = CharacterService()
-
-        /// CharacterService
-        container.register(CharacterServiceProtocol.self) { _ in
-            characterService
-        }
-
-        /// CharacterDetailViewModel
-        container.register(CharacterDetailViewModel.self) { (resolver, character: Character, coordinator: HomeCoordinator) in
-            let service = resolver.resolve(CharacterServiceProtocol.self) ?? characterService
-            return CharacterDetailViewModel(coordinatorDelegate: coordinator, character: character, characterService: service)
-        }
-
-        /// CharacterDetailViewController
-        container.register(CharacterDetailViewController.self) {(resolver, character: Character, coordinator: HomeCoordinator) in
-            let characterDetailViewModel = resolver.resolve(CharacterDetailViewModel.self, arguments: character, coordinator) ?? CharacterDetailViewModel(coordinatorDelegate: homeCoordinator, character: character, characterService: characterService)
-            return CharacterDetailViewController(viewModel: characterDetailViewModel)
-        }
-
         return container
 
     }()

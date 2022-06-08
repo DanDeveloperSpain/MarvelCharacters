@@ -1,19 +1,20 @@
 //
-//  CharactersRequest.swift
+//  SeriesRequest.swift
 //  MarvelCharacters
 //
-//  Created by Daniel Pérez Parreño on 31/5/22.
+//  Created by Daniel Pérez Parreño on 3/6/22.
 //
 
 import Foundation
 
-struct CharactersRequest: DataRequest {
+struct SeriesRequest: DataRequest {
 
     var limit, offset: Int?
+    var characterId: String?
 
     var url: String {
         let baseURL: String = AppConfiguration().apiBaseURL
-        let path: String = "/v1/public/characters"
+        let path: String = "/v1/public/characters/\(characterId ?? "")/series"
         return baseURL + path
     }
 
@@ -28,14 +29,15 @@ struct CharactersRequest: DataRequest {
         return parameters
     }
 
-    init(limit: Int, offset: Int) {
+    init(limit: Int, offset: Int, characterId: String) {
         self.limit = limit
         self.offset = offset
+        self.characterId = characterId
     }
 
-    func decode(_ data: Data) throws -> ResponseCharacters {
+    func decode(_ data: Data) throws -> ResponseSeries {
         let decoder = JSONDecoder()
-        let response = try decoder.decode(ResponseCharacters.self, from: data)
+        let response = try decoder.decode(ResponseSeries.self, from: data)
         return response
     }
 

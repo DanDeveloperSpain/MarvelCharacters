@@ -62,7 +62,7 @@ class HomeCoordinator: HomeCoordinatorProtocol {
 extension HomeCoordinator {
 
     func openCharacterDetail(character: Character) {
-        let characterDetailVC = Container.sharedHomeContainer.resolve(CharacterDetailViewController.self, arguments: character, self) ?? CharacterDetailViewController(viewModel: CharacterDetailViewModel(coordinatorDelegate: self, character: character, characterService: CharacterService()))
+        let characterDetailVC = Container.sharedCharacterDetailContainer.resolve(CharacterDetailViewController.self, arguments: self, character) ?? CharacterDetailViewController()
         navigationController.pushViewController(characterDetailVC, animated: true)
     }
 }
