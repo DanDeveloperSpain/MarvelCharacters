@@ -56,6 +56,8 @@
 		7E1C36992831A3270044A7FE /* RadioButtonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E1C36972831A3270044A7FE /* RadioButtonViewController.xib */; };
 		7E1C369C2831A42E0044A7FE /* CheckboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C369A2831A42D0044A7FE /* CheckboxViewController.swift */; };
 		7E1C369D2831A42E0044A7FE /* CheckboxViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E1C369B2831A42D0044A7FE /* CheckboxViewController.xib */; };
+		7E1FEA522850BC1B0066F526 /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = 7E1FEA512850BC1B0066F526 /* Differentiator */; };
+		7E1FEA542850BC1B0066F526 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 7E1FEA532850BC1B0066F526 /* RxDataSources */; };
 		7E44E7AC2807186E00545E7E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E44E7AB2807186E00545E7E /* AppCoordinator.swift */; };
 		7E44E7B02807192700545E7E /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E44E7AF2807192700545E7E /* Coordinator.swift */; };
 		7E44E7B328071B1A00545E7E /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E44E7B228071B1A00545E7E /* LoginCoordinator.swift */; };
@@ -236,7 +238,9 @@
 				7EA05AF4282F0EE3003E04B7 /* DanDesignSystem in Frameworks */,
 				65D70A4D270610C600936F9C /* Alamofire in Frameworks */,
 				7E14ADF6284614F30089CAB5 /* RxCocoa in Frameworks */,
+				7E1FEA522850BC1B0066F526 /* Differentiator in Frameworks */,
 				73DBB5B92840B63C00E8D5D6 /* SDWebImage in Frameworks */,
+				7E1FEA542850BC1B0066F526 /* RxDataSources in Frameworks */,
 				7E539CCA281077CA006FC1D3 /* Swinject in Frameworks */,
 				7E14ADFA284614F30089CAB5 /* RxSwift in Frameworks */,
 			);
@@ -929,6 +933,8 @@
 				7E14ADF5284614F30089CAB5 /* RxCocoa */,
 				7E14ADF7284614F30089CAB5 /* RxRelay */,
 				7E14ADF9284614F30089CAB5 /* RxSwift */,
+				7E1FEA512850BC1B0066F526 /* Differentiator */,
+				7E1FEA532850BC1B0066F526 /* RxDataSources */,
 			);
 			productName = MarvelCharacters;
 			productReference = 65804D3B2704C35E001C42B3 /* MarvelCharacters.app */;
@@ -989,6 +995,7 @@
 				7EA05AF2282F0EE3003E04B7 /* XCRemoteSwiftPackageReference "DanDesignSystem" */,
 				73DBB5B72840B63C00E8D5D6 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				7E14ADF2284614F30089CAB5 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				7E1FEA502850BC1A0066F526 /* XCRemoteSwiftPackageReference "RxDataSources" */,
 			);
 			productRefGroup = 65804D3C2704C35E001C42B3 /* Products */;
 			projectDirPath = "";
@@ -1428,6 +1435,14 @@
 				version = 6.5.0;
 			};
 		};
+		7E1FEA502850BC1A0066F526 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.0.2;
+			};
+		};
 		7E539CC8281077CA006FC1D3 /* XCRemoteSwiftPackageReference "Swinject" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Swinject/Swinject.git";
@@ -1481,6 +1496,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7E14ADF2284614F30089CAB5 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxTest;
+		};
+		7E1FEA512850BC1B0066F526 /* Differentiator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7E1FEA502850BC1A0066F526 /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = Differentiator;
+		};
+		7E1FEA532850BC1B0066F526 /* RxDataSources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7E1FEA502850BC1A0066F526 /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = RxDataSources;
 		};
 		7E539CC9281077CA006FC1D3 /* Swinject */ = {
 			isa = XCSwiftPackageProductDependency;

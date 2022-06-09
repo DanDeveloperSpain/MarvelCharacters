@@ -55,6 +55,7 @@ final class CharactersListViewModel { //: BaseViewModel {
                 case .next(let responseCharacterData):
                     self.handleResponseCharactersDataData(data: responseCharacterData)
                 case .error(let error):
+                    self.tryAgainButtonisHidden.accept(false)
                     let nsError = error as NSError
                     self.errorMessage.onNext(nsError.domain)
                 case .completed:

@@ -71,12 +71,12 @@ extension Container {
         container.register(CharacterDetailViewModel.self) { (resolver, coordinator: HomeCoordinator, character: Character) in
             let comicsUseCase = resolver.resolve(FetchComicsUseCaseProtocol.self) ?? comicsUseCase
             let seriesUseCase = resolver.resolve(FetchSeriesUseCaseProtocol.self) ?? seriesUseCase
-            return CharacterDetailViewModel(coordinatorDelegate: coordinator, fetchComicsUseCase: comicsUseCase, fetchSeriessUseCase: seriesUseCase, character: character)
+            return CharacterDetailViewModel(coordinatorDelegate: coordinator, fetchComicsUseCase: comicsUseCase, fetchSeriesUseCase: seriesUseCase, character: character)
         }
 
         /// ViewController
         container.register(CharacterDetailViewController.self) { (resolver, coordinator: HomeCoordinator, character: Character) in
-            let charactersDetailViewModel = resolver.resolve(CharacterDetailViewModel.self, arguments: coordinator, character) ?? CharacterDetailViewModel(coordinatorDelegate: homeCoordinator, fetchComicsUseCase: comicsUseCase, fetchSeriessUseCase: seriesUseCase, character: characterDetail)
+            let charactersDetailViewModel = resolver.resolve(CharacterDetailViewModel.self, arguments: coordinator, character) ?? CharacterDetailViewModel(coordinatorDelegate: homeCoordinator, fetchComicsUseCase: comicsUseCase, fetchSeriesUseCase: seriesUseCase, character: characterDetail)
             let characterDetailViewController = CharacterDetailViewController()
             characterDetailViewController.viewModel = charactersDetailViewModel
             return characterDetailViewController

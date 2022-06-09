@@ -226,7 +226,6 @@ extension CharactersListViewController: CharactersListViewModelViewDelegate {
 extension CharactersListViewController: DialogViewControllerDelegate {
 
     func tapPrincipalButton() {
-        tryAgainButton.isHidden = false
     }
 
     func tapSecondaryButton() {

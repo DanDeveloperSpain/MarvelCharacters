@@ -9,6 +9,7 @@ import UIKit
 import SDWebImage
 import RxSwift
 import RxCocoa
+import RxDataSources
 import DanDesignSystem
 
 final class CharacterDetailViewController: UIViewController { // BaseViewController {
@@ -27,16 +28,42 @@ final class CharacterDetailViewController: UIViewController { // BaseViewControl
     private let disposeBag = DisposeBag()
     var viewModel: CharacterDetailViewModel!
 
+    let dataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<String, ComicSerieCell.UIModel>>(
+        configureCell: { _, collectionView, indexPath, item -> ComicSerieCell in
+            var cell = ComicSerieCell()
+            if let comicSerieCell = collectionView.dequeueReusableCell(withReuseIdentifier: ComicSerieCell.kCellId, for: indexPath) as? ComicSerieCell {
+                comicSerieCell.titleLabel?.text = item.year
+                cell = comicSerieCell
+            }
+            return cell
+        }
+    )
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
         configureCollectionView()
         setupComicsBindings()
-        // setupSeriesBindings()
+        setupSeriesBindings()
         setupErrorBinding()
         setupCocoaBindings()
         viewModel.fetchComicsLaunchesList()
-        // viewModel.fetchSeriesLaunchesList()
+        viewModel.fetchSeriesLaunchesList()
+    }
+
+    private func bindViewModelToCollectionView() {
+        dataSource.configureSupplementaryView = { (_, collectionView, kind, indexPath) -> UICollectionReusableView in
+//            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderSupplementaryView.kCellId, for: indexPath) as! HeaderSupplementaryView
+//            header.setup()
+
+            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderSupplementaryView.kCellId, for: indexPath) as? HeaderSupplementaryView else {
+                return HeaderSupplementaryView()
+            }
+
+            indexPath.section == 0 ? headerView.headerTitleLabel.dsConfigure(with: NSLocalizedString("Comics", comment: ""), font: .boldLarge, color: .dsWhite) : headerView.headerTitleLabel.dsConfigure(with: NSLocalizedString("Series", comment: ""), font: .boldLarge, color: .dsWhite)
+
+            return headerView
+        }
     }
 
     private func setupComicsBindings() {
@@ -45,12 +72,23 @@ final class CharacterDetailViewController: UIViewController { // BaseViewControl
             .drive(comicActivityIndicator.rx.isAnimating)
             .disposed(by: disposeBag)
 
-        viewModel.cellComicsUIModels
-            .observe(on: MainScheduler.instance)
-            .bind(to: comicsSeriesCollectionView.rx.items(cellIdentifier: reuseIdentifier, cellType: ComicSerieCell.self)) { _, uiModel, cell in
-                cell.uiModel = uiModel
-            }
+        bindViewModelToCollectionView()
+
+        viewModel.items
+            .asObservable()
+//            .map {
+//                (cellComicsUIModels) -> [SectionModel<String, ComicSerieCell.UIModel>] in
+//                return [SectionModel(model: "", items: cellComicsUIModels)]
+//            }
+            .bind(to: comicsSeriesCollectionView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
+
+//        viewModel.cellComicsUIModels
+//            .observe(on: MainScheduler.instance)
+//            .bind(to: comicsSeriesCollectionView.rx.items(cellIdentifier: reuseIdentifier, cellType: ComicSerieCell.self)) { _, uiModel, cell in
+//                cell.uiModel = uiModel
+//            }
+//            .disposed(by: disposeBag)
 
         viewModel.errorMessage
             .observe(on: MainScheduler.instance)
@@ -65,12 +103,12 @@ final class CharacterDetailViewController: UIViewController { // BaseViewControl
             .drive(serieActivityIndicator.rx.isAnimating)
             .disposed(by: disposeBag)
 
-        viewModel.cellSeriesUIModels
-            .observe(on: MainScheduler.instance)
-            .bind(to: comicsSeriesCollectionView.rx.items(cellIdentifier: reuseIdentifier, cellType: ComicSerieCell.self)) { _, uiModel, cell in
-                cell.uiModel = uiModel
-            }
-            .disposed(by: disposeBag)
+//        viewModel.cellSeriesUIModels
+//            .observe(on: MainScheduler.instance)
+//            .bind(to: comicsSeriesCollectionView.rx.items(cellIdentifier: reuseIdentifier, cellType: ComicSerieCell.self)) { _, uiModel, cell in
+//                cell.uiModel = uiModel
+//            }
+//            .disposed(by: disposeBag)
     }
 
     private func setupErrorBinding() {
@@ -88,9 +126,11 @@ final class CharacterDetailViewController: UIViewController { // BaseViewControl
             .willDisplayCell
             .subscribe(onNext: { [weak self] _, indexPath in
                 if indexPath.section == 0 {
+                    print("0--- ", indexPath.section, " ___ ", indexPath.row)
                     self?.viewModel.checkComicsRequestNewDataByIndex(index: indexPath.row)
                 } else if indexPath.section == 1 {
-                    self?.viewModel.checkComicsRequestNewDataByIndex(index: indexPath.row)
+                    print("1--- ", indexPath.section, " ___ ", indexPath.row)
+                    self?.viewModel.checkSeriesRequestNewDataByIndex(index: indexPath.row)
                 }
             }).disposed(by: disposeBag)
     }
