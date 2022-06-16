@@ -42,10 +42,10 @@ class ComicSerieCell: UICollectionViewCell {
         thumbnailImageView.image = nil
     }
 
-//    func fill(title: String, year: String, urlImge: String) {
-//        thumbnailImageView.sd_setImage(with: URL(string: urlImge), placeholderImage: DSImage(named: .marverComics))
-//        titleLabel.dsConfigure(with: title, font: .boldSmall, color: .dsWhite)
-//        yearLabel.dsConfigure(with: year, font: .boldMini, color: .dsPrimaryPure)
-//    }
+    func fill(title: String, year: String, urlImge: String) {
+        thumbnailImageView.sd_setImage(with: URL(string: urlImge), placeholderImage: DSImage(named: .marverComics))
+        titleLabel.dsConfigure(with: title, font: .boldSmall, color: .dsWhite)
+        yearLabel.dsConfigure(with: year, font: .boldMini, color: .dsPrimaryPure)
+    }
 
 }

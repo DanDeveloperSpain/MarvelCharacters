@@ -174,7 +174,7 @@ final class CharactersListViewModel { //: BaseViewModel {
 
     /// Check if Api Keys are added
     private func checkApiKeys() -> Bool {
-        Constants.ApiKeys.publicKey.isEmpty || Constants.ApiKeys.privateKey.isEmpty ? false : true
+        AppConfiguration().publicKey.isEmpty || AppConfiguration().privateKey.isEmpty ? false : true
     }
 
 //    private func setErrorApiKey() {

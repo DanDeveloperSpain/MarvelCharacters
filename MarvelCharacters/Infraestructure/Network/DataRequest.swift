@@ -45,3 +45,21 @@ extension DataRequest {
         [:]
     }
 }
+
+extension DataRequest {
+
+    /// Helper to build the base parameters for the Api.
+    /// - Returns: Array with apikey, ts and hash.
+    func getBaseParameters() -> [String: String] {
+        let currentTimeStamp = Int(Date().timeIntervalSince1970)
+
+        let has = Encryption.md5Hash("\(currentTimeStamp)" + AppConfiguration().privateKey + AppConfiguration().publicKey)
+
+        let parameters: [String: String] = [
+            "apikey" : AppConfiguration().publicKey,
+            "ts" : String(currentTimeStamp),
+            "hash" :  has
+        ]
+        return parameters
+    }
+}

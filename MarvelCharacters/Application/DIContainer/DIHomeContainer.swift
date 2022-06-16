@@ -14,10 +14,11 @@ extension Container {
         let container = Container()
 
         lazy var networkService: NetworkServiceProtocol = {
-           return DefaultNetworkService()
+            let networkService = Container.sharedNetworkContainer.resolve(NetworkServiceProtocol.self)
+            return networkService ?? DefaultNetworkService()
         }()
 
-        lazy var homeCoordinator: HomeCoordinator =  {
+        lazy var homeCoordinator: HomeCoordinator = {
             HomeCoordinator(UINavigationController())
         }()
         lazy var charactersRepository: CharactersRepositoryProtocol = {

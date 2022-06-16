@@ -22,7 +22,7 @@ struct CharactersRequest: DataRequest {
     }
 
     var queryItems: [String: String] {
-        var parameters = getParameters()
+        var parameters = getBaseParameters()
         parameters["limit"] = String(limit ?? 0)
         parameters["offset"] = String(offset ?? 0)
         return parameters
@@ -37,20 +37,6 @@ struct CharactersRequest: DataRequest {
         let decoder = JSONDecoder()
         let response = try decoder.decode(ResponseCharacters.self, from: data)
         return response
-    }
-
-    // QUITAR DE AQUI
-    func getParameters() -> [String: String] {
-        let currentTimeStamp = Int(Date().timeIntervalSince1970)
-
-        let has = Encryption.md5Hash("\(currentTimeStamp)" + Constants.ApiKeys.privateKey + Constants.ApiKeys.publicKey)
-
-        let parameters: [String: String] = [
-            "apikey" : Constants.ApiKeys.publicKey,
-            "ts" : String(currentTimeStamp),
-            "hash" :  has
-        ]
-        return parameters
     }
 
 }

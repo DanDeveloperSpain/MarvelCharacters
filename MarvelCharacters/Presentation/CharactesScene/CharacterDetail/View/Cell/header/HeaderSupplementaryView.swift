@@ -17,4 +17,7 @@ class HeaderSupplementaryView: UICollectionReusableView {
         super.awakeFromNib()
     }
 
+    func setup(section: Int) {
+        section == 0 ? headerTitleLabel.dsConfigure(with: NSLocalizedString("Comics", comment: ""), font: .boldLarge, color: .dsWhite) : headerTitleLabel.dsConfigure(with: NSLocalizedString("Series", comment: ""), font: .boldLarge, color: .dsWhite)
+    }
 }

@@ -151,46 +151,6 @@ final class CharactersListViewController: UIViewController { // BaseViewControll
  }
 
 // --------------------------------------------------------------
-// MARK: - UICollectionViewDataSource, UICollectionViewDelegate
-// --------------------------------------------------------------
-
-// extension CharactersListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-//
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return self.viewModel?.numberOfItemsInSection(section: section) ?? 0
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        var cell = UICollectionViewCell()
-//
-//        if let characterCell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterCell.kCellId, for: indexPath) as? CharacterCell {
-//
-//            let urlImge = self.viewModel?.characterUrlImgeAtIndex(index: indexPath.row) ?? ""
-//            let characterName = self.viewModel?.characterNameAtIndex(index: indexPath.row) ?? ""
-//
-//            characterCell.fill(characterName: characterName, urlImge: urlImge)
-//
-//            cell = characterCell
-//        }
-//
-//        return cell
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-//        /// Pagination
-//        if indexPath.row == viewModel?.numLastCharacterToShow && viewModel?.loadMore ?? false {
-//            self.activityIndicator.startAnimating()
-//            viewModel?.paginate()
-//        }
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        self.viewModel?.cellAtIndexTapped(index: indexPath.row)
-//     }
-//
-// }
-
-// --------------------------------------------------------------
 // MARK: - CharactersListViewModelViewDelegate
 // --------------------------------------------------------------
 extension CharactersListViewController: CharactersListViewModelViewDelegate {

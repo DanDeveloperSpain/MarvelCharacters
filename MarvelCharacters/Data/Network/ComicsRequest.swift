@@ -23,36 +23,22 @@ struct ComicsRequest: DataRequest {
     }
 
     var queryItems: [String: String] {
-        var parameters = getParameters()
+        var parameters = getBaseParameters()
         parameters["limit"] = String(limit ?? 0)
         parameters["offset"] = String(offset ?? 0)
         return parameters
     }
 
-    init(limit: Int, offset: Int, characterId: String) {
+    init(characterId: String, limit: Int, offset: Int) {
+        self.characterId = characterId
         self.limit = limit
         self.offset = offset
-        self.characterId = characterId
     }
 
     func decode(_ data: Data) throws -> ResponseComics {
         let decoder = JSONDecoder()
         let response = try decoder.decode(ResponseComics.self, from: data)
         return response
-    }
-
-    // QUITAR DE AQUI
-    func getParameters() -> [String: String] {
-        let currentTimeStamp = Int(Date().timeIntervalSince1970)
-
-        let has = Encryption.md5Hash("\(currentTimeStamp)" + Constants.ApiKeys.privateKey + Constants.ApiKeys.publicKey)
-
-        let parameters: [String: String] = [
-            "apikey" : Constants.ApiKeys.publicKey,
-            "ts" : String(currentTimeStamp),
-            "hash" :  has
-        ]
-        return parameters
     }
 
 }

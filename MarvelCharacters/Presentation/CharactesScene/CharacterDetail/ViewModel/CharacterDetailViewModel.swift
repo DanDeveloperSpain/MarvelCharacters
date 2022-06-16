@@ -32,30 +32,15 @@ final class CharacterDetailViewModel { // : BaseViewModel {
     // MARK: - Variables
     private let fetchComicsUseCase: FetchComicsUseCaseProtocol
     private let fetchSeriesUseCase: FetchSeriesUseCaseProtocol
-    // let cellComicsUIModels: PublishSubject<[ComicSerieCell.UIModel]> = PublishSubject()
+    let items: PublishSubject<[SectionModel<String, ComicSerieCell.UIModel>]> = PublishSubject()
     var cellComicsUIModels = [ComicSerieCell.UIModel]()
-    // let cellSeriesUIModels: PublishSubject<[ComicSerieCell.UIModel]> = PublishSubject()
     var cellSeriesUIModels = [ComicSerieCell.UIModel]()
     let isComicsLoading: BehaviorRelay<Bool> = BehaviorRelay(value: false)
     let isSeriesLoading: BehaviorRelay<Bool> = BehaviorRelay(value: false)
-    // let tryAgainButtonisHidden: BehaviorRelay<Bool> = BehaviorRelay(value: true)
     let errorMessage: PublishSubject<String> = PublishSubject()
     private let disposeBag = DisposeBag()
     var responseComicsData: ResponseComicsData?
     var responseSeriesData: ResponseSeriesData?
-
-    let items: PublishSubject<[SectionModel<String, ComicSerieCell.UIModel>]> = PublishSubject()
-
-    var items2 = Observable.just([
-        SectionModel(model: "Comics", items: [
-            ComicSerieCell.UIModel(title: "", year: "2024", imageURL: "")
-        ]),
-        SectionModel(model: "Series", items: [
-            ComicSerieCell.UIModel(title: "", year: "2222", imageURL: "")
-        ])
-    ])
-
-    // let items3: Observable<[SectionModel<String, ComicSerieCell.UIModel>]>?
 
     // MARK: - Init
     init(coordinatorDelegate: CharacterDetailViewModelCoordinatorDelegate, fetchComicsUseCase: FetchComicsUseCaseProtocol, fetchSeriesUseCase: FetchSeriesUseCaseProtocol, character: Character) {
@@ -91,17 +76,11 @@ final class CharacterDetailViewModel { // : BaseViewModel {
         }
 
         setItems(uiComicsModels: cellComicsUIModels, uiSeriesModels: cellSeriesUIModels)
-
-//        var uiModels2 = [ComicSerieCell.UIModel]()
-//        comics.forEach { comic in
-//            uiModels2.append(ComicSerieCell.UIModel(title: comic.title, year: comic.year, imageURL: "\(comic.thumbnail?.path ?? "").\(comic.thumbnail?.typeExtension ?? "")"))
-//        }
-//        cellComicsUIModels.onNext(uiModels2)
     }
 
     func fetchSeriesLaunchesList() {
         isSeriesLoading.accept(true)
-        fetchSeriesUseCase.execute(limit: limitComic, offset: offsetComic, characterId: String(character?.id ?? 0))
+        fetchSeriesUseCase.execute(limit: limitSerie, offset: offsetSerie, characterId: String(character?.id ?? 0))
             .subscribe {[weak self] event in
                 self?.isSeriesLoading.accept(false)
                 guard let self = self else { return }
@@ -125,12 +104,6 @@ final class CharacterDetailViewModel { // : BaseViewModel {
         }
 
         setItems(uiComicsModels: cellComicsUIModels, uiSeriesModels: cellSeriesUIModels)
-
-//        var uiModels = [ComicSerieCell.UIModel]()
-//        series.forEach { serie in
-//            uiModels.append(ComicSerieCell.UIModel(title: serie.title, year: String(serie.startYear ?? 0), imageURL: "\(serie.thumbnail?.path ?? "").\(serie.thumbnail?.typeExtension ?? "")"))
-//        }
-//        cellSeriesUIModels.onNext(uiModels)
     }
 
     private func setItems(uiComicsModels: [ComicSerieCell.UIModel], uiSeriesModels: [ComicSerieCell.UIModel]) {
@@ -173,8 +146,6 @@ final class CharacterDetailViewModel { // : BaseViewModel {
     /// Series datasource.
     private(set) var series: [Serie] = []
 
-    let numberOfSections = 2
-
     /// Indicate the last comic that will be shown in the list, to know when to make the next request to obtain more characters.
     var numLastComicToShow: Int {
         return PaginationHelper.numLastItemToShow(offset: responseComicsData?.offset ?? 0, all: responseComicsData?.all?.count ?? 0)
@@ -184,26 +155,6 @@ final class CharacterDetailViewModel { // : BaseViewModel {
     var numLastSerieToShow: Int {
         return PaginationHelper.numLastItemToShow(offset: responseSeriesData?.offset ?? 0, all: responseSeriesData?.all?.count ?? 0)
     }
-//
-//    /// Comic binding to notify the view.
-//    private(set) var comicsDataResponse: ResponseComicsData? {
-//        didSet {
-//            self.viewDelegate?.loadComics()
-//        }
-//    }
-//
-//    /// Serie binding to notify the view.
-//    private(set) var seriesDataResponse: ResponseSeriesData? {
-//        didSet {
-//            self.viewDelegate?.loadSeries()
-//        }
-//    }
-//
-//    private(set) var errorMessaje: String? {
-//        didSet {
-//            self.viewDelegate?.showError()
-//        }
-//    }
 
     // ------------------------------------------------
     // MARK: - ViewModel
@@ -233,14 +184,12 @@ final class CharacterDetailViewModel { // : BaseViewModel {
     // ---------------------------------
 
     func checkComicsRequestNewDataByIndex(index: Int) {
-        print("index ", index, " --- numLastComicToShow ", numLastComicToShow)
         if index == numLastComicToShow && loadMoreComic {
             paginateComics()
         }
     }
 
     func checkSeriesRequestNewDataByIndex(index: Int) {
-        //print("index ", index, " --- numLastSerieToShow ", numLastSerieToShow)
         if index == numLastSerieToShow && loadMoreSerie {
             paginateSeries()
         }

@@ -21,12 +21,12 @@ final class ComicsRepository {
 
 extension ComicsRepository: ComicsRepositoryProtocol {
 
-    func fetchCharcters(limit: Int, offset: Int, characterId: String) -> Observable<ResponseComicsData> {
+    func fetchCharcters(characterId: String, limit: Int, offset: Int) -> Observable<ResponseComicsData> {
 
         // DataBase Cache
 
         return Observable.create { observer in
-            self.fetchComicsFromNetwork(limit: limit, offset: offset, characterId: characterId) { result in
+            self.fetchComicsFromNetwork(characterId: characterId, limit: limit, offset: offset ) { result in
                 switch result {
                 case .success(let responseComicsData):
                     observer.onNext(responseComicsData)
@@ -39,8 +39,14 @@ extension ComicsRepository: ComicsRepositoryProtocol {
         }
     }
 
-    private func fetchComicsFromNetwork(limit: Int, offset: Int, characterId: String, complete completion: @escaping (Result<ResponseComicsData, Error>) -> Void) {
-        netWorkService.request(ComicsRequest(limit: limit, offset: offset, characterId: characterId)) { result in
+    /// Request comics by character data to Api.
+    /// - Parameters:
+    ///   - characterId: Id of the character to search for their comics.
+    ///   - limit: limit of the results.
+    ///   - offset: exclude results.
+    /// - Returns: Comics of the character or error
+    private func fetchComicsFromNetwork(characterId: String, limit: Int, offset: Int, complete completion: @escaping (Result<ResponseComicsData, Error>) -> Void) {
+        netWorkService.request(ComicsRequest(characterId: characterId, limit: limit, offset: offset)) { result in
             switch result {
             case .success(let comics):
                 completion(.success(comics.data))

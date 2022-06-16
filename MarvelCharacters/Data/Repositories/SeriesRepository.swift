@@ -21,12 +21,12 @@ final class SeriesRepository {
 
 extension SeriesRepository: SeriesRepositoryProtocol {
 
-    func fetchCharcters(limit: Int, offset: Int, characterId: String) -> Observable<ResponseSeriesData> {
+    func fetchCharcters(characterId: String, limit: Int, offset: Int) -> Observable<ResponseSeriesData> {
 
         // DataBase Cache
 
         return Observable.create { observer in
-            self.fetchSeriesFromNetwork(limit: limit, offset: offset, characterId: characterId) { result in
+            self.fetchSeriesFromNetwork(characterId: characterId, limit: limit, offset: offset) { result in
                 switch result {
                 case .success(let responseSeriesData):
                     observer.onNext(responseSeriesData)
@@ -39,8 +39,14 @@ extension SeriesRepository: SeriesRepositoryProtocol {
         }
     }
 
-    private func fetchSeriesFromNetwork(limit: Int, offset: Int, characterId: String, complete completion: @escaping (Result<ResponseSeriesData, Error>) -> Void) {
-        netWorkService.request(SeriesRequest(limit: limit, offset: offset, characterId: characterId)) { result in
+    /// Request series by character data to Api.
+    /// - Parameters:
+    ///   - characterId: Id of the character to search for their series.
+    ///   - limit: limit of the results.
+    ///   - offset: exclude results
+    /// - Returns: Series of the character or error
+    private func fetchSeriesFromNetwork(characterId: String, limit: Int, offset: Int, complete completion: @escaping (Result<ResponseSeriesData, Error>) -> Void) {
+        netWorkService.request(SeriesRequest(characterId: characterId, limit: limit, offset: offset)) { result in
             switch result {
             case .success(let series):
                 completion(.success(series.data))

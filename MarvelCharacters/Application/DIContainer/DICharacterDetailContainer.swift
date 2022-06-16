@@ -14,7 +14,8 @@ extension Container {
         let container = Container()
 
         lazy var networkService: NetworkServiceProtocol = {
-           return DefaultNetworkService()
+            let networkService = Container.sharedNetworkContainer.resolve(NetworkServiceProtocol.self)
+            return networkService ?? DefaultNetworkService()
         }()
 
         lazy var comicsRepository: ComicsRepositoryProtocol = {
@@ -31,10 +32,10 @@ extension Container {
            return FetchSeriesUseCase(seriesRepository: seriesRepository)
         }()
 
-        lazy var homeCoordinator: HomeCoordinator =  {
+        lazy var homeCoordinator: HomeCoordinator = {
             HomeCoordinator(UINavigationController())
         }()
-        lazy var characterDetail: Character =  {
+        lazy var characterDetail: Character = {
             Character(id: 0, name: "", description: "", thumbnail: Thumbnail(path: "", typeExtension: ""))
         }()
 
