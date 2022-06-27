@@ -15,7 +15,9 @@ extension Container {
 
         lazy var networkService: NetworkServiceProtocol = {
             let networkService = Container.sharedNetworkContainer.resolve(NetworkServiceProtocol.self)
-            return networkService ?? DefaultNetworkService()
+            let appConfiguration = Container.sharedNetworkContainer.resolve(AppConfiguration.self) ?? AppConfiguration()
+            let apiDataNetworkConfig = Container.sharedNetworkContainer.resolve(NetworkConfigurable.self) ?? ApiDataNetworkConfig(baseURL: appConfiguration.apiBaseURL, publicKey: appConfiguration.publicKey, privateKey: appConfiguration.privateKey)
+            return networkService ?? DefaultNetworkService(apiDataNetworkConfig: apiDataNetworkConfig, logger: DefaultNetworkErrorLogger())
         }()
 
         lazy var comicsRepository: ComicsRepositoryProtocol = {

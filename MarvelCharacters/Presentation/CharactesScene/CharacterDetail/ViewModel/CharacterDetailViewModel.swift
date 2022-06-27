@@ -52,7 +52,7 @@ final class CharacterDetailViewModel { // : BaseViewModel {
 
     func fetchComicsLaunchesList() {
         isComicsLoading.accept(true)
-        fetchComicsUseCase.execute(limit: limitComic, offset: offsetComic, characterId: String(character?.id ?? 0))
+        fetchComicsUseCase.execute(characterId: String(character?.id ?? 0), limit: limitComic, offset: offsetComic)
             .subscribe {[weak self] event in
                 self?.isComicsLoading.accept(false)
                 guard let self = self else { return }
@@ -80,7 +80,7 @@ final class CharacterDetailViewModel { // : BaseViewModel {
 
     func fetchSeriesLaunchesList() {
         isSeriesLoading.accept(true)
-        fetchSeriesUseCase.execute(limit: limitSerie, offset: offsetSerie, characterId: String(character?.id ?? 0))
+        fetchSeriesUseCase.execute(characterId: String(character?.id ?? 0), limit: limitSerie, offset: offsetSerie)
             .subscribe {[weak self] event in
                 self?.isSeriesLoading.accept(false)
                 guard let self = self else { return }

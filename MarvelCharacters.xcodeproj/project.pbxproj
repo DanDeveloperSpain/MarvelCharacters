@@ -54,6 +54,7 @@
 		7E1C369D2831A42E0044A7FE /* CheckboxViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E1C369B2831A42D0044A7FE /* CheckboxViewController.xib */; };
 		7E1FEA522850BC1B0066F526 /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = 7E1FEA512850BC1B0066F526 /* Differentiator */; };
 		7E1FEA542850BC1B0066F526 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 7E1FEA532850BC1B0066F526 /* RxDataSources */; };
+		7E3C57CE285CE8A30053B9B8 /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3C57CD285CE8A30053B9B8 /* NetworkConfig.swift */; };
 		7E44E7AC2807186E00545E7E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E44E7AB2807186E00545E7E /* AppCoordinator.swift */; };
 		7E44E7B02807192700545E7E /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E44E7AF2807192700545E7E /* Coordinator.swift */; };
 		7E44E7B328071B1A00545E7E /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E44E7B228071B1A00545E7E /* LoginCoordinator.swift */; };
@@ -166,6 +167,7 @@
 		7E1C36972831A3270044A7FE /* RadioButtonViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RadioButtonViewController.xib; sourceTree = "<group>"; };
 		7E1C369A2831A42D0044A7FE /* CheckboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxViewController.swift; sourceTree = "<group>"; };
 		7E1C369B2831A42D0044A7FE /* CheckboxViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheckboxViewController.xib; sourceTree = "<group>"; };
+		7E3C57CD285CE8A30053B9B8 /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
 		7E44E7AB2807186E00545E7E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		7E44E7AF2807192700545E7E /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		7E44E7B228071B1A00545E7E /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
@@ -477,6 +479,7 @@
 				7E14AE15284628990089CAB5 /* DataRequest.swift */,
 				7E14AE17284630E40089CAB5 /* ErrorResponse.swift */,
 				7E14AE1D28466DDA0089CAB5 /* NetworkErrorLogger.swift */,
+				7E3C57CD285CE8A30053B9B8 /* NetworkConfig.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1082,6 +1085,7 @@
 				7EF819DE282FD2A3001315CF /* ShadowCell.swift in Sources */,
 				7EE8B6622849EC1000207A8A /* ComicsRequest.swift in Sources */,
 				7E44E7CC280727F300545E7E /* UserViewModel.swift in Sources */,
+				7E3C57CE285CE8A30053B9B8 /* NetworkConfig.swift in Sources */,
 				65804D7C2704CB76001C42B3 /* CharactersListViewController.swift in Sources */,
 				7E14AE0F284622B10089CAB5 /* CharactersRepository.swift in Sources */,
 				7EB3B633282EF88D00D69218 /* DesignSystemDemoCoordinator.swift in Sources */,

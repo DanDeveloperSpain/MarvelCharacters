@@ -11,10 +11,9 @@ struct CharactersRequest: DataRequest {
 
     var limit, offset: Int?
 
-    var url: String {
-        let baseURL: String = AppConfiguration().apiBaseURL
+    var path: String {
         let path: String = "/v1/public/characters"
-        return baseURL + path
+        return path
     }
 
     var method: HTTPMethod {
@@ -22,7 +21,7 @@ struct CharactersRequest: DataRequest {
     }
 
     var queryItems: [String: String] {
-        var parameters = getBaseParameters()
+        var parameters: [String: String] = [:]
         parameters["limit"] = String(limit ?? 0)
         parameters["offset"] = String(offset ?? 0)
         return parameters

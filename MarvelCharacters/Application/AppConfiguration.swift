@@ -9,16 +9,6 @@ import Foundation
 
 final class AppConfiguration {
 
-    struct ApiKeys {
-        lazy var privateKey: String = {
-            return ProcessInfo.processInfo.environment["PRIVATE_KEY"] ?? ""
-        }()
-
-        lazy var publicKey: String = {
-            return ProcessInfo.processInfo.environment["PUBLIC_KEY"] ?? ""
-        }()
-    }
-
     lazy var privateKey: String = {
         return ProcessInfo.processInfo.environment["PRIVATE_KEY"] ?? "098a9998db7db386601f5068c30a8d68d2cf9342"
     }()

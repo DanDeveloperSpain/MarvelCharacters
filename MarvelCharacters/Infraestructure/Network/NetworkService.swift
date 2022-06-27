@@ -8,30 +8,30 @@
 import Foundation
 
 protocol NetworkServiceProtocol {
+    var logger: DefaultNetworkErrorLogger { get }
+    var apiDataNetworkConfig: NetworkConfigurable { get }
     func request<Request: DataRequest>(_ request: Request, completion: @escaping (Result<Request.Response, Error>) -> Void)
 }
 
 final class DefaultNetworkService: NetworkServiceProtocol {
 
-    // ARREGLAR DEPENDENCIA
-    private let logger = DefaultNetworkErrorLogger()
+    var logger: DefaultNetworkErrorLogger
+    var apiDataNetworkConfig: NetworkConfigurable
+
+    public init(apiDataNetworkConfig: NetworkConfigurable, logger: DefaultNetworkErrorLogger) {
+        self.apiDataNetworkConfig = apiDataNetworkConfig
+        self.logger = logger
+    }
 
     func request<Request: DataRequest>(_ request: Request, completion: @escaping (Result<Request.Response, Error>) -> Void) {
 
-        guard var urlComponent = URLComponents(string: request.url) else {
+        guard var urlComponent = URLComponents(string: apiDataNetworkConfig.baseURL + request.path) else {
             let error = NSError(domain: ErrorResponse.invalidEndpoint.rawValue, code: 404, userInfo: nil)
             return completion(.failure(error))
         }
 
-        var queryItems: [URLQueryItem] = []
-
-        request.queryItems.forEach {
-            let urlQueryItem = URLQueryItem(name: $0.key, value: $0.value)
-            urlComponent.queryItems?.append(urlQueryItem)
-            queryItems.append(urlQueryItem)
-        }
-
-        urlComponent.queryItems = queryItems
+        // QueryItems
+        urlComponent.queryItems = setQueryItems(request: request, apiDataNetworkConfig: apiDataNetworkConfig)
 
         guard let url = urlComponent.url else {
             let error = NSError(domain: ErrorResponse.invalidEndpoint.rawValue, code: 404, userInfo: nil)
@@ -81,4 +81,25 @@ final class DefaultNetworkService: NetworkServiceProtocol {
         .resume()
 
     }
+
+}
+
+extension DefaultNetworkService {
+
+    func setQueryItems<Request: DataRequest>(request: Request, apiDataNetworkConfig: NetworkConfigurable) -> [URLQueryItem] {
+        var queryItems: [URLQueryItem] = []
+
+        apiDataNetworkConfig.baseQueryItems?.forEach {
+            let urlQueryItem = URLQueryItem(name: $0.key, value: $0.value)
+            queryItems.append(urlQueryItem)
+        }
+
+        request.queryItems.forEach {
+            let urlQueryItem = URLQueryItem(name: $0.key, value: $0.value)
+            queryItems.append(urlQueryItem)
+        }
+
+        return queryItems
+    }
+
 }

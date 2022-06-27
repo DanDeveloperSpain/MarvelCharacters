@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 protocol FetchSeriesUseCaseProtocol: AnyObject {
-    func execute(limit: Int, offset: Int, characterId: String) -> Observable<ResponseSeriesData>
+    func execute(characterId: String, limit: Int, offset: Int) -> Observable<ResponseSeriesData>
 }
 
 final class FetchSeriesUseCase: FetchSeriesUseCaseProtocol {
@@ -21,7 +21,7 @@ final class FetchSeriesUseCase: FetchSeriesUseCaseProtocol {
         self.seriesRepository = seriesRepository
     }
 
-    func execute(limit: Int, offset: Int, characterId: String) -> Observable<ResponseSeriesData> {
+    func execute(characterId: String, limit: Int, offset: Int) -> Observable<ResponseSeriesData> {
         return Observable.create { [weak self] observer in
             self?.seriesRepository.fetchCharcters(characterId: characterId, limit: limit, offset: offset)
                 .subscribe { event in

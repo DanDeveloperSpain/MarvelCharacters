@@ -68,7 +68,7 @@ class BaseViewController: UIViewController, BaseViewControllerProtocol {
 
     private func customizeLeftNavBarButton () {
         let myBackButton = UIButton(type: UIButton.ButtonType.custom)
-        myBackButton.addTarget(self, action: #selector(self.pop(_:)), for: UIControl.Event.touchUpInside)
+        myBackButton.addTarget(self, action: #selector(self.backButtonPressed(_:)), for: UIControl.Event.touchUpInside)
         myBackButton.setImage(DSImage(named: .icon_backButton)?.withTintColor(.dsWhite), for: .normal)
         myBackButton.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
         myBackButton.imageEdgeInsets = UIEdgeInsets(top: 5, left: -15, bottom: 5, right: 5)
@@ -76,22 +76,22 @@ class BaseViewController: UIViewController, BaseViewControllerProtocol {
         self.navigationItem.leftBarButtonItem = myCustomBackButtonItem
     }
 
-    @objc private func pop(_ sender: AnyObject) {
-
-        self.backButtonPressed()
-
-        if self.navigationController?.popViewController(animated: true) != nil {
-            /// Has been closed successfully
-        } else {
-            if self.navigationController?.parent == nil {
-                /// We make sure that it can always be closed
-                self.dismiss(animated: false, completion: nil)
-            }
-        }
-    }
+//    @objc private func pop(_ sender: AnyObject) {
+//
+//        self.backButtonPressed()
+//
+//        if self.navigationController?.popViewController(animated: true) != nil {
+//            /// Has been closed successfully
+//        } else {
+//            if self.navigationController?.parent == nil {
+//                /// We make sure that it can always be closed
+//                self.dismiss(animated: false, completion: nil)
+//            }
+//        }
+//    }
 
     /// Actions before closing (overwritten in controller)
-    @objc func backButtonPressed() {
+    @objc func backButtonPressed(_ sender: AnyObject) {
     }
 
     // ---------------------------------

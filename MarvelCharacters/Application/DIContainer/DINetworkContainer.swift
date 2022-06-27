@@ -13,9 +13,26 @@ extension Container {
     static let sharedNetworkContainer: Container = {
         let container = Container()
 
-        lazy var networkService: NetworkServiceProtocol = {
-           return DefaultNetworkService()
+        let appConfiguration = AppConfiguration()
+        let logger = DefaultNetworkErrorLogger()
+
+        lazy var apiDataNetworkConfig: NetworkConfigurable = {
+            ApiDataNetworkConfig(baseURL: appConfiguration.apiBaseURL, publicKey: appConfiguration.publicKey, privateKey: appConfiguration.privateKey)
         }()
+
+        lazy var networkService: NetworkServiceProtocol = {
+            return DefaultNetworkService(apiDataNetworkConfig: apiDataNetworkConfig, logger: logger)
+        }()
+
+        /// AppConfiguration
+        container.register(AppConfiguration.self) { _ in
+            appConfiguration
+        }
+
+        /// ApiDataNetworkConfig
+        container.register(NetworkConfigurable.self) { _ in
+            apiDataNetworkConfig
+        }
 
         /// NetworkService
         container.register(NetworkServiceProtocol.self) { _ in
