@@ -75,6 +75,7 @@
 		7E539CDB2811B0C4006FC1D3 /* AppCoordinatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E539CDA2811B0C4006FC1D3 /* AppCoordinatorTest.swift */; };
 		7E64DF632875D5D500F80D89 /* Modable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E64DF622875D5D500F80D89 /* Modable.swift */; };
 		7E64DF672877250F00F80D89 /* CustomizableNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E64DF662877250F00F80D89 /* CustomizableNavBar.swift */; };
+		7E64DF692878C1CE00F80D89 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E64DF682878C1CE00F80D89 /* UIView.swift */; };
 		7E6E2F582857361E00A6F93E /* DINetworkContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6E2F572857361E00A6F93E /* DINetworkContainer.swift */; };
 		7E709A26281002FB00763DC2 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E709A25281002FB00763DC2 /* LoginViewModel.swift */; };
 		7EA05AE5282EFA80003E04B7 /* DesignSystemDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA05AE3282EFA80003E04B7 /* DesignSystemDemoViewController.swift */; };
@@ -187,6 +188,7 @@
 		7E539CDA2811B0C4006FC1D3 /* AppCoordinatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorTest.swift; sourceTree = "<group>"; };
 		7E64DF622875D5D500F80D89 /* Modable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modable.swift; sourceTree = "<group>"; };
 		7E64DF662877250F00F80D89 /* CustomizableNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizableNavBar.swift; sourceTree = "<group>"; };
+		7E64DF682878C1CE00F80D89 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		7E6E2F572857361E00A6F93E /* DINetworkContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DINetworkContainer.swift; sourceTree = "<group>"; };
 		7E709A25281002FB00763DC2 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		7EA05AE3282EFA80003E04B7 /* DesignSystemDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemDemoViewController.swift; sourceTree = "<group>"; };
@@ -626,6 +628,7 @@
 		7E64DF602875D56500F80D89 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				7E64DF6B2878C3F000F80D89 /* Extensions */,
 				7E64DF612875D57A00F80D89 /* Protocols */,
 			);
 			path = Utils;
@@ -638,6 +641,14 @@
 				7E64DF662877250F00F80D89 /* CustomizableNavBar.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		7E64DF6B2878C3F000F80D89 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7E64DF682878C1CE00F80D89 /* UIView.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		7EA05AE2282EFA4C003E04B7 /* DesignSystemDemo */ = {
@@ -1058,6 +1069,7 @@
 				7E1C36982831A3270044A7FE /* RadioButtonViewController.swift in Sources */,
 				7EF819EF2830F97B001315CF /* DialogsViewController.swift in Sources */,
 				7E14AE1C284661820089CAB5 /* AppConfiguration.swift in Sources */,
+				7E64DF692878C1CE00F80D89 /* UIView.swift in Sources */,
 				7EE8B6642849EC2500207A8A /* SeriesRequest.swift in Sources */,
 				7E44E7C22807260700545E7E /* TabCoordinator.swift in Sources */,
 				65D70A542706213700936F9C /* CharacterCell.swift in Sources */,

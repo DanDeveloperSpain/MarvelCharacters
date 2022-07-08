@@ -120,6 +120,8 @@ final class CharacterDetailViewController: UIViewController, CustomizableNavBar,
     private func configureView() {
         setupNavigationBar(title: viewModel?.title, color: .dsWhite, configureBackButton: true)
 
+        self.view.setBackgroundImage(imageName: "marvelBackground")
+
         comicActivityIndicator.color = .dsSecondaryPure
         serieActivityIndicator.color = .dsSecondaryPure
 

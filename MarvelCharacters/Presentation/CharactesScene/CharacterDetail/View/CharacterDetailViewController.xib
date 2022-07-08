@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -24,9 +24,6 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="marvelBackground" translatesAutoresizingMaskIntoConstraints="NO" id="c5B-zP-G2T">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8V8-0Z-gJZ">
                     <rect key="frame" x="132" y="54" width="150" height="150"/>
                     <constraints>
@@ -61,17 +58,13 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="8V8-0Z-gJZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3Z0-zs-9le"/>
-                <constraint firstItem="c5B-zP-G2T" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="8xi-99-hu1"/>
-                <constraint firstAttribute="bottom" secondItem="c5B-zP-G2T" secondAttribute="bottom" id="Bgq-lV-ZPp"/>
                 <constraint firstItem="fiV-hZ-3ed" firstAttribute="top" secondItem="8V8-0Z-gJZ" secondAttribute="bottom" constant="20" id="DcP-c2-AcE"/>
-                <constraint firstItem="c5B-zP-G2T" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="E7J-qR-SPC"/>
                 <constraint firstItem="c8Y-L0-dpC" firstAttribute="top" secondItem="fiV-hZ-3ed" secondAttribute="bottom" constant="20" id="M9J-Le-FuA"/>
                 <constraint firstItem="8jK-G1-619" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="SVV-zb-rqa"/>
                 <constraint firstItem="8V8-0Z-gJZ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="Srr-hu-Tvt"/>
                 <constraint firstItem="Y0C-WV-87J" firstAttribute="centerX" secondItem="c8Y-L0-dpC" secondAttribute="centerX" id="SvV-ni-fL1"/>
                 <constraint firstItem="c8Y-L0-dpC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Vrj-Rd-dlp"/>
                 <constraint firstItem="fiV-hZ-3ed" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="bH4-Qf-sX1"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="c5B-zP-G2T" secondAttribute="trailing" id="bdH-TO-yqM"/>
                 <constraint firstItem="Y0C-WV-87J" firstAttribute="top" secondItem="fiV-hZ-3ed" secondAttribute="bottom" constant="115" id="faL-vP-dLZ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="c8Y-L0-dpC" secondAttribute="trailing" id="fbt-26-6YC"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fiV-hZ-3ed" secondAttribute="trailing" constant="20" id="gmt-TA-b7B"/>
@@ -82,7 +75,6 @@
         </view>
     </objects>
     <resources>
-        <image name="marvelBackground" width="900" height="1600"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

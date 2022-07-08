@@ -100,8 +100,11 @@ final class CharactersListViewController: UIViewController, CustomizableNavBar, 
     private func configureView() {
         setupNavigationBar(title: viewModel?.title, color: .dsWhite)
 
+        self.view.setBackgroundImage(imageName: "marvelBackground")
+
         tryAgainButton.isHidden = true
         tryAgainButton.dsConfigure(text: NSLocalizedString("Try Again", comment: ""), style: .secondary, state: .enabled)
+
         activityIndicator.color = .dsSecondaryPure
     }
 
