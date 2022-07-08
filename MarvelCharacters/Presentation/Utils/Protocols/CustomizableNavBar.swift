@@ -26,7 +26,7 @@ public extension CustomizableNavBar where Self: UIViewController {
 
     private func customizeLeftNavBarButton () {
         let myBackButton = UIButton(type: UIButton.ButtonType.custom)
-        myBackButton.addTarget(self, action: #selector(self.backButtonPressed111(_:)), for: UIControl.Event.touchUpInside)
+        myBackButton.addTarget(self, action: #selector(self.pop(_:)), for: UIControl.Event.touchUpInside)
         myBackButton.setImage(DSImage(named: .icon_backButton)?.withTintColor(.dsWhite), for: .normal)
         myBackButton.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
         myBackButton.imageEdgeInsets = UIEdgeInsets(top: 5, left: -15, bottom: 5, right: 5)
@@ -38,8 +38,15 @@ public extension CustomizableNavBar where Self: UIViewController {
 
 fileprivate extension UIViewController {
 
-    /// Actions before closing (overwritten in controller)
-    @objc func backButtonPressed111(_ sender: AnyObject) {
-        print("____****")
+    @objc func pop(_ sender: AnyObject) {
+
+        if self.navigationController?.popViewController(animated: true) != nil {
+            /// Has been closed successfully
+        } else {
+            if self.navigationController?.parent == nil {
+                /// We make sure that it can always be closed
+                self.dismiss(animated: false, completion: nil)
+            }
+        }
     }
 }

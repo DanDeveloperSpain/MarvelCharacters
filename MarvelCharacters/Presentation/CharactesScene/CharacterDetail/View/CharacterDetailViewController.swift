@@ -12,7 +12,7 @@ import RxCocoa
 import RxDataSources
 import DanDesignSystem
 
-final class CharacterDetailViewController: BaseViewController, Modable {
+final class CharacterDetailViewController: UIViewController, CustomizableNavBar, Modable {
 
     // ------------------------------------------------
     // MARK: - Outlets
@@ -128,17 +128,6 @@ final class CharacterDetailViewController: BaseViewController, Modable {
         characterImageView.layer.cornerRadius = 75
         let urlImge = "\(viewModel?.character?.thumbnail?.path ?? "").\(viewModel?.character?.thumbnail?.typeExtension ?? "")"
         characterImageView.sd_setImage(with: URL(string: urlImge), placeholderImage: DSImage(named: .marverComics))
-    }
-
-    // ------------------------------------------------
-    // MARK: - Buton Action's
-    // ------------------------------------------------
-
-    /// Actions to take when the back button is pressed and the screen is going to be deleted.
-    ///
-    /// In this case we do not need to take any action.
-    func backButtonPressed2() {
-        // self.dismiss(animated: true, completion: nil)
     }
 
     // ------------------------------------------------
