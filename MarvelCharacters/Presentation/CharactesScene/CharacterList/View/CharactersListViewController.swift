@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import DanDesignSystem
 
-final class CharactersListViewController: UIViewController { // BaseViewController {
+final class CharactersListViewController: UIViewController, CustomizableNavBar, Modable {
 
     // ------------------------------------------------
     // MARK: - Outlets
@@ -20,10 +20,24 @@ final class CharactersListViewController: UIViewController { // BaseViewControll
     @IBOutlet weak var charactersCollectionView: UICollectionView!
     @IBOutlet weak var tryAgainButton: UIButton!
 
+    // ---------------------------------
+    // MARK: - Properties
+    // ---------------------------------
+
+    private var viewModel: CharactersListViewModel!
+
     private let reuseIdentifier = CharacterCell.kCellId
     private let disposeBag = DisposeBag()
-    var viewModel: CharactersListViewModel!
-    // var coordinator: MainCoordinator!
+
+    // ---------------------------------
+    // MARK: - Life Cycle
+    // ---------------------------------
+
+    static func create(viewModel: CharactersListViewModel) -> CharactersListViewController {
+        let view = CharactersListViewController()
+        view.viewModel = viewModel
+        return view
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +47,10 @@ final class CharactersListViewController: UIViewController { // BaseViewControll
         setupCocoaBindings()
         viewModel.fetchCharactersLaunchesList()
     }
+
+    // ---------------------------------
+    // MARK: - Bindings
+    // ---------------------------------
 
     private func setupBindings() {
         viewModel.isLoading
@@ -75,27 +93,17 @@ final class CharactersListViewController: UIViewController { // BaseViewControll
             }).disposed(by: disposeBag)
     }
 
-    // ------------------------------------------------
-    // MARK: - Properties
-    // ------------------------------------------------
-
-    /// Set the model of the view.
-//    private var viewModel: CharactersListViewModel? {
-//        return self.baseViewModel as? CharactersListViewModel
-//    }
-
     // ---------------------------------
     // MARK: - Setup View
     // ---------------------------------
 
-    /// Setup the view.
-//    override internal func setup() {
-//        viewModel?.setView(self)
-//        configureView()
-//        configureCollectionView()
-//
-//        activityIndicator.startAnimating()
-//    }
+    private func configureView() {
+        setupNavigationBar(title: viewModel?.title, color: .dsWhite)
+
+        tryAgainButton.isHidden = true
+        tryAgainButton.dsConfigure(text: NSLocalizedString("Try Again", comment: ""), style: .secondary, state: .enabled)
+        activityIndicator.color = .dsSecondaryPure
+    }
 
     // ------------------------------------------------
     // MARK: - Buton Action's
@@ -109,24 +117,9 @@ final class CharactersListViewController: UIViewController { // BaseViewControll
     // MARK: - Private methods
     // ------------------------------------------------
 
-    private func configureView() {
-        // setupNavigationBar(title: viewModel?.title, color: .dsWhite)
-        tryAgainButton.isHidden = true
-        tryAgainButton.dsConfigure(text: NSLocalizedString("Try Again", comment: ""), style: .secondary, state: .enabled)
-        activityIndicator.color = .dsSecondaryPure
-    }
-
-    private func updateDataSource() {
-        self.activityIndicator.stopAnimating()
-        charactersCollectionView.reloadData()
-    }
-
     /// Setup the charecterCollectionView flow layout.
     private func configureCollectionView() {
         self.charactersCollectionView.register(UINib(nibName: CharacterCell.kCellId, bundle: Bundle(for: CharacterCell.self)), forCellWithReuseIdentifier: CharacterCell.kCellId)
-
-//        self.charactersCollectionView.dataSource = self
-//        self.charactersCollectionView.delegate = self
 
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
@@ -139,46 +132,10 @@ final class CharactersListViewController: UIViewController { // BaseViewControll
     }
 
     private func showError(errorToShow: String) {
-        let dialogModal = DialogViewController(image: DSImage(named: .icon_info) ?? UIImage(), title: errorToShow, titlePrimaryButton: NSLocalizedString("Accept", comment: ""), delegate: self)
-        self.showDialogModal(dialogViewController: dialogModal)
-    }
-
-    // QUITAR DE AQUI
-    func showDialogModal(dialogViewController: DialogViewController) {
-        self.present(dialogViewController, animated: true, completion: nil)
+        self.showDialogModal(image: DSImage(named: .icon_info) ?? UIImage(), title: errorToShow, titlePrimaryButton: NSLocalizedString("Accept", comment: ""), delegate: self)
     }
 
  }
-
-// --------------------------------------------------------------
-// MARK: - CharactersListViewModelViewDelegate
-// --------------------------------------------------------------
-extension CharactersListViewController: CharactersListViewModelViewDelegate {
-    func showError() {
-        DispatchQueue.main.async {
-            self.activityIndicator.stopAnimating()
-            self.tryAgainButton.isHidden = false
-
-            /// Modal message
-            // let dialogModal = DialogViewController(image: DSImage(named: .icon_info) ?? UIImage(), title: self.viewModel?.errorMessaje?.0 ?? "", subtitle: self.viewModel?.errorMessaje?.1 ?? "", titlePrimaryButton: NSLocalizedString("Accept", comment: ""), hideCloseButton: false, delegate: self)
-            // self.showDialogModal(dialogViewController: dialogModal)
-        }
-    }
-
-    /// General notification when the view should be update.
-    ///
-    /// In this case we do not use it, we use loadCharacters since it is the only element in the whole view is the list of characters.
-    func updateScreen() {
-    }
-
-    /// Notifies that the characterDataSource has changed and the view needs to be updated.
-    func loadCharacters() {
-        DispatchQueue.main.async {
-            self.tryAgainButton.isHidden = true
-            self.updateDataSource()
-        }
-    }
-}
 
 // --------------------------------------------------------------
 // MARK: - DialogButtonViewDelegate

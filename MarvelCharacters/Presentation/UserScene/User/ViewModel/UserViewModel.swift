@@ -11,19 +11,11 @@ import Foundation
 // MARK: - Coordinator Delegates
 // ---------------------------------
 
-protocol UserViewModelCoordinatorDelegate: AnyObject { // ---> UserCoordinator
+protocol UserViewModelCoordinatorDelegate: AnyObject {
     func  goToLogin()
 }
 
-// ---------------------------------
-// MARK: - View Delegates
-// ---------------------------------
-
-protocol UserViewModelViewDelegate: BaseControllerViewModelProtocol { // ---> UserViewController
-    // update specific item on screen
-}
-
-final class UserViewModel: BaseViewModel {
+final class UserViewModel {
 
     // ---------------------------------
     // MARK: - Delegates
@@ -31,32 +23,15 @@ final class UserViewModel: BaseViewModel {
 
     private weak var coordinatorDelegate: UserViewModelCoordinatorDelegate?
 
-    private weak var viewDelegate: UserViewModelViewDelegate? {
-        return self.baseView as? UserViewModelViewDelegate
-    }
-
     // ---------------------------------
     // MARK: - Init
     // ---------------------------------
 
+    /// Create a new LoginViewModel.
+    /// - Parameters:
+    ///   - coordinatorDelegate: The coordinator delegate
     init(coordinatorDelegate: UserViewModelCoordinatorDelegate) {
         self.coordinatorDelegate = coordinatorDelegate
-    }
-
-    // ---------------------------------
-    // MARK: - Life Cycle
-    // ---------------------------------
-
-    override func start() {
-        getDataUser()
-    }
-
-    // ---------------------------------
-    // MARK: - Network
-    // ---------------------------------
-
-    func getDataUser() {
-        viewDelegate?.updateScreen()
     }
 
     // ---------------------------------

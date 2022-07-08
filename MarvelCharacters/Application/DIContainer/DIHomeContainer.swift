@@ -56,8 +56,7 @@ extension Container {
         /// ViewController
         container.register(CharactersListViewController.self) { (resolver, coordinator: HomeCoordinator) in
             let charactersListViewModel = resolver.resolve(CharactersListViewModel.self, argument: coordinator) ?? CharactersListViewModel(coordinatorDelegate: homeCoordinator, fetchCharactersUseCase: charactersUseCase)
-            let charactersListViewController = CharactersListViewController()
-            charactersListViewController.viewModel = charactersListViewModel
+            let charactersListViewController = CharactersListViewController.create(viewModel: charactersListViewModel)
             return charactersListViewController
         }
 

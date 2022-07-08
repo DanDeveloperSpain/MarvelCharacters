@@ -11,7 +11,7 @@ import Foundation
 // MARK: - Coordinator Delegates
 // ---------------------------------
 
-protocol DesignSystemDemoViewModelCoordinatorDelegate: AnyObject { // ---> DesignSystemDemoCoordinator
+protocol DesignSystemDemoViewModelCoordinatorDelegate: AnyObject {
     /// Foundations
     func goToTypography()
     func goToColors()
@@ -25,25 +25,13 @@ protocol DesignSystemDemoViewModelCoordinatorDelegate: AnyObject { // ---> Desig
     func goToCheckBox()
 }
 
-// ---------------------------------
-// MARK: - View Delegates
-// ---------------------------------
-
-protocol DesignSystemDemoViewModelViewDelegate: BaseControllerViewModelProtocol { // ---> DesignSystemDemoViewController
-    // update specific item on screen
-}
-
-final class DesignSystemDemoViewModel: BaseViewModel {
+final class DesignSystemDemoViewModel {
 
     // ---------------------------------
     // MARK: - Delegates
     // ---------------------------------
 
     private weak var coordinatorDelegate: DesignSystemDemoViewModelCoordinatorDelegate?
-
-    private weak var viewDelegate: DesignSystemDemoViewModelViewDelegate? {
-        return self.baseView as? DesignSystemDemoViewModelViewDelegate
-    }
 
     // ---------------------------------
     // MARK: - Properties
@@ -59,13 +47,6 @@ final class DesignSystemDemoViewModel: BaseViewModel {
 
     init(coordinatorDelegate: DesignSystemDemoViewModelCoordinatorDelegate) {
         self.coordinatorDelegate = coordinatorDelegate
-    }
-
-    // ---------------------------------
-    // MARK: - Life Cycle
-    // ---------------------------------
-
-    override func start() {
     }
 
     // ---------------------------------

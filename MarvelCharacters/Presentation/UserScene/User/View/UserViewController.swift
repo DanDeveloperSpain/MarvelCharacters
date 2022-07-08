@@ -8,7 +8,7 @@
 import UIKit
 import DanDesignSystem
 
-final class UserViewController: BaseViewController {
+final class UserViewController: UIViewController {
 
     // ---------------------------------
     // MARK: - Outlets
@@ -20,17 +20,28 @@ final class UserViewController: BaseViewController {
     // MARK: - Properties
     // ---------------------------------
 
-    /// Set the model of the view.
-    private var viewModel: UserViewModel? {
-        return (self.baseViewModel as? UserViewModel)
+    private var viewModel: UserViewModel!
+
+    // ---------------------------------
+    // MARK: - Life Cycle
+    // ---------------------------------
+
+    static func create(viewModel: UserViewModel) -> UserViewController {
+        let view = UserViewController()
+        view.viewModel = viewModel
+        return view
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureView()
     }
 
     // ---------------------------------
     // MARK: - Setup View
     // ---------------------------------
 
-    override internal func setup() {
-        viewModel?.setView(self)
+    private func configureView() {
         view.addGradient(colors: [.dsPrimaryPure, .dsSecondaryPure])
         closeSessionButton.dsConfigure(text: NSLocalizedString("Close session", comment: ""), style: .secondary, state: .enabled, width: 150)
     }
@@ -38,20 +49,9 @@ final class UserViewController: BaseViewController {
     // ---------------------------------
     // MARK: - Buton Action's
     // ---------------------------------
+
     @IBAction func showLogoutButtonPressed(_ sender: UIButton) {
         viewModel?.didSelectCloseSesion()
-    }
-
-}
-
-// ---------------------------------
-// MARK: - UserViewModelViewDelegate
-// ---------------------------------
-
-extension UserViewController: UserViewModelViewDelegate {
-
-    /// General notification when the view should be update.
-    func updateScreen() {
     }
 
 }

@@ -80,8 +80,7 @@ extension Container {
         /// ViewController
         container.register(CharacterDetailViewController.self) { (resolver, coordinator: HomeCoordinator, character: Character) in
             let charactersDetailViewModel = resolver.resolve(CharacterDetailViewModel.self, arguments: coordinator, character) ?? CharacterDetailViewModel(coordinatorDelegate: homeCoordinator, fetchComicsUseCase: comicsUseCase, fetchSeriesUseCase: seriesUseCase, character: characterDetail)
-            let characterDetailViewController = CharacterDetailViewController()
-            characterDetailViewController.viewModel = charactersDetailViewModel
+            let characterDetailViewController = CharacterDetailViewController.create(viewModel: charactersDetailViewModel)
             return characterDetailViewController
         }
 

@@ -40,7 +40,7 @@ class LoginCoordinator: LoginCoordinatorProtocol {
     }
 
     func showLoginViewController() {
-        let loginVC = Container.sharedLoginContainer.resolve(LoginViewController.self, argument: self) ?? LoginViewController(viewModel: LoginViewModel(coordinatorDelegate: self))
+        let loginVC = Container.sharedLoginContainer.resolve(LoginViewController.self, argument: self) ?? LoginViewController()
         navigationController.pushViewController(loginVC, animated: true)
     }
 }

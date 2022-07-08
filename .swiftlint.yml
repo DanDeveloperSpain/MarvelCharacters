@@ -4,6 +4,8 @@ disabled_rules:
   - orphaned_doc_comment
   - large_tuple
   - cyclomatic_complexity
+  - identifier_name
+  - type_name
 
 excluded:
   - Carthage

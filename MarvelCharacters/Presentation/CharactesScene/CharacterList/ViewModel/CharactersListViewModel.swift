@@ -17,33 +17,62 @@ protocol CharactersListViewModelCoordinatorDelegate: AnyObject { // ---> Charact
     func goToCharacterDetail(character: Character)
 }
 
-// ---------------------------------
-// MARK: - View Delegates
-// ---------------------------------
+final class CharactersListViewModel {
 
-protocol CharactersListViewModelViewDelegate: BaseControllerViewModelProtocol { // ---> CharactersListViewController
-    func showError()
-    func loadCharacters()
-}
+    // ---------------------------------
+    // MARK: - Properties
+    // ---------------------------------
 
-final class CharactersListViewModel { //: BaseViewModel {
+    var title: String {
+        return NSLocalizedString("Marvel characters", comment: "")
+    }
 
-    // MARK: - Variables
-    private let fetchCharactersUseCase: FetchCharactersUseCaseProtocol
+    /// Character datasource.
+    private(set) var characters: [Character] = []
+
+    /// DataResponse
+    var responseCharactersData: ResponseCharactersData?
+
+    /// Indicate the last character that will be shown in the list, to know when to make the next request to obtain more characters.
+    private var numLastCharacterToShow: Int {
+        return PaginationHelper.numLastItemToShow(offset: responseCharactersData?.offset ?? 0, all: responseCharactersData?.all?.count ?? 0)
+    }
+
+    let limit = 20
+    var offset = 0
+    var loadMore = false
+
+    // ---------------------------------
+    // MARK: - Properties RX-Bindings
+    // ---------------------------------
+
     let cellUIModels: PublishSubject<[CharacterCell.UIModel]> = PublishSubject()
     let isLoading: BehaviorRelay<Bool> = BehaviorRelay(value: false)
     let tryAgainButtonisHidden: BehaviorRelay<Bool> = BehaviorRelay(value: true)
     let errorMessage: PublishSubject<String> = PublishSubject()
     private let disposeBag = DisposeBag()
-    var responseCharactersData: ResponseCharactersData?
 
+    // ---------------------------------
+    // MARK: - Delegates & UseCases
+    // ---------------------------------
+
+    private weak var coordinatorDelegate: CharactersListViewModelCoordinatorDelegate?
+    private let fetchCharactersUseCase: FetchCharactersUseCaseProtocol
+
+    // ---------------------------------
     // MARK: - Init
+    // ---------------------------------
+
     init(coordinatorDelegate: CharactersListViewModelCoordinatorDelegate, fetchCharactersUseCase: FetchCharactersUseCaseProtocol) {
         self.coordinatorDelegate = coordinatorDelegate
         self.fetchCharactersUseCase = fetchCharactersUseCase
     }
 
-    /// Fetches the list of songs either from the internet or local storage via use case
+    // ------------------------------------------------
+    // MARK: - Fetches
+    // ------------------------------------------------
+
+    /// Fetches the list of characters from the internet or local storage via use case. (internet in this case)
     func fetchCharactersLaunchesList() {
         isLoading.accept(true)
         tryAgainButtonisHidden.accept(true)
@@ -64,67 +93,6 @@ final class CharactersListViewModel { //: BaseViewModel {
             }.disposed(by: disposeBag)
     }
 
-    private func setupData(characters: [Character]) {
-        var uiModels = [CharacterCell.UIModel]()
-        characters.forEach { character in
-            uiModels.append(CharacterCell.UIModel(characterName: character.name, characterImageURL: "\(character.thumbnail?.path ?? "").\(character.thumbnail?.typeExtension ?? "")"))
-        }
-        cellUIModels.onNext(uiModels)
-    }
-
-    // ---------------------------------
-    // MARK: - Delegates
-    // ---------------------------------
-
-    private weak var coordinatorDelegate: CharactersListViewModelCoordinatorDelegate?
-
-    /// Set the view of the model.
-//    private weak var viewDelegate: CharactersListViewModelViewDelegate? {
-//        return self.baseView as? CharactersListViewModelViewDelegate
-//    }
-
-    // ---------------------------------
-    // MARK: - Properties
-    // ---------------------------------
-
-    var title: String {
-        return NSLocalizedString("Marvel characters", comment: "")
-    }
-
-    // let characterService: CharacterServiceProtocol
-
-    let limit = 20
-    var offset = 0
-    var loadMore = false
-
-    /// Character datasource.
-    private(set) var characters: [Character] = []
-
-    /// Indicate the last character that will be shown in the list, to know when to make the next request to obtain more characters.
-    private var numLastCharacterToShow: Int {
-        return PaginationHelper.numLastItemToShow(offset: responseCharactersData?.offset ?? 0, all: responseCharactersData?.all?.count ?? 0)
-    }
-
-    // ------------------------------------------------
-    // MARK: - ViewModel
-    // ------------------------------------------------
-
-    /// Create a new CharactersListviewModel.
-    /// - Parameters:
-    ///   - coordinatorDelegate: The coordinator delegate.
-    ///   - characterService: Api call service.
-//    init(coordinatorDelegate: CharactersListViewModelCoordinatorDelegate, characterService: CharacterServiceProtocol) {
-//        self.coordinatorDelegate = coordinatorDelegate
-//        self.characterService = characterService
-//    }
-
-    /// First call of viewmodel lifecycle.
-//    override func start() {
-//        Task {
-//            checkApiKeys() ? try await getCharacters() : setErrorApiKey()
-//        }
-//    }
-
     // ---------------------------------
     // MARK: - Public methods
     // ---------------------------------
@@ -134,18 +102,6 @@ final class CharactersListViewModel { //: BaseViewModel {
             paginate()
         }
     }
-
-//    func numberOfItemsInSection(section: Int) -> Int {
-//        return characters.count
-//    }
-//
-//    func characterNameAtIndex(index: Int) -> String {
-//        return characters[index].name ?? ""
-//    }
-//
-//    func characterUrlImgeAtIndex(index: Int) -> String {
-//        return "\(characters[index].thumbnail?.path ?? "").\(characters[index].thumbnail?.typeExtension ?? "")"
-//    }
 
     // ---------------------------------
     // MARK: - Events
@@ -167,6 +123,14 @@ final class CharactersListViewModel { //: BaseViewModel {
         self.loadMore = PaginationHelper.isMoreDataToLoad(offset: self.responseCharactersData?.offset ?? 0, total: self.responseCharactersData?.total ?? 0, limit: self.limit)
     }
 
+    private func setupData(characters: [Character]) {
+        var uiModels = [CharacterCell.UIModel]()
+        characters.forEach { character in
+            uiModels.append(CharacterCell.UIModel(characterName: character.name, characterImageURL: "\(character.thumbnail?.path ?? "").\(character.thumbnail?.typeExtension ?? "")"))
+        }
+        cellUIModels.onNext(uiModels)
+    }
+
     private func paginate() {
         offset += limit
         fetchCharactersLaunchesList()
@@ -180,11 +144,5 @@ final class CharactersListViewModel { //: BaseViewModel {
 //    private func setErrorApiKey() {
 //        self.errorMessaje = ("There isn`t ApiKey data", "Please enter your public and private key in Schemes -> Edit Scheme -> Environment Variables")
 //    }
-
-    // ------------------------------------------------
-    // MARK: - Backend
-    // ------------------------------------------------
-
-    /// Request data to CharacterService (API).
 
 }

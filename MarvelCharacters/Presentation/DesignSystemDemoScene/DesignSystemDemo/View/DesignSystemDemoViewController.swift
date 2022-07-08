@@ -8,7 +8,7 @@
 import UIKit
 import DanDesignSystem
 
-class DesignSystemDemoViewController: BaseViewController {
+class DesignSystemDemoViewController: UIViewController, CustomizableNavBar {
 
     // ---------------------------------
     // MARK: - Outlets
@@ -21,35 +21,34 @@ class DesignSystemDemoViewController: BaseViewController {
 
     private let data: [(section: String, values: [String])] = [("Foundations", ["Typography", "Colors", "Borders", "Shadows"]), ("Components", ["Buttons", "Dialog", "Radio Button", "Checkbox"])]
 
-    /// Set the model of the view.
-    private var viewModel: DesignSystemDemoViewModel? {
-        return (self.baseViewModel as? DesignSystemDemoViewModel)
+    private var viewModel: DesignSystemDemoViewModel!
+
+    // ---------------------------------
+    // MARK: - Life Cycle
+    // ---------------------------------
+
+    static func create(viewModel: DesignSystemDemoViewModel) -> DesignSystemDemoViewController {
+        let view = DesignSystemDemoViewController()
+        view.viewModel = viewModel
+        return view
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureView()
     }
 
     // ---------------------------------
     // MARK: - Setup View
     // ---------------------------------
 
-    override internal func setup() {
-        viewModel?.setView(self)
+    private func configureView() {
         setupNavigationBar(title: viewModel?.title, color: .dsBlack)
 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.tableFooterView = UIView()
         tableView.dataSource = self
         tableView.delegate = self
-    }
-
-}
-
-// ---------------------------------
-// MARK: - DesignSystemDemoViewModelViewDelegate
-// ---------------------------------
-
-extension DesignSystemDemoViewController: DesignSystemDemoViewModelViewDelegate {
-
-    /// General notification when the view should be update.
-    func updateScreen() {
     }
 
 }

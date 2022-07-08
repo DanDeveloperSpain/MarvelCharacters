@@ -21,7 +21,7 @@ extension Container {
         /// LoginViewController
         container.register(LoginViewController.self) { (resolver, coordinator: LoginCoordinator) in
             let loginViewModel = resolver.resolve(LoginViewModel.self, argument: coordinator) ?? LoginViewModel(coordinatorDelegate: LoginCoordinator(UINavigationController()))
-            return LoginViewController(viewModel: loginViewModel)
+            return LoginViewController.create(viewModel: loginViewModel)
         }
 
         return container

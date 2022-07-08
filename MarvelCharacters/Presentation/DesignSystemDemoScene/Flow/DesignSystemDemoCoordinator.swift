@@ -45,7 +45,7 @@ class DesignSystemDemoCoordinator: DesignSystemDemoCoordinatorProtocol {
     }
 
     func showDesignSystemDemoViewController() {
-        let DSDemoVC = Container.sharedDesignSystemDemoContainer.resolve(DesignSystemDemoViewController.self, argument: self) ?? DesignSystemDemoViewController(viewModel: DesignSystemDemoViewModel(coordinatorDelegate: self))
+        let DSDemoVC = Container.sharedDesignSystemDemoContainer.resolve(DesignSystemDemoViewController.self, argument: self) ?? DesignSystemDemoViewController()
         navigationController.pushViewController(DSDemoVC, animated: true)
     }
 

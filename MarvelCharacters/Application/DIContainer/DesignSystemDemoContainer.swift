@@ -21,7 +21,7 @@ extension Container {
         /// DesignSystemDemoViewController
         container.register(DesignSystemDemoViewController.self) { (resolver, coordinator: DesignSystemDemoCoordinator) in
             let userViewModel = resolver.resolve(DesignSystemDemoViewModel.self, argument: coordinator) ?? DesignSystemDemoViewModel(coordinatorDelegate: DesignSystemDemoCoordinator(UINavigationController()))
-            return DesignSystemDemoViewController(viewModel: userViewModel)
+            return DesignSystemDemoViewController.create(viewModel: userViewModel)
         }
 
         return container

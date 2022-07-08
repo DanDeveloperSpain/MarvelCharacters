@@ -27,7 +27,6 @@
 		65804D7D2704CB76001C42B3 /* CharactersListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65804D7B2704CB76001C42B3 /* CharactersListViewController.xib */; };
 		65D70A312706085400936F9C /* CharactersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D70A302706085400936F9C /* CharactersListViewModel.swift */; };
 		65D70A39270608AA00936F9C /* CharacterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D70A38270608AA00936F9C /* CharacterData.swift */; };
-		65D70A4D270610C600936F9C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 65D70A4C270610C600936F9C /* Alamofire */; };
 		65D70A542706213700936F9C /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D70A522706213700936F9C /* CharacterCell.swift */; };
 		65D70A552706213700936F9C /* CharacterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65D70A532706213700936F9C /* CharacterCell.xib */; };
 		65F2ACAC2709FF5100D299D4 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F2ACAB2709FF5100D299D4 /* BaseViewController.swift */; };
@@ -76,6 +75,8 @@
 		7E539CD72811A958006FC1D3 /* SeriesMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E539CD62811A958006FC1D3 /* SeriesMock.json */; };
 		7E539CD92811AA1E006FC1D3 /* CharacterDetailViewModelUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E539CD82811AA1E006FC1D3 /* CharacterDetailViewModelUnitTest.swift */; };
 		7E539CDB2811B0C4006FC1D3 /* AppCoordinatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E539CDA2811B0C4006FC1D3 /* AppCoordinatorTest.swift */; };
+		7E64DF632875D5D500F80D89 /* Modable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E64DF622875D5D500F80D89 /* Modable.swift */; };
+		7E64DF672877250F00F80D89 /* CustomizableNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E64DF662877250F00F80D89 /* CustomizableNavBar.swift */; };
 		7E6E2F582857361E00A6F93E /* DINetworkContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6E2F572857361E00A6F93E /* DINetworkContainer.swift */; };
 		7E709A26281002FB00763DC2 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E709A25281002FB00763DC2 /* LoginViewModel.swift */; };
 		7EA05AE5282EFA80003E04B7 /* DesignSystemDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA05AE3282EFA80003E04B7 /* DesignSystemDemoViewController.swift */; };
@@ -188,6 +189,8 @@
 		7E539CD62811A958006FC1D3 /* SeriesMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SeriesMock.json; sourceTree = "<group>"; };
 		7E539CD82811AA1E006FC1D3 /* CharacterDetailViewModelUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewModelUnitTest.swift; sourceTree = "<group>"; };
 		7E539CDA2811B0C4006FC1D3 /* AppCoordinatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorTest.swift; sourceTree = "<group>"; };
+		7E64DF622875D5D500F80D89 /* Modable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modable.swift; sourceTree = "<group>"; };
+		7E64DF662877250F00F80D89 /* CustomizableNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizableNavBar.swift; sourceTree = "<group>"; };
 		7E6E2F572857361E00A6F93E /* DINetworkContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DINetworkContainer.swift; sourceTree = "<group>"; };
 		7E709A25281002FB00763DC2 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		7EA05AE3282EFA80003E04B7 /* DesignSystemDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemDemoViewController.swift; sourceTree = "<group>"; };
@@ -232,7 +235,6 @@
 			files = (
 				7E14ADF8284614F30089CAB5 /* RxRelay in Frameworks */,
 				7EA05AF4282F0EE3003E04B7 /* DanDesignSystem in Frameworks */,
-				65D70A4D270610C600936F9C /* Alamofire in Frameworks */,
 				7E14ADF6284614F30089CAB5 /* RxCocoa in Frameworks */,
 				7E1FEA522850BC1B0066F526 /* Differentiator in Frameworks */,
 				73DBB5B92840B63C00E8D5D6 /* SDWebImage in Frameworks */,
@@ -378,6 +380,7 @@
 				7E14AE21284772790089CAB5 /* CharactesScene */,
 				7E44E7C32807271600545E7E /* UserScene */,
 				7EB3B631282EE47300D69218 /* DesignSystemDemoScene */,
+				7E64DF602875D56500F80D89 /* Utils */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -642,6 +645,23 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
+		7E64DF602875D56500F80D89 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				7E64DF612875D57A00F80D89 /* Protocols */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		7E64DF612875D57A00F80D89 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				7E64DF622875D5D500F80D89 /* Modable.swift */,
+				7E64DF662877250F00F80D89 /* CustomizableNavBar.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		7EA05AE2282EFA4C003E04B7 /* DesignSystemDemo */ = {
 			isa = PBXGroup;
 			children = (
@@ -896,7 +916,6 @@
 			);
 			name = MarvelCharacters;
 			packageProductDependencies = (
-				65D70A4C270610C600936F9C /* Alamofire */,
 				7E539CC9281077CA006FC1D3 /* Swinject */,
 				7EA05AF3282F0EE3003E04B7 /* DanDesignSystem */,
 				73DBB5B82840B63C00E8D5D6 /* SDWebImage */,
@@ -960,7 +979,6 @@
 			);
 			mainGroup = 65804D322704C35E001C42B3;
 			packageReferences = (
-				65D70A4B270610C600936F9C /* XCRemoteSwiftPackageReference "Alamofire" */,
 				7E539CC8281077CA006FC1D3 /* XCRemoteSwiftPackageReference "Swinject" */,
 				7EA05AF2282F0EE3003E04B7 /* XCRemoteSwiftPackageReference "DanDesignSystem" */,
 				73DBB5B72840B63C00E8D5D6 /* XCRemoteSwiftPackageReference "SDWebImage" */,
@@ -1046,6 +1064,7 @@
 			files = (
 				7E44E7B728071B8B00545E7E /* LoginViewController.swift in Sources */,
 				7EE8B66E2849F31F00207A8A /* FetchComicsUseCase.swift in Sources */,
+				7E64DF632875D5D500F80D89 /* Modable.swift in Sources */,
 				7EA05AF8282F0F5C003E04B7 /* TypographyViewController.swift in Sources */,
 				7EA05B0B282FC48B003E04B7 /* ShadowsViewController.swift in Sources */,
 				65804D3F2704C35E001C42B3 /* AppDelegate.swift in Sources */,
@@ -1097,6 +1116,7 @@
 				7EE8B6682849F0CB00207A8A /* SeriesRepository.swift in Sources */,
 				7E6E2F582857361E00A6F93E /* DINetworkContainer.swift in Sources */,
 				65516C842707BD0800F6D3D4 /* SerieData.swift in Sources */,
+				7E64DF672877250F00F80D89 /* CustomizableNavBar.swift in Sources */,
 				7E14AE0B284621980089CAB5 /* CharactersRepositoryProtocol.swift in Sources */,
 				65F2ACAE270A274000D299D4 /* BaseViewModel.swift in Sources */,
 				7EE8B66C2849F24200207A8A /* SeriesRepositoryProtocol.swift in Sources */,
@@ -1379,14 +1399,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		65D70A4B270610C600936F9C /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
-			requirement = {
-				kind = exactVersion;
-				version = 5.4.4;
-			};
-		};
 		73DBB5B72840B63C00E8D5D6 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
@@ -1430,11 +1442,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		65D70A4C270610C600936F9C /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 65D70A4B270610C600936F9C /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
 		73DBB5B82840B63C00E8D5D6 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 73DBB5B72840B63C00E8D5D6 /* XCRemoteSwiftPackageReference "SDWebImage" */;

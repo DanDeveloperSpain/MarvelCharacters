@@ -8,47 +8,7 @@
 import UIKit
 import DanDesignSystem
 
-protocol BaseViewControllerProtocol {
-
-    /// UI Setup
-    func setup()
-
-    /// Here others importans methos for life cyle (Localizationes, identifiers for test, ...)
-}
-
-class BaseViewController: UIViewController, BaseViewControllerProtocol {
-
-    var baseViewModel: BaseViewModel?
-
-    // ---------------------------------
-    // MARK: - Init
-    // ---------------------------------
-
-    init(nibName: String? = nil, bundle: Bundle? = nil, viewModel: BaseViewModel) {
-        super.init(nibName: nibName, bundle: bundle)
-        self.baseViewModel = viewModel
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    // ---------------------------------
-    // MARK: - Life Cycle
-    // ---------------------------------
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Initialization
-        setup()
-        baseViewModel?.start()
-    }
-
-    /// Public methods to implement
-    func setup() {
-        preconditionFailure("Implement it in ViewController")
-    }
+class BaseViewController: UIViewController {
 
     // ---------------------------------
     // MARK: - Setup NavigationBar

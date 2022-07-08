@@ -12,7 +12,7 @@ import RxCocoa
 import RxDataSources
 import DanDesignSystem
 
-final class CharacterDetailViewController: UIViewController { // BaseViewController {
+final class CharacterDetailViewController: BaseViewController, Modable {
 
     // ------------------------------------------------
     // MARK: - Outlets
@@ -39,6 +39,16 @@ final class CharacterDetailViewController: UIViewController { // BaseViewControl
         }
     )
 
+    // ---------------------------------
+    // MARK: - Life Cycle
+    // ---------------------------------
+
+    static func create(viewModel: CharacterDetailViewModel) -> CharacterDetailViewController {
+        let view = CharacterDetailViewController()
+        view.viewModel = viewModel
+        return view
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
@@ -50,6 +60,10 @@ final class CharacterDetailViewController: UIViewController { // BaseViewControl
         viewModel.fetchComicsLaunchesList()
         viewModel.fetchSeriesLaunchesList()
     }
+
+    // ---------------------------------
+    // MARK: - Bindings
+    // ---------------------------------
 
     private func bindViewModelToCollectionView() {
         dataSource.configureSupplementaryView = { (_, collectionView, kind, indexPath) -> UICollectionReusableView in
@@ -99,45 +113,13 @@ final class CharacterDetailViewController: UIViewController { // BaseViewControl
             }).disposed(by: disposeBag)
     }
 
-    // ------------------------------------------------
-    // MARK: - Properties
-    // ------------------------------------------------
-
-    /// Set the model of the view.
-//    internal var viewModel: CharacterDetailViewModel? {
-//        return self.baseViewModel as? CharacterDetailViewModel
-//    }
-
     // ---------------------------------
     // MARK: - Setup View
     // ---------------------------------
 
-    /// Setup the view.
-//    override internal func setup() {
-//        viewModel?.setView(self)
-//        configureView()
-//        configureCollectionView()
-//
-//        comicActivityIndicator.startAnimating()
-//        serieActivityIndicator.startAnimating()
-//    }
-
-    // ------------------------------------------------
-    // MARK: - Buton Action's
-    // ------------------------------------------------
-
-    /// Actions to take when the back button is pressed and the screen is going to be deleted.
-    ///
-    /// In this case we do not need to take any action.
-//    override func backButtonPressed() {
-//    }
-
-    // ------------------------------------------------
-    // MARK: - Private methods
-    // ------------------------------------------------
-
     private func configureView() {
-        // setupNavigationBar(title: viewModel?.title, color: .dsWhite, configureBackButton: true)
+        setupNavigationBar(title: viewModel?.title, color: .dsWhite, configureBackButton: true)
+
         comicActivityIndicator.color = .dsSecondaryPure
         serieActivityIndicator.color = .dsSecondaryPure
 
@@ -147,6 +129,21 @@ final class CharacterDetailViewController: UIViewController { // BaseViewControl
         let urlImge = "\(viewModel?.character?.thumbnail?.path ?? "").\(viewModel?.character?.thumbnail?.typeExtension ?? "")"
         characterImageView.sd_setImage(with: URL(string: urlImge), placeholderImage: DSImage(named: .marverComics))
     }
+
+    // ------------------------------------------------
+    // MARK: - Buton Action's
+    // ------------------------------------------------
+
+    /// Actions to take when the back button is pressed and the screen is going to be deleted.
+    ///
+    /// In this case we do not need to take any action.
+    func backButtonPressed2() {
+        // self.dismiss(animated: true, completion: nil)
+    }
+
+    // ------------------------------------------------
+    // MARK: - Private methods
+    // ------------------------------------------------
 
     /// Setup the collectionView for comics ands series flow layout.
     private func configureCollectionView() {
@@ -186,47 +183,9 @@ final class CharacterDetailViewController: UIViewController { // BaseViewControl
     }
 
     private func showError(errorToShow: String) {
-        let dialogModal = DialogViewController(image: DSImage(named: .icon_info) ?? UIImage(), title: errorToShow, titlePrimaryButton: NSLocalizedString("Accept", comment: ""), delegate: self)
-        self.showDialogModal(dialogViewController: dialogModal)
+        self.showDialogModal(image: DSImage(named: .icon_info) ?? UIImage(), title: errorToShow, titlePrimaryButton: NSLocalizedString("Accept", comment: ""), delegate: self)
     }
 
-    // QUITAR DE AQUI
-    func showDialogModal(dialogViewController: DialogViewController) {
-        self.present(dialogViewController, animated: true, completion: nil)
-    }
-
-}
-
-// --------------------------------------------------------------
-// MARK: - CharacterDetailViewModelViewDelegate
-// --------------------------------------------------------------
-
-extension CharacterDetailViewController: CharacterDetailViewModelViewDelegate {
-
-    /// General notification when the view should be update.
-    ///
-    /// in this case we do not use it, we use loadComics and loadSeries since they are the only element in the whole view is the list of characters.
-    func updateScreen() {
-    }
-
-    /// Notifies that the comisDataSource has changed and the view needs to be updated.
-    func loadComics() {
-    }
-
-    /// Notifies that the seriesDataSource has changed and the view needs to be updated.
-    func loadSeries() {
-    }
-
-    func showError() {
-        DispatchQueue.main.async {
-            self.comicActivityIndicator.stopAnimating()
-            self.serieActivityIndicator.stopAnimating()
-
-            /// Modal message
-//            let dialogModal = DialogViewController(image: DSImage(named: .icon_info) ?? UIImage(), title: self.viewModel?.errorMessaje ?? "", titlePrimaryButton: NSLocalizedString("Accept", comment: ""), hideCloseButton: false, delegate: self)
-//            self.showDialogModal(dialogViewController: dialogModal)
-        }
-    }
 }
 
 // --------------------------------------------------------------

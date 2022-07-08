@@ -15,26 +15,13 @@ protocol LoginViewModelCoordinatorDelegate: AnyObject {
     func goToApp()
 }
 
-// ---------------------------------
-// MARK: - View Delegates
-// ---------------------------------
-
-protocol LoginViewModelViewDelegate: BaseControllerViewModelProtocol {
-    // update specific item on screen
-}
-
-final class LoginViewModel: BaseViewModel {
+final class LoginViewModel {
 
     // ---------------------------------
     // MARK: - Delegates
     // ---------------------------------
 
     private weak var coordinatorDelegate: LoginViewModelCoordinatorDelegate?
-
-    /// Set the view of the model.
-    private weak var viewDelegate: LoginViewModelViewDelegate? {
-        return self.baseView as? LoginViewModelViewDelegate
-    }
 
     // ------------------------------------------------
     // MARK: - ViewModel
@@ -47,13 +34,10 @@ final class LoginViewModel: BaseViewModel {
         self.coordinatorDelegate = coordinatorDelegate
     }
 
-    /// First call of viewmodel lifecycle.
-    override func start() {
-    }
-
     // ---------------------------------
     // MARK: - Events
     // ---------------------------------
+
     func showApp() {
         self.coordinatorDelegate?.goToApp()
     }

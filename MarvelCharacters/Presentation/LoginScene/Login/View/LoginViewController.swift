@@ -8,7 +8,7 @@
 import UIKit
 import DanDesignSystem
 
-class LoginViewController: BaseViewController {
+class LoginViewController: UIViewController {
 
     // ------------------------------------------------
     // MARK: - Outlets
@@ -20,9 +20,21 @@ class LoginViewController: BaseViewController {
     // MARK: - Properties
     // ------------------------------------------------
 
-    /// Set the model of the view.
-    private var viewModel: LoginViewModel? {
-        return self.baseViewModel as? LoginViewModel
+    private var viewModel: LoginViewModel!
+
+    // ---------------------------------
+    // MARK: - Life Cycle
+    // ---------------------------------
+
+    static func create(viewModel: LoginViewModel) -> LoginViewController {
+        let view = LoginViewController()
+        view.viewModel = viewModel
+        return view
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureView()
     }
 
     // ---------------------------------
@@ -30,8 +42,7 @@ class LoginViewController: BaseViewController {
     // ---------------------------------
 
     /// Setup the view.
-    override internal func setup() {
-        viewModel?.setView(self)
+    private func configureView() {
         view.addGradient(colors: [.dsBluePure, .dsPurplePure])
         loginButton.dsConfigure(text: NSLocalizedString("Login", comment: ""), style: .secondary, state: .enabled)
     }
@@ -44,14 +55,4 @@ class LoginViewController: BaseViewController {
         viewModel?.showApp()
     }
 
-}
-
-// --------------------------------------------------------------
-// MARK: - LoginViewModelViewDelegate
-// --------------------------------------------------------------
-extension LoginViewController: LoginViewModelViewDelegate {
-
-    /// General notification when the view should be update.
-    func updateScreen() {
-    }
 }

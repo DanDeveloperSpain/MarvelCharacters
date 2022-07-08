@@ -21,7 +21,7 @@ extension Container {
         /// UserViewController
         container.register(UserViewController.self) { (resolver, coordinator: UserCoordinator) in
             let userViewModel = resolver.resolve(UserViewModel.self, argument: coordinator) ?? UserViewModel(coordinatorDelegate: UserCoordinator(UINavigationController()))
-            return UserViewController(viewModel: userViewModel)
+            return UserViewController.create(viewModel: userViewModel)
         }
 
         return container
