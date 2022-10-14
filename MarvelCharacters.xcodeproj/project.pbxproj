@@ -45,6 +45,7 @@
 		7E14AE1C284661820089CAB5 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E14AE1B284661820089CAB5 /* AppConfiguration.swift */; };
 		7E14AE1E28466DDA0089CAB5 /* NetworkErrorLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E14AE1D28466DDA0089CAB5 /* NetworkErrorLogger.swift */; };
 		7E14AE202846725B0089CAB5 /* FetchCharactersUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E14AE1F2846725B0089CAB5 /* FetchCharactersUseCase.swift */; };
+		7E15DF9F28F9E1EF00275040 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E15DF9E28F9E1EF00275040 /* DateHelper.swift */; };
 		7E1C36982831A3270044A7FE /* RadioButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C36962831A3270044A7FE /* RadioButtonViewController.swift */; };
 		7E1C36992831A3270044A7FE /* RadioButtonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E1C36972831A3270044A7FE /* RadioButtonViewController.xib */; };
 		7E1C369C2831A42E0044A7FE /* CheckboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C369A2831A42D0044A7FE /* CheckboxViewController.swift */; };
@@ -161,6 +162,7 @@
 		7E14AE1B284661820089CAB5 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		7E14AE1D28466DDA0089CAB5 /* NetworkErrorLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorLogger.swift; sourceTree = "<group>"; };
 		7E14AE1F2846725B0089CAB5 /* FetchCharactersUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCharactersUseCase.swift; sourceTree = "<group>"; };
+		7E15DF9E28F9E1EF00275040 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		7E1C36962831A3270044A7FE /* RadioButtonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonViewController.swift; sourceTree = "<group>"; };
 		7E1C36972831A3270044A7FE /* RadioButtonViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RadioButtonViewController.xib; sourceTree = "<group>"; };
 		7E1C369A2831A42D0044A7FE /* CheckboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxViewController.swift; sourceTree = "<group>"; };
@@ -714,6 +716,7 @@
 			children = (
 				73DBB5BB2840C80900E8D5D6 /* Encryption.swift */,
 				7EA189FB284902A6007E16E0 /* PaginationHelper.swift */,
+				7E15DF9E28F9E1EF00275040 /* DateHelper.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1105,6 +1108,7 @@
 				7EE8B6682849F0CB00207A8A /* SeriesRepository.swift in Sources */,
 				7E6E2F582857361E00A6F93E /* DINetworkContainer.swift in Sources */,
 				65516C842707BD0800F6D3D4 /* SerieData.swift in Sources */,
+				7E15DF9F28F9E1EF00275040 /* DateHelper.swift in Sources */,
 				7E64DF672877250F00F80D89 /* CustomizableNavBar.swift in Sources */,
 				7E14AE0B284621980089CAB5 /* CharactersRepositoryProtocol.swift in Sources */,
 				7EE8B66C2849F24200207A8A /* SeriesRepositoryProtocol.swift in Sources */,

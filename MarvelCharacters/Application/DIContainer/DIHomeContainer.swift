@@ -30,11 +30,6 @@ extension Container {
            return FetchCharactersUseCase(charactersRepository: charactersRepository)
         }()
 
-        /// NetworkService
-        container.register(NetworkServiceProtocol.self) { _ in
-            networkService
-        }
-
         /// Repository
         container.register(CharactersRepositoryProtocol.self) { (resolver) in
             let networkService = resolver.resolve(NetworkServiceProtocol.self) ?? networkService

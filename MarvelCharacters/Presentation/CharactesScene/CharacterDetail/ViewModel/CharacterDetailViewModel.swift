@@ -156,11 +156,10 @@ final class CharacterDetailViewModel {
     }
 
     private func setupComicsData(comics: [Comic]) {
-        cellComicsUIModels.removeAll()
-
-        comics.forEach { comic in
-            cellComicsUIModels.append(ComicSerieCell.UIModel(title: comic.title, year: comic.year, imageURL: "\(comic.thumbnail?.path ?? "").\(comic.thumbnail?.typeExtension ?? "")"))
-        }
+        cellComicsUIModels = comics.map({ ComicSerieCell.UIModel(title: $0.title,
+                                                                 year: $0.startDate,
+                                                                 imageURL: "\($0.thumbnail?.path ?? "").\($0.thumbnail?.typeExtension ?? "")")
+        })
 
         setItems(uiComicsModels: cellComicsUIModels, uiSeriesModels: cellSeriesUIModels)
     }
@@ -174,11 +173,10 @@ final class CharacterDetailViewModel {
     }
 
     private func setupSeriesData(series: [Serie]) {
-        cellSeriesUIModels.removeAll()
-
-        series.forEach { serie in
-            cellSeriesUIModels.append(ComicSerieCell.UIModel(title: serie.title, year: String(serie.startYear ?? 0), imageURL: "\(serie.thumbnail?.path ?? "").\(serie.thumbnail?.typeExtension ?? "")"))
-        }
+        cellSeriesUIModels = series.map({ ComicSerieCell.UIModel(title: $0.title,
+                                                                 year: String($0.startYear ?? 0),
+                                                                 imageURL: "\($0.thumbnail?.path ?? "").\($0.thumbnail?.typeExtension ?? "")")
+        })
 
         setItems(uiComicsModels: cellComicsUIModels, uiSeriesModels: cellSeriesUIModels)
     }

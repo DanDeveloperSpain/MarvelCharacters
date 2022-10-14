@@ -24,20 +24,14 @@ final class CharacterDetailViewController: UIViewController, CustomizableNavBar,
     @IBOutlet weak var comicActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var serieActivityIndicator: UIActivityIndicatorView!
 
+    // ---------------------------------
+    // MARK: - Properties
+    // ---------------------------------
+
     private let reuseIdentifier = ComicSerieCell.kCellId
     private let disposeBag = DisposeBag()
     var viewModel: CharacterDetailViewModel!
-
-    let dataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<String, ComicSerieCell.UIModel>>(
-        configureCell: { _, collectionView, indexPath, item -> ComicSerieCell in
-            var cell = ComicSerieCell()
-            if let comicSerieCell = collectionView.dequeueReusableCell(withReuseIdentifier: ComicSerieCell.kCellId, for: indexPath) as? ComicSerieCell {
-                comicSerieCell.fill(title: item.title ?? "", year: item.year ?? "", urlImge: item.imageURL ?? "")
-                cell = comicSerieCell
-            }
-            return cell
-        }
-    )
+    var dataSource: RxCollectionViewSectionedReloadDataSource<SectionModel<String, ComicSerieCell.UIModel>>!
 
     // ---------------------------------
     // MARK: - Life Cycle
@@ -66,6 +60,18 @@ final class CharacterDetailViewController: UIViewController, CustomizableNavBar,
     // ---------------------------------
 
     private func bindViewModelToCollectionView() {
+
+        dataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<String, ComicSerieCell.UIModel>>(
+            configureCell: { _, collectionView, indexPath, item -> ComicSerieCell in
+                var cell = ComicSerieCell()
+                if let comicSerieCell = collectionView.dequeueReusableCell(withReuseIdentifier: ComicSerieCell.kCellId, for: indexPath) as? ComicSerieCell {
+                    comicSerieCell.fill(title: item.title ?? "", year: item.year ?? "", urlImge: item.imageURL ?? "")
+                    cell = comicSerieCell
+                }
+                return cell
+            }
+        )
+
         dataSource.configureSupplementaryView = { (_, collectionView, kind, indexPath) -> UICollectionReusableView in
             guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderSupplementaryView.kCellId, for: indexPath) as? HeaderSupplementaryView else {
                 return HeaderSupplementaryView()

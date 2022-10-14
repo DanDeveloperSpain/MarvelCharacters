@@ -26,27 +26,18 @@ struct Comic: Decodable {
     let id: Int?
     let title: String?
     let thumbnail: Thumbnail?
-    let dates: [DateMarvel]?
+    let dates: [ComicDate]?
 
-    var year: String? {
+    var startDate: String? {
         if let onsaleDate = dates?.filter({$0.type == "onsaleDate"}).first {
-            return stringDateToShortDate(dateString: onsaleDate.date ?? "")
+            return DateHelper.stringDateToShortDate(dateString: onsaleDate.date ?? "")
         } else {
             return ""
         }
     }
 
-    private func stringDateToShortDate(dateString: String) -> String {
-        let dateFormatterGet = DateFormatter()
-        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+}
 
-        let dateFormatterPrint = DateFormatter()
-        dateFormatterPrint.dateStyle = .medium
-
-        if let date = dateFormatterGet.date(from: dateString) {
-            return dateFormatterPrint.string(from: date)
-        } else {
-            return ""
-        }
-    }
+struct ComicDate: Decodable {
+    let type, date: String?
 }

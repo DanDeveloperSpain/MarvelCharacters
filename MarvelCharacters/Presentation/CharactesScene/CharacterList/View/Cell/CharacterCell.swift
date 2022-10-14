@@ -40,9 +40,4 @@ class CharacterCell: UICollectionViewCell {
         characterImageView.image = nil
     }
 
-//    func fill(characterName: String, urlImge: String) {
-//        characterImageView.sd_setImage(with: URL(string: urlImge), placeholderImage: DSImage(named: .marverComics))
-//        characterNameLabel.dsConfigure(with: characterName, font: .boldSmall, color: .dsWhite)
-//    }
-
 }

@@ -27,11 +27,6 @@ struct CharactersRequest: DataRequest {
         return parameters
     }
 
-    init(limit: Int, offset: Int) {
-        self.limit = limit
-        self.offset = offset
-    }
-
     func decode(_ data: Data) throws -> ResponseCharacters {
         let decoder = JSONDecoder()
         let response = try decoder.decode(ResponseCharacters.self, from: data)

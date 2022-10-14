@@ -87,17 +87,9 @@ final class DefaultNetworkService: NetworkServiceProtocol {
 extension DefaultNetworkService {
 
     func setQueryItems<Request: DataRequest>(request: Request, apiDataNetworkConfig: NetworkConfigurable) -> [URLQueryItem] {
-        var queryItems: [URLQueryItem] = []
+        var queryItems = apiDataNetworkConfig.baseQueryItems?.map({ URLQueryItem(name: $0.key, value: $0.value) }) ?? []
 
-        apiDataNetworkConfig.baseQueryItems?.forEach {
-            let urlQueryItem = URLQueryItem(name: $0.key, value: $0.value)
-            queryItems.append(urlQueryItem)
-        }
-
-        request.queryItems.forEach {
-            let urlQueryItem = URLQueryItem(name: $0.key, value: $0.value)
-            queryItems.append(urlQueryItem)
-        }
+        queryItems += request.queryItems.map({ URLQueryItem(name: $0.key, value: $0.value) })
 
         return queryItems
     }

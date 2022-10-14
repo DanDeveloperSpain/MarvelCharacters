@@ -124,10 +124,10 @@ final class CharactersListViewModel {
     }
 
     private func setupData(characters: [Character]) {
-        var uiModels = [CharacterCell.UIModel]()
-        characters.forEach { character in
-            uiModels.append(CharacterCell.UIModel(characterName: character.name, characterImageURL: "\(character.thumbnail?.path ?? "").\(character.thumbnail?.typeExtension ?? "")"))
-        }
+        let uiModels = characters.map({ CharacterCell.UIModel(characterName: $0.name,
+                                                              characterImageURL: "\($0.thumbnail?.path ?? "").\($0.thumbnail?.typeExtension ?? "")")
+        })
+
         cellUIModels.onNext(uiModels)
     }
 
@@ -140,9 +140,5 @@ final class CharactersListViewModel {
     private func checkApiKeys() -> Bool {
         AppConfiguration().publicKey.isEmpty || AppConfiguration().privateKey.isEmpty ? false : true
     }
-
-//    private func setErrorApiKey() {
-//        self.errorMessaje = ("There isn`t ApiKey data", "Please enter your public and private key in Schemes -> Edit Scheme -> Environment Variables")
-//    }
 
 }

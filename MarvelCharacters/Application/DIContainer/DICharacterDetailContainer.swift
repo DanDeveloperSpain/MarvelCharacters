@@ -41,11 +41,6 @@ extension Container {
             Character(id: 0, name: "", description: "", thumbnail: Thumbnail(path: "", typeExtension: ""))
         }()
 
-        /// NetworkService
-        container.register(NetworkServiceProtocol.self) { _ in
-            networkService
-        }
-
         /// Comic Repository
         container.register(ComicsRepositoryProtocol.self) { (resolver) in
             let networkService = resolver.resolve(NetworkServiceProtocol.self) ?? networkService

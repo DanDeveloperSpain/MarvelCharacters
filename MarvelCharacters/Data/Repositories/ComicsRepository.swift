@@ -23,7 +23,7 @@ extension ComicsRepository: ComicsRepositoryProtocol {
 
     func fetchCharcters(characterId: String, limit: Int, offset: Int) -> Observable<ResponseComicsData> {
 
-        // DataBase Cache
+        // DataBase Cache here
 
         return Observable.create { observer in
             self.fetchComicsFromNetwork(characterId: characterId, limit: limit, offset: offset ) { result in
