@@ -10,6 +10,6 @@ import RxSwift
 
 protocol SeriesRepositoryProtocol: AnyObject {
 
-    func fetchCharcters(characterId: String, limit: Int, offset: Int) -> Observable<ResponseSeriesData>
+    func fetchCharcters(characterId: String, limit: Int, offset: Int) -> Observable<ResponseSeries>
 
 }

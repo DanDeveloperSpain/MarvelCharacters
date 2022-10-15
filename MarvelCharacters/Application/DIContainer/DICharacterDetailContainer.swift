@@ -38,18 +38,18 @@ extension Container {
             HomeCoordinator(UINavigationController())
         }()
         lazy var characterDetail: Character = {
-            Character(id: 0, name: "", description: "", thumbnail: Thumbnail(path: "", typeExtension: ""))
+            Character(id: 0, name: "", description: "", imageUrl: "")
         }()
 
         /// Comic Repository
-        container.register(ComicsRepositoryProtocol.self) { (resolver) in
-            let networkService = resolver.resolve(NetworkServiceProtocol.self) ?? networkService
+        container.register(ComicsRepositoryProtocol.self) { (_) in
+            let networkService = Container.sharedNetworkContainer.resolve(NetworkServiceProtocol.self) ?? networkService
             return ComicsRepository(netWorkService: networkService)
         }
 
         /// Serie Repository
-        container.register(SeriesRepositoryProtocol.self) { (resolver) in
-            let networkService = resolver.resolve(NetworkServiceProtocol.self) ?? networkService
+        container.register(SeriesRepositoryProtocol.self) { (_) in
+            let networkService = Container.sharedNetworkContainer.resolve(NetworkServiceProtocol.self) ?? networkService
             return SeriesRepository(netWorkService: networkService)
         }
 

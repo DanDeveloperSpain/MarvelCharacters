@@ -134,8 +134,7 @@ final class CharacterDetailViewController: UIViewController, CustomizableNavBar,
         characterDescriptionLabel.dsConfigure(with: viewModel?.character?.description, font: .boldSmall, color: .dsWhite)
 
         characterImageView.layer.cornerRadius = 75
-        let urlImge = "\(viewModel?.character?.thumbnail?.path ?? "").\(viewModel?.character?.thumbnail?.typeExtension ?? "")"
-        characterImageView.sd_setImage(with: URL(string: urlImge), placeholderImage: DSImage(named: .marverComics))
+        characterImageView.sd_setImage(with: URL(string: viewModel?.character?.imageUrl ?? ""), placeholderImage: DSImage(named: .marverComics))
     }
 
     // ------------------------------------------------

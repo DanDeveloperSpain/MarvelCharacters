@@ -33,20 +33,20 @@ final class CharacterDetailViewModel {
     /// Comics datasource.
     private(set) var comics: [Comic] = []
 
-    var responseComicsData: ResponseComicsData?
+    var responseComics: ResponseComics?
 
     /// Series datasource.
     private(set) var series: [Serie] = []
 
-    var responseSeriesData: ResponseSeriesData?
+    var responseSeries: ResponseSeries?
 
     /// Indicate the last comic that will be shown in the list, to know when to make the next request to obtain more characters.
     var numLastComicToShow: Int {
-        return PaginationHelper.numLastItemToShow(offset: responseComicsData?.offset ?? 0, all: responseComicsData?.all?.count ?? 0)
+        return PaginationHelper.numLastItemToShow(offset: responseComics?.offset ?? 0, all: responseComics?.comics?.count ?? 0)
     }
     /// Indicate the last serie that will be shown in the list, to know when to make the next request to obtain more characters.
     var numLastSerieToShow: Int {
-        return PaginationHelper.numLastItemToShow(offset: responseSeriesData?.offset ?? 0, all: responseSeriesData?.all?.count ?? 0)
+        return PaginationHelper.numLastItemToShow(offset: responseSeries?.offset ?? 0, all: responseSeries?.series?.count ?? 0)
     }
 
     let limitComic = 20
@@ -98,8 +98,8 @@ final class CharacterDetailViewModel {
                 self?.isComicsLoading.accept(false)
                 guard let self = self else { return }
                 switch event {
-                case .next(let responseComicsData):
-                    self.handleResponseComicsDataData(data: responseComicsData)
+                case .next(let responseComics):
+                    self.handleResponseComics(data: responseComics)
                 case .error(let error):
                     let nsError = error as NSError
                     self.errorMessage.onNext(nsError.domain)
@@ -116,8 +116,8 @@ final class CharacterDetailViewModel {
                 self?.isSeriesLoading.accept(false)
                 guard let self = self else { return }
                 switch event {
-                case .next(let responseSeriesData):
-                    self.handleResponseSeriesDataData(data: responseSeriesData)
+                case .next(let responseSeries):
+                    self.handleResponseSeries(data: responseSeries)
                 case .error(let error):
                     let nsError = error as NSError
                     self.errorMessage.onNext(nsError.domain)
@@ -147,36 +147,30 @@ final class CharacterDetailViewModel {
     // MARK: - Private methods
     // ------------------------------------------------
 
-    private func handleResponseComicsDataData(data: ResponseComicsData) {
-        self.responseComicsData = data
-        self.comics += data.all ?? []
-        self.setupComicsData(comics: self.comics)
+    private func handleResponseComics(data: ResponseComics) {
+        self.responseComics = data
+        self.comics += data.comics ?? []
+        self.setupComics(comics: self.comics)
 
-        self.loadMoreComic = PaginationHelper.isMoreDataToLoad(offset: self.responseComicsData?.offset ?? 0, total: self.responseComicsData?.total ?? 0, limit: self.limitComic)
+        self.loadMoreComic = PaginationHelper.isMoreDataToLoad(offset: self.responseComics?.offset ?? 0, total: self.responseComics?.total ?? 0, limit: self.limitComic)
     }
 
-    private func setupComicsData(comics: [Comic]) {
-        cellComicsUIModels = comics.map({ ComicSerieCell.UIModel(title: $0.title,
-                                                                 year: $0.startDate,
-                                                                 imageURL: "\($0.thumbnail?.path ?? "").\($0.thumbnail?.typeExtension ?? "")")
-        })
+    private func setupComics(comics: [Comic]) {
+        cellComicsUIModels = comics.map({ ComicSerieCell.UIModel(title: $0.title, year: $0.startDate, imageURL: $0.imageUrl) })
 
         setItems(uiComicsModels: cellComicsUIModels, uiSeriesModels: cellSeriesUIModels)
     }
 
-    private func handleResponseSeriesDataData(data: ResponseSeriesData) {
-        self.responseSeriesData = data
-        self.series += data.all ?? []
-        self.setupSeriesData(series: self.series)
+    private func handleResponseSeries(data: ResponseSeries) {
+        self.responseSeries = data
+        self.series += data.series ?? []
+        self.setupSeries(series: self.series)
 
-        self.loadMoreSerie = PaginationHelper.isMoreDataToLoad(offset: self.responseSeriesData?.offset ?? 0, total: self.responseSeriesData?.total ?? 0, limit: self.limitSerie)
+        self.loadMoreSerie = PaginationHelper.isMoreDataToLoad(offset: self.responseSeries?.offset ?? 0, total: self.responseSeries?.total ?? 0, limit: self.limitSerie)
     }
 
-    private func setupSeriesData(series: [Serie]) {
-        cellSeriesUIModels = series.map({ ComicSerieCell.UIModel(title: $0.title,
-                                                                 year: String($0.startYear ?? 0),
-                                                                 imageURL: "\($0.thumbnail?.path ?? "").\($0.thumbnail?.typeExtension ?? "")")
-        })
+    private func setupSeries(series: [Serie]) {
+        cellSeriesUIModels = series.map({ ComicSerieCell.UIModel(title: $0.title, year: String($0.startYear ?? 0), imageURL: $0.imageUrl) })
 
         setItems(uiComicsModels: cellComicsUIModels, uiSeriesModels: cellSeriesUIModels)
     }

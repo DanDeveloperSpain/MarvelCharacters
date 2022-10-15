@@ -21,7 +21,7 @@ final class ComicsRepository {
 
 extension ComicsRepository: ComicsRepositoryProtocol {
 
-    func fetchCharcters(characterId: String, limit: Int, offset: Int) -> Observable<ResponseComicsData> {
+    func fetchCharcters(characterId: String, limit: Int, offset: Int) -> Observable<ResponseComics> {
 
         // DataBase Cache here
 
@@ -45,16 +45,45 @@ extension ComicsRepository: ComicsRepositoryProtocol {
     ///   - limit: limit of the results.
     ///   - offset: exclude results.
     /// - Returns: Comics of the character or error
-    private func fetchComicsFromNetwork(characterId: String, limit: Int, offset: Int, complete completion: @escaping (Result<ResponseComicsData, Error>) -> Void) {
+    private func fetchComicsFromNetwork(characterId: String, limit: Int, offset: Int, complete completion: @escaping (Result<ResponseComics, Error>) -> Void) {
         netWorkService.request(ComicsRequest(characterId: characterId, limit: limit, offset: offset)) { result in
             switch result {
             case .success(let comics):
-                completion(.success(comics.data))
+                completion(.success(ResponseComics(from: comics.data)))
             case .failure(let error):
                 completion(.failure(error))
             }
         }
 
+    }
+
+}
+
+// MARK: - Mappers
+
+private extension ResponseComics {
+
+    init(from comicDataContainer: ComicDataContainer) {
+        self.offset = comicDataContainer.offset
+        self.total = comicDataContainer.total
+        self.comics = comicDataContainer.results?.compactMap({ Comic(from: $0)})
+    }
+}
+
+private extension Comic {
+
+    init(from comicData: ComicData) {
+        self.id = comicData.id
+        self.title = comicData.title
+        self.imageUrl = "\(comicData.thumbnail?.path ?? "").\(comicData.thumbnail?.typeExtension ?? "")"
+
+        self.startDate = {
+            if let onsaleDate = comicData.dates?.filter({$0.type == "onsaleDate"}).first {
+                return DateHelper.stringDateToShortDate(dateString: onsaleDate.date ?? "")
+            } else {
+                return ""
+            }
+        }()
     }
 
 }

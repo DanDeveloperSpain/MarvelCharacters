@@ -21,7 +21,7 @@ final class CharactersRepository {
 
 extension CharactersRepository: CharactersRepositoryProtocol {
 
-    func fetchCharcters(limit: Int, offset: Int) -> Observable<ResponseCharactersData> {
+    func fetchCharcters(limit: Int, offset: Int) -> Observable<ResponseCharacters> {
 
         // DataBase Cache here
 
@@ -39,11 +39,11 @@ extension CharactersRepository: CharactersRepositoryProtocol {
         }
     }
 
-    private func fetchCharactersFromNetwork(limit: Int, offset: Int, complete completion: @escaping (Result<ResponseCharactersData, Error>) -> Void) {
+    private func fetchCharactersFromNetwork(limit: Int, offset: Int, complete completion: @escaping (Result<ResponseCharacters, Error>) -> Void) {
         netWorkService.request(CharactersRequest(limit: limit, offset: offset)) { result in
             switch result {
             case .success(let characters):
-                completion(.success(characters.data))
+                completion(.success(ResponseCharacters(from: characters.data)))
             case .failure(let error):
                 completion(.failure(error))
             }
@@ -51,4 +51,25 @@ extension CharactersRepository: CharactersRepositoryProtocol {
 
     }
 
+}
+
+// MARK: - Mappers
+
+private extension ResponseCharacters {
+
+    init(from characterDataContainer: CharacterDataContainer) {
+        self.offset = characterDataContainer.offset
+        self.total = characterDataContainer.total
+        self.charactes = characterDataContainer.results?.compactMap({ Character(from: $0)})
+    }
+}
+
+private extension Character {
+
+    init(from characterData: CharacterData) {
+        self.id = characterData.id
+        self.name = characterData.name
+        self.description = characterData.description
+        self.imageUrl = "\(characterData.thumbnail?.path ?? "").\(characterData.thumbnail?.typeExtension ?? "")"
+    }
 }

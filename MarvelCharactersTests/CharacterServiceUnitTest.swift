@@ -13,7 +13,7 @@ class CharacterServiceUnitTest: XCTestCase {
     let characterDummyService = CharacterDummyService()
     let characterService = CharacterService()
 
-    var responseCharactersData: ResponseCharactersData?
+    var responseCharactersData: ResponseCharacters?
     var characters: [Character] = []
     let limit: Int = 20
     var errorMessajeCharacter: String?
@@ -23,7 +23,7 @@ class CharacterServiceUnitTest: XCTestCase {
         do {
             let ressultCharacters = try await characterDummyService.requestGetCharacter(limit: limit, offset: 0)
             self.responseCharactersData = ressultCharacters
-            self.characters += ressultCharacters.all ?? []
+            self.characters += ressultCharacters.charactes ?? []
 
         } catch let error {
             self.errorMessajeCharacter = self.characterService.getErrorDescriptionToUser(statusCode: error.asAFError?.responseCode ?? 0)
@@ -59,7 +59,7 @@ class CharacterServiceUnitTest: XCTestCase {
         var series: [Serie] = []
         do {
             let ressultSeries = try await characterDummyService.requestGetSeriesByCharacter(characterId: 0, limit: limit, offset: 0)
-            series = ressultSeries.all ?? []
+            series = ressultSeries.series ?? []
         } catch {}
 
         XCTAssertEqual(series.count, 2)

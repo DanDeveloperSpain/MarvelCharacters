@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 protocol FetchCharactersUseCaseProtocol: AnyObject {
-    func execute(limit: Int, offset: Int) -> Observable<ResponseCharactersData>
+    func execute(limit: Int, offset: Int) -> Observable<ResponseCharacters>
 }
 
 final class FetchCharactersUseCase: FetchCharactersUseCaseProtocol {
@@ -21,7 +21,7 @@ final class FetchCharactersUseCase: FetchCharactersUseCaseProtocol {
         self.charactersRepository = charactersRepository
     }
 
-    func execute(limit: Int, offset: Int) -> Observable<ResponseCharactersData> {
+    func execute(limit: Int, offset: Int) -> Observable<ResponseCharacters> {
         return Observable.create { [weak self] observer in
             self?.charactersRepository.fetchCharcters(limit: limit, offset: offset)
                 .subscribe { event in

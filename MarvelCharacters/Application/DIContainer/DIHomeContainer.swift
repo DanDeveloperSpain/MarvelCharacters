@@ -31,8 +31,8 @@ extension Container {
         }()
 
         /// Repository
-        container.register(CharactersRepositoryProtocol.self) { (resolver) in
-            let networkService = resolver.resolve(NetworkServiceProtocol.self) ?? networkService
+        container.register(CharactersRepositoryProtocol.self) { (_) in
+            let networkService = Container.sharedNetworkContainer.resolve(NetworkServiceProtocol.self) ?? networkService
             return CharactersRepository(netWorkService: networkService)
         }
 

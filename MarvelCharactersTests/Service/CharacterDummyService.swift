@@ -12,7 +12,7 @@ class CharacterDummyService: CharacterServiceProtocol {
 
     let exceptionHandler = ExceptionHandlerHelper()
 
-    func requestGetCharacter(limit: Int, offset: Int) async throws -> ResponseCharactersData {
+    func requestGetCharacter(limit: Int, offset: Int) async throws -> ResponseCharacters {
 
         return try await withCheckedThrowingContinuation { continuation in
             do {
@@ -28,7 +28,7 @@ class CharacterDummyService: CharacterServiceProtocol {
         }
     }
 
-    func requestGetComicsByCharacter(characterId: Int, limit: Int, offset: Int) async throws -> ResponseComicsData {
+    func requestGetComicsByCharacter(characterId: Int, limit: Int, offset: Int) async throws -> ResponseComics {
         return try await withCheckedThrowingContinuation { continuation in
             do {
                 var data = Data()
@@ -44,7 +44,7 @@ class CharacterDummyService: CharacterServiceProtocol {
 
     }
 
-    func requestGetSeriesByCharacter(characterId: Int, limit: Int, offset: Int) async throws -> ResponseSeriesData {
+    func requestGetSeriesByCharacter(characterId: Int, limit: Int, offset: Int) async throws -> ResponseSeries {
         return try await withCheckedThrowingContinuation { continuation in
             do {
                 var data = Data()

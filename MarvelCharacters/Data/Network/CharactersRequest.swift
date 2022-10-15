@@ -7,6 +7,10 @@
 
 import Foundation
 
+// ------------------------------------------------
+// MARK: - Request
+// ------------------------------------------------
+
 struct CharactersRequest: DataRequest {
 
     var limit, offset: Int?
@@ -27,10 +31,41 @@ struct CharactersRequest: DataRequest {
         return parameters
     }
 
-    func decode(_ data: Data) throws -> ResponseCharacters {
+    func decode(_ data: Data) throws -> CharacterDataWrapper {
         let decoder = JSONDecoder()
-        let response = try decoder.decode(ResponseCharacters.self, from: data)
+        let response = try decoder.decode(CharacterDataWrapper.self, from: data)
         return response
+    }
+
+}
+
+// ------------------------------------------------
+// MARK: - Api entity
+// ------------------------------------------------
+
+struct CharacterDataWrapper: Decodable {
+    var code: Int?
+    var data: CharacterDataContainer
+}
+
+struct CharacterDataContainer: Decodable {
+    let offset, limit, total, count: Int?
+    let results: [CharacterData]?
+}
+
+struct CharacterData: Decodable {
+    let id: Int?
+    let name: String?
+    let description: String?
+    let thumbnail: ThumbnailData?
+}
+
+struct ThumbnailData: Decodable {
+    let path, typeExtension: String?
+
+    enum CodingKeys: String, CodingKey {
+        case path
+        case typeExtension = "extension"
     }
 
 }

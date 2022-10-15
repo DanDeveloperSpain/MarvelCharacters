@@ -21,7 +21,7 @@ final class SeriesRepository {
 
 extension SeriesRepository: SeriesRepositoryProtocol {
 
-    func fetchCharcters(characterId: String, limit: Int, offset: Int) -> Observable<ResponseSeriesData> {
+    func fetchCharcters(characterId: String, limit: Int, offset: Int) -> Observable<ResponseSeries> {
 
         // DataBase Cache
 
@@ -45,16 +45,38 @@ extension SeriesRepository: SeriesRepositoryProtocol {
     ///   - limit: limit of the results.
     ///   - offset: exclude results
     /// - Returns: Series of the character or error
-    private func fetchSeriesFromNetwork(characterId: String, limit: Int, offset: Int, complete completion: @escaping (Result<ResponseSeriesData, Error>) -> Void) {
+    private func fetchSeriesFromNetwork(characterId: String, limit: Int, offset: Int, complete completion: @escaping (Result<ResponseSeries, Error>) -> Void) {
         netWorkService.request(SeriesRequest(characterId: characterId, limit: limit, offset: offset)) { result in
             switch result {
             case .success(let series):
-                completion(.success(series.data))
+                completion(.success(ResponseSeries(from: series.data)))
             case .failure(let error):
                 completion(.failure(error))
             }
         }
 
+    }
+
+}
+
+// MARK: - Mappers
+
+private extension ResponseSeries {
+
+    init(from seriesDataContainer: SeriesDataContainer) {
+        self.offset = seriesDataContainer.offset
+        self.total = seriesDataContainer.total
+        self.series = seriesDataContainer.results?.compactMap({ Serie(from: $0)})
+    }
+}
+
+private extension Serie {
+
+    init(from serieData: SerieData) {
+        self.id = serieData.id
+        self.title = serieData.title
+        self.startYear = serieData.startYear
+        self.imageUrl = "\(serieData.thumbnail?.path ?? "").\(serieData.thumbnail?.typeExtension ?? "")"
     }
 
 }

@@ -31,11 +31,11 @@ final class CharactersListViewModel {
     private(set) var characters: [Character] = []
 
     /// DataResponse
-    var responseCharactersData: ResponseCharactersData?
+    var responseCharacters: ResponseCharacters?
 
     /// Indicate the last character that will be shown in the list, to know when to make the next request to obtain more characters.
     private var numLastCharacterToShow: Int {
-        return PaginationHelper.numLastItemToShow(offset: responseCharactersData?.offset ?? 0, all: responseCharactersData?.all?.count ?? 0)
+        return PaginationHelper.numLastItemToShow(offset: responseCharacters?.offset ?? 0, all: responseCharacters?.charactes?.count ?? 0)
     }
 
     let limit = 20
@@ -81,8 +81,8 @@ final class CharactersListViewModel {
                 self?.isLoading.accept(false)
                 guard let self = self else { return }
                 switch event {
-                case .next(let responseCharacterData):
-                    self.handleResponseCharactersDataData(data: responseCharacterData)
+                case .next(let responseCharacter):
+                    self.handleResponseCharacters(data: responseCharacter)
                 case .error(let error):
                     self.tryAgainButtonisHidden.accept(false)
                     let nsError = error as NSError
@@ -115,17 +115,16 @@ final class CharactersListViewModel {
     // MARK: - Private methods
     // ------------------------------------------------
 
-    private func handleResponseCharactersDataData(data: ResponseCharactersData) {
-        self.responseCharactersData = data
-        self.characters += data.all ?? []
-        self.setupData(characters: self.characters)
+    private func handleResponseCharacters(data: ResponseCharacters) {
+        self.responseCharacters = data
+        self.characters += data.charactes ?? []
+        self.setupCharacters(characters: self.characters)
 
-        self.loadMore = PaginationHelper.isMoreDataToLoad(offset: self.responseCharactersData?.offset ?? 0, total: self.responseCharactersData?.total ?? 0, limit: self.limit)
+        self.loadMore = PaginationHelper.isMoreDataToLoad(offset: self.responseCharacters?.offset ?? 0, total: self.responseCharacters?.total ?? 0, limit: self.limit)
     }
 
-    private func setupData(characters: [Character]) {
-        let uiModels = characters.map({ CharacterCell.UIModel(characterName: $0.name,
-                                                              characterImageURL: "\($0.thumbnail?.path ?? "").\($0.thumbnail?.typeExtension ?? "")")
+    private func setupCharacters(characters: [Character]) {
+        let uiModels = characters.map({ CharacterCell.UIModel(characterName: $0.name, characterImageURL: $0.imageUrl)
         })
 
         cellUIModels.onNext(uiModels)

@@ -7,6 +7,10 @@
 
 import Foundation
 
+// ------------------------------------------------
+// MARK: - Request
+// ------------------------------------------------
+
 struct SeriesRequest: DataRequest {
 
     var characterId: String?
@@ -28,10 +32,31 @@ struct SeriesRequest: DataRequest {
         return parameters
     }
 
-    func decode(_ data: Data) throws -> ResponseSeries {
+    func decode(_ data: Data) throws -> SeriesDataWrapper {
         let decoder = JSONDecoder()
-        let response = try decoder.decode(ResponseSeries.self, from: data)
+        let response = try decoder.decode(SeriesDataWrapper.self, from: data)
         return response
     }
 
+}
+
+// ------------------------------------------------
+// MARK: - Api entity
+// ------------------------------------------------
+
+struct SeriesDataWrapper: Decodable {
+    var code: Int?
+    var data: SeriesDataContainer
+}
+
+struct SeriesDataContainer: Decodable {
+    let offset, limit, total, count: Int?
+    let results: [SerieData]?
+}
+
+struct SerieData: Decodable {
+    let id: Int?
+    let startYear: Int?
+    let title: String?
+    let thumbnail: ThumbnailData?
 }

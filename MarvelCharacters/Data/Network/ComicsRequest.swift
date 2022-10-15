@@ -7,6 +7,10 @@
 
 import Foundation
 
+// ------------------------------------------------
+// MARK: - Request
+// ------------------------------------------------
+
 struct ComicsRequest: DataRequest {
 
     var characterId: String?
@@ -28,10 +32,35 @@ struct ComicsRequest: DataRequest {
         return parameters
     }
 
-    func decode(_ data: Data) throws -> ResponseComics {
+    func decode(_ data: Data) throws -> ComicDataWrapper {
         let decoder = JSONDecoder()
-        let response = try decoder.decode(ResponseComics.self, from: data)
+        let response = try decoder.decode(ComicDataWrapper.self, from: data)
         return response
     }
 
+}
+
+// ------------------------------------------------
+// MARK: - Api entity
+// ------------------------------------------------
+
+struct ComicDataWrapper: Decodable {
+    var code: Int?
+    var data: ComicDataContainer
+}
+
+struct ComicDataContainer: Decodable {
+    let offset, limit, total, count: Int?
+    let results: [ComicData]?
+}
+
+struct ComicData: Decodable {
+    let id: Int?
+    let title: String?
+    let thumbnail: ThumbnailData?
+    let dates: [ComicDate]?
+}
+
+struct ComicDate: Decodable {
+    let type, date: String?
 }
