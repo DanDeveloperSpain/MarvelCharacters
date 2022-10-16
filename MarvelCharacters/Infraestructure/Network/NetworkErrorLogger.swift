@@ -9,7 +9,8 @@ import Foundation
 
 protocol NetworkErrorLogger {
     func log(request: URLRequest)
-    func log(responseData data: Data?, response: URLResponse?)
+    func log(responseData data: Data?)
+    func log(response: URLResponse?)
     func log(error: Error)
 }
 
@@ -17,10 +18,10 @@ public final class DefaultNetworkErrorLogger: NetworkErrorLogger {
     public init() { }
 
     public func log(request: URLRequest) {
-        print("-------------")
-        print("request: \(request.url!)")
-        print("headers: \(request.allHTTPHeaderFields!)")
-        print("method: \(request.httpMethod!)")
+        printIfDebug("——————————————————————————————")
+        printIfDebug("ℹ️ request: \(request.url!)")
+        printIfDebug("ℹ️ headers: \(request.allHTTPHeaderFields!)")
+        printIfDebug("ℹ️ method: \(request.httpMethod!)")
         if let httpBody = request.httpBody, let result = ((try? JSONSerialization.jsonObject(with: httpBody, options: []) as? [String: AnyObject]) as [String: AnyObject]??) {
             printIfDebug("body: \(String(describing: result))")
         } else if let httpBody = request.httpBody, let resultString = String(data: httpBody, encoding: .utf8) {
@@ -28,20 +29,26 @@ public final class DefaultNetworkErrorLogger: NetworkErrorLogger {
         }
     }
 
-    public func log(responseData data: Data?, response: URLResponse?) {
+    public func log(responseData data: Data?) {
         guard let data = data else { return }
         if let dataDict = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-            printIfDebug("responseData: \(String(describing: dataDict))")
+            printIfDebug("🧨 Error responseData: \(String(describing: dataDict))")
+        }
+    }
+
+    public func log(response: URLResponse?) {
+        if let httpResponse = response as? HTTPURLResponse {
+            printIfDebug("🧨 Error statusCode: \(httpResponse.statusCode)")
         }
     }
 
     public func log(error: Error) {
-        printIfDebug("\(error)")
+        printIfDebug("🧨 Error request" + "\(error)")
     }
 
     func printIfDebug(_ string: String) {
         #if DEBUG
-        print(string)
+        debugPrint(string)
         #endif
     }
 }
