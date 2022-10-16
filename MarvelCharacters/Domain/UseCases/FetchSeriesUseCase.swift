@@ -23,7 +23,7 @@ final class FetchSeriesUseCase: FetchSeriesUseCaseProtocol {
 
     func execute(characterId: String, limit: Int, offset: Int) -> Observable<ResponseSeries> {
         return Observable.create { [weak self] observer in
-            self?.seriesRepository.fetchCharcters(characterId: characterId, limit: limit, offset: offset)
+            self?.seriesRepository.fetchSeries(characterId: characterId, limit: limit, offset: offset)
                 .subscribe { event in
                     switch event {
                     case .next(let responseSeriesData):

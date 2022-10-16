@@ -35,7 +35,7 @@ final class CharactersListViewModel {
 
     /// Indicate the last character that will be shown in the list, to know when to make the next request to obtain more characters.
     private var numLastCharacterToShow: Int {
-        return PaginationHelper.numLastItemToShow(offset: responseCharacters?.offset ?? 0, all: responseCharacters?.charactes?.count ?? 0)
+        return PaginationHelper.numLastItemToShow(offset: responseCharacters?.offset ?? 0, all: responseCharacters?.characters?.count ?? 0)
     }
 
     let limit = 20
@@ -117,7 +117,7 @@ final class CharactersListViewModel {
 
     private func handleResponseCharacters(data: ResponseCharacters) {
         self.responseCharacters = data
-        self.characters += data.charactes ?? []
+        self.characters += data.characters ?? []
         self.setupCharacters(characters: self.characters)
 
         self.loadMore = PaginationHelper.isMoreDataToLoad(offset: self.responseCharacters?.offset ?? 0, total: self.responseCharacters?.total ?? 0, limit: self.limit)

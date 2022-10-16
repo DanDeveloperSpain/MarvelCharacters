@@ -23,7 +23,7 @@ final class FetchComicsUseCase: FetchComicsUseCaseProtocol {
 
     func execute(characterId: String, limit: Int, offset: Int) -> Observable<ResponseComics> {
         return Observable.create { [weak self] observer in
-            self?.comicsRepository.fetchCharcters(characterId: characterId, limit: limit, offset: offset)
+            self?.comicsRepository.fetchComics(characterId: characterId, limit: limit, offset: offset)
                 .subscribe { event in
                     switch event {
                     case .next(let responseComicsData):

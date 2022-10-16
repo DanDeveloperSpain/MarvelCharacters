@@ -21,7 +21,7 @@ final class SeriesRepository {
 
 extension SeriesRepository: SeriesRepositoryProtocol {
 
-    func fetchCharcters(characterId: String, limit: Int, offset: Int) -> Observable<ResponseSeries> {
+    func fetchSeries(characterId: String, limit: Int, offset: Int) -> Observable<ResponseSeries> {
 
         // DataBase Cache
 

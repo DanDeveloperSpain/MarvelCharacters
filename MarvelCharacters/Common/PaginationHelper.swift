@@ -26,7 +26,7 @@ struct PaginationHelper {
     /// Helper to know the last item shown and to know if it is the last one to make the next request.
     /// - Parameters:
     ///   - offset: exclude results.
-    ///   - charactes: number of current results getted.
+    ///   - characters: number of current results getted.
     /// - Returns: Number of the current item shown.
     static func numLastItemToShow(offset: Int, all: Int) -> Int {
         return offset + all - 1
