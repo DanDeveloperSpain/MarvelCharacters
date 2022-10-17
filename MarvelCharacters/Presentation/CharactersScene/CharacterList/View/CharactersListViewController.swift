@@ -45,7 +45,7 @@ final class CharactersListViewController: UIViewController, CustomizableNavBar, 
         configureCollectionView()
         setupBindings()
         setupCocoaBindings()
-        viewModel.fetchCharactersLaunchesList()
+        viewModel.start()
     }
 
     // ---------------------------------
@@ -113,7 +113,7 @@ final class CharactersListViewController: UIViewController, CustomizableNavBar, 
     // ------------------------------------------------
 
     @IBAction func tryAgainButtonPressed(_ sender: UIButton) {
-        viewModel.fetchCharactersLaunchesList()
+        viewModel.start()
     }
 
     // ------------------------------------------------

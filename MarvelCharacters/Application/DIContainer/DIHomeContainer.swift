@@ -13,9 +13,10 @@ extension Container {
     static let sharedHomeContainer: Container = {
         let container = Container()
 
+        let appConfiguration = Container.sharedNetworkContainer.resolve(AppConfiguration.self) ?? AppConfiguration()
+
         lazy var networkService: NetworkServiceProtocol = {
             let networkService = Container.sharedNetworkContainer.resolve(NetworkServiceProtocol.self)
-            let appConfiguration = Container.sharedNetworkContainer.resolve(AppConfiguration.self) ?? AppConfiguration()
             let apiDataNetworkConfig = Container.sharedNetworkContainer.resolve(NetworkConfigurable.self) ?? ApiDataNetworkConfig(baseURL: appConfiguration.apiBaseURL, publicKey: appConfiguration.publicKey, privateKey: appConfiguration.privateKey)
             return networkService ?? DefaultNetworkService(apiDataNetworkConfig: apiDataNetworkConfig, logger: DefaultNetworkErrorLogger())
         }()
@@ -32,7 +33,6 @@ extension Container {
 
         /// Repository
         container.register(CharactersRepositoryProtocol.self) { (_) in
-            let networkService = Container.sharedNetworkContainer.resolve(NetworkServiceProtocol.self) ?? networkService
             return CharactersRepository(netWorkService: networkService)
         }
 
@@ -45,12 +45,12 @@ extension Container {
         /// ViewModel
         container.register(CharactersListViewModel.self) { (resolver, coordinator: HomeCoordinator) in
             let charactersUseCase = resolver.resolve(FetchCharactersUseCaseProtocol.self) ?? charactersUseCase
-            return CharactersListViewModel(coordinatorDelegate: coordinator, fetchCharactersUseCase: charactersUseCase)
+            return CharactersListViewModel(coordinatorDelegate: coordinator, fetchCharactersUseCase: charactersUseCase, appConfiguration: appConfiguration)
         }
 
         /// ViewController
         container.register(CharactersListViewController.self) { (resolver, coordinator: HomeCoordinator) in
-            let charactersListViewModel = resolver.resolve(CharactersListViewModel.self, argument: coordinator) ?? CharactersListViewModel(coordinatorDelegate: homeCoordinator, fetchCharactersUseCase: charactersUseCase)
+            let charactersListViewModel = resolver.resolve(CharactersListViewModel.self, argument: coordinator) ?? CharactersListViewModel(coordinatorDelegate: homeCoordinator, fetchCharactersUseCase: charactersUseCase, appConfiguration: appConfiguration)
             let charactersListViewController = CharactersListViewController.create(viewModel: charactersListViewModel)
             return charactersListViewController
         }

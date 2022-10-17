@@ -8,7 +8,7 @@
 import Foundation
 
 struct ResponseSeries: Decodable {
-    let offset, total: Int?
+    let total: Int?
     let series: [Serie]?
 }
 

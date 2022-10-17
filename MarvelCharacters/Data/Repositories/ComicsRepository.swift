@@ -64,7 +64,6 @@ extension ComicsRepository: ComicsRepositoryProtocol {
 private extension ResponseComics {
 
     init(from comicDataContainer: ComicDataContainer) {
-        self.offset = comicDataContainer.offset
         self.total = comicDataContainer.total
         self.comics = comicDataContainer.results?.compactMap({ Comic(from: $0)})
     }

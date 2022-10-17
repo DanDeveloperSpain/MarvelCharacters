@@ -42,11 +42,11 @@ final class CharacterDetailViewModel {
 
     /// Indicate the last comic that will be shown in the list, to know when to make the next request to obtain more characters.
     var numLastComicToShow: Int {
-        return PaginationHelper.numLastItemToShow(offset: responseComics?.offset ?? 0, all: responseComics?.comics?.count ?? 0)
+        return PaginationHelper.numLastItemToShow(offset: offsetComic)
     }
     /// Indicate the last serie that will be shown in the list, to know when to make the next request to obtain more characters.
     var numLastSerieToShow: Int {
-        return PaginationHelper.numLastItemToShow(offset: responseSeries?.offset ?? 0, all: responseSeries?.series?.count ?? 0)
+        return PaginationHelper.numLastItemToShow(offset: offsetSerie)
     }
 
     let limitComic = 20
@@ -133,13 +133,13 @@ final class CharacterDetailViewModel {
 
     func checkComicsRequestNewDataByIndex(index: Int) {
         if index == numLastComicToShow && loadMoreComic {
-            paginateComics()
+            fetchComicsLaunchesList()
         }
     }
 
     func checkSeriesRequestNewDataByIndex(index: Int) {
         if index == numLastSerieToShow && loadMoreSerie {
-            paginateSeries()
+            fetchSeriesLaunchesList()
         }
     }
 
@@ -152,7 +152,9 @@ final class CharacterDetailViewModel {
         self.comics += data.comics ?? []
         self.setupComics(comics: self.comics)
 
-        self.loadMoreComic = PaginationHelper.isMoreDataToLoad(offset: self.responseComics?.offset ?? 0, total: self.responseComics?.total ?? 0, limit: self.limitComic)
+        offsetComic += limitComic
+
+        self.loadMoreComic = PaginationHelper.isMoreDataToLoad(offset:offsetComic, total: self.responseComics?.total ?? 0)
     }
 
     private func setupComics(comics: [Comic]) {
@@ -166,7 +168,9 @@ final class CharacterDetailViewModel {
         self.series += data.series ?? []
         self.setupSeries(series: self.series)
 
-        self.loadMoreSerie = PaginationHelper.isMoreDataToLoad(offset: self.responseSeries?.offset ?? 0, total: self.responseSeries?.total ?? 0, limit: self.limitSerie)
+        offsetSerie += limitSerie
+
+        self.loadMoreSerie = PaginationHelper.isMoreDataToLoad(offset: offsetSerie, total: self.responseSeries?.total ?? 0)
     }
 
     private func setupSeries(series: [Serie]) {
@@ -177,16 +181,6 @@ final class CharacterDetailViewModel {
 
     private func setItems(uiComicsModels: [ComicSerieCell.UIModel], uiSeriesModels: [ComicSerieCell.UIModel]) {
         items.onNext([SectionModel(model: "Comics", items: uiComicsModels), SectionModel(model: "Series", items: uiSeriesModels)])
-    }
-
-    private func paginateComics() {
-        offsetComic += limitComic
-        fetchComicsLaunchesList()
-    }
-
-    private func paginateSeries() {
-        offsetSerie += limitSerie
-        fetchSeriesLaunchesList()
     }
 
 }

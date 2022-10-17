@@ -21,7 +21,7 @@ class FetchComicsUseCaseTest: XCTestCase {
         return [comic1, comic2]
     }()
 
-    static let responseComics = ResponseComics(offset: 20, total: 40, comics: comics)
+    static let responseComics = ResponseComics(total: 40, comics: comics)
 
     // ------------------------------------------------
     // MARK: - Respository Mock
@@ -29,7 +29,7 @@ class FetchComicsUseCaseTest: XCTestCase {
 
     final class ComicsRespositoryMock: ComicsRepositoryProtocol {
 
-        let error = NSError(domain: ErrorResponse.serializationError.description, code: 404, userInfo: nil)
+        let error = NSError(domain: ErrorResponse.serializationError.description, code: 400, userInfo: nil)
 
         func fetchComics(characterId: String, limit: Int, offset: Int) -> Observable<ResponseComics> {
             return Observable.create { observer in
@@ -69,10 +69,13 @@ class FetchComicsUseCaseTest: XCTestCase {
 
     func testFetchComicsUseCase_whenSuccessfully() {
 
+        // when
         useCase?.execute(characterId: "1", limit: 60, offset: 20)
             .subscribe { event in
                 switch event {
                 case .next(let responseComics):
+
+                    // then
                     XCTAssertEqual(responseComics.comics?.count, 2)
                     XCTAssertEqual(responseComics.comics?[0].title, "Infinity Wars vol.1")
                 case .error:
@@ -86,14 +89,17 @@ class FetchComicsUseCaseTest: XCTestCase {
 
     func testFetchComicsUseCase_whenFailure() {
 
+        // when
         useCase?.execute(characterId: "1", limit: 60, offset: 80)
             .subscribe { event in
                 switch event {
                 case .next:
                     break
                 case .error(let error):
+
+                    // then
                     let nsError = error as NSError
-                    XCTAssertEqual(nsError.code, 404)
+                    XCTAssertEqual(nsError.code, 400)
                     XCTAssertEqual(nsError.domain, "Ooops, there is something problem with the serialization process")
                 case .completed:
                     break

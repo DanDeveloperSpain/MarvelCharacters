@@ -13,22 +13,16 @@ struct PaginationHelper {
     /// - Parameters:
     ///   - offset: exclude results.
     ///   - total: total results.
-    ///   - limit: limit of the results.
     /// - Returns: True if there is more data to request.
-    static func isMoreDataToLoad(offset: Int, total: Int, limit: Int) -> Bool {
-        if offset == 0 {
-            return limit <= total ? true : false
-        } else {
-            return offset <= total ? true : false
-        }
+    static func isMoreDataToLoad(offset: Int, total: Int) -> Bool {
+        return offset < total ? true : false
     }
 
     /// Helper to know the last item shown and to know if it is the last one to make the next request.
     /// - Parameters:
     ///   - offset: exclude results.
-    ///   - characters: number of current results getted.
     /// - Returns: Number of the current item shown.
-    static func numLastItemToShow(offset: Int, all: Int) -> Int {
-        return offset + all - 1
+    static func numLastItemToShow(offset: Int) -> Int {
+        return offset - 1
     }
 }

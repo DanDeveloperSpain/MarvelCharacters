@@ -35,7 +35,7 @@ final class CharactersListViewModel {
 
     /// Indicate the last character that will be shown in the list, to know when to make the next request to obtain more characters.
     private var numLastCharacterToShow: Int {
-        return PaginationHelper.numLastItemToShow(offset: responseCharacters?.offset ?? 0, all: responseCharacters?.characters?.count ?? 0)
+        return PaginationHelper.numLastItemToShow(offset: offset)
     }
 
     let limit = 20
@@ -58,14 +58,16 @@ final class CharactersListViewModel {
 
     private weak var coordinatorDelegate: CharactersListViewModelCoordinatorDelegate?
     private let fetchCharactersUseCase: FetchCharactersUseCaseProtocol
+    private let appConfiguration: AppConfiguration
 
     // ---------------------------------
     // MARK: - Init
     // ---------------------------------
 
-    init(coordinatorDelegate: CharactersListViewModelCoordinatorDelegate, fetchCharactersUseCase: FetchCharactersUseCaseProtocol) {
+    init(coordinatorDelegate: CharactersListViewModelCoordinatorDelegate, fetchCharactersUseCase: FetchCharactersUseCaseProtocol, appConfiguration: AppConfiguration) {
         self.coordinatorDelegate = coordinatorDelegate
         self.fetchCharactersUseCase = fetchCharactersUseCase
+        self.appConfiguration = appConfiguration
     }
 
     // ------------------------------------------------
@@ -97,9 +99,18 @@ final class CharactersListViewModel {
     // MARK: - Public methods
     // ---------------------------------
 
+    func start() {
+        if appConfiguration.checkApiKeys() {
+            self.fetchCharactersLaunchesList()
+        } else {
+            self.tryAgainButtonisHidden.accept(false)
+            self.errorMessage.onNext("There isn`t ApiKey data. Please enter your public and private key.")
+        }
+    }
+
     func checkRequestNewDataByIndex(index: Int) {
         if index == numLastCharacterToShow && loadMore {
-            paginate()
+            fetchCharactersLaunchesList()
         }
     }
 
@@ -120,7 +131,10 @@ final class CharactersListViewModel {
         self.characters += data.characters ?? []
         self.setupCharacters(characters: self.characters)
 
-        self.loadMore = PaginationHelper.isMoreDataToLoad(offset: self.responseCharacters?.offset ?? 0, total: self.responseCharacters?.total ?? 0, limit: self.limit)
+        offset += limit
+
+        self.loadMore = PaginationHelper.isMoreDataToLoad(offset: offset, total: self.responseCharacters?.total ?? 0)
+
     }
 
     private func setupCharacters(characters: [Character]) {
@@ -128,16 +142,6 @@ final class CharactersListViewModel {
         })
 
         cellUIModels.onNext(uiModels)
-    }
-
-    private func paginate() {
-        offset += limit
-        fetchCharactersLaunchesList()
-    }
-
-    /// Check if Api Keys are added
-    private func checkApiKeys() -> Bool {
-        AppConfiguration().publicKey.isEmpty || AppConfiguration().privateKey.isEmpty ? false : true
     }
 
 }

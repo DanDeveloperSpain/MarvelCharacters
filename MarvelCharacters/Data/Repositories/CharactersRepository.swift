@@ -58,7 +58,6 @@ extension CharactersRepository: CharactersRepositoryProtocol {
 private extension ResponseCharacters {
 
     init(from characterDataContainer: CharacterDataContainer) {
-        self.offset = characterDataContainer.offset
         self.total = characterDataContainer.total
         self.characters = characterDataContainer.results?.compactMap({ Character(from: $0)})
     }

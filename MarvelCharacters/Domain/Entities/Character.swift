@@ -8,7 +8,7 @@
 import Foundation
 
 struct ResponseCharacters: Decodable {
-    let offset, total: Int?
+    let total: Int?
     let characters: [Character]?
 }
 

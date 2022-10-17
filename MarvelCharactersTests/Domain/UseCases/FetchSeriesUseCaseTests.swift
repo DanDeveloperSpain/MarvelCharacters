@@ -1,5 +1,5 @@
 //
-//  FetchCharactersUseCaseTest.swift
+//  FetchSeriesUseCaseTest.swift
 //  MarvelCharactersTests
 //
 //  Created by Daniel Pérez Parreño on 16/10/22.
@@ -9,34 +9,34 @@ import XCTest
 @testable import MarvelCharacters
 import RxSwift
 
-class FetchCharactersUseCaseTest: XCTestCase {
+class FetchSeriesUseCaseTest: XCTestCase {
 
     // ------------------------------------------------
     // MARK: - Entities Mock
     // ------------------------------------------------
 
-    static let characters: [Character] = {
-        let character1 = Character(id: 1, name: "IronMan", description: "description IronMan", imageUrl: "http://i.annihil.us/IronMan.jpg")
-        let character2 = Character(id: 2, name: "Vision", description: "description Vision", imageUrl: "http://i.annihil.us/Vision.jpg")
-        return [character1, character2]
+    static let series: [Serie] = {
+        let serie1 = Serie(id: 1, startYear: 1998, title: "Avangers Forever", imageUrl: "http://i.annihil.us/series/AForever.jpg")
+        let serie2 = Serie(id: 2, startYear: 1999, title: "Earth X", imageUrl: "http://i.annihil.us/series/EarthX.jpg")
+        return [serie1, serie2]
     }()
 
-    static let responseCharacters = ResponseCharacters(offset: 20, total: 40, characters: characters)
+    static let responseSeries = ResponseSeries(total: 40, series: series)
 
     // ------------------------------------------------
     // MARK: - Respository Mock
     // ------------------------------------------------
 
-    final class CharactersRespositoryMock: CharactersRepositoryProtocol {
+    final class SeriesRespositoryMock: SeriesRepositoryProtocol {
 
-        let error = NSError(domain: ErrorResponse.invalidEndpoint.description, code: 400, userInfo: nil)
+        let error = NSError(domain: ErrorResponse.invalidResponse.description, code: 400, userInfo: nil)
 
-        func fetchCharcters(limit: Int, offset: Int) -> Observable<ResponseCharacters> {
+        func fetchSeries(characterId: String, limit: Int, offset: Int) -> Observable<ResponseSeries> {
             return Observable.create { observer in
                 if offset > limit {
                     observer.onError(self.error)
                 } else {
-                    observer.onNext(responseCharacters)
+                    observer.onNext(responseSeries)
                     observer.onCompleted()
                 }
                 return Disposables.create()
@@ -45,8 +45,8 @@ class FetchCharactersUseCaseTest: XCTestCase {
 
     }
 
-    lazy var charactersRepositoryMock: CharactersRepositoryProtocol = {
-       return CharactersRespositoryMock()
+    lazy var seriesRepositoryMock: SeriesRepositoryProtocol = {
+       return SeriesRespositoryMock()
     }()
 
     // ------------------------------------------------
@@ -55,7 +55,7 @@ class FetchCharactersUseCaseTest: XCTestCase {
 
     private let disposeBag = DisposeBag()
 
-    var useCase: FetchCharactersUseCase?
+    var useCase: FetchSeriesUseCase?
 
     // ------------------------------------------------
     // MARK: - Tests
@@ -63,18 +63,21 @@ class FetchCharactersUseCaseTest: XCTestCase {
 
     override func setUp() {
 
-        useCase = FetchCharactersUseCase(charactersRepository: charactersRepositoryMock)
+        useCase = FetchSeriesUseCase(seriesRepository: seriesRepositoryMock)
 
     }
 
-    func testFetchCharactersUseCase_whenSuccessfully() {
+    func testFetchSeriesUseCase_whenSuccessfully() {
 
-        useCase?.execute(limit: 60, offset: 20)
+        // when
+        useCase?.execute(characterId: "1", limit: 60, offset: 20)
             .subscribe { event in
                 switch event {
-                case .next(let responseCharacter):
-                    XCTAssertEqual(responseCharacter.characters?.count, 2)
-                    XCTAssertEqual(responseCharacter.characters?[0].name, "IronMan")
+                case .next(let responseSeries):
+
+                    // then
+                    XCTAssertEqual(responseSeries.series?.count, 2)
+                    XCTAssertEqual(responseSeries.series?[0].title, "Avangers Forever")
                 case .error:
                     break
                 case .completed:
@@ -84,17 +87,20 @@ class FetchCharactersUseCaseTest: XCTestCase {
 
     }
 
-    func testFetchCharactersUseCase_whenFailure() {
+    func testFetchSeriesUseCase_whenFailure() {
 
-        useCase?.execute(limit: 60, offset: 80)
+        // when
+        useCase?.execute(characterId: "1", limit: 60, offset: 80)
             .subscribe { event in
                 switch event {
                 case .next:
                     break
                 case .error(let error):
                     let nsError = error as NSError
+
+                    // then
                     XCTAssertEqual(nsError.code, 400)
-                    XCTAssertEqual(nsError.domain, "Ooops, there is something problem with the endpoint")
+                    XCTAssertEqual(nsError.domain, "Ooops, there is something problem with the response")
                 case .completed:
                     break
                 }

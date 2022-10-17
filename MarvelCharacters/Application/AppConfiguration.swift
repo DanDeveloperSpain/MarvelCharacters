@@ -17,6 +17,11 @@ final class AppConfiguration {
         return ProcessInfo.processInfo.environment["PUBLIC_KEY"] ?? ""
     }()
 
+    /// Check if Api Keys are added
+    func checkApiKeys() -> Bool {
+        publicKey.isEmpty || privateKey.isEmpty ? false : true
+    }
+
     lazy var apiBaseURL: String = {
         guard let apiBaseURL = Bundle.main.object(forInfoDictionaryKey: "ApiBaseURL") as? String else {
             fatalError("ApiBaseURL must not be empty in plist")

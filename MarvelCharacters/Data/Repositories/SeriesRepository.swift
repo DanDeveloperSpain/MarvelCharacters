@@ -64,7 +64,6 @@ extension SeriesRepository: SeriesRepositoryProtocol {
 private extension ResponseSeries {
 
     init(from seriesDataContainer: SeriesDataContainer) {
-        self.offset = seriesDataContainer.offset
         self.total = seriesDataContainer.total
         self.series = seriesDataContainer.results?.compactMap({ Serie(from: $0)})
     }
