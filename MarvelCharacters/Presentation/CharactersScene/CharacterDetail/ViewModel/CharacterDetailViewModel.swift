@@ -131,6 +131,11 @@ final class CharacterDetailViewModel {
     // MARK: - Public methods
     // ---------------------------------
 
+    func start() {
+        fetchComicsLaunchesList()
+        fetchSeriesLaunchesList()
+    }
+
     func checkComicsRequestNewDataByIndex(index: Int) {
         if index == numLastComicToShow && loadMoreComic {
             fetchComicsLaunchesList()

@@ -13,7 +13,7 @@ extension Container {
     static let sharedHomeContainer: Container = {
         let container = Container()
 
-        let appConfiguration = Container.sharedNetworkContainer.resolve(AppConfiguration.self) ?? AppConfiguration()
+        let appConfiguration = Container.sharedAppConfigurationContainer.resolve(AppConfiguration.self) ?? AppConfiguration()
 
         lazy var networkService: NetworkServiceProtocol = {
             let networkService = Container.sharedNetworkContainer.resolve(NetworkServiceProtocol.self)

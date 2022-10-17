@@ -51,8 +51,7 @@ final class CharacterDetailViewController: UIViewController, CustomizableNavBar,
         setupCocoaBindings()
         setupLoadingsBindings()
         setupErrorBinding()
-        viewModel.fetchComicsLaunchesList()
-        viewModel.fetchSeriesLaunchesList()
+        viewModel.start()
     }
 
     // ---------------------------------
