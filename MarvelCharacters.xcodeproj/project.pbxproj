@@ -38,6 +38,7 @@
 		7E0005C728FE1C2C0003879D /* CharactersRespositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0005C628FE1C2C0003879D /* CharactersRespositoryMock.swift */; };
 		7E0005C928FE1CB40003879D /* ComicsRespositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0005C828FE1CB40003879D /* ComicsRespositoryMock.swift */; };
 		7E0005CB28FE1D270003879D /* SeriesRespositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0005CA28FE1D270003879D /* SeriesRespositoryMock.swift */; };
+		7E0C653F28FF6174003093CA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E0C654128FF6174003093CA /* Localizable.strings */; };
 		7E14ADF4284614F30089CAB5 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 7E14ADF3284614F30089CAB5 /* RxBlocking */; };
 		7E14ADF6284614F30089CAB5 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 7E14ADF5284614F30089CAB5 /* RxCocoa */; };
 		7E14ADF8284614F30089CAB5 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 7E14ADF7284614F30089CAB5 /* RxRelay */; };
@@ -173,6 +174,7 @@
 		7E0005C628FE1C2C0003879D /* CharactersRespositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersRespositoryMock.swift; sourceTree = "<group>"; };
 		7E0005C828FE1CB40003879D /* ComicsRespositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsRespositoryMock.swift; sourceTree = "<group>"; };
 		7E0005CA28FE1D270003879D /* SeriesRespositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesRespositoryMock.swift; sourceTree = "<group>"; };
+		7E0C654028FF6174003093CA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7E14AE0A284621980089CAB5 /* CharactersRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersRepositoryProtocol.swift; sourceTree = "<group>"; };
 		7E14AE0E284622B10089CAB5 /* CharactersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersRepository.swift; sourceTree = "<group>"; };
 		7E14AE13284627B40089CAB5 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 				65804D472704C360001C42B3 /* Assets.xcassets */,
 				65804D4C2704C360001C42B3 /* Info.plist */,
 				65804D492704C360001C42B3 /* LaunchScreen.storyboard */,
+				7E0C654128FF6174003093CA /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1108,6 +1111,7 @@
 				65804D482704C360001C42B3 /* Assets.xcassets in Resources */,
 				7EA05B08282FC41F003E04B7 /* BordersViewController.xib in Resources */,
 				7EF819F5283105F2001315CF /* ButtonsViewController.xib in Resources */,
+				7E0C653F28FF6174003093CA /* Localizable.strings in Resources */,
 				65804D7D2704CB76001C42B3 /* CharactersListViewController.xib in Resources */,
 				7EF819F02830F97B001315CF /* DialogsViewController.xib in Resources */,
 				65516C7B2707B18900F6D3D4 /* CharacterDetailViewController.xib in Resources */,
@@ -1269,6 +1273,14 @@
 				65804D4A2704C360001C42B3 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		7E0C654128FF6174003093CA /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7E0C654028FF6174003093CA /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

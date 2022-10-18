@@ -16,11 +16,11 @@ enum ErrorResponse: String {
 
     public var description: String {
         switch self {
-        case .apiError: return "Ooops, there is something problem with the api"
-        case .invalidEndpoint: return "Ooops, there is something problem with the endpoint"
-        case .invalidResponse: return "Ooops, there is something problem with the response"
-        case .noData: return "Ooops, there is something problem with the data"
-        case .serializationError: return "Ooops, there is something problem with the serialization process"
+        case .apiError: return NSLocalizedString("apiKey_error", comment: "")
+        case .invalidEndpoint: return NSLocalizedString("invalid_endpoint", comment: "")
+        case .invalidResponse: return NSLocalizedString("invalid_response", comment: "")
+        case .noData: return NSLocalizedString("no_data", comment: "")
+        case .serializationError: return NSLocalizedString("serialization_error", comment: "")
         }
     }
 }

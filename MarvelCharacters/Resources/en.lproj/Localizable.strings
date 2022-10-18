@@ -1,0 +1,22 @@
+/* 
+  Localizable.strings
+  MarvelCharacters
+
+  Created by Daniel Pérez Parreño on 19/10/22.
+  
+*/
+
+// ---------------------------------
+// MARK: - A
+// ---------------------------------
+"apiKey_error" = "There isn`t ApiKey data. Please enter your public and private key.";
+
+
+// ---------------------------------
+// MARK: - Api errors
+// ---------------------------------
+"api_error" =  "Ooops, there is something problem with the api.";
+"invalid_endpoint" =  "Ooops, there is something problem with the endpoint.";
+"invalid_response" =  "Ooops, there is something problem with the response.";
+"no_data" =  "Ooops, there is something problem with the data.";
+"serialization_error" =  "Ooops, there is something problem with the serialization process.";

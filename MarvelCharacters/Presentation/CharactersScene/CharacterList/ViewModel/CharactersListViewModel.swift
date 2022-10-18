@@ -104,7 +104,7 @@ final class CharactersListViewModel {
             self.fetchCharactersLaunchesList()
         } else {
             self.tryAgainButtonisHidden.accept(false)
-            self.errorMessage.onNext("There isn`t ApiKey data. Please enter your public and private key.")
+            self.errorMessage.onNext(NSLocalizedString("apiKey_error", comment: ""))
         }
     }
 
