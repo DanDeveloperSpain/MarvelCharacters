@@ -1,30 +1,54 @@
-# Marvel Characters
+# 🕸 Marvel Characters 🕸
 
 This project shows the list of all Marvel characters and their appearances in comics and series.
 
-## Tools info ℹ️
-
+## Tools 🛠️
 - Xcode 13
 - Swift 5.5
 - Swift Package Manager
 
-## Libreries with SPM 🛠️
+## Libreries with SPM 📦
 I have managed the external libraries with SPM, much cleaner and faster than with CocoaPods.
-- Alamofire 5.4.4
-  - for API requests.
+
+- RXSwift 6.5.0
+  - to add reactive programming to Swift.
+- RXDataSource 5.0.2
+  - to extend the CollectionView reactively.
 - SDWebImage 5.12.5
   - to download and manage images.
 - Swinject 2.8.1
   - to create containers and handle dependency injection.
 
 ## Architecture and Design Pattern 🏗
+- ### Clean Architecture 🎯
+- ### MVVM 🔄
+- ### Coordinator pattern 🔀
+- ### Swinject ♻
 
-The architecture used is MVVM with Coordinator design pattern.
+Solid principles with Clean Architecture together with MVVM and coordinator pattern.
 
 Also dependency injection is used organized in containers with Swinject library.
 
-## Design System 🗂
+## Reactive Programming 🤹‍♂
+All the main elements of the application are controlled with reactive programming.
 
+**RxSwift** is used to create the observables and subscribers and **binding** them to the **UIKit elements**.
+
+## Testing ✅
+The most important parts and business logic have been tested:
+- Application
+  - AppCoordinatorTest
+  - AppConfiguration
+- Presentation
+  - CharactersScene
+- Domain
+  - UseCases
+- Data
+  - Repositories
+  
+*I am aware that there are more classes to test.*
+
+## Design System 🗂
 I have added the implementation of an own design system (Dan Design System). 
 As the application is simple, I have created a tab to show a demo of this design system.
 
@@ -32,14 +56,13 @@ https://github.com/DanDeveloperSpain/DanDesignSystem
 
 
 ## Interface 📱
-
 The user interface is very simple since I decided to spend more time in the code and structure.
 
 I have simulated a login in the application to create a real flow, but the Login and User screens only implement the login and logout functions.
 
 ## Others 💻
 
-I have implemented Async/Await functions introduced in Swift 5.5.
+UIKit without storyboard. 1 xib for 1 viewController.
 
 There are NSLocalizedString functions but I have not translated the app as it is a demo.
 
