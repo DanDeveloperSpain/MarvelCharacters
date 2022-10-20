@@ -49,6 +49,10 @@ final class CharacterDetailViewController: UIViewController, CustomizableNavBar,
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+
         configureView()
         setupCollectionViewBindings()
         setupLoadingsBindings()
@@ -247,6 +251,28 @@ extension CharacterDetailViewController {
     }
 }
 
+// ------------------------------------------------
+// MARK: - Handle Keyboard
+// ------------------------------------------------
+extension CharacterDetailViewController {
+
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                let tabBarHeight = self.tabBarController?.tabBar.frame.size.height
+                self.view.frame.origin.y -= keyboardSize.height - (tabBarHeight ?? 0)
+            }
+        }
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
+
+}
+
 // --------------------------------------------------------------
 // MARK: - DialogButtonViewDelegate
 // --------------------------------------------------------------
@@ -260,5 +286,4 @@ extension CharacterDetailViewController: DialogViewControllerDelegate {
 
     func tapCloseButton() {
     }
-
 }
