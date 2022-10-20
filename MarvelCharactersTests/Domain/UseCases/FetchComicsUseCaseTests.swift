@@ -66,7 +66,7 @@ class FetchComicsUseCaseTest: XCTestCase {
                     // then
                     let nsError = error as NSError
                     XCTAssertEqual(nsError.code, 400)
-                    XCTAssertEqual(nsError.domain, "Ooops, there is something problem with the serialization process")
+                    XCTAssertEqual(nsError.domain, NSLocalizedString("serialization_error", comment: ""))
                 case .completed:
                     break
                 }

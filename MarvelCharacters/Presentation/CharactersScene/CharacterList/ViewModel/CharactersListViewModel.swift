@@ -48,7 +48,7 @@ final class CharactersListViewModel {
 
     let cellUIModels: PublishSubject<[CharacterCell.UIModel]> = PublishSubject()
     let isLoading: BehaviorRelay<Bool> = BehaviorRelay(value: false)
-    let tryAgainButtonisHidden: BehaviorRelay<Bool> = BehaviorRelay(value: true)
+    let tryAgainButtonIsHidden: BehaviorRelay<Bool> = BehaviorRelay(value: true)
     let errorMessage: PublishSubject<String> = PublishSubject()
     private let disposeBag = DisposeBag()
 
@@ -77,7 +77,7 @@ final class CharactersListViewModel {
     /// Fetches the list of characters from the internet or local storage via use case. (internet in this case)
     func fetchCharactersLaunchesList() {
         isLoading.accept(true)
-        tryAgainButtonisHidden.accept(true)
+        tryAgainButtonIsHidden.accept(true)
         fetchCharactersUseCase.execute(limit: limit, offset: offset)
             .subscribe {[weak self] event in
                 self?.isLoading.accept(false)
@@ -86,7 +86,7 @@ final class CharactersListViewModel {
                 case .next(let responseCharacter):
                     self.handleResponseCharacters(data: responseCharacter)
                 case .error(let error):
-                    self.tryAgainButtonisHidden.accept(false)
+                    self.tryAgainButtonIsHidden.accept(false)
                     let nsError = error as NSError
                     self.errorMessage.onNext(nsError.domain)
                 case .completed:
@@ -103,7 +103,7 @@ final class CharactersListViewModel {
         if appConfiguration.checkApiKeys() {
             self.fetchCharactersLaunchesList()
         } else {
-            self.tryAgainButtonisHidden.accept(false)
+            self.tryAgainButtonIsHidden.accept(false)
             self.errorMessage.onNext(NSLocalizedString("apiKey_error", comment: ""))
         }
     }

@@ -6,6 +6,7 @@ This project shows the list of all Marvel characters and their appearances in co
 - Xcode 13
 - Swift 5.5
 - Swift Package Manager
+- SwiftLint
 
 ## Libreries with SPM 📦
 I have managed the external libraries with SPM, much cleaner and faster than with CocoaPods.
@@ -37,14 +38,13 @@ All the main elements of the application are controlled with reactive programmin
 ## Testing ✅
 The most important parts and business logic have been tested:
 - Application
-  - AppCoordinatorTest
-  - AppConfiguration
 - Presentation
   - CharactersScene
 - Domain
   - UseCases
 - Data
   - Repositories
+- Common  
   
 *I am aware that there are more classes to test.*
 

@@ -66,7 +66,7 @@ class FetchSeriesUseCaseTest: XCTestCase {
 
                     // then
                     XCTAssertEqual(nsError.code, 400)
-                    XCTAssertEqual(nsError.domain, "Ooops, there is something problem with the response")
+                    XCTAssertEqual(nsError.domain, NSLocalizedString("invalid_response", comment: ""))
                 case .completed:
                     break
                 }

@@ -71,7 +71,7 @@ final class CharactersListViewController: UIViewController, CustomizableNavBar, 
                 self?.showError(errorToShow: error)
             }).disposed(by: disposeBag)
 
-        viewModel.tryAgainButtonisHidden
+        viewModel.tryAgainButtonIsHidden
             .asDriver()
             .drive(tryAgainButton.rx.isHidden)
             .disposed(by: disposeBag)
@@ -102,7 +102,6 @@ final class CharactersListViewController: UIViewController, CustomizableNavBar, 
 
         self.view.setBackgroundImage(imageName: "marvelBackground")
 
-        tryAgainButton.isHidden = true
         tryAgainButton.dsConfigure(text: NSLocalizedString("Try Again", comment: ""), style: .secondary, state: .enabled)
 
         activityIndicator.color = .dsSecondaryPure

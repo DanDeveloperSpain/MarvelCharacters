@@ -9,18 +9,22 @@ import Foundation
 
 struct DateHelper {
 
-    static func stringDateToShortDate(dateString: String) -> String {
-        let dateFormatterGet = DateFormatter()
-        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+    static func stringDateToDate(dateString: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        return dateFormatter.date(from: dateString) ?? Date()
+    }
 
-        let dateFormatterPrint = DateFormatter()
-        dateFormatterPrint.dateStyle = .medium
+    static func dateToYear(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy"
+        return dateFormatter.string(from: date)
+    }
 
-        if let date = dateFormatterGet.date(from: dateString) {
-            return dateFormatterPrint.string(from: date)
-        } else {
-            return ""
-        }
+    static func dateToShortDate(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d, yyyy"
+        return dateFormatter.string(from: date)
     }
 
 }

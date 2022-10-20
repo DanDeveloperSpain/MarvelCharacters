@@ -39,6 +39,8 @@
 		7E0005C928FE1CB40003879D /* ComicsRespositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0005C828FE1CB40003879D /* ComicsRespositoryMock.swift */; };
 		7E0005CB28FE1D270003879D /* SeriesRespositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0005CA28FE1D270003879D /* SeriesRespositoryMock.swift */; };
 		7E0C653F28FF6174003093CA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E0C654128FF6174003093CA /* Localizable.strings */; };
+		7E0C65442900E7A1003093CA /* DateHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0C65432900E7A1003093CA /* DateHelperTests.swift */; };
+		7E0C65462900ED18003093CA /* EncryptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0C65452900ED18003093CA /* EncryptionTests.swift */; };
 		7E14ADF4284614F30089CAB5 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 7E14ADF3284614F30089CAB5 /* RxBlocking */; };
 		7E14ADF6284614F30089CAB5 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 7E14ADF5284614F30089CAB5 /* RxCocoa */; };
 		7E14ADF8284614F30089CAB5 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 7E14ADF7284614F30089CAB5 /* RxRelay */; };
@@ -175,6 +177,8 @@
 		7E0005C828FE1CB40003879D /* ComicsRespositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsRespositoryMock.swift; sourceTree = "<group>"; };
 		7E0005CA28FE1D270003879D /* SeriesRespositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesRespositoryMock.swift; sourceTree = "<group>"; };
 		7E0C654028FF6174003093CA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7E0C65432900E7A1003093CA /* DateHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelperTests.swift; sourceTree = "<group>"; };
+		7E0C65452900ED18003093CA /* EncryptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionTests.swift; sourceTree = "<group>"; };
 		7E14AE0A284621980089CAB5 /* CharactersRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersRepositoryProtocol.swift; sourceTree = "<group>"; };
 		7E14AE0E284622B10089CAB5 /* CharactersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersRepository.swift; sourceTree = "<group>"; };
 		7E14AE13284627B40089CAB5 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -353,6 +357,7 @@
 				7E0005B328FC77840003879D /* Presentation */,
 				7E298BC028FC1ECA0024373D /* Domain */,
 				7EEB420428FF35E600435D36 /* Data */,
+				7E0C65422900E777003093CA /* Commom */,
 				65804D572704C360001C42B3 /* Info.plist */,
 			);
 			path = MarvelCharactersTests;
@@ -412,6 +417,15 @@
 				7E0005CA28FE1D270003879D /* SeriesRespositoryMock.swift */,
 			);
 			path = RepositoriesMocks;
+			sourceTree = "<group>";
+		};
+		7E0C65422900E777003093CA /* Commom */ = {
+			isa = PBXGroup;
+			children = (
+				7E0C65432900E7A1003093CA /* DateHelperTests.swift */,
+				7E0C65452900ED18003093CA /* EncryptionTests.swift */,
+			);
+			path = Commom;
 			sourceTree = "<group>";
 		};
 		7E14ADFD28461E150089CAB5 /* Application */ = {
@@ -1241,6 +1255,7 @@
 				7E0005C028FE13E40003879D /* FetchComicsUseCaseMock.swift in Sources */,
 				7EEB420928FF466300435D36 /* DefaultNetworkServiceMock.swift in Sources */,
 				7E0005C728FE1C2C0003879D /* CharactersRespositoryMock.swift in Sources */,
+				7E0C65442900E7A1003093CA /* DateHelperTests.swift in Sources */,
 				7E539CDB2811B0C4006FC1D3 /* AppCoordinatorTest.swift in Sources */,
 				7E0005BB28FDDB1C0003879D /* AppConfigurationTests.swift in Sources */,
 				7E0005B628FC77FA0003879D /* CharactersListViewModelTests.swift in Sources */,
@@ -1252,6 +1267,7 @@
 				7E298BC728FC71560024373D /* FetchSeriesUseCaseTests.swift in Sources */,
 				7EEB420728FF362C00435D36 /* CharactersRepositoryTests.swift in Sources */,
 				7E298BC528FC6ACA0024373D /* FetchComicsUseCaseTests.swift in Sources */,
+				7E0C65462900ED18003093CA /* EncryptionTests.swift in Sources */,
 				7E0005C928FE1CB40003879D /* ComicsRespositoryMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

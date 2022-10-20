@@ -100,7 +100,7 @@ class CharactersListViewModelTests: XCTestCase {
         charactersListViewModel?.fetchCharactersLaunchesList()
 
         // then
-        XCTAssertEqual(self.errorMessage, "Ooops, there is something problem with the endpoint")
+        XCTAssertEqual(self.errorMessage, NSLocalizedString("invalid_endpoint", comment: ""))
 
     }
 

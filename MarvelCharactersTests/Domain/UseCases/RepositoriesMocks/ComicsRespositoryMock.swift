@@ -16,8 +16,8 @@ final class ComicsRespositoryMock: ComicsRepositoryProtocol {
     // ------------------------------------------------
 
     static let comics: [Comic] = {
-        let comic1 = Comic(id: 1, title: "Infinity Wars vol.1", imageUrl: "http://i.annihil.us/comics/inf1.jpg", startDate: "2007")
-        let comic2 = Comic(id: 2, title: "Infinity Wars vol.2", imageUrl: "http://i.annihil.us/comics/inf2.jpg", startDate: "2008")
+        let comic1 = Comic(id: 1, title: "Infinity Wars vol.1", imageUrl: "http://i.annihil.us/comics/inf1.jpg", startDate: Date(), startYear: 2007)
+        let comic2 = Comic(id: 2, title: "Infinity Wars vol.2", imageUrl: "http://i.annihil.us/comics/inf2.jpg", startDate: Date(), startYear: 2008)
         return [comic1, comic2]
     }()
 

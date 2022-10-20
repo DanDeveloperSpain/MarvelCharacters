@@ -20,6 +20,8 @@ final class CharacterDetailViewController: UIViewController, CustomizableNavBar,
 
     @IBOutlet weak var characterImageView: UIImageView!
     @IBOutlet weak var characterDescriptionLabel: UILabel!
+    @IBOutlet weak var filterByYearLabel: UILabel!
+    @IBOutlet weak var yearFilterTextField: UITextField!
     @IBOutlet weak var comicsSeriesCollectionView: UICollectionView!
     @IBOutlet weak var comicActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var serieActivityIndicator: UIActivityIndicatorView!
@@ -32,6 +34,8 @@ final class CharacterDetailViewController: UIViewController, CustomizableNavBar,
     private let disposeBag = DisposeBag()
     var viewModel: CharacterDetailViewModel!
     var dataSource: RxCollectionViewSectionedReloadDataSource<SectionModel<String, ComicSerieCell.UIModel>>!
+
+    var pickerView = UIPickerView()
 
     // ---------------------------------
     // MARK: - Life Cycle
@@ -50,6 +54,8 @@ final class CharacterDetailViewController: UIViewController, CustomizableNavBar,
         bindViewModelToCollectionView()
         setupCocoaBindings()
         setupLoadingsBindings()
+        setupYearsToFilterBinding()
+        setupYearFilterTextFieldBinding()
         setupErrorBinding()
         viewModel.start()
     }
@@ -110,6 +116,28 @@ final class CharacterDetailViewController: UIViewController, CustomizableNavBar,
             .disposed(by: disposeBag)
     }
 
+    private func setupYearsToFilterBinding() {
+        viewModel.yearsToFilter.bind(to: pickerView.rx.itemTitles) { (row, yearToFilter) in
+            return row == 0 ? NSLocalizedString("all", comment: "") : String(yearToFilter)
+        }
+        .disposed(by: disposeBag)
+
+        pickerView.rx.modelSelected(Int.self)
+            .subscribe(onNext: { models in
+                self.yearFilterTextField.text = models[0] == 0 ? NSLocalizedString("all", comment: "") : String(models[0])
+                self.viewModel.selectedFilteredYear = models[0]
+                self.viewModel.setFilterYearToItems()
+            })
+            .disposed(by: disposeBag)
+    }
+
+    private func setupYearFilterTextFieldBinding() {
+        viewModel.yearFilterTextFieldIsHidden
+            .asDriver()
+            .drive(yearFilterTextField.rx.isHidden)
+            .disposed(by: disposeBag)
+    }
+
     private func setupErrorBinding() {
         viewModel.errorMessage
             .observe(on: MainScheduler.instance)
@@ -127,6 +155,8 @@ final class CharacterDetailViewController: UIViewController, CustomizableNavBar,
 
         self.view.setBackgroundImage(imageName: "marvelBackground")
 
+        setUpPickerViewFilter()
+
         comicActivityIndicator.color = .dsSecondaryPure
         serieActivityIndicator.color = .dsSecondaryPure
 
@@ -137,8 +167,30 @@ final class CharacterDetailViewController: UIViewController, CustomizableNavBar,
     }
 
     // ------------------------------------------------
+    // MARK: - Buton Action's
+    // ------------------------------------------------
+
+    @objc func donePressed() {
+        yearFilterTextField.resignFirstResponder()
+    }
+
+    // ------------------------------------------------
     // MARK: - Private methods
     // ------------------------------------------------
+
+    private func setUpPickerViewFilter() {
+        filterByYearLabel.dsConfigure(with: NSLocalizedString("filter_by_year", comment: ""), font: .boldMedium, color: .dsWhite)
+
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+        toolbar.setItems([doneButton], animated: true)
+
+        yearFilterTextField.inputView = pickerView
+        yearFilterTextField.inputAccessoryView = toolbar
+        yearFilterTextField.text = NSLocalizedString("all", comment: "")
+    }
 
     /// Setup the collectionView for comics ands series flow layout.
     private func configureCollectionView() {

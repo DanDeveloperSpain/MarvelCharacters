@@ -9,8 +9,13 @@
 // ---------------------------------
 // MARK: - A
 // ---------------------------------
+"all" = "All";
 "apiKey_error" = "There isn`t ApiKey data. Please enter your public and private key.";
 
+// ---------------------------------
+// MARK: - A
+// ---------------------------------
+"filter_by_year" = "Filter by year:";
 
 // ---------------------------------
 // MARK: - Api errors

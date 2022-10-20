@@ -30,15 +30,16 @@ final class CharacterDetailViewModel {
 
     private(set) var character: Character?
 
-    /// Comics datasource.
-    private(set) var comics: [Comic] = []
-
+    private(set) var allComics: [Comic] = []
+    private(set) var filteredComics: [Comic] = []
     var responseComics: ResponseComics?
 
-    /// Series datasource.
-    private(set) var series: [Serie] = []
-
+    private(set) var allSeries: [Serie] = []
+    private(set) var filteredSeries: [Serie] = []
     var responseSeries: ResponseSeries?
+
+    var yearsToFilter: PublishSubject<[Int]> = PublishSubject()
+    var selectedFilteredYear: Int?
 
     /// Indicate the last comic that will be shown in the list, to know when to make the next request to obtain more characters.
     var numLastComicToShow: Int {
@@ -60,11 +61,14 @@ final class CharacterDetailViewModel {
     // MARK: - Properties RX-Bindings
     // ---------------------------------
 
+    /// datasource
     let items: PublishSubject<[SectionModel<String, ComicSerieCell.UIModel>]> = PublishSubject()
+
     var cellComicsUIModels = [ComicSerieCell.UIModel]()
     var cellSeriesUIModels = [ComicSerieCell.UIModel]()
     let isComicsLoading: BehaviorRelay<Bool> = BehaviorRelay(value: false)
     let isSeriesLoading: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    let yearFilterTextFieldIsHidden: BehaviorRelay<Bool> = BehaviorRelay(value: true)
     let errorMessage: PublishSubject<String> = PublishSubject()
     private let disposeBag = DisposeBag()
 
@@ -96,6 +100,7 @@ final class CharacterDetailViewModel {
         fetchComicsUseCase.execute(characterId: String(character?.id ?? 0), limit: limitComic, offset: offsetComic)
             .subscribe {[weak self] event in
                 self?.isComicsLoading.accept(false)
+                self?.yearFilterTextFieldIsHidden.accept(false)
                 guard let self = self else { return }
                 switch event {
                 case .next(let responseComics):
@@ -114,6 +119,7 @@ final class CharacterDetailViewModel {
         fetchSeriesUseCase.execute(characterId: String(character?.id ?? 0), limit: limitSerie, offset: offsetSerie)
             .subscribe {[weak self] event in
                 self?.isSeriesLoading.accept(false)
+                self?.yearFilterTextFieldIsHidden.accept(false)
                 guard let self = self else { return }
                 switch event {
                 case .next(let responseSeries):
@@ -148,14 +154,31 @@ final class CharacterDetailViewModel {
         }
     }
 
+    func setFilterYearToItems() {
+        if selectedFilteredYear == 0 {
+            setupComics(comics: allComics)
+            setupSeries(series: allSeries)
+
+        } else {
+            filteredComics = allComics.filter({$0.startYear == selectedFilteredYear})
+            setupComics(comics: filteredComics)
+
+            filteredSeries = allSeries.filter({$0.startYear == selectedFilteredYear})
+            setupSeries(series: filteredSeries)
+        }
+
+    }
+
     // ------------------------------------------------
     // MARK: - Private methods
     // ------------------------------------------------
 
     private func handleResponseComics(data: ResponseComics) {
         self.responseComics = data
-        self.comics += data.comics ?? []
-        self.setupComics(comics: self.comics)
+        self.allComics += data.comics ?? []
+        self.setupComics(comics: self.allComics)
+
+        self.setYearsToFilter()
 
         offsetComic += limitComic
 
@@ -163,15 +186,17 @@ final class CharacterDetailViewModel {
     }
 
     private func setupComics(comics: [Comic]) {
-        cellComicsUIModels = comics.map({ ComicSerieCell.UIModel(title: $0.title, year: $0.startDate, imageURL: $0.imageUrl) })
+        cellComicsUIModels = comics.map({ ComicSerieCell.UIModel(title: $0.title, year: DateHelper.dateToShortDate(date: $0.startDate ?? Date()), imageURL: $0.imageUrl) })
 
         setItems(uiComicsModels: cellComicsUIModels, uiSeriesModels: cellSeriesUIModels)
     }
 
     private func handleResponseSeries(data: ResponseSeries) {
         self.responseSeries = data
-        self.series += data.series ?? []
-        self.setupSeries(series: self.series)
+        self.allSeries += data.series ?? []
+        self.setupSeries(series: self.allSeries)
+
+        self.setYearsToFilter()
 
         offsetSerie += limitSerie
 
@@ -186,6 +211,10 @@ final class CharacterDetailViewModel {
 
     private func setItems(uiComicsModels: [ComicSerieCell.UIModel], uiSeriesModels: [ComicSerieCell.UIModel]) {
         items.onNext([SectionModel(model: "Comics", items: uiComicsModels), SectionModel(model: "Series", items: uiSeriesModels)])
+    }
+
+    private func setYearsToFilter() {
+        yearsToFilter.onNext(Array(Set([0] + allComics.compactMap({ $0.startYear }) + allSeries.compactMap({ $0.startYear }))).sorted())
     }
 
 }

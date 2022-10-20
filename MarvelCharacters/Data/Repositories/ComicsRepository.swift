@@ -78,10 +78,14 @@ private extension Comic {
 
         self.startDate = {
             if let onsaleDate = comicData.dates?.filter({$0.type == "onsaleDate"}).first {
-                return DateHelper.stringDateToShortDate(dateString: onsaleDate.date ?? "")
+                return DateHelper.stringDateToDate(dateString: onsaleDate.date ?? "")
             } else {
-                return ""
+                return Date()
             }
+        }()
+
+        self.startYear = {
+            return Int(DateHelper.dateToYear(date: startDate ?? Date()))
         }()
     }
 

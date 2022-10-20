@@ -8,7 +8,7 @@
 import Foundation
 import CryptoKit
 
-class Encryption {
+struct Encryption {
 
     /// Function to has a String in md5.
     /// - Parameter source: in this case a string format for: ts, privateKey and publicKey.

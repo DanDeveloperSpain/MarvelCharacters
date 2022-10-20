@@ -16,5 +16,6 @@ struct Comic: Decodable {
     let id: Int?
     let title: String?
     let imageUrl: String?
-    let startDate: String?
+    let startDate: Date?
+    var startYear: Int?
 }

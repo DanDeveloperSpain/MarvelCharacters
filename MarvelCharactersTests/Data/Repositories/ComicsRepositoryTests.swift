@@ -37,7 +37,7 @@ class ComicsRepositoryTests: XCTestCase {
                     XCTAssertEqual(responseComicsData.comics?.count, 3)
                     XCTAssertEqual(responseComicsData.comics?[0].title, "Avengers: The Initiative (2007) #19")
                     XCTAssertEqual(responseComicsData.comics?[0].imageUrl, "http://i.annihil.us/u/prod/marvel/i/mg/d/03/58dd080719806.jpg")
-                    XCTAssertEqual(responseComicsData.comics?[0].startDate, "dic. 17, 2008")
+                    XCTAssertEqual(responseComicsData.comics?[0].startYear, 2008)
                 case .error:
                     break
                 case .completed:
@@ -64,7 +64,7 @@ class ComicsRepositoryTests: XCTestCase {
                     // then
                     let nsError = error as NSError
                     XCTAssertEqual(nsError.code, 404)
-                    XCTAssertEqual(nsError.domain, "Ooops, there is something problem with the endpoint")
+                    XCTAssertEqual(nsError.domain, NSLocalizedString("invalid_endpoint", comment: ""))
                 case .completed:
                     break
                 }

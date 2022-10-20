@@ -66,7 +66,7 @@ class FetchCharactersUseCaseTest: XCTestCase {
                     // then
                     let nsError = error as NSError
                     XCTAssertEqual(nsError.code, 404)
-                    XCTAssertEqual(nsError.domain, "Ooops, there is something problem with the endpoint")
+                    XCTAssertEqual(nsError.domain, NSLocalizedString("invalid_endpoint", comment: ""))
                 case .completed:
                     break
                 }

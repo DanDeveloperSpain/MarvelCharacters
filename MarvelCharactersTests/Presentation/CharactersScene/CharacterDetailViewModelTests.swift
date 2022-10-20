@@ -29,6 +29,8 @@ class CharacterDetailViewModelTests: XCTestCase {
 
     var errorMessage: String?
 
+    var yearsToFilter: [Int]?
+
     // ------------------------------------------------
     // MARK: - SetUp
     // ------------------------------------------------
@@ -44,10 +46,51 @@ class CharacterDetailViewModelTests: XCTestCase {
         characterDetailViewModel?.start()
 
         /// Subscribe to ViewModel's PublishSubject errorMessage
-        characterDetailViewModel?.errorMessage.subscribe { event in
-            self.errorMessage = event
+        characterDetailViewModel?.errorMessage.subscribe {
+            self.errorMessage = $0.element
         }.disposed(by: disposeBag)
 
+        /// Subscribe to ViewModel's PublishSubject yearsToFilter
+        characterDetailViewModel?.yearsToFilter.subscribe {
+            self.yearsToFilter = $0.element
+        }.disposed(by: disposeBag)
+
+    }
+
+    // ------------------------------------------------
+    // MARK: - Filter Tests
+    // ------------------------------------------------
+
+    func test_SetFilterYearToItems() {
+
+        // when
+        /// second request comis and seires
+        characterDetailViewModel?.checkComicsRequestNewDataByIndex(index: 19)
+        characterDetailViewModel?.checkSeriesRequestNewDataByIndex(index: 19)
+
+        /// select yera to filter
+        characterDetailViewModel?.selectedFilteredYear = 2007
+
+        /// applying filter
+        characterDetailViewModel?.setFilterYearToItems()
+
+        // then
+        XCTAssertEqual(characterDetailViewModel?.filteredComics.count, 2)
+        XCTAssertEqual(characterDetailViewModel?.filteredComics[0].title, "X-Men Red")
+        XCTAssertEqual(characterDetailViewModel?.filteredSeries.count, 1)
+        XCTAssertEqual(characterDetailViewModel?.filteredSeries[0].title, "Hulk")
+    }
+
+    func  test_SetYearsToFilter() {
+        let arryYears = [0, 1993, 1999, 2001, 2006, 2007, 2009]
+
+        // when
+        /// second request comis and seires
+        characterDetailViewModel?.checkComicsRequestNewDataByIndex(index: 19)
+        characterDetailViewModel?.checkSeriesRequestNewDataByIndex(index: 19)
+
+        // then
+        XCTAssertEqual(yearsToFilter, arryYears)
     }
 
     // ------------------------------------------------
@@ -59,9 +102,9 @@ class CharacterDetailViewModelTests: XCTestCase {
         /// first request at setup
 
         // then
-        let numComics = characterDetailViewModel?.comics.count
+        let numComics = characterDetailViewModel?.allComics.count
         XCTAssertEqual(numComics, 2)
-        XCTAssertEqual(characterDetailViewModel?.comics[0].title, "X-Men Red")
+        XCTAssertEqual(characterDetailViewModel?.allComics[0].title, "X-Men Red")
     }
 
     func test_thereAreMoreComicsToFetch_WhenAfterTheFirstRequest() {
@@ -80,9 +123,9 @@ class CharacterDetailViewModelTests: XCTestCase {
         characterDetailViewModel?.checkComicsRequestNewDataByIndex(index: 19)
 
         // then
-        let numComics = characterDetailViewModel?.comics.count
+        let numComics = characterDetailViewModel?.allComics.count
         XCTAssertEqual(numComics, 4)
-        XCTAssertEqual(characterDetailViewModel?.comics[3].title, "Avangers")
+        XCTAssertEqual(characterDetailViewModel?.allComics[3].title, "Avangers")
 
     }
 
@@ -105,7 +148,7 @@ class CharacterDetailViewModelTests: XCTestCase {
         characterDetailViewModel?.fetchComicsLaunchesList()
 
         // then
-        XCTAssertEqual(self.errorMessage, "Ooops, there is something problem with the serialization process")
+        XCTAssertEqual(self.errorMessage, NSLocalizedString("serialization_error", comment: ""))
 
     }
 
@@ -118,9 +161,9 @@ class CharacterDetailViewModelTests: XCTestCase {
         /// first request at setup
 
         // then
-        let numSeries = characterDetailViewModel?.series.count
+        let numSeries = characterDetailViewModel?.allSeries.count
         XCTAssertEqual(numSeries, 2)
-        XCTAssertEqual(characterDetailViewModel?.series[0].title, "Heralds")
+        XCTAssertEqual(characterDetailViewModel?.allSeries[0].title, "Heralds")
     }
 
     func test_thereAreMoreSeriesToFetch_WhenAfterTheFirstRequest() {
@@ -139,9 +182,9 @@ class CharacterDetailViewModelTests: XCTestCase {
         characterDetailViewModel?.checkSeriesRequestNewDataByIndex(index: 19)
 
         // then
-        let numComics = characterDetailViewModel?.series.count
+        let numComics = characterDetailViewModel?.allSeries.count
         XCTAssertEqual(numComics, 4)
-        XCTAssertEqual(characterDetailViewModel?.series[3].title, "Wolverine")
+        XCTAssertEqual(characterDetailViewModel?.allSeries[3].title, "Wolverine")
 
     }
 
@@ -164,7 +207,7 @@ class CharacterDetailViewModelTests: XCTestCase {
         characterDetailViewModel?.fetchSeriesLaunchesList()
 
         // then
-        XCTAssertEqual(self.errorMessage, "Ooops, there is something problem with the response")
+        XCTAssertEqual(self.errorMessage, NSLocalizedString("invalid_response", comment: ""))
 
     }
 }
