@@ -16,7 +16,7 @@ extension Container {
         /// AppConfiguration
         container.register(AppConfiguration.self) { _ in
             AppConfiguration()
-        }
+        }.inObjectScope(.container)
 
         return container
 

@@ -153,10 +153,10 @@ extension CharacterDetailViewController {
         .disposed(by: disposeBag)
 
         pickerViewFilter.rx.modelSelected(Int.self)
-            .subscribe(onNext: { models in
-                self.yearFilterTextField.text = models[0] == 0 ? NSLocalizedString("all", comment: "") : String(models[0])
-                self.viewModel.selectedFilteredYear = models[0]
-                self.viewModel.setFilterYearToItems()
+            .subscribe(onNext: { [weak self] models in
+                self?.yearFilterTextField.text = models[0] == 0 ? NSLocalizedString("all", comment: "") : String(models[0])
+                self?.viewModel.selectedFilteredYear = models[0]
+                self?.viewModel.setFilterYearToItems()
             })
             .disposed(by: disposeBag)
     }
