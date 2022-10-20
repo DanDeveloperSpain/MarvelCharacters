@@ -2,6 +2,13 @@
 
 This project shows the list of all Marvel characters and their appearances in comics and series.
 
+## Improvements 🚧
+- Missing test, add more coverage.
+- Allow to keep getting items when a filter is applied.
+- Extend the current logger to a general logger for all app, not just errorNetwork.
+- Feature: Save favorite characters.
+- Refactor to SwiftUI + Combine.
+
 ## Tools 🛠️
 - Xcode 13
 - Swift 5.5
