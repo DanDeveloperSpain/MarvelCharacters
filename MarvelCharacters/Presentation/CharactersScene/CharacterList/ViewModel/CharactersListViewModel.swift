@@ -27,10 +27,7 @@ final class CharactersListViewModel {
         return NSLocalizedString("Marvel characters", comment: "")
     }
 
-    /// Character datasource.
     private(set) var characters: [Character] = []
-
-    /// DataResponse
     var responseCharacters: ResponseCharacters?
 
     /// Indicate the last character that will be shown in the list, to know when to make the next request to obtain more characters.
@@ -46,7 +43,9 @@ final class CharactersListViewModel {
     // MARK: - Properties RX-Bindings
     // ---------------------------------
 
+    /// datasource.
     let cellUIModels: PublishSubject<[CharacterCell.UIModel]> = PublishSubject()
+
     let isLoading: BehaviorRelay<Bool> = BehaviorRelay(value: false)
     let tryAgainButtonIsHidden: BehaviorRelay<Bool> = BehaviorRelay(value: true)
     let errorMessage: PublishSubject<String> = PublishSubject()
@@ -61,7 +60,7 @@ final class CharactersListViewModel {
     private let appConfiguration: AppConfiguration
 
     // ---------------------------------
-    // MARK: - Init
+    // MARK: - Life Cycle
     // ---------------------------------
 
     init(coordinatorDelegate: CharactersListViewModelCoordinatorDelegate, fetchCharactersUseCase: FetchCharactersUseCaseProtocol, appConfiguration: AppConfiguration) {
@@ -70,10 +69,28 @@ final class CharactersListViewModel {
         self.appConfiguration = appConfiguration
     }
 
-    // ------------------------------------------------
-    // MARK: - Fetches
-    // ------------------------------------------------
+    func start() {
+        if appConfiguration.checkApiKeys() {
+            self.fetchCharactersLaunchesList()
+        } else {
+            self.tryAgainButtonIsHidden.accept(false)
+            self.errorMessage.onNext(NSLocalizedString("apiKey_error", comment: ""))
+        }
+    }
 
+    // ---------------------------------
+    // MARK: - Events
+    // ---------------------------------
+
+    func cellAtIndexTapped(index: Int) {
+        coordinatorDelegate?.goToCharacterDetail(character: characters[index])
+    }
+}
+
+// ------------------------------------------------
+// MARK: - Fetches
+// ------------------------------------------------
+extension CharactersListViewModel {
     /// Fetches the list of characters from the internet or local storage via use case. (internet in this case)
     func fetchCharactersLaunchesList() {
         isLoading.accept(true)
@@ -94,42 +111,23 @@ final class CharactersListViewModel {
                 }
             }.disposed(by: disposeBag)
     }
+}
 
-    // ---------------------------------
-    // MARK: - Public methods
-    // ---------------------------------
+// ------------------------------------------------
+// MARK: - Characters
+// ------------------------------------------------
+extension CharactersListViewModel {
 
-    func start() {
-        if appConfiguration.checkApiKeys() {
-            self.fetchCharactersLaunchesList()
-        } else {
-            self.tryAgainButtonIsHidden.accept(false)
-            self.errorMessage.onNext(NSLocalizedString("apiKey_error", comment: ""))
-        }
-    }
-
-    func checkRequestNewDataByIndex(index: Int) {
+    func checkCharactersRequestNewDataByIndex(index: Int) {
         if index == numLastCharacterToShow && loadMore {
             fetchCharactersLaunchesList()
         }
     }
 
-    // ---------------------------------
-    // MARK: - Events
-    // ---------------------------------
-
-    func cellAtIndexTapped(index: Int) {
-        coordinatorDelegate?.goToCharacterDetail(character: characters[index])
-    }
-
-    // ------------------------------------------------
-    // MARK: - Private methods
-    // ------------------------------------------------
-
     private func handleResponseCharacters(data: ResponseCharacters) {
         self.responseCharacters = data
         self.characters += data.characters ?? []
-        self.setupCharacters(characters: self.characters)
+        self.setCharacters(characters: self.characters)
 
         offset += limit
 
@@ -137,11 +135,11 @@ final class CharactersListViewModel {
 
     }
 
-    private func setupCharacters(characters: [Character]) {
+    private func setCharacters(characters: [Character]) {
         let uiModels = characters.map({ CharacterCell.UIModel(characterName: $0.name, characterImageURL: $0.imageUrl)
         })
 
+        /// update datasource
         cellUIModels.onNext(uiModels)
     }
-
 }

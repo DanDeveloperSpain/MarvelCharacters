@@ -72,7 +72,7 @@ class CharactersListViewModelTests: XCTestCase {
     func test_SuccessfullyFetchCharactersUseCaseReturns_WhenAfterTheSecondRequest() {
         // when
         /// second request
-        charactersListViewModel?.checkRequestNewDataByIndex(index: 19)
+        charactersListViewModel?.checkCharactersRequestNewDataByIndex(index: 19)
 
         // then
         let numCharacters = charactersListViewModel?.characters.count
@@ -84,7 +84,7 @@ class CharactersListViewModelTests: XCTestCase {
     func test_thereAreMoreCharactersToFetch_WhenAfterTheSecondRequest() {
         // when
         /// second request
-        charactersListViewModel?.checkRequestNewDataByIndex(index: 19)
+        charactersListViewModel?.checkCharactersRequestNewDataByIndex(index: 19)
 
         // then
         XCTAssertEqual(charactersListViewModel?.offset, 40)
@@ -95,7 +95,7 @@ class CharactersListViewModelTests: XCTestCase {
     func test_FailureFetchCharactersUseCaseReturns_WhenAfterTheThirdRequest() {
         // when
         /// second request
-        charactersListViewModel?.checkRequestNewDataByIndex(index: 19)
+        charactersListViewModel?.checkCharactersRequestNewDataByIndex(index: 19)
         /// force third request
         charactersListViewModel?.fetchCharactersLaunchesList()
 

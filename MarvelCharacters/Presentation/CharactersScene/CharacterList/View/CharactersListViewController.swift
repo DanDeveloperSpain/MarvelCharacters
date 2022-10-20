@@ -42,15 +42,40 @@ final class CharactersListViewController: UIViewController, CustomizableNavBar, 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
-        configureCollectionView()
+        setupCollectionView()
         setupBindings()
         setupCocoaBindings()
         viewModel.start()
     }
 
     // ---------------------------------
-    // MARK: - Bindings
+    // MARK: - Setup View
     // ---------------------------------
+
+    private func configureView() {
+        setupNavigationBar(title: viewModel?.title, color: .dsWhite)
+
+        self.view.setBackgroundImage(imageName: "marvelBackground")
+
+        tryAgainButton.dsConfigure(text: NSLocalizedString("Try Again", comment: ""), style: .secondary, state: .enabled)
+
+        activityIndicator.color = .dsSecondaryPure
+    }
+
+    // ------------------------------------------------
+    // MARK: - Buton Action's
+    // ------------------------------------------------
+
+    @IBAction func tryAgainButtonPressed(_ sender: UIButton) {
+        viewModel.start()
+    }
+
+ }
+
+// --------------------------------------------------------------
+// MARK: - Bindings
+// --------------------------------------------------------------
+extension CharactersListViewController {
 
     private func setupBindings() {
         viewModel.isLoading
@@ -89,38 +114,18 @@ final class CharactersListViewController: UIViewController, CustomizableNavBar, 
             .rx
             .willDisplayCell
             .subscribe(onNext: { [weak self] _, indexPath in
-                self?.viewModel.checkRequestNewDataByIndex(index: indexPath.row)
+                self?.viewModel.checkCharactersRequestNewDataByIndex(index: indexPath.row)
             }).disposed(by: disposeBag)
     }
 
-    // ---------------------------------
-    // MARK: - Setup View
-    // ---------------------------------
+}
 
-    private func configureView() {
-        setupNavigationBar(title: viewModel?.title, color: .dsWhite)
-
-        self.view.setBackgroundImage(imageName: "marvelBackground")
-
-        tryAgainButton.dsConfigure(text: NSLocalizedString("Try Again", comment: ""), style: .secondary, state: .enabled)
-
-        activityIndicator.color = .dsSecondaryPure
-    }
-
-    // ------------------------------------------------
-    // MARK: - Buton Action's
-    // ------------------------------------------------
-
-    @IBAction func tryAgainButtonPressed(_ sender: UIButton) {
-        viewModel.start()
-    }
-
-    // ------------------------------------------------
-    // MARK: - Private methods
-    // ------------------------------------------------
-
+// --------------------------------------------------------------
+// MARK: - CollectionView Layout
+// --------------------------------------------------------------
+extension CharactersListViewController {
     /// Setup the charecterCollectionView flow layout.
-    private func configureCollectionView() {
+    private func setupCollectionView() {
         self.charactersCollectionView.register(UINib(nibName: CharacterCell.kCellId, bundle: Bundle(for: CharacterCell.self)), forCellWithReuseIdentifier: CharacterCell.kCellId)
 
         let flowLayout = UICollectionViewFlowLayout()
@@ -133,11 +138,17 @@ final class CharactersListViewController: UIViewController, CustomizableNavBar, 
         self.charactersCollectionView.collectionViewLayout = flowLayout
     }
 
+}
+
+// --------------------------------------------------------------
+// MARK: - Show Error
+// --------------------------------------------------------------
+extension CharactersListViewController {
+
     private func showError(errorToShow: String) {
         self.showDialogModal(image: DSImage(named: .icon_info) ?? UIImage(), title: errorToShow, titlePrimaryButton: NSLocalizedString("Accept", comment: ""), delegate: self)
     }
-
- }
+}
 
 // --------------------------------------------------------------
 // MARK: - DialogButtonViewDelegate

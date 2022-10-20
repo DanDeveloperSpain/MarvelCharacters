@@ -81,7 +81,7 @@ final class CharacterDetailViewModel {
     private let fetchSeriesUseCase: FetchSeriesUseCaseProtocol
 
     // ---------------------------------
-    // MARK: - Init
+    // MARK: - Life Cycle
     // ---------------------------------
 
     init(coordinatorDelegate: CharacterDetailViewModelCoordinatorDelegate, fetchComicsUseCase: FetchComicsUseCaseProtocol, fetchSeriesUseCase: FetchSeriesUseCaseProtocol, character: Character) {
@@ -91,9 +91,22 @@ final class CharacterDetailViewModel {
         self.character = character
     }
 
-    // ------------------------------------------------
-    // MARK: - Fetches
-    // ------------------------------------------------
+    func start() {
+        fetchComicsLaunchesList()
+        fetchSeriesLaunchesList()
+    }
+
+    /// update datasource
+    private func setItems(uiComicsModels: [ComicSerieCell.UIModel], uiSeriesModels: [ComicSerieCell.UIModel]) {
+        items.onNext([SectionModel(model: "Comics", items: uiComicsModels), SectionModel(model: "Series", items: uiSeriesModels)])
+    }
+
+}
+
+// ------------------------------------------------
+// MARK: - Fetches
+// ------------------------------------------------
+extension CharacterDetailViewModel {
 
     func fetchComicsLaunchesList() {
         isComicsLoading.accept(true)
@@ -133,14 +146,12 @@ final class CharacterDetailViewModel {
             }.disposed(by: disposeBag)
     }
 
-    // ---------------------------------
-    // MARK: - Public methods
-    // ---------------------------------
+}
 
-    func start() {
-        fetchComicsLaunchesList()
-        fetchSeriesLaunchesList()
-    }
+// ------------------------------------------------
+// MARK: - Comics
+// ------------------------------------------------
+extension CharacterDetailViewModel {
 
     func checkComicsRequestNewDataByIndex(index: Int) {
         if index == numLastComicToShow && loadMoreComic {
@@ -148,35 +159,10 @@ final class CharacterDetailViewModel {
         }
     }
 
-    func checkSeriesRequestNewDataByIndex(index: Int) {
-        if index == numLastSerieToShow && loadMoreSerie {
-            fetchSeriesLaunchesList()
-        }
-    }
-
-    func setFilterYearToItems() {
-        if selectedFilteredYear == 0 {
-            setupComics(comics: allComics)
-            setupSeries(series: allSeries)
-
-        } else {
-            filteredComics = allComics.filter({$0.startYear == selectedFilteredYear})
-            setupComics(comics: filteredComics)
-
-            filteredSeries = allSeries.filter({$0.startYear == selectedFilteredYear})
-            setupSeries(series: filteredSeries)
-        }
-
-    }
-
-    // ------------------------------------------------
-    // MARK: - Private methods
-    // ------------------------------------------------
-
     private func handleResponseComics(data: ResponseComics) {
         self.responseComics = data
         self.allComics += data.comics ?? []
-        self.setupComics(comics: self.allComics)
+        self.setComics(comics: self.allComics)
 
         self.setYearsToFilter()
 
@@ -185,16 +171,28 @@ final class CharacterDetailViewModel {
         self.loadMoreComic = PaginationHelper.isMoreDataToLoad(offset:offsetComic, total: self.responseComics?.total ?? 0)
     }
 
-    private func setupComics(comics: [Comic]) {
+    private func setComics(comics: [Comic]) {
         cellComicsUIModels = comics.map({ ComicSerieCell.UIModel(title: $0.title, year: DateHelper.dateToShortDate(date: $0.startDate ?? Date()), imageURL: $0.imageUrl) })
 
         setItems(uiComicsModels: cellComicsUIModels, uiSeriesModels: cellSeriesUIModels)
+    }
+}
+
+// ------------------------------------------------
+// MARK: - Series
+// ------------------------------------------------
+extension CharacterDetailViewModel {
+
+    func checkSeriesRequestNewDataByIndex(index: Int) {
+        if index == numLastSerieToShow && loadMoreSerie {
+            fetchSeriesLaunchesList()
+        }
     }
 
     private func handleResponseSeries(data: ResponseSeries) {
         self.responseSeries = data
         self.allSeries += data.series ?? []
-        self.setupSeries(series: self.allSeries)
+        self.setSeries(series: self.allSeries)
 
         self.setYearsToFilter()
 
@@ -203,18 +201,34 @@ final class CharacterDetailViewModel {
         self.loadMoreSerie = PaginationHelper.isMoreDataToLoad(offset: offsetSerie, total: self.responseSeries?.total ?? 0)
     }
 
-    private func setupSeries(series: [Serie]) {
+    private func setSeries(series: [Serie]) {
         cellSeriesUIModels = series.map({ ComicSerieCell.UIModel(title: $0.title, year: String($0.startYear ?? 0), imageURL: $0.imageUrl) })
 
         setItems(uiComicsModels: cellComicsUIModels, uiSeriesModels: cellSeriesUIModels)
     }
+}
 
-    private func setItems(uiComicsModels: [ComicSerieCell.UIModel], uiSeriesModels: [ComicSerieCell.UIModel]) {
-        items.onNext([SectionModel(model: "Comics", items: uiComicsModels), SectionModel(model: "Series", items: uiSeriesModels)])
+// ------------------------------------------------
+// MARK: - Filter
+// ------------------------------------------------
+extension CharacterDetailViewModel {
+
+    func setFilterYearToItems() {
+        if selectedFilteredYear == 0 {
+            setComics(comics: allComics)
+            setSeries(series: allSeries)
+
+        } else {
+            filteredComics = allComics.filter({$0.startYear == selectedFilteredYear})
+            setComics(comics: filteredComics)
+
+            filteredSeries = allSeries.filter({$0.startYear == selectedFilteredYear})
+            setSeries(series: filteredSeries)
+        }
+
     }
 
     private func setYearsToFilter() {
         yearsToFilter.onNext(Array(Set([0] + allComics.compactMap({ $0.startYear }) + allSeries.compactMap({ $0.startYear }))).sorted())
     }
-
 }
