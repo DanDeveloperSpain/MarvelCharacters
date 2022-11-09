@@ -15,25 +15,34 @@ class FetchCharactersUseCaseTest: XCTestCase {
     // MARK: - Properties
     // ------------------------------------------------
 
-    lazy var charactersRepositoryMock: CharactersRepositoryProtocol = {
-       return CharactersRespositoryMock()
-    }()
-
-    private let disposeBag = DisposeBag()
-
+    var charactersRepositoryMock: CharactersRepositoryProtocol!
     var useCase: FetchCharactersUseCase?
+    var disposeBag: DisposeBag!
 
     // ------------------------------------------------
     // MARK: - Tests
     // ------------------------------------------------
 
     override func setUp() {
-
+        super.setUp()
+        charactersRepositoryMock = CharactersRespositoryMock()
         useCase = FetchCharactersUseCase(charactersRepository: charactersRepositoryMock)
+        disposeBag = DisposeBag()
 
     }
 
+    override func tearDown() {
+        charactersRepositoryMock = nil
+        useCase = nil
+        disposeBag = nil
+        super.tearDown()
+    }
+
     func testFetchCharactersUseCase_whenSuccessfully() {
+
+        let exp = expectation(description: "wait for data")
+        var numChar = 0
+        var charName = ""
 
         // when
         useCase?.execute(limit: 60, offset: 20)
@@ -42,8 +51,10 @@ class FetchCharactersUseCaseTest: XCTestCase {
                 case .next(let responseCharacter):
 
                     // then
-                    XCTAssertEqual(responseCharacter.characters?.count, 2)
-                    XCTAssertEqual(responseCharacter.characters?[0].name, "IronMan")
+                    numChar = responseCharacter.characters?.count ?? 0
+                    charName = responseCharacter.characters?.first?.name ?? ""
+                    exp.fulfill()
+
                 case .error:
                     break
                 case .completed:
@@ -51,9 +62,17 @@ class FetchCharactersUseCaseTest: XCTestCase {
                 }
             }.disposed(by: disposeBag)
 
+        waitForExpectations(timeout: 1)
+        XCTAssertEqual(numChar, 2)
+        XCTAssertEqual(charName, "IronMan")
+
     }
 
     func testFetchCharactersUseCase_whenFailure() {
+
+        let exp = expectation(description: "wait for data")
+        var nsErrorCode = 0
+        var nsErrorDomain = ""
 
         // when
         useCase?.execute(limit: 60, offset: 80)
@@ -65,12 +84,18 @@ class FetchCharactersUseCaseTest: XCTestCase {
 
                     // then
                     let nsError = error as NSError
-                    XCTAssertEqual(nsError.code, 404)
-                    XCTAssertEqual(nsError.domain, NSLocalizedString("invalid_endpoint", comment: ""))
+                    nsErrorCode = nsError.code
+                    nsErrorDomain = nsError.domain
+                    exp.fulfill()
+
                 case .completed:
                     break
                 }
             }.disposed(by: disposeBag)
+
+        waitForExpectations(timeout: 1)
+        XCTAssertEqual(nsErrorCode, 404)
+        XCTAssertEqual(nsErrorDomain, NSLocalizedString("invalid_endpoint", comment: ""))
 
     }
 
