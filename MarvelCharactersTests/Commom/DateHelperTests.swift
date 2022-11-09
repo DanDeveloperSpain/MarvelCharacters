@@ -24,19 +24,19 @@ class DateHelperTests: XCTestCase {
         let userCalendar = Calendar(identifier: .gregorian)
         let resultDate = userCalendar.date(from: dateComponents)
 
-        let date = DateHelper.stringDateToDate(dateString: mainDateToTest)
+        let date = mainDateToTest.toDate(dateFormat: .extraLong)
         XCTAssertEqual(date, resultDate)
     }
 
     func testStringDateToYear() {
-        let date = DateHelper.stringDateToDate(dateString: mainDateToTest)
-        let resultYear = DateHelper.dateToYear(date: date)
+        let date = mainDateToTest.toDate(dateFormat: .extraLong)
+        let resultYear = date.toString(dateFormat: .year)
         XCTAssertEqual(resultYear, "2018")
     }
 
     func testStringDateToShortDate() {
-        let date = DateHelper.stringDateToDate(dateString: mainDateToTest)
-        let resultShortDate = DateHelper.dateToShortDate(date: date)
+        let date = mainDateToTest.toDate(dateFormat: .extraLong)
+        let resultShortDate = date.toString(dateFormat: .short)
         XCTAssertEqual(resultShortDate, "sep. 12, 2018")
     }
 

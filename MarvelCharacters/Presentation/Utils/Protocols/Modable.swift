@@ -8,9 +8,9 @@
 import UIKit
 import DanDesignSystem
 
-public protocol Modable {}
+protocol Modable {}
 
-public extension Modable where Self: UIViewController {
+extension Modable where Self: UIViewController {
 
     func showDialogModal(image: UIImage, title: String, titlePrimaryButton: String, delegate: DialogViewControllerDelegate) {
         let dialogModal = DialogViewController(image: image, title: title, titlePrimaryButton: titlePrimaryButton, delegate: delegate)

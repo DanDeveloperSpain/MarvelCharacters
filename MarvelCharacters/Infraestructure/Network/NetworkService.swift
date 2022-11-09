@@ -18,7 +18,7 @@ final class DefaultNetworkService: NetworkServiceProtocol {
     var logger: DefaultNetworkErrorLogger
     var apiDataNetworkConfig: NetworkConfigurable
 
-    public init(apiDataNetworkConfig: NetworkConfigurable, logger: DefaultNetworkErrorLogger) {
+    init(apiDataNetworkConfig: NetworkConfigurable, logger: DefaultNetworkErrorLogger) {
         self.apiDataNetworkConfig = apiDataNetworkConfig
         self.logger = logger
     }

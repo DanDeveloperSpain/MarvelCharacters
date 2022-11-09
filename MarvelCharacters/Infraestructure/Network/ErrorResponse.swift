@@ -14,7 +14,7 @@ enum ErrorResponse: String {
     case noData
     case serializationError
 
-    public var description: String {
+    var description: String {
         switch self {
         case .apiError: return NSLocalizedString("apiKey_error", comment: "")
         case .invalidEndpoint: return NSLocalizedString("invalid_endpoint", comment: "")

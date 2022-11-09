@@ -172,7 +172,7 @@ extension CharacterDetailViewModel {
     }
 
     private func setComics(comics: [Comic]) {
-        cellComicsUIModels = comics.map({ ComicSerieCell.UIModel(title: $0.title, year: DateHelper.dateToShortDate(date: $0.startDate ?? Date()), imageURL: $0.imageUrl) })
+        cellComicsUIModels = comics.map({ ComicSerieCell.UIModel(title: $0.title, year: $0.startDate?.toString(dateFormat: .short), imageURL: $0.imageUrl) })
 
         setItems(uiComicsModels: cellComicsUIModels, uiSeriesModels: cellSeriesUIModels)
     }
@@ -213,7 +213,9 @@ extension CharacterDetailViewModel {
 // ------------------------------------------------
 extension CharacterDetailViewModel {
 
-    func setFilterYearToItems() {
+    func setFilterYearToItems(yearToFilter: Int) {
+        selectedFilteredYear = yearToFilter
+
         if selectedFilteredYear == 0 {
             setComics(comics: allComics)
             setSeries(series: allSeries)

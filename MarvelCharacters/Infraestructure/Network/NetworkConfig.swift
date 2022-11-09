@@ -7,16 +7,16 @@
 
 import Foundation
 
-public protocol NetworkConfigurable {
+protocol NetworkConfigurable {
     var baseURL: String { get }
     var baseQueryItems: [String: String]? { get }
 }
 
-public class ApiDataNetworkConfig: NetworkConfigurable {
-    public var baseURL: String
-    public var baseQueryItems: [String: String]?
+final class ApiDataNetworkConfig: NetworkConfigurable {
+    var baseURL: String
+    var baseQueryItems: [String: String]?
 
-    public init(baseURL: String, publicKey: String, privateKey: String) {
+    init(baseURL: String, publicKey: String, privateKey: String) {
         self.baseURL = baseURL
         self.baseQueryItems = setBaseParameters(publicKey: publicKey, privateKey: privateKey)
     }

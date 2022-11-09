@@ -8,9 +8,9 @@
 import UIKit
 import DanDesignSystem
 
-public protocol CustomizableNavBar {}
+protocol CustomizableNavBar {}
 
-public extension CustomizableNavBar where Self: UIViewController {
+extension CustomizableNavBar where Self: UIViewController {
 
     func setupNavigationBar(title: String?, color: UIColor, configureBackButton: Bool = false) {
         navigationItem.title = title

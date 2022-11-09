@@ -14,10 +14,10 @@ protocol NetworkErrorLogger {
     func log(error: Error)
 }
 
-public final class DefaultNetworkErrorLogger: NetworkErrorLogger {
-    public init() { }
+final class DefaultNetworkErrorLogger: NetworkErrorLogger {
+    init() { }
 
-    public func log(request: URLRequest) {
+    func log(request: URLRequest) {
         printIfDebug("——————————————————————————————")
         printIfDebug("ℹ️ request: \(request.url!)")
         printIfDebug("ℹ️ headers: \(request.allHTTPHeaderFields!)")
@@ -29,20 +29,20 @@ public final class DefaultNetworkErrorLogger: NetworkErrorLogger {
         }
     }
 
-    public func log(responseData data: Data?) {
+    func log(responseData data: Data?) {
         guard let data = data else { return }
         if let dataDict = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
             printIfDebug("🧨 Error responseData: \(String(describing: dataDict))")
         }
     }
 
-    public func log(response: URLResponse?) {
+    func log(response: URLResponse?) {
         if let httpResponse = response as? HTTPURLResponse {
             printIfDebug("🧨 Error statusCode: \(httpResponse.statusCode)")
         }
     }
 
-    public func log(error: Error) {
+    func log(error: Error) {
         printIfDebug("🧨 Error request" + "\(error)")
     }
 

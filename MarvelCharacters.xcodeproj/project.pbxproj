@@ -41,6 +41,9 @@
 		7E0C653F28FF6174003093CA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E0C654128FF6174003093CA /* Localizable.strings */; };
 		7E0C65442900E7A1003093CA /* DateHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0C65432900E7A1003093CA /* DateHelperTests.swift */; };
 		7E0C65462900ED18003093CA /* EncryptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0C65452900ED18003093CA /* EncryptionTests.swift */; };
+		7E0C654A291BFB58003093CA /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0C6549291BFB58003093CA /* StringExtension.swift */; };
+		7E0C654C291BFB75003093CA /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0C654B291BFB75003093CA /* DateExtension.swift */; };
+		7E0C654E291BFBA7003093CA /* DateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0C654D291BFBA7003093CA /* DateFormat.swift */; };
 		7E14ADF4284614F30089CAB5 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 7E14ADF3284614F30089CAB5 /* RxBlocking */; };
 		7E14ADF6284614F30089CAB5 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 7E14ADF5284614F30089CAB5 /* RxCocoa */; };
 		7E14ADF8284614F30089CAB5 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 7E14ADF7284614F30089CAB5 /* RxRelay */; };
@@ -55,7 +58,6 @@
 		7E14AE1C284661820089CAB5 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E14AE1B284661820089CAB5 /* AppConfiguration.swift */; };
 		7E14AE1E28466DDA0089CAB5 /* NetworkErrorLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E14AE1D28466DDA0089CAB5 /* NetworkErrorLogger.swift */; };
 		7E14AE202846725B0089CAB5 /* FetchCharactersUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E14AE1F2846725B0089CAB5 /* FetchCharactersUseCase.swift */; };
-		7E15DF9F28F9E1EF00275040 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E15DF9E28F9E1EF00275040 /* DateHelper.swift */; };
 		7E1C36982831A3270044A7FE /* RadioButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C36962831A3270044A7FE /* RadioButtonViewController.swift */; };
 		7E1C36992831A3270044A7FE /* RadioButtonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E1C36972831A3270044A7FE /* RadioButtonViewController.xib */; };
 		7E1C369C2831A42E0044A7FE /* CheckboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C369A2831A42D0044A7FE /* CheckboxViewController.swift */; };
@@ -179,6 +181,9 @@
 		7E0C654028FF6174003093CA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7E0C65432900E7A1003093CA /* DateHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelperTests.swift; sourceTree = "<group>"; };
 		7E0C65452900ED18003093CA /* EncryptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionTests.swift; sourceTree = "<group>"; };
+		7E0C6549291BFB58003093CA /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		7E0C654B291BFB75003093CA /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		7E0C654D291BFBA7003093CA /* DateFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormat.swift; sourceTree = "<group>"; };
 		7E14AE0A284621980089CAB5 /* CharactersRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersRepositoryProtocol.swift; sourceTree = "<group>"; };
 		7E14AE0E284622B10089CAB5 /* CharactersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersRepository.swift; sourceTree = "<group>"; };
 		7E14AE13284627B40089CAB5 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -188,7 +193,6 @@
 		7E14AE1B284661820089CAB5 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		7E14AE1D28466DDA0089CAB5 /* NetworkErrorLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorLogger.swift; sourceTree = "<group>"; };
 		7E14AE1F2846725B0089CAB5 /* FetchCharactersUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCharactersUseCase.swift; sourceTree = "<group>"; };
-		7E15DF9E28F9E1EF00275040 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		7E1C36962831A3270044A7FE /* RadioButtonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonViewController.swift; sourceTree = "<group>"; };
 		7E1C36972831A3270044A7FE /* RadioButtonViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RadioButtonViewController.xib; sourceTree = "<group>"; };
 		7E1C369A2831A42D0044A7FE /* CheckboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxViewController.swift; sourceTree = "<group>"; };
@@ -344,7 +348,8 @@
 				7E14ADFE28461E230089CAB5 /* Domain */,
 				7E14AE0028461F020089CAB5 /* Data */,
 				7E14AE0128461F070089CAB5 /* Infraestructure */,
-				7EA189FA284901DC007E16E0 /* Common */,
+				7EA189FA284901DC007E16E0 /* Services */,
+				7E0C6548291BC5F6003093CA /* Extensions */,
 				6556BE502707D5A400B72CD6 /* Resources */,
 			);
 			path = MarvelCharacters;
@@ -428,6 +433,16 @@
 			path = Commom;
 			sourceTree = "<group>";
 		};
+		7E0C6548291BC5F6003093CA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7E0C6549291BFB58003093CA /* StringExtension.swift */,
+				7E0C654B291BFB75003093CA /* DateExtension.swift */,
+				7E0C654D291BFBA7003093CA /* DateFormat.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		7E14ADFD28461E150089CAB5 /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -459,6 +474,7 @@
 				7E44E7C32807271600545E7E /* UserScene */,
 				7EB3B631282EE47300D69218 /* DesignSystemDemoScene */,
 				7E64DF602875D56500F80D89 /* Utils */,
+				7EA189FB284902A6007E16E0 /* PaginationHelper.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -467,7 +483,7 @@
 			isa = PBXGroup;
 			children = (
 				7E14AE07284620420089CAB5 /* Repositories */,
-				7E14AE08284620520089CAB5 /* Network */,
+				7E14AE08284620520089CAB5 /* Requests */,
 				7E14AE092846205C0089CAB5 /* PersistentStorages */,
 			);
 			path = Data;
@@ -529,14 +545,14 @@
 			path = Repositories;
 			sourceTree = "<group>";
 		};
-		7E14AE08284620520089CAB5 /* Network */ = {
+		7E14AE08284620520089CAB5 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
 				7E14AE19284656090089CAB5 /* CharactersRequest.swift */,
 				7EE8B6612849EC1000207A8A /* ComicsRequest.swift */,
 				7EE8B6632849EC2500207A8A /* SeriesRequest.swift */,
 			);
-			path = Network;
+			path = Requests;
 			sourceTree = "<group>";
 		};
 		7E14AE092846205C0089CAB5 /* PersistentStorages */ = {
@@ -812,14 +828,12 @@
 			path = Foundations;
 			sourceTree = "<group>";
 		};
-		7EA189FA284901DC007E16E0 /* Common */ = {
+		7EA189FA284901DC007E16E0 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				73DBB5BB2840C80900E8D5D6 /* Encryption.swift */,
-				7EA189FB284902A6007E16E0 /* PaginationHelper.swift */,
-				7E15DF9E28F9E1EF00275040 /* DateHelper.swift */,
 			);
-			path = Common;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		7EA189FD28492532007E16E0 /* View */ = {
@@ -1176,8 +1190,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E44E7B728071B8B00545E7E /* LoginViewController.swift in Sources */,
+				7E0C654C291BFB75003093CA /* DateExtension.swift in Sources */,
 				7EE8B66E2849F31F00207A8A /* FetchComicsUseCase.swift in Sources */,
 				7E64DF632875D5D500F80D89 /* Modable.swift in Sources */,
+				7E0C654E291BFBA7003093CA /* DateFormat.swift in Sources */,
 				7EA05AF8282F0F5C003E04B7 /* TypographyViewController.swift in Sources */,
 				7EA05B0B282FC48B003E04B7 /* ShadowsViewController.swift in Sources */,
 				65804D3F2704C35E001C42B3 /* AppDelegate.swift in Sources */,
@@ -1219,6 +1235,7 @@
 				7EE8B6622849EC1000207A8A /* ComicsRequest.swift in Sources */,
 				7E44E7CC280727F300545E7E /* UserViewModel.swift in Sources */,
 				7E3C57CE285CE8A30053B9B8 /* NetworkConfig.swift in Sources */,
+				7E0C654A291BFB58003093CA /* StringExtension.swift in Sources */,
 				65804D7C2704CB76001C42B3 /* CharactersListViewController.swift in Sources */,
 				7E14AE0F284622B10089CAB5 /* CharactersRepository.swift in Sources */,
 				7EB3B633282EF88D00D69218 /* DesignSystemDemoCoordinator.swift in Sources */,
@@ -1230,7 +1247,6 @@
 				7EE8B6682849F0CB00207A8A /* SeriesRepository.swift in Sources */,
 				7E6E2F582857361E00A6F93E /* DINetworkContainer.swift in Sources */,
 				65516C842707BD0800F6D3D4 /* Serie.swift in Sources */,
-				7E15DF9F28F9E1EF00275040 /* DateHelper.swift in Sources */,
 				7E64DF672877250F00F80D89 /* CustomizableNavBar.swift in Sources */,
 				7E14AE0B284621980089CAB5 /* CharactersRepositoryProtocol.swift in Sources */,
 				7EE8B66C2849F24200207A8A /* SeriesRepositoryProtocol.swift in Sources */,

@@ -23,9 +23,12 @@ extension CharactersRepository: CharactersRepositoryProtocol {
 
     func fetchCharcters(limit: Int, offset: Int) -> Observable<ResponseCharacters> {
 
-        // DataBase Cache here
-
         return Observable.create { observer in
+
+            // DataBase Cache here
+            // let responseCharactersDatabase = ResponseCharacters(total: 300, characters: [])
+            // observer.onNext(responseCharactersDatabase)
+
             self.fetchCharactersFromNetwork(limit: limit, offset: offset) { result in
                 switch result {
                 case .success(let responseCharactersData):

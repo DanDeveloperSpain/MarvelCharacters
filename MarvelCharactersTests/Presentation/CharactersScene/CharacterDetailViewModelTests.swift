@@ -69,10 +69,10 @@ class CharacterDetailViewModelTests: XCTestCase {
         characterDetailViewModel?.checkSeriesRequestNewDataByIndex(index: 19)
 
         /// select yera to filter
-        characterDetailViewModel?.selectedFilteredYear = 2007
+        // characterDetailViewModel?.selectedFilteredYear = 2007
 
         /// applying filter
-        characterDetailViewModel?.setFilterYearToItems()
+        characterDetailViewModel?.setFilterYearToItems(yearToFilter: 2007)
 
         // then
         XCTAssertEqual(characterDetailViewModel?.filteredComics.count, 2)
